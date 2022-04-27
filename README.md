@@ -1,3 +1,15 @@
+# FrontEnd
+The Frontend area seeks to provide a user-friendly interface that is useful for contact center agents and supervisors
+## Purpose
+The aim of this repository is the creation and integration of screens and features of the project designed for amazon.
+## Documentation
+See the Wiki for full documentation, examples and other information.
+## Installation
+
+## Demo
+
+## LICENSE
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
