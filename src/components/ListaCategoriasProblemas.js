@@ -1,10 +1,10 @@
 import RenglonCategoriaProblema from "./RenglonCategoriaProblema";
-import "../styles/TarjetaCategoriasProblemas.css";
 import BarraBusqueda from "./BarraBusqueda";
+import { Fragment } from "react";
 
-const TarjetaCategoriasProblemas = (props) => {
+const ListaCategoriasProblemas = (props) => {
   return (
-    <div className="tarjeta-categorias-problemas">
+    <Fragment>
       <BarraBusqueda tipoBusqueda="preguntas" />
       <div
         onClick={() => {
@@ -14,8 +14,8 @@ const TarjetaCategoriasProblemas = (props) => {
         <RenglonCategoriaProblema text="Internet issues" />
       </div>
       <RenglonCategoriaProblema text="Account status" />
-    </div>
+    </Fragment>
   );
 };
 
-export default TarjetaCategoriasProblemas;
+export default ListaCategoriasProblemas;

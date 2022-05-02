@@ -1,4 +1,4 @@
-import "../styles/RenglonCategoriaProblema.css";
+import "../style/RenglonCategoriaProblema.css";
 
 const RenglonCategoriaProblema = (props) => {
   return (
