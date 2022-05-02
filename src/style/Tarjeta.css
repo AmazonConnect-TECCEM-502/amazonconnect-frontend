@@ -1,0 +1,10 @@
+.tarjeta{
+    width: 583px;
+    height: 438px;
+    left: 384px;
+    top: 105px;
+    
+    background: #F7F7F7;
+    box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
