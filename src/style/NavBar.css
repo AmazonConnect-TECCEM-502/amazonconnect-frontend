@@ -1,0 +1,23 @@
+.navbar{
+    min-width: 100%;
+    width: 100%;
+    min-height: 50px;
+    background-color: #F7F7F7;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-options{
+    margin:0 24px 0 0;
+    display: flex;
+    justify-content: space-between;
+    width: 50px;
+}
+
+.navbar img{
+    width: 50px;
+    max-width: 50px;
+    margin: 0 0 0 8px;
+}
