@@ -37,3 +37,9 @@
     background-color: rgba(0, 0, 0, 5%);
     border-radius: 10px;
 }
+
+@media (max-width:700px){
+    .dropdown-menu::before{
+        right: 16px;
+    }
+}
