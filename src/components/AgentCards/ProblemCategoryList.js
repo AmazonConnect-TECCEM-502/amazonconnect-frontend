@@ -5,6 +5,7 @@ import { Fragment } from "react";
 const ProblemCategoryList = (props) => {
   return (
     <Fragment>
+      <p className = "title"> Problems by category</p>
       <SearchBar SearchType="preguntas" />
       <div
         onClick={() => {
