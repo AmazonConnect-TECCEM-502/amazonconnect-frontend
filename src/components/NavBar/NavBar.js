@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import "../../style/NavBar.css";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
-import { NavBarOptions } from "./NavBarOptions";
-import "../../style/NavBarOptions.css";
 import DropDown from "./DropDown";
 
 const NavBar = () => {
@@ -12,6 +9,24 @@ const NavBar = () => {
   const userPopupState = () => {
     setUserPopup(!userPopup);
   };
+
+  const NavBarOptions = [
+    {
+      title: "Home",
+      url: "#",
+      cName: "nav-links",
+    },
+    {
+      title: "Statistics",
+      url: "#",
+      cName: "nav-links",
+    },
+    {
+      title: "Capacitations",
+      url: "#",
+      cName: "nav-links",
+    },
+  ];
 
   return (
     <div>

@@ -2,8 +2,6 @@
 Autor: María Fernanda Ramirez Barragán
 */
 
-import "../../style/DropDown.css";
-
 const DropDown = () => {
   const dropdownOptions = [
     {
