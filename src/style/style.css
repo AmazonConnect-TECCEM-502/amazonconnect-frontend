@@ -1,0 +1,25 @@
+/* 
+  Author: Diego Armando Ulibarri Hernández
+  Description: Css file containing all
+  component styles
+
+  Usage: To use this css file, you need to
+  import the file in each js component that
+  needs it 
+*/
+
+/* Fonts */
+@import url('./PersonalizedFonts.css');
+
+/* Navbar Styles */
+@import url('./NavBar/NavBar.css');
+@import url('./NavBar/DropDown.css');
+
+/* Agent Cards Styles */
+@import url('./AgentCards/Card.css');
+@import url('./AgentCards/AnswerList.css');
+@import url('./AgentCards/ProblemCategoryList.css');
+@import url('./AgentCards/QuestionList.css');
+
+/* User Card Styles */
+@import url('./UserCard/UserCard.css');
