@@ -1,17 +1,24 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../../style/NavBar.css";
 import { AiOutlineUser } from "react-icons/ai";
-import { IoOptionsOutline } from "react-icons/io5";
+import { BsEye } from "react-icons/bs";
 import { NavBarOptions } from "./NavBarOptions";
 import "../../style/NavBarOptions.css";
+import DropDown from "./DropDown";
 
-class NavBar extends Component {
-  render() {
-    return (
+const NavBar = () => {
+  const [userPopup, setUserPopup] = useState(false);
+
+  const userPopupState = () => {
+    setUserPopup(!userPopup);
+  };
+
+  return (
+    <div>
       <nav className="navbar">
         <img src={require("../../images/TelmexLogo.jpg")} alt="logoTelmex" />
         <ul className="nav-menu">
-          {NavBarOptions.map((props) => {
+          {NavBarOptions.map((props, index) => {
             return (
               <li>
                 <a className={props.cName} href={props.url}>
@@ -20,12 +27,14 @@ class NavBar extends Component {
               </li>
             );
           })}
-          <IoOptionsOutline className="icons" />
-          <AiOutlineUser className="icons" />
+          <BsEye className="icons" />
+
+          <AiOutlineUser className="icons" onClick={userPopupState} />
         </ul>
       </nav>
-    );
-  }
-}
+      {userPopup && <DropDown />}
+    </div>
+  );
+};
 
 export default NavBar;
