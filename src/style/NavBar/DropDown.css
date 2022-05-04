@@ -46,6 +46,7 @@
 
 .nav-links:hover {
   border-bottom: 1.5px solid black;
+  color: #000;
 }
 
 @media (max-width: 700px) {

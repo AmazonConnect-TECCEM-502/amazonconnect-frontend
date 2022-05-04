@@ -1,12 +1,13 @@
 import { Fragment } from "react";
 import Answers from "./Answers";
+import "../../style/AgentCards/QuestionList.css"
 
 const AnswerList = (props) => {
   return (
     <Fragment>
       <Answers
-        titulo="No internet Conection"
-        texto="Lorem ipsum dolor sit amet consectetur adipiscing elit rhoncus et fusce a, convallis lacus commodo lectus faucibus ornare tincidunt mattis vestibulum aenean. Aliquet at "
+        title="No internet Conection"
+        text="Lorem ipsum dolor sit amet consectetur adipiscing elit rhoncus et fusce a, convallis lacus commodo lectus faucibus ornare tincidunt mattis vestibulum aenean. Aliquet at "
       />
     </Fragment>
   );
