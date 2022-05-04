@@ -2,6 +2,7 @@ import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import Card from "./components/AgentCards/Card";
 import AnswerList from "./components/AgentCards/AnswerList";
+import ProductCard from "./components/SalesCard/ProductCard";
 import "./style/style.css";
 import QuestionList from "./components/AgentCards/QuestionList";
 import ProblemCategoryList from "./components/AgentCards/ProblemCategoryList";
