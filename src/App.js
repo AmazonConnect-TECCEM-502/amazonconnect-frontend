@@ -5,6 +5,7 @@ import AnswerList from "./components/AgentCards/AnswerList";
 import "./style/style.css";
 import QuestionList from "./components/AgentCards/QuestionList";
 import ProblemCategoryList from "./components/AgentCards/ProblemCategoryList";
+import Menu from "./components/Menu/Menu"
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Card component= {<AnswerList/>} />
       <Card component = {<QuestionList/>}/>
       <Card component = {<ProblemCategoryList/>}/>
+      <Card component = {<Menu/>}/>
     </div>
   );
 }
