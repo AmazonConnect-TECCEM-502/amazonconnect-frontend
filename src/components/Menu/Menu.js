@@ -8,7 +8,7 @@ const Menu = () =>{
             <p className="title"> Menu </p>
             <div className="elements-container">
                 <Element element = "Q & A"/>
-                <Element element = "Client ID"/>
+                <Element element = "Client ID" input = {<input className="input-ID" type="text" name="ID"/>}/>
             </div>
         </Fragment>
     )

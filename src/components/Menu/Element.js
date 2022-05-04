@@ -5,8 +5,10 @@ const Element = (props) =>{
         
         <div className="element">
             <input type="checkbox" id="cbox"/> 
-            <label for="cbox">{props.element}</label>
+            <label for="cbox">&nbsp;{props.element}&nbsp;{props.input}</label>
+            
         </div>
+
     )
 
 };
