@@ -1,11 +1,11 @@
 /*
 Author: Renata de Luna
-Description: Component for product image included in porduct card
+Description: Component for product image included in product card
 */
 
 const ProductImage = (props) => {
     return (
-        <img src = {require(`../../images/${props.image}.jpg`)} alt = "Product" />
+        <img src = {require(`../../images/sales/${props.image}.jpg`)} alt = "Product" />
     );
 };
 
