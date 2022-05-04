@@ -23,6 +23,10 @@ function App() {
                                     lname = "Doe"
                                     email = "example@gmail.com"
                                     phone = "55 5555 5555" />}/>
+      <Card component = {<ProductCard image = "ejemploTelmex"
+                                      name = "Internet Paquete"
+                                      price = "56"
+                                      desc = "bla bla"  />}/>
     </div>
   );
 }

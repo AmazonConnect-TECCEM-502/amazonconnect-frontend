@@ -8,6 +8,6 @@ const ProductName = (props) => {
         <div className="product-name">
             <p>{props.name}</p>
         </div>
-    )
+    );
 }; 
 export default ProductName;

@@ -32,18 +32,17 @@ import ProductDescription from './ProductDescription';
 
 const ProductCard = (props) => {
     return(
-        <Fragment>
+        
         <div className="product-card">
             <div class="clearfix">
-              <ProductImage image = {props.image} />
+                <ProductImage image = {props.image} />
                 <ProductName name = {props.name} />
                 <ProductPrice price = {props.price} />
                 <ProductDescription desc = {props.desc} />
             </div>
-
         </div>
-        </Fragment>
-    )
-}
+        
+    );
+};
 
 export default ProductCard;
