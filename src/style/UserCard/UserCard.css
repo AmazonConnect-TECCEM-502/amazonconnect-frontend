@@ -1,16 +1,6 @@
-@import url("../PersonalizedFonts.css");
-
-.user-card {
-  width: max-content;
-  height: max-content;
-  padding: 15px;
-  padding-right: 25px;
-  background: #f7f7f7;
-  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-}
-
 img {
+  margin-top: 15px;
+  margin-left: 25px;
   max-width: 25%;
   border-radius: 100px;
   float: left;
@@ -19,7 +9,7 @@ img {
 .user-name {
   font-size: xx-large;
   font-family: Montserrat-bold;
-  padding-left: 200px;
+  padding: 2px 0px 0px 100px;
   text-decoration-line: underline;
   text-decoration-color: rgba(0, 0, 0, 0.6);
   text-decoration-thickness: 3px;
@@ -30,10 +20,4 @@ img {
   font-size: large;
   font-family: Montserrat;
   padding: 30px 0px 0px 100px;
-}
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
 }

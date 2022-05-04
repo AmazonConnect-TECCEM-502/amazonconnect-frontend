@@ -13,24 +13,20 @@
     email = {email}
     phone = {phone number} 
   />
-  
-  Note: Clearfix is used to insert floating elements, 
-  if used, you need to specify ".clearfix::after" in the css file 
 */
+import { Fragment } from "react";
 import UserImage from "./UserImage";
 import UserInfo from "./UserInfo";
 import UserName from "./UserName";
 
 const UserCard = (props) => {
   return (
-    <div className="user-card">
-      <div className="clearfix">
+    <Fragment>
         <UserImage image={props.image} />
         <UserName name={props.fname + ", " + props.lname} />
         <UserInfo text={props.email} />
         <UserInfo text={props.phone} />
-      </div>
-    </div>
+    </Fragment>
   );
 };
 

@@ -1,6 +1,7 @@
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import Card from "./components/AgentCards/Card";
+import UserCard from "./components/UserCard/UserCard"
 import AnswerList from "./components/AgentCards/AnswerList";
 import ProductCard from "./components/SalesCard/ProductCard";
 import "./style/style.css";
@@ -17,6 +18,11 @@ function App() {
       <Card component = {<QuestionList/>}/>
       <Card component = {<ProblemCategoryList/>}/>
       <Card component = {<Menu/>}/>
+      <Card component = {<UserCard  image = "TelmexLogo" 
+                                    fname = "John" 
+                                    lname = "Doe"
+                                    email = "example@gmail.com"
+                                    phone = "55 5555 5555" />}/>
     </div>
   );
 }
