@@ -1,0 +1,74 @@
+/*
+Author: Renata de Luna
+Description: Css file with the styles for Sales Card.
+*/
+
+/*.product-card{ 
+    width: max-content;
+    height: max-content;
+    padding: 15px;
+    padding-right: 25px;
+    background: #F7F7F7;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}*/
+.product-card{
+    height: 100%;
+    width: 100%;
+    padding: 16px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.product-info{
+    display: flex;
+    
+    
+}
+
+.product-name{
+    font-size: x-large;
+
+    /*width: 157px;
+    height: 23px;*/
+    /*left: 424px;*/
+    /*top: 775px;*/
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    /* or 100% */
+
+    text-align: left;
+    letter-spacing: 0.44px;
+
+    color: #000000;
+}
+
+.product-price{
+    font-size: x-large;
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 0px;
+    text-align: center;
+    
+    color: #197D1D;
+
+}
+
+.product-description{
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #000000;
+
+
+}
+

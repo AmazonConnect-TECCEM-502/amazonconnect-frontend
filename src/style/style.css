@@ -23,6 +23,7 @@
 
 /* User Card Styles */
 @import url('./UserCard/UserCard.css');
-
 /* Agent View */
 @import url('./AgentMain.css');
+/* Sales Card Styles */
+@import url('./SalesCard/SalesCard.css');
