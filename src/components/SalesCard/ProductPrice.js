@@ -6,7 +6,7 @@ Description: Component for prodcut price included in product card
 const ProductPrice = (props) => {
     return (
         <div className = "product-price">
-          {props.text}
+          <p className="price-fomat">{props.price}</p>
         </div>
     );
 };
