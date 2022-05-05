@@ -1,5 +1,7 @@
 /*
-Autor: María Fernanda Ramirez Barragán
+Author: María Fernanda Ramirez Barragán
+
+Dropdown menu functionality 
 */
 
 const DropDown = () => {

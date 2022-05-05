@@ -1,3 +1,9 @@
+/*
+Author: María Fernanda Ramirez Barragán
+
+Navbar functionality 
+*/
+
 import React, { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
