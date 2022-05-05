@@ -1,16 +1,24 @@
 /*
   Author: Diego Armando Ulibarri Hernández
-  Description:
 
-  Usage:
+  Description: The AgentBoard component serves 
+  as a container for the cards which can be 
+  selected and arranged in differents positions
+  of the board or in different boards
 
-  <AgentBoard />
+  Usage: 
+    id -> Serves as a unique board identifier so 
+    cards can be associated with a specific board
+
+  <AgentBoard 
+    id: "unique-id"
+    className: "board"
+  />
 */
 
 const AgentBoard = (props) => {
   //
   const drop = (e) => {
-    e.preventDefault();
     const card_id = e.dataTransfer.getData("card_id");
     const card = document.getElementById(card_id);
     card.style.display = "block";
