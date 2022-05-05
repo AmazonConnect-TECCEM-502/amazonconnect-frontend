@@ -5,9 +5,10 @@ img {
 }
 
 .user-name {
-  font-size: xx-large;
-  font-family: Montserrat-bold;
-  padding: 2px 0px 0px 100px;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 60px;
+  font-family: "Montserrat";
   text-decoration-line: underline;
   text-decoration-color: rgba(0, 0, 0, 0.6);
   text-decoration-thickness: 3px;
@@ -15,7 +16,7 @@ img {
 }
 
 .user-info {
-  font-size: large;
+  font-size: 15px;
   font-family: Montserrat;
-  padding: 30px 0px 0px 100px;
+  padding: 30px 0px 0px 125px;
 }
