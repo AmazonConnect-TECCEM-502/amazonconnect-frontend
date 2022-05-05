@@ -33,12 +33,13 @@ import ProductDescription from './ProductDescription';
 const ProductCard = (props) => {
   return(
     <div className="product-card">
-        <div className="product-info">
+        <div className="product-header">
           <img src = {require(`../../images/sales/${props.image}.jpg`)} alt = "Product" />
-          <p className="product-name">{props.name}</p>
-          <p className="product-price">Price:</p><p className="product-price">{props.price} $</p>
-          <br/>
-          <button>Add</button>
+          <div>
+            <p className="product-name">{props.name}</p>
+            <p className="product-price">Price: {props.price} $</p>
+            <button>Add</button>
+          </div>
         </div>
         <p className="product-description"> {props.desc} </p>
       

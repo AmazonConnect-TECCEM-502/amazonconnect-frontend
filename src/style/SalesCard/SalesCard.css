@@ -13,62 +13,65 @@ Description: Css file with the styles for Sales Card.
     border-radius: 10px;
 }*/
 .product-card{
-    height: 100%;
     width: 100%;
-    padding: 16px 0px;
     display: flex;
     flex-direction: column;
 }
-.product-info{
+.product-header{
     display: flex;
-    
-    
+    align-items: center;
+    justify-content: space-around;
+}
+.product-header img{
+    border-radius: 50%;
+    margin-right: 8px;
+    max-width: 150px;
+}
+.product-header button {
+    background-color: #0799E6;
+    font-size: 16px;
+    padding: 8px 16px;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .8s;
+}
+.product-header button:hover{
+    background-color: #0463B9;
+    transition: .8s;
 }
 
 .product-name{
     font-size: x-large;
-
-    /*width: 157px;
-    height: 23px;*/
-    /*left: 424px;*/
-    /*top: 775px;*/
-
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
     line-height: 24px;
-    /* or 100% */
-
     text-align: left;
     letter-spacing: 0.44px;
-
     color: #000000;
+    margin: 0 0 8px 0;
 }
 
 .product-price{
     font-size: x-large;
-    
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
-    line-height: 0px;
     text-align: center;
-    
     color: #197D1D;
-
+    margin: 0 0 8px 0;
 }
 
 .product-description{
-
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     text-align: center;
     color: #000000;
-
-
 }
-

@@ -9,7 +9,7 @@
 */
 
 const UserImage = (props) => {
-  return <img src={require(`../../images/${props.image}.jpg`)} alt="User" />;
+  return <img src={require(`../../images/${props.image}.jpg`)} alt="User" className="user-image" />;
 };
 
 export default UserImage;
