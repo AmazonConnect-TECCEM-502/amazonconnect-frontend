@@ -32,8 +32,8 @@ function AgentMain() {
           component={
             <UserCard
               image="IconClient"
-              fname="Maria"
-              lname="Ejemplo"
+              fname="Rosa"
+              lname="Example"
               email="example@gmail.com"
               phone="55 5555 5555"
             />
@@ -55,8 +55,8 @@ function AgentMain() {
           component={
             <ProductCard
               image="ejemploTelmex"
-              name="Internet Paquete"
-              price="56"
+              name="Internet plan"
+              price="100"
               desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer molestie dui quam. Aenean egestas volutpat mauris non tincidunt. Pellentesque maximus a enim sed mollis. Suspendisse lacus risus, cursus a blandit sit amet, sollicitudin vitae quam. Morbi vulputate venenatis ipsum id auctor. Sed sodales nulla sapien, sit amet interdum lorem mollis vitae. In ut sem turpis. Nulla faucibus, ante eget rhoncus venenatis, ipsum massa congue purus, fringilla elementum purus purus et nunc. Curabitur id risus sed lorem viverra semper vel id metus. Praesent vitae bibendum augue."
             />
           }
