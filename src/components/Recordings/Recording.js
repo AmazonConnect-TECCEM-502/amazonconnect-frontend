@@ -12,7 +12,7 @@ const Recording = (props) => {
   const onStop = (url) => {
     const a = document.createElement("a");
     a.href = url;
-    a.download = "archivoVideo";
+    a.download = "videoFile";
 
     document.body.appendChild(a);
     a.click();
@@ -32,6 +32,7 @@ const Recording = (props) => {
   } = useReactMediaRecorder({
     screen: true,
     audio: true,
+    askPermissionOnMount: true,
     onStop: () => onStop(mediaBlobUrl),
     blobPropertyBag: { type: "video/mp4" },
   });
@@ -58,13 +59,14 @@ const Recording = (props) => {
       <button className="button" onClick={unMuteAudio}>
         {<GoUnmute size={28} />}
       </button>
+      <br />
       <video
         src={mediaBlobUrl}
         controls={true}
         autoPlay={false}
         loop={true}
-        width="100px"
-        height="100px"
+        width="300px"
+        height="300px"
       />
     </Fragment>
   );
