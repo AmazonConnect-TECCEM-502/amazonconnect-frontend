@@ -31,9 +31,9 @@ function AgentMain() {
           draggable="true"
           component={
             <UserCard
-              image="TelmexLogo"
-              fname="John"
-              lname="Doe"
+              image="IconClient"
+              fname="Maria"
+              lname="Ejemplo"
               email="example@gmail.com"
               phone="55 5555 5555"
             />
