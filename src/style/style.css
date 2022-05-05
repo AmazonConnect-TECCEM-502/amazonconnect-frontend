@@ -9,21 +9,24 @@
 */
 
 /* Fonts */
-@import url('./PersonalizedFonts.css');
+@import url("./PersonalizedFonts.css");
 
 /* Navbar Styles */
-@import url('./NavBar/NavBar.css');
-@import url('./NavBar/DropDown.css');
+@import url("./NavBar/NavBar.css");
+@import url("./NavBar/DropDown.css");
 
 /* Agent Cards Styles */
-@import url('./AgentCards/Card.css');
-@import url('./AgentCards/AnswerList.css');
-@import url('./AgentCards/ProblemCategoryList.css');
-@import url('./AgentCards/QuestionList.css');
+@import url("./AgentCards/Card.css");
+@import url("./AgentCards/AnswerList.css");
+@import url("./AgentCards/ProblemCategoryList.css");
+@import url("./AgentCards/QuestionList.css");
 
 /* User Card Styles */
-@import url('./UserCard/UserCard.css');
+@import url("./UserCard/UserCard.css");
 /* Agent View */
-@import url('./AgentMain.css');
+@import url("./AgentMain.css");
 /* Sales Card Styles */
-@import url('./SalesCard/SalesCard.css');
+@import url("./SalesCard/SalesCard.css");
+
+/* Recordings Card Styles */
+@import url("./Recordings/Recordings.css");

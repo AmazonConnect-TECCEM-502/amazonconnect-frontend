@@ -1,3 +1,7 @@
+// Author: José Benjamín Ruiz García
+// Component that represents the categories available for the problem
+// suggestions
+
 const RowCategoryProblem = (props) => {
   return (
     <div className="category-problem">

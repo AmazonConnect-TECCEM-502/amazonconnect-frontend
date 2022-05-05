@@ -15,13 +15,14 @@ import UserCard from "./UserCard/UserCard";
 import ProductCard from "./SalesCard/ProductCard";
 import QuestionList from "./AgentCards/QuestionList";
 import Menu from "./Menu/Menu";
+import Recording from "./Recordings/Recording";
 
 function AgentMain() {
   return (
     <div className="agent-container">
       <AgentBoard id="board-1" className="board board-menu">
         <Card id="card-1" draggable="false" component={<Menu />} />
-        <Card id="card-2" draggable="true" component={<ProblemCategoryList />} />
+        <Card id="card-7" draggable="false" component={<Recording />} />
       </AgentBoard>
 
       <AgentBoard id="board-2" className="board">
@@ -30,15 +31,20 @@ function AgentMain() {
           draggable="true"
           component={
             <UserCard
-              image="TelmexLogo"
-              fname="John"
-              lname="Doe"
+              image="IconClient"
+              fname="Maria"
+              lname="Ejemplo"
               email="example@gmail.com"
               phone="55 5555 5555"
             />
           }
         />
         <Card id="card-3" draggable="true" component={<QuestionList />} />
+        <Card
+          id="card-2"
+          draggable="true"
+          component={<ProblemCategoryList />}
+        />
       </AgentBoard>
 
       <AgentBoard id="board-3" className="board">
