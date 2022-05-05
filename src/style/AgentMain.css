@@ -4,16 +4,17 @@
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(to bottom right, #fff, #0799E6,#0463B9);
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .agent-container .board{
   padding: 16px;
   display: flex;
   flex-direction: column;
-  width: 100%;
-
+  flex: 1;
 }
 
 .agent-container .board-menu{
-  width: 500px;
+  max-width: 390px;
 }
