@@ -68,6 +68,9 @@ const Recording = (props) => {
         width="300px"
         height="300px"
       />
+      {document.addEventListener("keydown", function (event) {
+        console.log(`Tecla: ${event.key} `);
+      })}
     </Fragment>
   );
 };
