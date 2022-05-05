@@ -1,13 +1,30 @@
 import { Fragment } from "react";
 
 const Card = (props) => {
-    return( 
-      <Fragment>
-        <div className="card">
-            {props.component}
-        </div>
-      </Fragment>
-    );
+  const dragStart = (e) => {
+    const target = e.target;
+
+    e.dataTransfer.setData("card_id", target.id);
+
+  };
+
+  const dragOver = (e) => {
+    e.stopPropagation();
   };
   
-  export default Card;
+  return (
+    <Fragment>
+      <div
+        id={props.id}
+        onDragStart={dragStart}
+        onDragOver={dragOver}
+        draggable={props.draggable}
+        className="card"
+      >
+        {props.component}
+      </div>
+    </Fragment>
+  );
+};
+
+export default Card;
