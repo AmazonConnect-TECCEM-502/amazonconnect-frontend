@@ -1,0 +1,13 @@
+/*
+Author: José Benjamín Ruiz García
+Styles for buttons in the Recordings Card
+*/
+
+.button {
+  background-color: #f7f7f7;
+  width: 40px;
+  height: 30px;
+  border-width: 0px;
+  align-items: center;
+  cursor: pointer;
+}
