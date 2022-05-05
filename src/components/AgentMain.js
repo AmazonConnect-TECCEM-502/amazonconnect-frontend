@@ -1,10 +1,10 @@
 /*
   Author: Diego Armando Ulibarri Hernández
-  Description:
+  Description: groups the boards and the cards 
+  that the agent will occupy
 
   Usage:
-
-  <AgentBoard />
+  <AgentMain />
 */
 
 import AgentBoard from "./AgentCards/AgentBoard";
