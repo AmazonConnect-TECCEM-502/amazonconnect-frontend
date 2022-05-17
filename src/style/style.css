@@ -28,5 +28,8 @@
 /* Sales Card Styles */
 @import url("./SalesCard/SalesCard.css");
 
+/* Menu */
+@import url("./Menu/Menu.css");
+
 /* Recordings Card Styles */
 @import url("./Recordings/Recordings.css");

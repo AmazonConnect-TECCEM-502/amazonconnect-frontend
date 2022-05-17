@@ -9,25 +9,35 @@
 
 import AgentBoard from "./AgentCards/AgentBoard";
 import Card from "./AgentCards/Card";
-import AnswerList from "./AgentCards/AnswerList";
-import ProblemCategoryList from "./AgentCards/ProblemCategoryList";
-import UserCard from "./UserCard/UserCard";
-import ProductCard from "./SalesCard/ProductCard";
-import QuestionList from "./AgentCards/QuestionList";
 import Menu from "./Menu/Menu";
 import Recording from "./Recordings/Recording";
+import QuestionList from "./AgentCards/QuestionList";
+import UserCard from "./UserCard/UserCard";
+import ProblemCategoryList from "./AgentCards/ProblemCategoryList";
+import AnswerList from "./AgentCards/AnswerList";
+import ProductCard from "./SalesCard/ProductCard";
 
 function AgentMain() {
   return (
     <div className="agent-container">
       <AgentBoard id="board-1" className="board board-menu">
         <Card id="card-1" draggable="false" component={<Menu />} />
-        <Card id="card-7" draggable="false" component={<Recording />} />
+        <Card id="card-2" draggable="false" component={<Recording />} />
       </AgentBoard>
 
       <AgentBoard id="board-2" className="board">
+        <Card id="card-3" draggable="true" component={<QuestionList />} />
         <Card
           id="card-5"
+          draggable="true"
+          component={<ProblemCategoryList />}
+        />
+        <Card id="card-6" draggable="true" component={<AnswerList />} />
+      </AgentBoard>
+
+      <AgentBoard id="board-3" className="board">
+        <Card
+          id="card-4"
           draggable="true"
           component={
             <UserCard
@@ -39,18 +49,8 @@ function AgentMain() {
             />
           }
         />
-        <Card id="card-3" draggable="true" component={<QuestionList />} />
         <Card
-          id="card-2"
-          draggable="true"
-          component={<ProblemCategoryList />}
-        />
-      </AgentBoard>
-
-      <AgentBoard id="board-3" className="board">
-        <Card id="card-4" draggable="true" component={<AnswerList />} />
-        <Card
-          id="card-6"
+          id="card-7"
           draggable="true"
           component={
             <ProductCard
