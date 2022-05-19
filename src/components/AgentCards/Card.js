@@ -1,5 +1,5 @@
 /*
-  Authors:  Andre
+  Authors:  Andrea
             Benjamin
             Diego Armando Ulibarri Hernández
 
@@ -20,8 +20,12 @@
   />
 */
 import { Fragment } from "react";
+import { useContext } from "react";
+import { CardContext } from "./CardsProvider";
 
 const Card = (props) => {
+  const [qna, , client] = useContext(CardContext)
+
   const dragStart = (e) => {
     const target = e.target;
     e.dataTransfer.setData("card_id", target.id);
@@ -30,6 +34,12 @@ const Card = (props) => {
   const dragOver = (e) => {
     e.stopPropagation();
   };
+
+  let cardStyle = {display: "block"};
+  if ((props.id === "card-3" && !qna) || (props.id === "card-4" && !client)) {
+    cardStyle = {display: "none"};
+  }
+
   
   return (
     <Fragment>
@@ -39,6 +49,7 @@ const Card = (props) => {
         onDragOver={dragOver}
         draggable={props.draggable}
         className="card"
+        style={cardStyle}
       >
         {props.component}
       </div>
