@@ -16,13 +16,14 @@ import UserCard from "./UserCard/UserCard";
 import ProblemCategoryList from "./AgentCards/ProblemCategoryList";
 import AnswerList from "./AgentCards/AnswerList";
 import ProductCard from "./SalesCard/ProductCard";
-
+import KeystrokeRecording from "./Recordings/KeystrokeRecording"
 function AgentMain() {
   return (
     <div className="agent-container">
       <AgentBoard id="board-1" className="board board-menu">
         <Card id="card-1" draggable="false" component={<Menu />} />
         <Card id="card-2" draggable="false" component={<Recording />} />
+        <Card id="card-8" draggable="false" component={<KeystrokeRecording />} />
       </AgentBoard>
 
       <AgentBoard id="board-2" className="board">
