@@ -75,3 +75,7 @@ Description: Css file with the styles for Sales Card.
     text-align: center;
     color: #000000;
 }
+
+.add-button{
+    margin-right: 1em;
+}
