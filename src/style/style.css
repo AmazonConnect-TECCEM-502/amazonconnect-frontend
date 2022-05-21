@@ -27,9 +27,9 @@
 @import url("./AgentMain.css");
 /* Sales Card Styles */
 @import url("./SalesCard/SalesCard.css");
-
 /* Menu */
 @import url("./Menu/Menu.css");
-
+/* Login */
+@import url("./LogIn/LogIn.css");
 /* Recordings Card Styles */
 @import url("./Recordings/Recordings.css");

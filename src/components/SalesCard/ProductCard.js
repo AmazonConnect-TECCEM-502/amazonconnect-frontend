@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 //import Tarjeta from "./Tarjeta";
 
 /*const productos = [{title: "producto1",
@@ -24,11 +23,11 @@ import { Fragment } from "react";
 
 export default ProductCard; */
 
-
+/*import { Fragment } from "react";
 import ProductImage from './ProductImage';
 import ProductName from './ProductName';
 import ProductPrice from './ProductPrice';
-import ProductDescription from './ProductDescription';
+import ProductDescription from './ProductDescription';*/
 
 const ProductCard = (props) => {
   return(
