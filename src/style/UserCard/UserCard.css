@@ -20,3 +20,26 @@
   font-family: Montserrat;
   padding: 30px 0px 0px 125px;
 }
+
+.user-form button {
+  background-color: #0799E6;
+  width: auto;
+  font-size: 16px;
+  padding: 8px 16px;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .8s;
+  margin-top: 10px;
+}
+
+.user-form button:hover{
+  background-color: #0463B9;
+  transition: .8s;
+}
+
+.user-form .title{
+  margin-top: 20px;
+}
