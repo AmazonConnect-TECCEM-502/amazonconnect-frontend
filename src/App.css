@@ -5,6 +5,16 @@
   background: linear-gradient(to bottom left, #fff, #0799E6,#0463B9);
 }
 
+body::-webkit-scrollbar {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  display: none;
+  /* IE and Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+    
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
