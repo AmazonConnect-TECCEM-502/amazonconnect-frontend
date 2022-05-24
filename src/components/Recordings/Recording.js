@@ -43,7 +43,6 @@ const Recording = (props) => {
     muteAudio,
     unMuteAudio,
     isAudioMuted,
-    mediaBlobUrl,
   } = useReactMediaRecorder({
     screen: true,
     audio: true,
@@ -53,35 +52,41 @@ const Recording = (props) => {
 
   return (
     <Fragment>
-      <p>Recording: {status}</p>
-      <p>{isAudioMuted ? "Muted" : "Unmutted"}</p>
-      <button className="button" onClick={startRecording}>
-        {<BsFillRecordFill size={28} />}
-      </button>
-      <button className="button" onClick={stopRecording}>
-        {<FaStop size={28} />}
-      </button>
-      <button className="button" onClick={pauseRecording}>
-        {<BsPauseFill size={28} />}
-      </button>
-      <button className="button" onClick={resumeRecording}>
-        {<BsFillPlayFill size={28} />}
-      </button>
-      <button className="button" onClick={muteAudio}>
-        {<GoMute size={28} />}
-      </button>
-      <button className="button" onClick={unMuteAudio}>
-        {<GoUnmute size={28} />}
-      </button>
-      <br />
-      <video
-        src={mediaBlobUrl}
-        controls={true}
-        autoPlay={false}
-        loop={true}
-        width="300px"
-        height="300px"
-      />
+      <p className="title">Click to start recording</p>
+      <p>{`Status: ${status}`}</p>
+      {(status === "idle" ||
+        status === "stopped" ||
+        status === "acquiring_media") && (
+        <button className="button" onClick={startRecording}>
+          {<BsFillRecordFill size={28} />}
+        </button>
+      )}
+      {(status === "recording" || status === "paused") && (
+        <button className="button" onClick={stopRecording}>
+          {<FaStop size={28} />}
+        </button>
+      )}
+      {status === "recording" && (
+        <button className="button" onClick={pauseRecording}>
+          {<BsPauseFill size={28} />}
+        </button>
+      )}
+      {status === "paused" && (
+        <button className="button" onClick={resumeRecording}>
+          {<BsFillPlayFill size={28} />}
+        </button>
+      )}
+      {isAudioMuted === false &&
+        (status === "recording" || status === "paused") && (
+          <button className="button" onClick={muteAudio}>
+            {<GoUnmute size={28} />}
+          </button>
+        )}
+      {isAudioMuted && (
+        <button className="button" onClick={unMuteAudio}>
+          {<GoMute size={28} />}
+        </button>
+      )}
       {document.addEventListener("keydown", function (event) {
         console.log(`Tecla: ${event.key} `);
       })}
