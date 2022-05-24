@@ -1,19 +1,20 @@
 import { Fragment } from "react";
-import Element from "./Element"
+import ElementConfiguration from "./ElementConfiguration"
 
-const MenuSettings = () => {
+const MenuConfiguration = () => {
   return (
     <Fragment>
       <p className="title"> Menu </p>
       <div className="elements-container">
-        <Element element="Create Q & A" elementID="cqna"/>
-        <Element element="Update Q & A" elementID="cqna"/>
-        <Element element="Create User" elementID="cqna"/>
-        <Element element="Create Product" elementID="cqna"/>
-        <Element element="Update Product" elementID="cqna"/>
+        <ElementConfiguration element="Create Q & A" elementID="nqna"/>
+        <ElementConfiguration element="Update Q & A" elementID="uqna"/>
+        <ElementConfiguration element="Create User" elementID="nu"/>
+        <ElementConfiguration element="Update User" elementID="uu"/>
+        <ElementConfiguration element="Create Product" elementID="np"/>
+        <ElementConfiguration element="Update Product" elementID="up"/>
       </div>
     </Fragment>
   );
 };
 
-export default MenuSettings;
+export default MenuConfiguration;

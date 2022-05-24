@@ -4,23 +4,16 @@
     line-height: 30px;
     font-family: "Montserrat";
 }
-.logCard{
-    position:fixed;
-    width: 577px;
-    height: 516px;
-    top: 100px;
-    left: 435px;
-    background: #FFFFFF;
-    border-radius: 15px;
-    align-items: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
-}
+.logCard {
+    padding-top: 100px;
+    padding-left: 500px;
+    padding-right: 500px;
+  }
+
 .login{
     display:grid;
     text-align: left;
-    padding-left: 100px;
-    padding-top: 100px;
-    padding-right: 100px;
+    padding: 100px;
     gap:15px;
 }
 .user-ID{
