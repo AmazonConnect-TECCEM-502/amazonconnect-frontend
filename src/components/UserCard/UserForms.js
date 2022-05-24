@@ -20,8 +20,8 @@ const UserForms = (props) => {
         setUserPhone(event.target.value);
     }
 
-    const postNewUser = () => {
-        response = await axios.post('http://187.208.195.218:80/vid/sendClientData',{
+    const postNewUser = async () => {
+        const response = await axios.post('http://187.208.195.218:80/vid/sendClientData',{
         "fname": userFname,
         "lname": userLname,
         "email": userEmail,
