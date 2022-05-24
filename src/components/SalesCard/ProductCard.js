@@ -8,8 +8,8 @@ import { useState } from "react";
 
 const ProductCard = (props) => {
 
-  const [productKey, setKey] = useState('internet');
-  const [productsArr, setProducts] = useState(props.products[productKey]);
+  const [productKey, setKey] = useState('TV');
+  const [productsArr, setProducts] = useState(props.products['internet']);
 
   const NextButton = (event) => {
     if (productKey === 'internet') {
@@ -24,7 +24,7 @@ const ProductCard = (props) => {
     //console.log(productKey);
     setProducts(props.products[productKey]);
   };
-  
+
   return(
     <div className="product-card">
         <div className="product-header">
@@ -37,11 +37,11 @@ const ProductCard = (props) => {
           </div>
         </div>
         <p className="product-description"> {productsArr.desc} </p>
-      
+
     </div>
   )
     /*return(
-        
+
         <div className="product-card">
             <Fragment>
               <div>
@@ -51,10 +51,10 @@ const ProductCard = (props) => {
                 <ProductPrice price = {props.price} />
               </div>
               <ProductDescription desc = {props.desc} />
-            
+
             </Fragment>
         </div>
-        
+
     );*/
 };
 
