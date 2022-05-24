@@ -13,6 +13,7 @@
     background: #FFFFFF;
     border-radius: 15px;
     align-items: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
 }
 .login{
     display:grid;

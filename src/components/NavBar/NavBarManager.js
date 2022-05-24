@@ -1,16 +1,10 @@
-/*
-Author: María Fernanda Ramirez Barragán
-
-Navbar functionality 
-*/
-
 import React, { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import DropDown from "./DropDown";
+import DropDownManager from "./DropDownManager";
 
-const NavBar = () => {
+const NavBarManager = () => {
   const [userPopup, setUserPopup] = useState(false);
 
   const userPopupState = () => {
@@ -20,19 +14,24 @@ const NavBar = () => {
   const NavBarOptions = [
     {
       title: "Home",
-      url: "/agent/home",
+      url: "/manager/home",
       cName: "nav-links",
     },
     {
-      title: "Statistics",
-      url: "/agent/statics",
+      title: "Overview",
+      url: "/manager/overview",
       cName: "nav-links",
     },
     {
-      title: "Capacitations",
-      url: "/agent/capacitations",
+      title: "Agent Dashboards",
+      url: "/manager/dashboard",
       cName: "nav-links",
     },
+    {
+      title: "Calls",
+      url: "/manager/calls",
+      cName: "nav-links",
+    }
   ];
 
   return (
@@ -52,9 +51,9 @@ const NavBar = () => {
           <AiOutlineUser className="icons" onClick={userPopupState} />
         </ul>
       </nav>
-      {userPopup && <DropDown />}
+      {userPopup && <DropDownManager />}
     </div>
   );
 };
 
-export default NavBar;
+export default NavBarManager;

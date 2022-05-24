@@ -34,7 +34,7 @@ const Element = (props) => {
         value={props.elementID}
       />
       <label htmlFor={props.elementID}>
-        &nbsp;{props.element}&nbsp;{props.input}
+        &nbsp;{props.element}
       </label>
     </div>
   );

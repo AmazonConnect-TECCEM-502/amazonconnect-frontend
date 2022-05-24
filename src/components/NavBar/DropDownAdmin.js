@@ -1,22 +1,16 @@
-/*
-Author: María Fernanda Ramirez Barragán
-
-Dropdown menu functionality 
-*/
-
 import { Link } from "react-router-dom";
 
-const DropDown = () => {
+const DropDownAdmin = () => {
   const dropdownOptions = [
     {
       id: "drop1",
       title: "View Profile",
-      url: "/agent/profile",
+      url: "/admin/profile",
     },
     {
       id: "drop2",
       title: "Settings",
-      url: "/agent/settings",
+      url: "/admin/settings",
     },
     {
       id: "drop3",
@@ -36,4 +30,4 @@ const DropDown = () => {
   );
 };
 
-export default DropDown;
+export default DropDownAdmin;

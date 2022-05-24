@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import "../../style/AgentCards/QuestionList.css"
 
 const Answers = (props) => {
   return (

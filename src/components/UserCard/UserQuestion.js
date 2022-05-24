@@ -8,7 +8,7 @@ const UserQuestion = (props) => {
     }
 
     return (
-        <div className="user-form">
+        <div className="user">
             <h1 className="title"> Authentification question </h1><br/>
             <div className="element">
                 <label htmlFor={props.elementID}>

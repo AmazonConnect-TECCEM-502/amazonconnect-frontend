@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import Questions from "./Questions";
-import "../../style/AgentCards/QuestionList.css"
 import SearchBar from "./SearchBar";
 
 const QuestionList = (props) => {

@@ -1,6 +1,9 @@
-import { Fragment } from "react";
+import { Fragment} from "react";
+import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
+  const navigate = useNavigate();
+
   return (
     <Fragment>
       <div className="logCard">
@@ -11,9 +14,9 @@ const LogIn = () => {
           <input className="user-ID" type="text" name="password" />
           <p className="forget"> Did you forget your password?</p>
         </div>
-        <br></br>
-        <br></br>
-        <button className="buttonSignIn">Sign In</button>
+        <br/>
+        <br/>
+        <button className="buttonSignIn" onClick={() => navigate("/agent/home")}>Sign In</button>
       </div>
     </Fragment>
   );
