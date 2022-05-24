@@ -3,7 +3,7 @@
   justify-content: space-between;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #fff, #0799E6,#0463B9);
+  background: linear-gradient(to bottom left, #fff, #0799E6,#0463B9);
   justify-content: space-around;
   flex-wrap: wrap;
 }
