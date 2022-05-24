@@ -7,6 +7,7 @@ Navbar functionality
 import React, { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 
 const NavBar = () => {
@@ -19,17 +20,17 @@ const NavBar = () => {
   const NavBarOptions = [
     {
       title: "Home",
-      url: "#",
+      url: "agent/home",
       cName: "nav-links",
     },
     {
       title: "Statistics",
-      url: "#",
+      url: "agent/statics",
       cName: "nav-links",
     },
     {
       title: "Capacitations",
-      url: "#",
+      url: "agent/capacitations",
       cName: "nav-links",
     },
   ];
@@ -42,9 +43,7 @@ const NavBar = () => {
           {NavBarOptions.map((props, index) => {
             return (
               <li>
-                <a className={props.cName} href={props.url}>
-                  {props.title}
-                </a>
+                <Link to={props.url} className={props.cName}>{props.title}</Link>
               </li>
             );
           })}

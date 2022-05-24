@@ -6,7 +6,7 @@ import ProductDescription from './ProductDescription';
 import { useState } from "react";
 
 
-const ProductCard = (props) => {
+const ProductCard2 = (props) => {
 
   const [productKey, setKey] = useState('internet');
   const [productsArr, setProducts] = useState(props.products[productKey]);
@@ -58,4 +58,4 @@ const ProductCard = (props) => {
     );*/
 };
 
-export default ProductCard;
+export default ProductCard2;
