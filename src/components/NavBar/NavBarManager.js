@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import DropDown from "./DropDown";
+import DropDownManager from "./DropDownManager";
 
 const NavBarManager = () => {
   const [userPopup, setUserPopup] = useState(false);
@@ -28,8 +28,8 @@ const NavBarManager = () => {
       cName: "nav-links",
     },
     {
-        title: "Settings",
-        url: "/manager/settings",
+        title: "Configuration",
+        url: "/manager/configuration",
         cName: "nav-links",
       }
   ];
@@ -51,7 +51,7 @@ const NavBarManager = () => {
           <AiOutlineUser className="icons" onClick={userPopupState} />
         </ul>
       </nav>
-      {userPopup && <DropDown />}
+      {userPopup && <DropDownManager />}
     </div>
   );
 };

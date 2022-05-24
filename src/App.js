@@ -12,6 +12,7 @@ import AgentStatics from "./components/AgentView/AgentStatics";
 import AgentCapacitation from "./components/AgentView/AgentCapacitations";
 import AgentSettings from "./components/AgentView/AgentSettings";
 import AgentProfile from "./components/AgentView/AgentProfile";
+import ManagerConfiguration from "./components/ManagerViews/ManagerConfiguration";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/manager/overview" element={<ManagerOverview />} />
           <Route path="/manager/settings" element={<ManagerSettings />} />
           <Route path="/manager/profile" element={<ManagerProfile />} />
+          <Route path="/manager/Configuration" element = {<ManagerConfiguration />} />
         </Routes>
       </div>
   );
