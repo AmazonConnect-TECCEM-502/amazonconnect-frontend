@@ -12,7 +12,11 @@ import AgentStatics from "./components/AgentView/AgentStatics";
 import AgentCapacitation from "./components/AgentView/AgentCapacitations";
 import AgentSettings from "./components/AgentView/AgentSettings";
 import AgentProfile from "./components/AgentView/AgentProfile";
-import ManagerConfiguration from "./components/ManagerViews/ManagerConfiguration";
+import AdminMain from "./components/AdminViews/AdminMain";
+import AdminSettings from "./components/AdminViews/AdminSettings";
+import AdminProfile from "./components/AdminViews/AdminProfile";
+import AdminConfiguration from "./components/AdminViews/AdminConfiguration";
+import ManagerCalls from "./components/ManagerViews/Calls";
 
 function App() {
   return (
@@ -32,9 +36,17 @@ function App() {
             element={<ManagerAgentsDashboard/>}
           />
           <Route path="/manager/overview" element={<ManagerOverview />} />
+          <Route path="/manager/calls" element={<ManagerCalls />} />
           <Route path="/manager/settings" element={<ManagerSettings />} />
           <Route path="/manager/profile" element={<ManagerProfile />} />
-          <Route path="/manager/Configuration" element = {<ManagerConfiguration />} />
+
+
+          <Route path="/admin/home" element={<AdminMain />} />
+          <Route path="/admin/settings" element={<AdminSettings />} />
+          <Route path="/admin/profile" element={<AdminProfile />} />
+          <Route path="/admin/configuration" element={<AdminConfiguration />} />
+          
+
         </Routes>
       </div>
   );

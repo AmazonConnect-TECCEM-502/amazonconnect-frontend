@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import DropDownManager from "./DropDownManager";
+import DropDownAdmin from "./DropDownAdmin";
 
-const NavBarManager = () => {
+const NavBarAdmin = () => {
   const [userPopup, setUserPopup] = useState(false);
 
   const userPopupState = () => {
@@ -14,24 +14,14 @@ const NavBarManager = () => {
   const NavBarOptions = [
     {
       title: "Home",
-      url: "/manager/home",
+      url: "/admin/home",
       cName: "nav-links",
     },
     {
-      title: "Overview",
-      url: "/manager/overview",
-      cName: "nav-links",
-    },
-    {
-      title: "Agent Dashboards",
-      url: "/manager/dashboard",
-      cName: "nav-links",
-    },
-    {
-      title: "Calls",
-      url: "/manager/calls",
-      cName: "nav-links",
-    }
+        title: "Configuration",
+        url: "/admin/configuration",
+        cName: "nav-links",
+      }
   ];
 
   return (
@@ -51,9 +41,9 @@ const NavBarManager = () => {
           <AiOutlineUser className="icons" onClick={userPopupState} />
         </ul>
       </nav>
-      {userPopup && <DropDownManager />}
+      {userPopup && <DropDownAdmin />}
     </div>
   );
 };
 
-export default NavBarManager;
+export default NavBarAdmin;

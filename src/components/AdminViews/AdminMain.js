@@ -1,10 +1,11 @@
 import CardsProvider from "../AgentCards/CardsProvider";
-import NavBarManager from "../NavBar/NavBarManager";
+import NavBarAdmin from "../NavBar/NavBarAdmin";
 
-function ManagerMain() {
+
+function AdminMain() {
   return (
     <CardsProvider>
-    <NavBarManager />
+    <NavBarAdmin />
     <div className="manager-container">
       <h1>Welcome home,</h1>
       <h1>Rosa!</h1>
@@ -13,4 +14,4 @@ function ManagerMain() {
   );
 }
 
-export default ManagerMain;
+export default AdminMain;
