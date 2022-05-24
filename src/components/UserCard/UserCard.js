@@ -44,14 +44,14 @@ const UserCard = (props) => {
   };
 
   const resetUserData = () => {
-    //postReset();
+    postReset();
     //showContent("not yet");
   };
 
   const postReset = async () => {
-    await axios.post('http://187.208.199.168:80/voiceid/reset',{
-    "message": "not yet"
-    })
+    //await axios.post('http://187.208.199.168:80/voiceid/reset',{
+    //"message": "not yet"
+    //})
   }
 
   return (
