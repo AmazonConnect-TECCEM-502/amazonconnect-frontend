@@ -7,17 +7,17 @@
   <AgentMain />
 */
 
-import AgentBoard from "./AgentCards/AgentBoard";
-import Card from "./AgentCards/Card";
-import Menu from "./Menu/Menu";
-import Recording from "./Recordings/Recording";
-import QuestionList from "./AgentCards/QuestionList";
-import UserCard from "./UserCard/UserCard";
-import ProblemCategoryList from "./AgentCards/ProblemCategoryList";
-import AnswerList from "./AgentCards/AnswerList";
-import ProductCard from "./SalesCard/ProductCard";
-import NavBar from "./NavBar/NavBar";
-import CardsProvider from "./AgentCards/CardsProvider";
+import AgentBoard from "../AgentCards/AgentBoard";
+import Card from "../AgentCards/Card";
+import Menu from "../Menu/Menu";
+import Recording from "../Recordings/Recording";
+import QuestionList from "../AgentCards/QuestionList";
+import UserCard from "../UserCard/UserCard";
+import ProblemCategoryList from "../AgentCards/ProblemCategoryList";
+import AnswerList from "../AgentCards/AnswerList";
+import ProductCard from "../SalesCard/ProductCard";
+import NavBar from "../NavBar/NavBar";
+import CardsProvider from "../AgentCards/CardsProvider";
 
 function AgentMain() {
   return (

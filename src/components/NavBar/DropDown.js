@@ -11,12 +11,12 @@ const DropDown = () => {
     {
       id: "drop1",
       title: "View Profile",
-      url: "agent/profile",
+      url: "/agent/profile",
     },
     {
       id: "drop2",
       title: "Settings",
-      url: "agent/settings",
+      url: "/agent/settings",
     },
     {
       id: "drop3",
