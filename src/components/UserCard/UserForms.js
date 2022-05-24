@@ -20,7 +20,7 @@ const UserForms = (props) => {
     }
 
     return (
-        <div className="user-form">
+        <div className="user">
             <h1 className="title"> New user registry </h1><br/>
             <div className="element">
                 <label htmlFor={props.elementID}>
