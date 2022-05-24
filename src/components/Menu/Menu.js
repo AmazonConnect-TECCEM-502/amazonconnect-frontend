@@ -8,9 +8,8 @@ const Menu = () => {
       <div className="elements-container">
         <Element element="Q & A" elementID="qna"/>
         <Element
-          element="Client ID"
+          element="Client Info"
           elementID="client"
-          input={<input className="input-ID" type="text" name="ID" />}
         />
       </div>
     </Fragment>

@@ -14,7 +14,7 @@
     phone = {phone number} 
   />
 */
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import UserForms from "./UserForms";
 import UserImage from "./UserImage";
 import UserInfo from "./UserInfo";
@@ -24,24 +24,22 @@ import UserQuestion from "./UserQuestion";
 const UserCard = (props) => {
   const [result, setResult] = useState("");
 
-  const GetData = () => {
+  useEffect( () => {
     fetch('http://187.208.195.218:80/voiceid/getAuthRes')
       .then(response => response.json())
       .then(data => {
         console.log(data.phoneNumber)
         console.log(data.authenticationType)
-        showContent(data.authenticationType)
-      })
-  }
+        //showContent(data.authenticationType)
+      });
+  });
 
   const showContent = (message) => {
     setResult(message);
   };
-  
-  //GetData();
 
   return (
-    <div>
+    <div className="user">
       <button onClick={() => showContent("Authenticated")}>Mostrar carta</button>
       <button onClick={() => showContent("Not registered")}>Mostrar forms</button>
       <button onClick={() => showContent("Not authenticated")}>Mostrar pregunta</button>
@@ -63,6 +61,11 @@ const UserCard = (props) => {
         //Show Message error and form 
         (result === "Not authenticated") && <UserQuestion />
       }
+      {
+        (result !== "Authenticated") && (result !== "Not registered") 
+        && (result !== "Not authenticated") && <h1 className="title">Data not recieved yet</h1>
+      }
+      <button className="button-reset"> Reset values </button>
     </div>
   );
 };
