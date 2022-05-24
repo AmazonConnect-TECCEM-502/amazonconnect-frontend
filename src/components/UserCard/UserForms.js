@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 const UserForms = (props) => {
@@ -17,6 +18,15 @@ const UserForms = (props) => {
     }
     const userPhoneHandler = (event) => {
         setUserPhone(event.target.value);
+    }
+
+    const postNewUser = () => {
+        response = await axios.post('http://187.208.195.218:80/vid/sendClientData',{
+        "fname": userFname,
+        "lname": userLname,
+        "email": userEmail,
+        "phone": userPhone
+        })
     }
 
     return (
@@ -54,7 +64,7 @@ const UserForms = (props) => {
                     onChange={userPhoneHandler}/>}
                 </label>
             </div>
-            <button className="button"> Register </button>
+            <button className="button" onClick={() => postNewUser()}> Register </button>
         </div>
     );
 };
