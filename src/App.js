@@ -19,11 +19,12 @@ function App() {
           <Route path="/agent/capacitations" element={<AgentMain />} />
           <Route path="/agent/settings" element={<AgentMain />} />
           <Route path="/agent/profile" element={<AgentMain />} />
+          
 
           <Route path="/manager/home" element={<ManagerMain />} />
           <Route
-            path="/manager/agentsdashboard"
-            element={<ManagerAgentsDashboard />}
+            path="/manager/dashboard"
+            element={<ManagerAgentsDashboard/>}
           />
           <Route path="/manager/overview" element={<ManagerOverview />} />
           <Route path="/manager/settings" element={<ManagerSettings />} />

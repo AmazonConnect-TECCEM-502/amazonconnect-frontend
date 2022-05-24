@@ -17,7 +17,6 @@
 
 /* Agent Cards Styles */
 @import url("./AgentCards/Card.css");
-@import url("./AgentCards/AnswerList.css");
 @import url("./AgentCards/ProblemCategoryList.css");
 @import url("./AgentCards/QuestionList.css");
 
@@ -36,4 +35,4 @@
 /* Manager View */
 @import url("./ManagerMain.css");
 /* Log In */
-@import url("./LogIn/LogIn.css")
+@import url("./LogIn/LogIn.css");
