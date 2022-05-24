@@ -27,15 +27,28 @@ const UserCard = (props) => {
   const [result, setResult] = useState("");
   const [phoneUser, setPhoneUser] = useState("");
 
-  useEffect( () => {
+  const update = async () => {
     fetch('http://187.208.199.168:80/voiceid/getAuthRes')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        console.log(data.phoneNumber)
-        setPhoneUser(data.phoneNumber)
-        showContent(data.authenticationType)
-      });
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      console.log(data.phoneNumber)
+      setPhoneUser(data.phoneNumber)
+      showContent(data.authenticationType)
+    })
+    .catch(function(err) {
+      // console.log(err);
+      showContent("not yet");
+    });
+  }
+
+  useEffect( () => {
+    update();
+    const interval=setInterval(()=>{
+      update();
+     },5000)
+      
+     return()=>clearInterval(interval)
   });
 
   const showContent = (message) => {
@@ -43,22 +56,15 @@ const UserCard = (props) => {
     console.log(result);
   };
 
-  const resetUserData = () => {
-    postReset();
-    //showContent("not yet");
+  const resetUserData = async () => {
+    showContent("not yet");
+    await axios.post('http://187.208.199.168:80/voiceid/reset',{
+      "message": "not yet"
+    })
   };
-
-  const postReset = async () => {
-    //await axios.post('http://187.208.199.168:80/voiceid/reset',{
-    //"message": "not yet"
-    //})
-  }
 
   return (
     <div className="user">
-      <button onClick={() => showContent("authenticated")}>Mostrar carta</button>
-      <button onClick={() => showContent("not enrolled")}>Mostrar forms</button>
-      <button onClick={() => showContent("not authenticated")}>Mostrar pregunta</button>
       {
         //Show User Info
         (result === "authenticated") &&
@@ -74,14 +80,16 @@ const UserCard = (props) => {
         (result === "not enrolled") && <UserForms />
       }
       {
-        //Show Message error and form 
+        //Show verification question 
         (result === "not authenticated" || result === "inconclusive") && <UserQuestion />
       }
       {
+        //Show no data error
         (result !== "authenticated") && (result !== "not enrolled") && (result !== "inconclusive")
         && (result !== "not authenticated") && <h1 className="title">Data not recieved yet</h1>
       }
       <button className="button-reset" onClick={() => resetUserData()}> Reset values </button>
+      <button className="button-reset" onClick={() => update()}> Refresh </button>
     </div>
   );
 };
