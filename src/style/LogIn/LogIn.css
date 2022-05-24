@@ -5,13 +5,14 @@
     font-family: "Montserrat";
 }
 .logCard {
+    display:flex;
+    align-items: center;
+    justify-content: center;
     padding-top: 100px;
-    padding-left: 500px;
-    padding-right: 500px;
   }
 
 .login{
-    display:grid;
+    display: grid;
     text-align: left;
     padding: 100px;
     gap:15px;
