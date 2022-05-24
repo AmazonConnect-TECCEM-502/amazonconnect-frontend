@@ -6,6 +6,8 @@ const UserForms = (props) => {
     const [userLname, setUserLname] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userPhone, setUserPhone] = useState("");
+    const [userAnswer, setUserAnswer] = useState("");
+
 
     const userFnameHandler = (event) => {
         setUserFname(event.target.value);
@@ -19,13 +21,18 @@ const UserForms = (props) => {
     const userPhoneHandler = (event) => {
         setUserPhone(event.target.value);
     }
+    const userAnswerHandler = (event) => {
+        setUserAnswer(event.target.value);
+    }
 
     const postNewUser = async () => {
-        const response = await axios.post('http://187.208.195.218:80/vid/sendClientData',{
+        await axios.post('http://187.208.199.168:80/voiceid/sendClientData',{
         "fname": userFname,
         "lname": userLname,
         "email": userEmail,
-        "phone": userPhone
+        "phone": userPhone,
+        "question": "Where were your last vacations?",
+        "response": userAnswer
         })
     }
 
@@ -62,6 +69,14 @@ const UserForms = (props) => {
                     type = "tel"
                     placeholder = "+52"
                     onChange={userPhoneHandler}/>}
+                </label>
+            </div>
+            <div className="element">
+                <label htmlFor={props.elementID}>
+                    &nbsp;{"Where were your last vacations?"}&nbsp;{<input className="user-input"
+                    type = "text"
+                    placeholder = "User answer"
+                    onChange={userAnswerHandler}/>}
                 </label>
             </div>
             <button className="button" onClick={() => postNewUser()}> Register </button>

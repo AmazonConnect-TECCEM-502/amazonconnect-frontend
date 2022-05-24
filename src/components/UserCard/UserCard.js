@@ -14,6 +14,8 @@
     phone = {phone number} 
   />
 */
+
+import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 import UserForms from "./UserForms";
 import UserImage from "./UserImage";
@@ -23,49 +25,63 @@ import UserQuestion from "./UserQuestion";
 
 const UserCard = (props) => {
   const [result, setResult] = useState("");
+  const [phoneUser, setPhoneUser] = useState("");
 
   useEffect( () => {
-    fetch('http://187.208.195.218:80/voiceid/getAuthRes')
+    fetch('http://187.208.199.168:80/voiceid/getAuthRes')
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         console.log(data.phoneNumber)
-        console.log(data.authenticationType)
-        //showContent(data.authenticationType)
+        setPhoneUser(data.phoneNumber)
+        showContent(data.authenticationType)
       });
   });
 
   const showContent = (message) => {
     setResult(message);
+    console.log(result);
   };
+
+  const resetUserData = () => {
+    //postReset();
+    //showContent("not yet");
+  };
+
+  const postReset = async () => {
+    await axios.post('http://187.208.199.168:80/voiceid/reset',{
+    "message": "not yet"
+    })
+  }
 
   return (
     <div className="user">
-      <button onClick={() => showContent("Authenticated")}>Mostrar carta</button>
-      <button onClick={() => showContent("Not registered")}>Mostrar forms</button>
-      <button onClick={() => showContent("Not authenticated")}>Mostrar pregunta</button>
+      <button onClick={() => showContent("authenticated")}>Mostrar carta</button>
+      <button onClick={() => showContent("not enrolled")}>Mostrar forms</button>
+      <button onClick={() => showContent("not authenticated")}>Mostrar pregunta</button>
       {
         //Show User Info
-        (result === "Authenticated") &&
+        (result === "authenticated") &&
         <Fragment>
           <UserImage image={props.image} />
           <UserName name={props.fname + ", " + props.lname} />
           <UserInfo text={props.email} />
-          <UserInfo text={props.phone} />
+          <UserInfo text={phoneUser} />
         </Fragment>
       }
       {
         //Show Message error and form 
-        (result === "Not registered") && <UserForms />
+        (result === "not enrolled") && <UserForms />
       }
       {
         //Show Message error and form 
-        (result === "Not authenticated") && <UserQuestion />
+        (result === "not authenticated" || result === "inconclusive") && <UserQuestion />
       }
       {
-        (result !== "Authenticated") && (result !== "Not registered") 
-        && (result !== "Not authenticated") && <h1 className="title">Data not recieved yet</h1>
+        (result !== "authenticated") && (result !== "not enrolled") && (result !== "inconclusive")
+        && (result !== "not authenticated") && <h1 className="title">Data not recieved yet</h1>
       }
-      <button className="button-reset"> Reset values </button>
+      <button className="button-reset" onClick={() => resetUserData()}> Reset values </button>
     </div>
   );
 };
