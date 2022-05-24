@@ -35,3 +35,5 @@
 @import url("./Recordings/Recordings.css");
 /* Manager View */
 @import url("./ManagerMain.css");
+/* Log In */
+@import url("./LogIn/LogIn.css")

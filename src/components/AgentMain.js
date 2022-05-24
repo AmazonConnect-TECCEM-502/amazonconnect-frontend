@@ -16,9 +16,13 @@ import UserCard from "./UserCard/UserCard";
 import ProblemCategoryList from "./AgentCards/ProblemCategoryList";
 import AnswerList from "./AgentCards/AnswerList";
 import ProductCard from "./SalesCard/ProductCard";
+import NavBar from "./NavBar/NavBar";
+import CardsProvider from "./AgentCards/CardsProvider";
 
 function AgentMain() {
   return (
+    <CardsProvider>
+    <NavBar />
     <div className="agent-container">
       <AgentBoard id="board-1" className="board board-menu">
         <Card id="card-1" draggable="false" component={<Menu />} />
@@ -81,6 +85,7 @@ function AgentMain() {
         />
       </AgentBoard>
     </div>
+    </CardsProvider>
   );
 }
 
