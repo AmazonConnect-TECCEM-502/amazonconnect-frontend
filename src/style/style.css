@@ -33,3 +33,5 @@
 @import url("./LogIn/LogIn.css");
 /* Recordings Card Styles */
 @import url("./Recordings/Recordings.css");
+/* Manager View */
+@import url("./ManagerMain.css");
