@@ -1,0 +1,23 @@
+.new{
+    display:grid;
+    text-align: left;
+    font-family: 'Montserrat';
+}
+.buttonSubmit{
+    justify-content: center;
+    border-style: none;
+    justify-self: flex-end;
+
+    background-color: #0799E6;
+    cursor: pointer;
+    
+    border-radius: 15px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+}

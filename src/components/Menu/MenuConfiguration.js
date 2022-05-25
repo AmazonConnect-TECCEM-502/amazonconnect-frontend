@@ -12,6 +12,8 @@ const MenuConfiguration = () => {
         <ElementConfiguration element="Update User" elementID="uu"/>
         <ElementConfiguration element="Create Product" elementID="np"/>
         <ElementConfiguration element="Update Product" elementID="up"/>
+        <ElementConfiguration element="Create Client" elementID="nc"/>
+        <ElementConfiguration element="Create Category" elementID="nca"/>
       </div>
     </Fragment>
   );

@@ -8,6 +8,8 @@ const AdminCardProvider = ({children}) => {
   const [uu, setuu] = useState(false);
   const [np, setnp] = useState(false);
   const [up, setup] = useState(false);
+  const [nc, setnc] = useState(false);
+  const [nca, setnca] = useState(false);
 
 
   return (
@@ -24,7 +26,11 @@ const AdminCardProvider = ({children}) => {
         np,
         setnp,
         up,
-        setup
+        setup,
+        nc,
+        setnc,
+        nca,
+        setnca
       ]}>
       {children}
     </CardContext2.Provider>

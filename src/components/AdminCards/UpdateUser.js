@@ -3,7 +3,7 @@ import { Fragment } from "react";
 const UpdateUser = (props) => {
     return( 
       <Fragment>
-          <div>
+          <div className="title">
               <p>Update User</p>
           </div>
 

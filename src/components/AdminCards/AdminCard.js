@@ -3,7 +3,7 @@ import { CardContext2 } from "./AdminCardProvider";
 
 
 const AdminCard = (props) => {
-const [nqna,, uqna,, nu,, uu,, np,, up,] = useContext(CardContext2);
+const [nqna,, uqna,, nu,, uu,, np,, up,,nc,,nca] = useContext(CardContext2);
 
   const dragStart = (e) => {
     const target = e.target;
@@ -15,7 +15,7 @@ const [nqna,, uqna,, nu,, uu,, np,, up,] = useContext(CardContext2);
   };
 
   let cardStyle = {display: "block"};
-  if ((props.id === "card-4" && !nqna) || (props.id === "card-5" && !uqna) || (props.id === "card-6" && !nu) || (props.id === "card-7" && !uu) || (props.id === "card-8" && !np) || (props.id === "card-9" && !up)) {
+  if ((props.id === "card-4" && !nqna) || (props.id === "card-5" && !uqna) || (props.id === "card-6" && !nu) || (props.id === "card-7" && !uu) || (props.id === "card-8" && !np) || (props.id === "card-9" && !up) || (props.id === "card-10" && !nc) || (props.id === "card-11" && !nca)) {
     cardStyle = {display: "none"};
   }
 

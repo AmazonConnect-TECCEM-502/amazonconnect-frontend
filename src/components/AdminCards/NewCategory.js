@@ -1,16 +1,14 @@
 import { Fragment } from "react";
 
-const NewProduct = (props) => {
+const NewCategory = (props) => {
     return( 
       <Fragment>
           <div>
-          <div className="title"> Create Product </div>
+          <div className="title"> Create Category </div>
           <div className="new">
                 <p>Name: </p>
                 <input className="user-ID" type="text" name="Answer" />
                 <p>Description: </p>
-                <input className="user-ID" type="text" name="Answer" />
-                <p>Price: </p>
                 <input className="user-ID" type="text" name="Answer" />
                 <br/>
                 <button className="buttonSubmit"> Submit </button>
@@ -21,4 +19,4 @@ const NewProduct = (props) => {
     );
 };
 
-export default NewProduct
+export default NewCategory
