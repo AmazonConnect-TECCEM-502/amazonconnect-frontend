@@ -28,7 +28,7 @@ const UserCard = (props) => {
   const [phoneUser, setPhoneUser] = useState("");
 
   const update = async () => {
-    fetch('http://187.208.199.168:80/voiceid/getAuthRes')
+    fetch('http://3.80.44.247:8080/vid/getAuthRes')
     .then(response => response.json())
     .then(data => {
       console.log(data)
@@ -37,7 +37,7 @@ const UserCard = (props) => {
       showContent(data.authenticationType)
     })
     .catch(function(err) {
-      // console.log(err);
+      console.log(err);
       showContent("not yet");
     });
   }
@@ -58,7 +58,7 @@ const UserCard = (props) => {
 
   const resetUserData = async () => {
     showContent("not yet");
-    await axios.post('http://187.208.199.168:80/voiceid/reset',{
+    await axios.post('http://3.80.44.247:8080/vid/reset',{
       "message": "not yet"
     })
   };

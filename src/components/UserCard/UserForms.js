@@ -26,7 +26,7 @@ const UserForms = (props) => {
     }
 
     const postNewUser = async () => {
-        await axios.post('http://187.208.199.168:80/voiceid/sendClientData',{
+        await axios.post('http://3.80.44.247:8080/voiceid/sendClientData',{
         "fname": userFname,
         "lname": userLname,
         "email": userEmail,
