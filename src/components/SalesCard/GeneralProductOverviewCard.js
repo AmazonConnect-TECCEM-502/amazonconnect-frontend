@@ -1,14 +1,13 @@
 import { Fragment } from "react";
-import ProductImage from './ProductImage';
-import ProductName from './ProductName';
+
 
 const GeneralProductOverviewCard = (props) => {
     return(
         <Fragment>
         <div className="general-product-overview-card">
             <div class="clearfix">
-                <ProductImage image = {props.image} />
-                <ProductName name = {props.name} />
+                <img src = {require(`../../images/sales/${props.image}.jpg`)} alt = "Product" />
+                <p className="product-name">{props.name}</p>
             </div>
         </div>
         </Fragment>
