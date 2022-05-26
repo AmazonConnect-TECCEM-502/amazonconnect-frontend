@@ -28,13 +28,13 @@ const ProfileCard = () => {
           <hr />
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <div className="personal-data">
-              <p> Phone: </p>
-              <p> Email: </p>
-              <p> ID: </p>
+              <p> Phone: 5500990099</p>
+              <p> Email: Agent@gmail.com</p>
+              <p> ID: 12345</p>
             </div>
             <div className="personal-data">
-              <p> Birthday: </p>
-              <p> Gender: </p>
+              <p> Birthday: May 5th</p>
+              <p> Gender: Male</p>
             </div>
           </div>
         </div>
