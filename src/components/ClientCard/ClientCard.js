@@ -37,7 +37,7 @@ const ClientCard = (props) => {
   const [result, setResult] = useState("");
 
   const update = async () => {
-    fetch('http://3.80.44.247:8080/vid/getAuthRes')
+    await fetch('http://3.80.44.247:8080/vid/getAuthRes')
     .then(response => response.json())
     .then(data => {
       console.log(data)
@@ -68,9 +68,9 @@ const ClientCard = (props) => {
     console.log(result);
   };
 
-  const getClientData = () => {
+  const getClientData = async () => {
     // fetch('http://3.80.44.247:8080/vid/getUserData?phone=' + phoneClient)
-    fetch('http://3.80.44.247:8080/vid/getUserData')
+    await fetch('http://3.80.44.247:8080/vid/getUserData')
     .then(response => response.json())
     .then(data => {
       setClientID(data.client_id)
