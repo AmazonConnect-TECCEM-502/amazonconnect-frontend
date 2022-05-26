@@ -35,6 +35,9 @@
 .agent-info{
     border: 1px solid #000;
     border-radius: 5px;
+    cursor: pointer;
+    margin: 8px;
+    width: 200px;
 }
 
 .agent-name{

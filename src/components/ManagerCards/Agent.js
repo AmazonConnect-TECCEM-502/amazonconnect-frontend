@@ -7,14 +7,33 @@
   <Agent />
 */
 
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const Agent = () => {
+  const [agents, setAgents] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const agentsData = await fetch("http://localhost:8080/user/readUsers");
+      const jsonAgents = await agentsData.json();
+
+      setAgents(jsonAgents);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Fragment>
-      <div className="agent-info">
-        <p className="agent-name"> Agent </p>
-      </div>
+      {agents.map((agent) => {
+        return (
+          <div className="agent-info">
+            <p className="agent-name">
+              {" "}
+              {agent.first_name} {agent.last_name}
+            </p>
+          </div>
+        );
+      })}
     </Fragment>
   );
 };
