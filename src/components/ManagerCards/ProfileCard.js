@@ -22,9 +22,9 @@ const ProfileCard = () => {
         <div className="person-info">
           <p className="agent-title" style={{ marginBottom: "3px" }}>
             {" "}
-            Emilio Rios Ochoa
+            Agent Name
           </p>
-          <p style={{ color: "blue", marginTop: "0px" }}> Manager</p>
+          <p style={{ color: "blue", marginTop: "0px" }}> Agent Role</p>
           <hr />
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <div className="personal-data">
