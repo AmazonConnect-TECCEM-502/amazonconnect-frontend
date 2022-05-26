@@ -13,7 +13,7 @@ const Agent = () => {
   const [agents, setAgents] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const agentsData = await fetch("http://localhost:8080/user/readUsers");
+      const agentsData = await fetch("http://localhost:8080/user/readAgents");
       const jsonAgents = await agentsData.json();
 
       setAgents(jsonAgents);
