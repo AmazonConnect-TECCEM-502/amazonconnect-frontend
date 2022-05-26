@@ -41,6 +41,10 @@
     color: #FFFFFF;
     cursor: pointer;
 }
+
+.buttonSignIn:hover{
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5)
+}
 .forget{
     border: 0px;
     background-color: #f7f7f7;
