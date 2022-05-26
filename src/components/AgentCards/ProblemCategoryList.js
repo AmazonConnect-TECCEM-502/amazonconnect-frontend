@@ -27,14 +27,10 @@ const ProblemCategoryList = () => {
       <SearchBar SearchType="preguntas" />
       {problems.map(problem => {
         return(
-          <div>
-            <RowCategoryProblem text={problem.category_name}/>
-          </div>
+          <RowCategoryProblem id={problem.category_id} text={problem.category_name}/>          
         )
       })}
       
-      {/* <RowCategoryProblem text="Internet issues"/>
-      <RowCategoryProblem text="Account status" /> */}
     </Fragment>
   );
 };
