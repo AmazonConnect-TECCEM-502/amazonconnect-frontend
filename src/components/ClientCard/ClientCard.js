@@ -54,11 +54,13 @@ const ClientCard = (props) => {
 
   useEffect( () => {
     update();
+    /* Possible modification
     const interval = setInterval( () => {
       update();
-     }, 25000)
-      
-     return () => clearInterval(interval)
+    }, 25000)
+    
+    return () => clearInterval(interval)
+    */
   });
 
   const showContent = (message) => {
