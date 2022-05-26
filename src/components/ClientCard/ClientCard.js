@@ -37,7 +37,8 @@ const ClientCard = (props) => {
   const [result, setResult] = useState("");
 
   const update = async () => {
-    await fetch('http://3.80.44.247:8080/vid/getAuthRes')
+    console.log("Sacando valores ?? ...")
+    fetch('http://3.80.44.247:8080/vid/getAuthRes')
     .then(response => response.json())
     .then(data => {
       console.log(data)
