@@ -4,6 +4,7 @@ export const CardContext = createContext();
 const CardsProvider = ({children}) => {
   const [qna, setQna] = useState(false);
   const [client, setClient] = useState(false);
+  const [clientID, setClientID] = useState("");
 
 
   return (
@@ -12,7 +13,9 @@ const CardsProvider = ({children}) => {
         qna,
         setQna,
         client,
-        setClient
+        setClient,
+        clientID,
+        setClientID
       ]}>
       {children}
     </CardContext.Provider>

@@ -20,8 +20,8 @@
 @import url("./AgentCards/ProblemCategoryList.css");
 @import url("./AgentCards/QuestionList.css");
 
-/* User Card Styles */
-@import url("./UserCard/UserCard.css");
+/* Client Card Styles */
+@import url("./ClientCard/ClientCard.css");
 /* Agent View */
 @import url("./AgentMain.css");
 /* Sales Card Styles */

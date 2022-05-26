@@ -21,3 +21,6 @@
     color: #FFFFFF;
     cursor: pointer;
 }
+.buttondelete{
+    justify-self: flex-end;
+}
