@@ -9,10 +9,14 @@ const NewQuestion = (props) => {
                 <p>Question: </p>
                 <input className="user-ID" type="text" name="Question" />
                 <p>Category: </p>
-                <input className="user-ID" type="text" name="Question" />
+                <select className="user-ID" name="select">
+                  <option value="value1">Value 1</option>
+                  <option value="value2">Value 2</option>
+                  <option value="value3">Value 3</option>
+                </select>
                 <p>Answer: </p>
                 <input className="user-ID" type="text" name="Answer" />
-                <p className="forget"> Add another answer</p>
+                <button className="forget"> Add another answer</button>
                 <button className="buttonSubmit"> Submit </button>
           </div>
       </Fragment>

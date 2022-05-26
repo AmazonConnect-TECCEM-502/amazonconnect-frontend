@@ -12,6 +12,8 @@ const NewProduct = (props) => {
                 <input className="user-ID" type="text" name="Answer" />
                 <p>Price: </p>
                 <input className="user-ID" type="text" name="Answer" />
+                <p>Stock: </p>
+                <input className="user-ID" type="text" name="Answer" />
                 <br/>
                 <button className="buttonSubmit"> Submit </button>
           </div>

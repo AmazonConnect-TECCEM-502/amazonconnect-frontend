@@ -13,7 +13,7 @@ const LogIn = () => {
             <input className="user-ID" type="text" name="userID" />
             <b>Password</b>
             <input className="user-ID" type="text" name="password" />
-            <p className="forget"> Did you forget your password?</p>
+            <button className="forget"> Did you forget your password?</button>
             <button className="buttonSignIn" onClick={() => navigate("/agent/home")}>Sign In</button>
           </div>      
         </div>
