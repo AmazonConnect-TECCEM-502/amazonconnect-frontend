@@ -6,7 +6,7 @@ const UserForms = (props) => {
     const [userLname, setUserLname] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userPhone, setUserPhone] = useState("");
-    const [userAnswer, setUserAnswer] = useState("");
+    const [, setUserAnswer] = useState("");
 
 
     const userFnameHandler = (event) => {
@@ -26,13 +26,14 @@ const UserForms = (props) => {
     }
 
     const postNewUser = async () => {
-        await axios.post('http://3.80.44.247:8080/voiceid/sendClientData',{
-        "fname": userFname,
-        "lname": userLname,
+        await axios.post('http://3.80.44.247:8080/vid/sendClientData',{
+        "first_name": userFname,
+        "last_name": userLname,
         "email": userEmail,
-        "phone": userPhone,
-        "question": "Where were your last vacations?",
-        "response": userAnswer
+        "phone": userPhone
+        // Future features
+        // "question": "Where were your last vacations?",
+        // "response": userAnswer
         })
     }
 
