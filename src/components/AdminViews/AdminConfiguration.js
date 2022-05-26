@@ -19,7 +19,7 @@ function AdminConfiguration() {
     <div className="agent-container">
       <AgentBoard id="board-1" className="board board-menu">
         <AdminCard id="card-1" draggable="false" component={<MenuConfiguration/>} />
-        <AdminCard id="card-10" draggable="false" component={<UserCard/>} />
+        {/*<AdminCard id="card-10" draggable="false" component={<UserCard/>} />*/}
         <AdminCard id="card-11" draggable="false" component={<NewCategory/>} />
       </AgentBoard>
       
