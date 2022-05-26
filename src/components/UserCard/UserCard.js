@@ -19,14 +19,17 @@
 */
 
 import axios from "axios";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
+import { CardContext } from "../AgentCards/CardsProvider";
 import UserForms from "./UserForms";
 import UserImage from "./UserImage";
 import UserInfo from "./UserInfo";
 import UserName from "./UserName";
-import UserQuestion from "./UserQuestion";
+// import UserQuestion from "./UserQuestion";
 
 const UserCard = (props) => {
+  const [, , , , , setClientID] = useContext(CardContext);
+
   const [lastNameUser, setLastNameUser] = useState("");
   const [phoneUser, setPhoneUser] = useState("");
   const [emailUser, setEmailUser] = useState("");
@@ -69,6 +72,7 @@ const UserCard = (props) => {
     fetch('http://3.80.44.247:8080/vid/getUserData')
     .then(response => response.json())
     .then(data => {
+      setClientID(data.client_id)
       setNameUser(data.first_name)
       setLastNameUser(data.last_name)
       setEmailUser(data.email)
