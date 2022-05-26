@@ -1,4 +1,3 @@
-import CardsProvider from "../AgentCards/CardsProvider";
 import NavBarManager from "../NavBar/NavBarManager";
 
 function ManagerMain() {

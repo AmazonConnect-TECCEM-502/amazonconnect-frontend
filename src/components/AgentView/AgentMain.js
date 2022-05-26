@@ -45,7 +45,7 @@ function AgentMain() {
             id="card-4"
             draggable="true"
             component={
-              <UserCard
+              <ClientCard
                 image="IconClient"
                 fname="Rosa"
                 lname="Example"

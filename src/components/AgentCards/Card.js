@@ -7,6 +7,9 @@
   for different components and can be dragged 
   between different boards
 
+  Creation date: *
+  Modiffied: *
+
   Usage: 
     id -> Unique identifier
     draggable -> true or false
@@ -24,23 +27,29 @@ import { useContext } from "react";
 import { CardContext } from "./CardsProvider";
 
 const Card = (props) => {
-  const [problem, , client] = useContext(CardContext)
+  const [problem, , client] = useContext(CardContext);
 
   const dragStart = (e) => {
+    // Change Paramater name
+    // Function Description
     const target = e.target;
     e.dataTransfer.setData("card_id", target.id);
   };
 
   const dragOver = (e) => {
+    // Change Paramete name
+    // Function Description
     e.stopPropagation();
   };
 
-  let cardStyle = {display: "block"};
-  if ((props.id === "card-5" && !problem) || (props.id === "card-4" && !client)) {
-    cardStyle = {display: "none"};
+  let cardStyle = { display: "block" };
+  if (
+    (props.id === "card-5" && !problem) ||
+    (props.id === "card-4" && !client)
+  ) {
+    cardStyle = { display: "none" };
   }
 
-  
   return (
     <Fragment>
       <div
