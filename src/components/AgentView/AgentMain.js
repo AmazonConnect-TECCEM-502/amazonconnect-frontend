@@ -12,7 +12,7 @@ import Card from "../AgentCards/Card";
 import Menu from "../Menu/Menu";
 import Recording from "../Recordings/Recording";
 import QuestionList from "../AgentCards/QuestionList";
-import UserCard from "../UserCard/UserCard";
+import ClientCard from "../ClientCard/ClientCard";
 import ProblemCategoryList from "../AgentCards/ProblemCategoryList";
 import AnswerList from "../AgentCards/AnswerList";
 import ProductCard from "../SalesCard/ProductCard";
@@ -38,6 +38,7 @@ function AgentMain() {
           <Card id="card-3" draggable="true" component={<QuestionList />} />
           <Card id="card-6" draggable="true" component={<AnswerList />} />
         </AgentBoard>
+
 
         <AgentBoard id="board-3" className="board">
           <Card

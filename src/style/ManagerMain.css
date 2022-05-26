@@ -1,3 +1,8 @@
+/*
+  Author: Maria Fernanda Ramirez Barragan
+  Description: css for each component in ManagerCards
+*/
+
 @import url('./PersonalizedFonts.css');
 
 .manager-container {
@@ -14,4 +19,28 @@
     font-size: 60px;
     margin: 0 0 0 10px;
     display: flex;
+}
+
+.manager-dashboard-container{
+    display: flex;
+    padding: 25px;
+}
+.agent-title{
+    color: #000;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.agent-info{
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 8px;
+    width: 200px;
+}
+
+.agent-name{
+    font-size: 10px;
+    color: #000;
 }

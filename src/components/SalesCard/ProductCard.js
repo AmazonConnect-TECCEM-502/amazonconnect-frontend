@@ -1,8 +1,3 @@
-import { Fragment } from "react";
-import ProductImage from './ProductImage';
-import ProductName from './ProductName';
-import ProductPrice from './ProductPrice';
-import ProductDescription from './ProductDescription';
 import { useState } from "react";
 
 
@@ -21,7 +16,6 @@ const ProductCard = (props) => {
     else if (productKey === 'mobile') {
       setKey('internet');
     }
-    //console.log(productKey);
     setProducts(props.products[productKey]);
   };
 
@@ -40,22 +34,6 @@ const ProductCard = (props) => {
 
     </div>
   )
-    /*return(
-
-        <div className="product-card">
-            <Fragment>
-              <div>
-                <img src={props.img} />
-                <ProductImage image = {props.image} />
-                <ProductName name = {props.name} />
-                <ProductPrice price = {props.price} />
-              </div>
-              <ProductDescription desc = {props.desc} />
-
-            </Fragment>
-        </div>
-
-    );*/
 };
 
 export default ProductCard;
