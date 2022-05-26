@@ -5,7 +5,7 @@ function ManagerMain() {
     <div className="manager-container">
       <NavBarManager />
       <h1>Welcome home,</h1>
-      <h1>Rosa!</h1>
+      <h1>Emilio!</h1>
     </div>
   );
 }

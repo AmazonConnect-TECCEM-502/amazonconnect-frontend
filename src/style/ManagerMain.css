@@ -45,3 +45,27 @@
     font-size: 13px;
     color: #000;
 }
+
+.person-info{
+    margin-left: 50px;
+    width: 100%;
+}
+
+.profile-info{
+    display: flex;
+}
+
+.profile-info img{
+    width: 150px;
+}
+
+.profile-card{
+    width: 80%;
+    height: 100%;
+}
+
+.personal-data{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
