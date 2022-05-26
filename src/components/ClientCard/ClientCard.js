@@ -6,10 +6,10 @@
   Description: Card displaying a client's main information.
   (image, full name, and any other additional info given)
 
-  Usage: To create a UserCard, you need to import this file
+  Usage: To create a ClientCard, you need to import this file
   and use the following line:
 
-  <UserCard 
+  <ClientCard 
     image = {name of the .jpg image} 
     fname = {first name}
     lname = {last name}
@@ -21,19 +21,19 @@
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { CardContext } from "../AgentCards/CardsProvider";
-import UserForms from "./UserForms";
-import UserImage from "./UserImage";
-import UserInfo from "./UserInfo";
-import UserName from "./UserName";
-// import UserQuestion from "./UserQuestion";
+import ClientForms from "./ClientForms";
+import ClientImage from "./ClientImage";
+import ClientInfo from "./ClientInfo";
+import ClientName from "./ClientName";
+// import ClientQuestion from "./ClientQuestion";
 
-const UserCard = (props) => {
+const ClientCard = (props) => {
   const [, , , , , setClientID] = useContext(CardContext);
 
-  const [lastNameUser, setLastNameUser] = useState("");
-  const [phoneUser, setPhoneUser] = useState("");
-  const [emailUser, setEmailUser] = useState("");
-  const [nameUser, setNameUser] = useState("");
+  const [lastNameClient, setLastNameClient] = useState("");
+  const [phoneClient, setPhoneClient] = useState("");
+  const [emailClient, setEmailClient] = useState("");
+  const [nameClient, setNameClient] = useState("");
   const [result, setResult] = useState("");
 
   const update = async () => {
@@ -42,7 +42,7 @@ const UserCard = (props) => {
     .then(data => {
       console.log(data)
       console.log(data.phoneNumber)
-      setPhoneUser(data.phoneNumber)
+      setPhoneClient(data.phoneNumber)
       showContent(data.authenticationType)
     })
     .catch(function(err) {
@@ -69,13 +69,14 @@ const UserCard = (props) => {
   };
 
   const getClientData = () => {
+    // fetch('http://3.80.44.247:8080/vid/getUserData?phone=' + phoneClient)
     fetch('http://3.80.44.247:8080/vid/getUserData')
     .then(response => response.json())
     .then(data => {
       setClientID(data.client_id)
-      setNameUser(data.first_name)
-      setLastNameUser(data.last_name)
-      setEmailUser(data.email)
+      setNameClient(data.first_name)
+      setLastNameClient(data.last_name)
+      setEmailClient(data.email)
     })
     .catch(function(err) {
       console.log(err);
@@ -91,30 +92,30 @@ const UserCard = (props) => {
   };
 
   return (
-    <div className="user">
+    <div className="client">
       {
         //Show User Info
         (result === "authenticated") &&
         <Fragment>
-          <UserImage image={props.image} />
-          <UserName name={nameUser + ", " + lastNameUser} />
-          <UserInfo text={emailUser} />
-          <UserInfo text={phoneUser} />
+          <ClientImage image={props.image} />
+          <ClientName name={nameClient + ", " + lastNameClient} />
+          <ClientInfo text={emailClient} />
+          <ClientInfo text={phoneClient} />
         </Fragment>
       }
       {
         //Show Message error and form 
-        (result === "not enrolled") && <UserForms />
+        (result === "not enrolled") && (result === "opted out") &&  <ClientForms />
       }
       {
         //Show verification question 
         (result === "not authenticated" || result === "inconclusive") && 
-        // <UserQuestion />
-        <h1> User not authenticated or inconclusive </h1>
+        // <ClientQuestion />
+        <h1> Client not authenticated or inconclusive </h1>
       }
       {
         //Show no data error
-        (result !== "authenticated") && (result !== "not enrolled") && (result !== "inconclusive")
+        (result !== "authenticated") && (result !== "opted out") && (result !== "not enrolled") && (result !== "inconclusive")
         && (result !== "not authenticated") && <h1 className="title"> Data not recieved yet </h1>
       }
       <button className="button-reset" onClick={() => resetUserData()}> Reset values </button>
@@ -123,4 +124,4 @@ const UserCard = (props) => {
   );
 };
 
-export default UserCard;
+export default ClientCard;

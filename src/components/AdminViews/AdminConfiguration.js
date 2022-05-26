@@ -9,7 +9,7 @@ import UpdateQuestion from "../AdminCards/UpdateQuestion";
 import UpdateProduct from "../AdminCards/UpdateProduct";
 import AdminCardProvider from "../AdminCards/AdminCardProvider";
 import AdminCard from "../AdminCards/AdminCard";
-import UserCard from "../UserCard/UserCard";
+import ClientCard from "../ClientCard/ClientCard";
 import NewCategory from "../AdminCards/NewCategory";
 
 function AdminConfiguration() {
@@ -19,7 +19,7 @@ function AdminConfiguration() {
     <div className="agent-container">
       <AgentBoard id="board-1" className="board board-menu">
         <AdminCard id="card-1" draggable="false" component={<MenuConfiguration/>} />
-        {/*<AdminCard id="card-10" draggable="false" component={<UserCard/>} />*/}
+        {/*<AdminCard id="card-10" draggable="false" component={<ClientCard/>} />*/}
         <AdminCard id="card-11" draggable="false" component={<NewCategory/>} />
       </AgentBoard>
       
