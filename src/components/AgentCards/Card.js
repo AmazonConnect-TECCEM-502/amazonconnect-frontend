@@ -24,7 +24,7 @@ import { useContext } from "react";
 import { CardContext } from "./CardsProvider";
 
 const Card = (props) => {
-  const [qna, , client] = useContext(CardContext)
+  const [problem, , client] = useContext(CardContext)
 
   const dragStart = (e) => {
     const target = e.target;
@@ -36,7 +36,7 @@ const Card = (props) => {
   };
 
   let cardStyle = {display: "block"};
-  if ((props.id === "card-3" && !qna) || (props.id === "card-4" && !client)) {
+  if ((props.id === "card-5" && !problem) || (props.id === "card-4" && !client)) {
     cardStyle = {display: "none"};
   }
 

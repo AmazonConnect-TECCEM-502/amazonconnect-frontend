@@ -20,35 +20,28 @@ import ManagerCalls from "./components/ManagerViews/Calls";
 
 function App() {
   return (
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<LogIn />} />
-          <Route path="/agent/home" element={<AgentMain />} />
-          <Route path="/agent/statics" element={<AgentStatics />} />
-          <Route path="/agent/capacitations" element={<AgentCapacitation />} />
-          <Route path="/agent/settings" element={<AgentSettings />} />
-          <Route path="/agent/profile" element={<AgentProfile/>} />
-          
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<LogIn />} />
+        <Route path="/agent/home" element={<AgentMain />} />
+        <Route path="/agent/statics" element={<AgentStatics />} />
+        <Route path="/agent/capacitations" element={<AgentCapacitation />} />
+        <Route path="/agent/settings" element={<AgentSettings />} />
+        <Route path="/agent/profile" element={<AgentProfile />} />
 
-          <Route path="/manager/home" element={<ManagerMain />} />
-          <Route
-            path="/manager/dashboard"
-            element={<ManagerAgentsDashboard/>}
-          />
-          <Route path="/manager/overview" element={<ManagerOverview />} />
-          <Route path="/manager/calls" element={<ManagerCalls />} />
-          <Route path="/manager/settings" element={<ManagerSettings />} />
-          <Route path="/manager/profile" element={<ManagerProfile />} />
+        <Route path="/manager/home" element={<ManagerMain />} />
+        <Route path="/manager/dashboard" element={<ManagerAgentsDashboard />} />
+        <Route path="/manager/overview" element={<ManagerOverview />} />
+        <Route path="/manager/calls" element={<ManagerCalls />} />
+        <Route path="/manager/settings" element={<ManagerSettings />} />
+        <Route path="/manager/profile" element={<ManagerProfile />} />
 
-
-          <Route path="/admin/home" element={<AdminMain />} />
-          <Route path="/admin/settings" element={<AdminSettings />} />
-          <Route path="/admin/profile" element={<AdminProfile />} />
-          <Route path="/admin/configuration" element={<AdminConfiguration />} />
-          
-
-        </Routes>
-      </div>
+        <Route path="/admin/home" element={<AdminMain />} />
+        <Route path="/admin/settings" element={<AdminSettings />} />
+        <Route path="/admin/profile" element={<AdminProfile />} />
+        <Route path="/admin/configuration" element={<AdminConfiguration />} />
+      </Routes>
+    </div>
   );
 }
 
