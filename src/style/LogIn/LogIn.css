@@ -51,4 +51,6 @@
     font-size: 12px;
     line-height: 14px;
     justify-self: left;
+    cursor: pointer;
+    text-decoration: underline;
 }
