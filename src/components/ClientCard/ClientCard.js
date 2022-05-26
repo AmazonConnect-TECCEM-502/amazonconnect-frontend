@@ -37,7 +37,7 @@ const ClientCard = (props) => {
   const [result, setResult] = useState("");
 
   const update = async () => {
-    fetch('http://3.80.44.247:8080/vid/getAuthRes')
+    fetch('https://3.80.44.247:8080/vid/getAuthRes')
     .then(response => response.json())
     .then(data => {
       console.log(data)
@@ -69,8 +69,8 @@ const ClientCard = (props) => {
   };
 
   const getClientData = () => {
-    // fetch('http://3.80.44.247:8080/vid/getUserData?phone=' + phoneClient)
-    fetch('http://3.80.44.247:8080/vid/getUserData')
+    // fetch('https://3.80.44.247:8080/vid/getUserData?phone=' + phoneClient)
+    fetch('https://3.80.44.247:8080/vid/getUserData')
     .then(response => response.json())
     .then(data => {
       setClientID(data.client_id)
@@ -86,7 +86,7 @@ const ClientCard = (props) => {
 
   const resetUserData = async () => {
     showContent("not yet");
-    await axios.post('http://3.80.44.247:8080/vid/reset',{
+    await axios.post('https://3.80.44.247:8080/vid/reset',{
       "message": "not yet"
     })
   };
