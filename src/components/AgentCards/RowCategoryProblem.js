@@ -34,7 +34,7 @@ const RowCategoryProblem = (props) => {
   }
 
   return (
-    <div className="category-problem">
+    <div className="categorys">
       <button type="text" onClick={checkQnA}>{props.text}</button>
     </div>
   );

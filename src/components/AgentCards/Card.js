@@ -27,7 +27,7 @@ import { useContext } from "react";
 import { CardContext } from "./CardsProvider";
 
 const Card = (props) => {
-  const [problem, , client] = useContext(CardContext);
+  const [problem, , client, , , , , , product] = useContext(CardContext);
 
   const dragStart = (e) => {
     // Change Paramater name
@@ -45,7 +45,8 @@ const Card = (props) => {
   let cardStyle = { display: "block" };
   if (
     (props.id === "card-5" && !problem) ||
-    (props.id === "card-4" && !client)
+    (props.id === "card-4" && !client) ||
+    (props.id === "card-8" && !product)
   ) {
     cardStyle = { display: "none" };
   }

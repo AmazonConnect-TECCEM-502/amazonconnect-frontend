@@ -1,4 +1,4 @@
-.category-problem {
+.categorys {
   border-bottom: 1px solid #000000;
 }
 .title {
@@ -7,7 +7,7 @@
   line-height: 30px;
   font-family: "Montserrat";
 }
-.category-problem button{
+.categorys button{
   font-family: Montserrat;
   font-size: 16px;
   min-height: 30px;

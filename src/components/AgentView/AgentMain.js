@@ -18,6 +18,7 @@ import AnswerList from "../AgentCards/AnswerList";
 import ProductCard from "../SalesCard/ProductCard";
 import NavBar from "../NavBar/NavBar";
 import CardsProvider from "../AgentCards/CardsProvider";
+import ProductsCategoryList from "../SalesCard/ProductsCategoryList";
 
 function AgentMain() {
   return (
@@ -54,6 +55,7 @@ function AgentMain() {
               />
             }
           />
+          <Card id="card-8" draggable="true" component={<ProductsCategoryList />}/>
           <Card
             id="card-7"
             draggable="true"
