@@ -1,0 +1,6 @@
+div.scroll {
+    word-wrap: break-word; 
+    overflow:scroll;
+    max-height: 80px;
+
+}

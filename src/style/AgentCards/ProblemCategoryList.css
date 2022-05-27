@@ -1,12 +1,4 @@
 .category-problem {
-  padding-left: 20px;
-  min-height: 30px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 15px;
-  letter-spacing: 0.44px;
-  color: #000000;
   border-bottom: 1px solid #000000;
 }
 .title {
@@ -14,4 +6,16 @@
   font-weight: 900;
   line-height: 30px;
   font-family: "Montserrat";
+}
+.category-problem button{
+  font-family: Montserrat;
+  font-size: 16px;
+  min-height: 30px;
+  min-width: 100%;
+  text-align: center;
+  letter-spacing: 0.44px;
+  border: none;
+  outline: none;
+  background-color: #f7f7f7;
+  cursor: pointer;
 }

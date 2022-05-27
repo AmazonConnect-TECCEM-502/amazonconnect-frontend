@@ -6,11 +6,8 @@ const Menu = () => {
     <Fragment>
       <p className="title"> Menu </p>
       <div className="elements-container">
-        <Element element="Q & A" elementID="qna"/>
-        <Element
-          element="Client Info"
-          elementID="client"
-        />
+        <Element element="Problems" elementID="problems" />
+        <Element element="Client Info" elementID="client" />
       </div>
     </Fragment>
   );

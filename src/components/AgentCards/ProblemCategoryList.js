@@ -4,21 +4,33 @@
 
 import RowCategoryProblem from "./RowCategoryProblem";
 import SearchBar from "./SearchBar";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 
-const ProblemCategoryList = (props) => {
+const ProblemCategoryList = () => {
+  const [problems, setProblems] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      // const problemsData = await fetch('http://3.80.44.247:3000/problem/getProblemCategorys');
+      const problemsData = await fetch('http://localhost:8080/problem/getProblemCategorys');
+      const jsonProblems = await problemsData.json();
+      
+      setProblems(jsonProblems);
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <Fragment>
       <p className="title"> Problems by category</p>
       <SearchBar SearchType="preguntas" />
-      <div
-        onClick={() => {
-          console.log("click");
-        }}
-      >
-        <RowCategoryProblem text="Internet issues" />
-      </div>
-      <RowCategoryProblem text="Account status" />
+      {problems.map(problem => {
+        return(
+          <RowCategoryProblem id={problem.category_id} text={problem.category_name}/>          
+        )
+      })}
+      
     </Fragment>
   );
 };
