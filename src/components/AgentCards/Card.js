@@ -53,15 +53,15 @@ const Card = (props) => {
 
   return (
     <Fragment>
-      <div
+      <div className="card"
         id={props.id}
         onDragStart={dragStart}
         onDragOver={dragOver}
         draggable={props.draggable}
-        className="card"
-        style={cardStyle}
-      >
-        {props.component}
+        style={cardStyle}>
+        <div className="cardscroll">
+          {props.component}
+        </div>
       </div>
     </Fragment>
   );

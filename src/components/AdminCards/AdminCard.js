@@ -3,7 +3,7 @@ import { CardContext2 } from "./AdminCardProvider";
 
 
 const AdminCard = (props) => {
-const [nqna,, uqna,, nu,, uu,, np,, up,,nc,,nca] = useContext(CardContext2);
+const [nqna,, uqna,, nu,, uu,, np,, up,,nc,,nca,,us] = useContext(CardContext2);
 
   const dragStart = (e) => {
     const target = e.target;
@@ -15,22 +15,22 @@ const [nqna,, uqna,, nu,, uu,, np,, up,,nc,,nca] = useContext(CardContext2);
   };
 
   let cardStyle = {display: "block"};
-  if ((props.id === "card-4" && !nqna) || (props.id === "card-5" && !uqna) || (props.id === "card-6" && !nu) || (props.id === "card-7" && !uu) || (props.id === "card-8" && !np) || (props.id === "card-9" && !up) || (props.id === "card-10" && !nc) || (props.id === "card-11" && !nca)) {
+  if ((props.id === "card-4" && !nqna) || (props.id === "card-5" && !uqna) || (props.id === "card-6" && !nu) || (props.id === "card-7" && !uu) || (props.id === "card-8" && !np) || (props.id === "card-9" && !up) || (props.id === "card-10" && !nc) || (props.id === "card-11" && !nca) || (props.id === "card-12" && !us)) {
     cardStyle = {display: "none"};
   }
 
   
   return (
     <Fragment>
-      <div
+      <div className="card"
         id={props.id}
         onDragStart={dragStart}
         onDragOver={dragOver}
         draggable={props.draggable}
-        className="card"
-        style={cardStyle}
-      >
-        {props.component}
+        style={cardStyle}>
+        <div className="cardscroll">
+          {props.component}
+        </div>
       </div>
     </Fragment>
   );

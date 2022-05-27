@@ -10,6 +10,7 @@ const AdminCardProvider = ({children}) => {
   const [up, setup] = useState(false);
   const [nc, setnc] = useState(false);
   const [nca, setnca] = useState(false);
+  const [us, setus] = useState(false)
 
 
   return (
@@ -30,7 +31,9 @@ const AdminCardProvider = ({children}) => {
         nc,
         setnc,
         nca,
-        setnca
+        setnca,
+        us,
+        setus
       ]}>
       {children}
     </CardContext2.Provider>
