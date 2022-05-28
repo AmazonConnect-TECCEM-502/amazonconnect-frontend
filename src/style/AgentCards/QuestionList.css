@@ -3,19 +3,23 @@
   gap: 10px
 }
 .container-question {
-  border-radius: 5px;
-  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  /*box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);*/
+  border: 1px solid darkgray;
   cursor: pointer;
   text-align: left;
+  margin: 16px 0;
+  transition-duration: 0.4s;
+}
+.container-question:hover {
+  transition-duration: 0.4s;
+  background-color: azure;
 }
 .question {
   font-family: 'Montserrat';
-  font-style: normal;
-  font-size: 15px;
-  letter-spacing: 0.44px;
-  color: #000000;
-  padding-left: 10px;
-  margin-right: 20px;
+  font-size: 16px;
+  padding: 8px;
+  margin: 0;
 }
 .title {
   font-size: 20px;

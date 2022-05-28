@@ -4,8 +4,8 @@ const Questions = (props) => {
 
     return( 
       <Fragment>
-        <div className = "container-question">
-            <p className = "question">{props.text}</p>
+        <div className="container-question">
+            <p className="question">{props.text}</p>
         </div>
       </Fragment>
     );
