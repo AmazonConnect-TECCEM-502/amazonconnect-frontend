@@ -19,7 +19,6 @@ const [nqna,, uqna,, nu,, uu,, np,, up,,nc,,nca,,us] = useContext(CardContext2);
     cardStyle = {display: "none"};
   }
 
-  
   return (
     <Fragment>
       <div className="card"

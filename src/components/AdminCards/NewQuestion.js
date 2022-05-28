@@ -4,7 +4,7 @@ import "../../style/AdminCards/AdminCards.css"
 const NewQuestion = (props) => {
     return( 
       <Fragment>
-          <div className="title"> Create Question & Answer </div>
+          <div className="title"> Create Problem & Solutions </div>
           <div className="new">
                 <p>Question: </p>
                 <input className="user-ID" type="text" name="Question" />

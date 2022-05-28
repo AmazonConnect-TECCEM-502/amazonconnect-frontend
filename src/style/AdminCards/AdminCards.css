@@ -24,3 +24,6 @@
 .buttondelete{
     justify-self: flex-end;
 }
+.closebutton{
+   color: #0799E6;
+}

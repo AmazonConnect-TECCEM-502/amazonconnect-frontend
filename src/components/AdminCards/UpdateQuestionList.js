@@ -1,5 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
+import { CardContext2 } from "./AdminCardProvider";
 import UpdateQuestions from "./UpdateQuestions";
+
 
 const UpdateQuestionList = (props) => {
   const [arrpreguntas, setPreguntas] = useState([]);
@@ -22,13 +24,11 @@ const UpdateQuestionList = (props) => {
 
   return (
     <Fragment>
-      <p className="title"> Update Questions & Answers </p>
+      <p className="title"> Update Problems & Solutions </p>
       <div className="container-questions">
-      {
-        arrpreguntas.map((pregunta) => (
-            <UpdateQuestions text = {pregunta.question} name = {pregunta.ID}/>
-      ))
-      }
+        {arrpreguntas.map((pregunta) => (
+          <UpdateQuestions text={pregunta.question} name={pregunta.ID} />
+        ))}
       </div>
     </Fragment>
   );

@@ -6,8 +6,8 @@ const MenuConfiguration = () => {
     <Fragment>
       <p className="title"> Menu </p>
       <div className="elements-container">
-        <ElementConfiguration element="Create Q & A" elementID="nqna"/>
-        <ElementConfiguration element="Update Q & A" elementID="uqna"/>
+        <ElementConfiguration element="Create P & S" elementID="nqna"/>
+        <ElementConfiguration element="Update P & S" elementID="uqna"/>
         <ElementConfiguration element="Create User" elementID="nu"/>
         <ElementConfiguration element="Update User" elementID="uu"/>
         <ElementConfiguration element="Create Product" elementID="np"/>
