@@ -7,9 +7,40 @@
   <ProfileCard />
 */
 
-import { Fragment } from "react";
-
+import { Fragment, useEffect, useState } from "react";
 const ProfileCard = () => {
+  const [userId, setUserId] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [userType, setUserType] = useState("");
+
+    const getClientData = async () => {
+      const json = {user_id : 14};
+      console.log(JSON.stringify(json));
+      await fetch('http://localhost:8080/suc/userData',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(json)
+      })
+      .then(response => response.json())
+      .then(data => {
+      setUserId(data.user_id)
+      setFirstName(data.first_name)
+      setLastName(data.last_name)
+      setEmail(data.email)
+      setUserType(data.user_type)
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+  }
+  useEffect( () => {
+    getClientData();
+  });
+
   return (
     <Fragment>
       <div className="profile-info">
@@ -22,15 +53,15 @@ const ProfileCard = () => {
         <div className="person-info">
           <p className="agent-title" style={{ marginBottom: "3px" }}>
             {" "}
-            Agent Name
+            {firstName + " " + lastName}
           </p>
-          <p style={{ color: "blue", marginTop: "0px" }}> Agent Role</p>
+          <p style={{ color: "blue", marginTop: "0px" }}> {userType}</p>
           <hr />
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <div className="personal-data">
               <p> Phone: 5500990099</p>
-              <p> Email: Agent@gmail.com</p>
-              <p> ID: 12345</p>
+              <p> Email: {email}</p>
+              <p> ID: {userId}</p>
             </div>
             <div className="personal-data">
               <p> Birthday: May 5th</p>
