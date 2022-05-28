@@ -1,3 +1,8 @@
+/*
+  Authors: Andrea Vianey Diaz Alvarez
+  Description: 
+
+*/
 import { useContext } from "react";
 import { CardContext2 } from "../AdminCards/AdminCardProvider";
 
@@ -37,12 +42,12 @@ const ElementConfiguration = (props) => {
     }
     if(event.target.value === "nc"){
       const card = document.getElementById("card-10");
-      card.style.display = !up ? "block" : "none";
+      card.style.display = !nc ? "block" : "none";
       setnc(!nc)
     }
     if(event.target.value === "nca"){
       const card = document.getElementById("card-11");
-      card.style.display = !up ? "block" : "none";
+      card.style.display = !nca ? "block" : "none";
       setnca(!nca)
     }
     

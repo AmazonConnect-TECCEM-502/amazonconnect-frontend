@@ -6,7 +6,7 @@ const NewQuestion = (props) => {
       <Fragment>
           <div className="title"> Create Problem & Solutions </div>
           <div className="new">
-                <p>Question: </p>
+                <p>Problem: </p>
                 <input className="user-ID" type="text" name="Question" />
                 <p>Category: </p>
                 <select className="user-ID" name="select">
@@ -14,9 +14,7 @@ const NewQuestion = (props) => {
                   <option value="value2">Value 2</option>
                   <option value="value3">Value 3</option>
                 </select>
-                <p>Answer: </p>
-                <input className="user-ID" type="text" name="Answer" />
-                <button className="forget"> Add another answer</button>
+                <br/>
                 <button className="buttonSubmit"> Submit </button>
           </div>
       </Fragment>

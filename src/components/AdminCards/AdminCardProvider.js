@@ -10,9 +10,10 @@ const AdminCardProvider = ({children}) => {
   const [up, setup] = useState(false);
   const [nc, setnc] = useState(false);
   const [nca, setnca] = useState(false);
-  const [us, setus] = useState(false);
   const [arrsolutions, setSolutions] = useState([]);
-
+  const [csol, setcsol] = useState(false)
+  const [na,setna] = useState(false);
+  const [preg_id, setPreg_id] = useState([])
 
   return (
     <CardContext2.Provider
@@ -33,10 +34,14 @@ const AdminCardProvider = ({children}) => {
         setnc,
         nca,
         setnca,
-        us,
-        setus,
         arrsolutions,
-        setSolutions
+        setSolutions,
+        csol,
+        setcsol,
+        na,
+        setna,
+        preg_id,
+        setPreg_id,
       ]}>
       {children}
     </CardContext2.Provider>

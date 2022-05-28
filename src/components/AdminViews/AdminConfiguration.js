@@ -11,6 +11,7 @@ import NewCategory from "../AdminCards/NewCategory";
 import UpdateQuestionList from "../AdminCards/UpdateQuestionList";
 import UpdateAnswerList from "../AdminCards/UpdateAnswerList";
 import AdminCardProvider from "../AdminCards/AdminCardProvider";
+import NewAnswer from "../AdminCards/NewAnswer";
 
 function AdminConfiguration() {
   return (
@@ -33,7 +34,8 @@ function AdminConfiguration() {
         <AdminCard id="card-5" draggable="true" component={<UpdateQuestionList/>} />
         <AdminCard id="card-9" draggable="true" component={<UpdateProduct/>} />
         <AdminCard id="card-7" draggable="true" component={<UpdateUser/>} />
-        <AdminCard id="card-12" draggable="true" component={<UpdateAnswerList/>} />
+        <AdminCard id="card-12" draggable="true" component={<UpdateAnswerList />} />
+        <AdminCard id="card-13" draggable="true" component={<NewAnswer/>}/>
       </AgentBoard>
     </div>
     </AdminCardProvider>

@@ -1,3 +1,9 @@
+/*
+  Authors: Andrea Vianey Diaz Alvarez
+  Description: 
+
+*/
+
 import { Fragment } from "react";
 import ElementConfiguration from "./ElementConfiguration"
 

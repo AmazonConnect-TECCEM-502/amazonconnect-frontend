@@ -26,4 +26,6 @@
 }
 .closebutton{
    color: #0799E6;
+   cursor: pointer;
+   justify-self: flex-end;
 }

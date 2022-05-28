@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext} from "react";
 import { CardContext } from "./CardsProvider";
 import Questions from "./Questions";
 import SearchBar from "./SearchBar";
