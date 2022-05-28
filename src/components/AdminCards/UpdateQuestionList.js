@@ -1,18 +1,37 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import UpdateQuestions from "./UpdateQuestions";
 
-
 const UpdateQuestionList = (props) => {
-    return( 
-      <Fragment>
-            <p className = "title"> Frequent questions </p>
-            <div className = "container-questions">
-                <UpdateQuestions text = "1. I don't have internet connection" name = "1"/>
-                <UpdateQuestions text = "2. My internet connection is very slow" name = "2"/>
-                <UpdateQuestions text = "3. My signal is intermitent" name = "3"/>
-            </div>
-      </Fragment>
-    );
-  };
-  
-  export default UpdateQuestionList;
+  const [arrpreguntas, setPreguntas] = useState([]);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    console.log("Descargando datos...");
+    fetch("http://localhost:8080/problem/getProblemid")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data[0] === undefined) {
+          setError(true);
+        } else {
+          const preguntas = data;
+          setPreguntas(preguntas);
+        }
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  return (
+    <Fragment>
+      <p className="title"> Update Questions & Answers </p>
+      <div className="container-questions">
+      {
+        arrpreguntas.map((pregunta) => (
+            <UpdateQuestions text = {pregunta.question} name = {pregunta.ID}/>
+      ))
+      }
+      </div>
+    </Fragment>
+  );
+};
+
+export default UpdateQuestionList;
