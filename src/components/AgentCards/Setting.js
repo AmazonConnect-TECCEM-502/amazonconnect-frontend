@@ -1,3 +1,11 @@
+/*
+  Author: Eric Alexis Castañeda Bravo
+  Description: Show the info of the user and allow him to 
+  change Name and Last name
+
+  Usage:
+  <Settigns />
+*/
 import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -6,14 +14,16 @@ import UserInfo from "./UserInfo";
 
 
 const Settings = () => {
+        //Info from the json 
         const [userId, setUserId] = useState("");
         const [firstName, setFirstName] = useState("");
         const [lastName, setLastName] = useState("");
         const [email, setEmail] = useState("");
         const [userType, setUserType] = useState("");
 
+        //Request to back end to get the info of X user
         const getClientData = async () => {
-            const json = {user_id : 14};
+            const json = {user_id : 14}; // Cambiar el numero por el valor real del usuario
             console.log(JSON.stringify(json));
             await fetch('http://localhost:8080/suc/userData',{
               method: 'POST',
@@ -39,11 +49,11 @@ const Settings = () => {
       });
       
     const navigate = useNavigate();
-      // Contenido del input
-  const [nuevoFirstName, setNuevoFirstName] = useState("")
-  const [nuevoLastName, setNuevoLastName] = useState("")
-  // Atender el evento de cambio en el input
-  const cambioFirstName = (event) => {
+      // Input info
+    const [nuevoFirstName, setNuevoFirstName] = useState("")
+    const [nuevoLastName, setNuevoLastName] = useState("")
+      // Change of the input  
+    const cambioFirstName = (event) => {
         setNuevoFirstName(event.target.value); 
   };
   const cambioLastName = (event) => {
@@ -51,6 +61,8 @@ const Settings = () => {
     setNuevoLastName(event.target.value);
 
   };
+
+    //Send new data to the back end
     const sendNewName = async () => {
 
         await axios.post('http://localhost:8080/suc/changeName',{
@@ -61,11 +73,14 @@ const Settings = () => {
     
       };
 
+
+      //Navegate button
       const callFunctions = () => {
         sendNewName();
         navigate("/agent/profile");
       };
   return (
+
     <Fragment>
       <div className="profile-info">
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -86,7 +101,6 @@ const Settings = () => {
               <div>
                 <input className="user-name-changed" type="text" name="First Name" onChange={cambioFirstName} />
               </div>
-                  {/*<input type="text" name="nombre">Dame tu nombre</input>*/}
               <div>
                   <p>Email: {email} </p>
               <p> </p>

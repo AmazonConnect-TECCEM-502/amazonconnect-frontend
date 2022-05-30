@@ -1,3 +1,12 @@
+/*
+  Author: Eric Alexis Castañeda Bravo
+  Description: Show the info of the user and allow him to 
+  change Name and Last name
+
+  Usage:
+  <AgentSettings />
+*/
+
 import AgentBoard from "../AgentCards/AgentBoard";
 import Card from "../AgentCards/Card";
 import CardsProvider from "../AgentCards/CardsProvider";
