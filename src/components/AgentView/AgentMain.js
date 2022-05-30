@@ -20,7 +20,7 @@ import NavBar from "../NavBar/NavBar";
 import CardsProvider from "../AgentCards/CardsProvider";
 import ProductsCategoryList from "../SalesCard/ProductsCategoryList";
 import KeystrokeRecording from "../Recordings/KeystrokeRecording";
-import SalesMasterCard from "../SalesCard/SalesMasterCard";t
+import SalesMasterCard from "../SalesCard/SalesMasterCard";
 import AmazonCCP from "../AgentCards/AmazonCCP";
 
 function AgentMain() {

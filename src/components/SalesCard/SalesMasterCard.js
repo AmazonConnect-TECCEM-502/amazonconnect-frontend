@@ -37,7 +37,7 @@ const SalesMasterCard = (props) => {
 
     return (
         <div>
-            <ProductsCategoryList />
+            <p>Sales</p>
         </div>
 
     );

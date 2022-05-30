@@ -16,18 +16,12 @@ const ProductList = () => {
        //const productsData = await fetch('http://3.80.44.247:3000/problem/getProblemCategorys');
       //const productsData = await fetch('http://localhost:8080/product/getProductsCategorys');
       //const productsData = await fetch('http://localhost:8080/sales/getRecommendedProducts');
-      const json = {category_id : 1, client_id: 1}; // Cambiar el numero por el valor real del usuario
-            console.log(JSON.stringify(json));
-            const productsData = await fetch('http://localhost:8080/sales/getRecommendedProducts',{
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(json)
-            })
-      const jsonProducts = await productsData.json();
+       // Cambiar el numero por el valor real del usuario
+      const category_id = 1;
+      const client_id = 1;
+      const productsData = await fetch(`http://localhost:8080/sales/getRecommendedProducts/${category_id}/${client_id}`);
       
-      setProducts(jsonProducts[0]);
+      setProducts(productsData[0]);
     }
     fetchData();
   }, []);
