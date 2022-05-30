@@ -6,8 +6,12 @@
   text-align: left;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid darkgray;
   padding: 8px;
+}
+
+.element:hover {
+  font-weight: bold;
 }
 
 .element label{

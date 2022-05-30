@@ -1,16 +1,22 @@
-.category-problem {
-  border-bottom: 1px solid #000000;
+.categorys {
+  border-bottom: 1px solid darkgray;
+  margin: 4px 0;
 }
+.categorys .categorys-active{
+  font-weight: bold;
+  background-color: rgb(242, 242, 242);
+}
+
 .title {
   font-size: 20px;
   font-weight: 900;
   line-height: 30px;
   font-family: "Montserrat";
 }
-.category-problem button{
+.categorys button{
   font-family: Montserrat;
   font-size: 16px;
-  min-height: 30px;
+  min-height: 32px;
   min-width: 100%;
   text-align: center;
   letter-spacing: 0.44px;
@@ -18,4 +24,9 @@
   outline: none;
   background-color: #f7f7f7;
   cursor: pointer;
+  padding: 0;
+}
+.categorys button:hover{
+  font-weight: bold;
+  background-color: rgb(242, 242, 242);
 }

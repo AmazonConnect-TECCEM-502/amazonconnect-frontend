@@ -1,9 +1,11 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext} from "react";
 import { CardContext } from "./CardsProvider";
 import Questions from "./Questions";
 import SearchBar from "./SearchBar";
 
 const QuestionList = (props) => {
+  // Questions where assigned in RowCategoryProblem.js
+  // We access those questions through CardContext
   const [, , , , , , questions, ] = useContext(CardContext);
 
   return (

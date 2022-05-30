@@ -18,6 +18,7 @@ import AnswerList from "../AgentCards/AnswerList";
 import ProductCard from "../SalesCard/ProductCard";
 import NavBar from "../NavBar/NavBar";
 import CardsProvider from "../AgentCards/CardsProvider";
+import ProductsCategoryList from "../SalesCard/ProductsCategoryList";
 import KeystrokeRecording from "../Recordings/KeystrokeRecording";
 
 function AgentMain() {
@@ -28,7 +29,7 @@ function AgentMain() {
         <AgentBoard id="board-1" className="board board-menu">
           <Card id="card-1" draggable="false" component={<Menu />} />
           <Card id="card-2" draggable="false" component={<Recording />} />
-          <Card id="card-8" draggable="false" component={<KeystrokeRecording />} />
+          <Card id="card-9" draggable="false" component={<KeystrokeRecording />} />
         </AgentBoard>
 
         <AgentBoard id="board-2" className="board">
@@ -56,6 +57,7 @@ function AgentMain() {
               />
             }
           />
+          <Card id="card-8" draggable="true" component={<ProductsCategoryList />}/>
           <Card
             id="card-7"
             draggable="true"

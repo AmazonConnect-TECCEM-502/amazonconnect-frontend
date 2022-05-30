@@ -3,7 +3,6 @@ import { Fragment } from "react";
 const NewProduct = (props) => {
     return( 
       <Fragment>
-          <div>
           <div className="title"> Create Product </div>
           <div className="new">
                 <p>Name: </p>
@@ -17,8 +16,6 @@ const NewProduct = (props) => {
                 <br/>
                 <button className="buttonSubmit"> Submit </button>
           </div>
-          </div>
-
       </Fragment>
     );
 };

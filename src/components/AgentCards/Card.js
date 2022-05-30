@@ -27,7 +27,7 @@ import { useContext } from "react";
 import { CardContext } from "./CardsProvider";
 
 const Card = (props) => {
-  const [problem, , client] = useContext(CardContext);
+  const [problem, , client, , , , , , product] = useContext(CardContext);
 
   const dragStart = (e) => {
     // Change Paramater name
@@ -45,22 +45,23 @@ const Card = (props) => {
   let cardStyle = { display: "block" };
   if (
     (props.id === "card-5" && !problem) ||
-    (props.id === "card-4" && !client)
+    (props.id === "card-4" && !client) ||
+    (props.id === "card-8" && !product)
   ) {
     cardStyle = { display: "none" };
   }
 
   return (
     <Fragment>
-      <div
+      <div className="card"
         id={props.id}
         onDragStart={dragStart}
         onDragOver={dragOver}
         draggable={props.draggable}
-        className="card"
-        style={cardStyle}
-      >
-        {props.component}
+        style={cardStyle}>
+        <div className="cardscroll">
+          {props.component}
+        </div>
       </div>
     </Fragment>
   );
