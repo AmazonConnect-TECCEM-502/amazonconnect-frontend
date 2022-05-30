@@ -20,7 +20,8 @@ import NavBar from "../NavBar/NavBar";
 import CardsProvider from "../AgentCards/CardsProvider";
 import ProductsCategoryList from "../SalesCard/ProductsCategoryList";
 import KeystrokeRecording from "../Recordings/KeystrokeRecording";
-import SalesMasterCard from "../SalesCard/SalesMasterCard";
+import SalesMasterCard from "../SalesCard/SalesMasterCard";t
+import AmazonCCP from "../AgentCards/AmazonCCP";
 
 function AgentMain() {
   return (
@@ -45,6 +46,7 @@ function AgentMain() {
 
 
         <AgentBoard id="board-3" className="board">
+          <Card id="card-0" draggable="true" component={<AmazonCCP />}/>
           <Card
             id="card-4"
             draggable="true"
