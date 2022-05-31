@@ -12,11 +12,9 @@ const QuestionList = (props) => {
     <Fragment>
       <p className="title"> Frequent questions </p>
       <SearchBar SearchType="preguntas" />
-      <div className="container-questions">
-        {questions.map(question => {
-          return <Questions text={question.problem_description} />
-        })}
-      </div>
+      {questions.map(question => {
+        return <Questions text={question.problem_description} />
+      })}
     </Fragment>
   );
 };

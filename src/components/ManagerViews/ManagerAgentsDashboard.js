@@ -15,12 +15,10 @@ function ManagerAgentsDashboard() {
   return (
     <CardsProvider>
       <NavBarManager />
-      <div className="manager-container">
-        <div className="manager-dashboard-container">
-          <AgentBoard id="board-4" className="board board-menu">
-            <Card id="" draggable="false" component={<Agents />} />
-          </AgentBoard>
-        </div>
+      <div className="manager-dashboard-container">
+        <AgentBoard id="board-4" className="board board-menu">
+          <Card id="manager-agents-menu" draggable="false" component={<Agents />} />
+        </AgentBoard>
       </div>
     </CardsProvider>
   );

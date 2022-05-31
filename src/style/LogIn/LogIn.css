@@ -14,7 +14,7 @@
 .login{
     display: grid;
     text-align: left;
-    padding: 100px;
+    padding: 40px;
     gap:15px;
 }
 .user-ID{
