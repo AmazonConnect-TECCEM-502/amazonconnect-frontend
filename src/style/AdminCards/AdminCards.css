@@ -25,7 +25,10 @@
     justify-self: flex-end;
 }
 .closebutton{
-   color: #0799E6;
-   cursor: pointer;
-   justify-self: flex-end;
+    color: #0799E6;
+    cursor: pointer;
+    justify-self: flex-end;
+}
+.admin .card{
+    height: 100%;
 }

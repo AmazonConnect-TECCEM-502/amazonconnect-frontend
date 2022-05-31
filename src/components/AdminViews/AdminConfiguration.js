@@ -17,7 +17,7 @@ function AdminConfiguration() {
   return (
     <AdminCardProvider>
     <NavBarAdmin />
-    <div className="agent-container">
+    <div className="agent-container admin">
       <AgentBoard id="board-1" className="board board-menu">
         <AdminCard id="card-1" draggable="false" component={<MenuConfiguration/>} />
         {/*<AdminCard id="card-10" draggable="false" component={<ClientCard/>} />*/}
