@@ -3,14 +3,14 @@ import { Fragment, useEffect, useState } from "react";
 
 const ProductList = (props) => {
   const [products, setProducts] = useState([]);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       //const productsData = await fetch(`http://3.80.44.247:8080/sales/getRecommendedProducts/${props.client_id}/${props.category_id}`);
       const productsData = await fetch(`http://localhost:8080/sales/getRecommendedProducts/${props.client_id}/${props.category_id}`);
       const jsonProducts = await productsData.json();
 
-      setProducts(jsonProducts[0]);
+      setProducts(jsonProducts);
     };
     fetchData();
   });
@@ -27,7 +27,7 @@ const ProductList = (props) => {
         )
       })}
       <button onClick={props.backAction}>back</button>
-      
+
     </Fragment>
   );
 };
