@@ -28,6 +28,27 @@
     flex-wrap: wrap;
     min-height: 95vh;
 }
+
+.user-settings{
+    display: flex;
+    min-height: 95vh;
+}
+.user-settings .card {
+    margin: 32px 0;
+    min-height: 380px;
+}
+
+.user-profile{
+    display: flex;
+    min-height: 95vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-profile .card {
+    min-width: 70%;
+}
+
 .manager-dashboard-container .board{
     padding: 16px;
     display: flex;

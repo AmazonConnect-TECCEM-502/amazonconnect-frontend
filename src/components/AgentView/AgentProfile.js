@@ -8,13 +8,8 @@ function AgentProfile() {
   return (
     <CardsProvider>
       <NavBar />
-      <div
-        className="manager-dashboard-container"
-        style={{ justifyContent: "space-around" }}
-      >
-        <AgentBoard id="board-4" className="board board-menu profile-card">
-          <Card id="" draggable="false" component={<ProfileCard />} />
-        </AgentBoard>
+      <div className="user-profile">
+        <Card id="" draggable="" component={<ProfileCard />} />
       </div>
     </CardsProvider>
   );
