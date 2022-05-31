@@ -20,7 +20,7 @@
 
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
-import { CardContext } from "../AgentCards/CardsProvider";
+import { AgentContext } from "../AgentView/AgentProvider";
 import ClientForms from "./ClientForms";
 import ClientImage from "./ClientImage";
 import ClientInfo from "./ClientInfo";
@@ -28,7 +28,7 @@ import ClientName from "./ClientName";
 import ClientQuestion from "./ClientQuestion";
 
 const ClientCard = (props) => {
-  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient] = useContext(CardContext);
+  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient] = useContext(AgentContext);
 
   const [lastNameClient, setLastNameClient] = useState("");
   const [emailClient, setEmailClient] = useState("");

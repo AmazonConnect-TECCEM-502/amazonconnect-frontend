@@ -18,6 +18,12 @@
   scrollbar-width: thin;
   scrollbar-color: #5e7dab #f7f7f7;
 }
+#card-0{
+  max-height: none;
+}
+#card-0 .cardscroll{
+  overflow-y: hidden;
+}
 
 .cardscroll::-webkit-scrollbar {
   width: 5px;

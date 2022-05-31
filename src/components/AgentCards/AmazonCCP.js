@@ -20,9 +20,9 @@ class AmazonCCP extends Component {
 
     render() {
         return (
-            <div className="ccp">
+            <div>
                 <h1>Contact Control Panel</h1>
-                <div style={{width: "400px", height: "500px" }} className="containerDiv" ref={this.containerDiv} />
+                <div style={{height: "450px" }} ref={this.containerDiv} />
             </div>
         );
     }

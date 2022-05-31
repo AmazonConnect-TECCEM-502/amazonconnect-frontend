@@ -1,17 +1,17 @@
 import NavBar from "../NavBar/NavBar";
-import CardsProvider from "../AgentCards/CardsProvider";
+import AgentProvider from "../AgentView/AgentProvider";
 import Card from "../AgentCards/Card";
 import AgentBoard from "../AgentCards/AgentBoard";
 import ProfileCard from "../ManagerCards/ProfileCard";
 
 function AgentProfile() {
   return (
-    <CardsProvider>
+    <AgentProvider>
       <NavBar />
       <div className="user-profile">
         <Card id="" draggable="" component={<ProfileCard />} />
       </div>
-    </CardsProvider>
+    </AgentProvider>
   );
 }
 
