@@ -25,13 +25,12 @@ import ClientForms from "./ClientForms";
 import ClientImage from "./ClientImage";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
-// import ClientQuestion from "./ClientQuestion";
+import ClientQuestion from "./ClientQuestion";
 
 const ClientCard = (props) => {
-  const [, , , , , setClientID] = useContext(CardContext);
+  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient] = useContext(CardContext);
 
   const [lastNameClient, setLastNameClient] = useState("");
-  const [phoneClient, setPhoneClient] = useState("");
   const [emailClient, setEmailClient] = useState("");
   const [nameClient, setNameClient] = useState("");
   const [result, setResult] = useState("");
@@ -42,8 +41,8 @@ const ClientCard = (props) => {
     .then(response => response.json())
     .then(data => {
       console.log(data)
-      console.log(data.phoneNumber)
-      setPhoneClient(data.phoneNumber)
+      setClientPhone(data.phoneNumber)
+      //console.log(clientPhone)
       showContent(data.authenticationType)
     })
     .catch(function(err) {
@@ -89,6 +88,7 @@ const ClientCard = (props) => {
 
   const resetUserData = async () => {
     showContent("not yet");
+    setShowClient(false);
     await axios.post('http://3.80.44.247:8080/vid/reset',{
       "message": "not yet"
     })
@@ -103,18 +103,18 @@ const ClientCard = (props) => {
           <ClientImage image={props.image} />
           <ClientName name={nameClient + ", " + lastNameClient} />
           <ClientInfo text={emailClient} />
-          <ClientInfo text={phoneClient} />
+          <ClientInfo text={clientPhone} />
         </Fragment>
       }
       {
         //Show Message error and form 
-        (result === "not enrolled") && (result === "opted out") &&  <ClientForms />
+        (result === "not enrolled" || result === "opted out") &&  <ClientForms />
       }
       {
         //Show verification question 
         (result === "not authenticated" || result === "inconclusive") && 
-        // <ClientQuestion />
-        <h1> Client not authenticated or inconclusive </h1>
+        <ClientQuestion />
+        //<h1> Client not authenticated or inconclusive </h1>
       }
       {
         //Show no data error

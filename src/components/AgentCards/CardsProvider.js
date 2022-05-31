@@ -5,6 +5,8 @@ const CardsProvider = ({children}) => {
   const [problem, setProblem] = useState(false);
   const [client, setClient] = useState(false);
   const [clientID, setClientID] = useState("");
+  const [showClient, setShowClient] = useState(false);
+  const [clientPhone, setClientPhone] = useState("");
   const [questions, setQuestions] = useState([]);
   const [product, setProduct] = useState(false);
 
@@ -20,7 +22,11 @@ const CardsProvider = ({children}) => {
         questions,
         setQuestions,
         product,
-        setProduct
+        setProduct,
+        clientPhone,
+        setClientPhone,
+        showClient,
+        setShowClient
       ]}>
       {children}
     </CardContext.Provider>
