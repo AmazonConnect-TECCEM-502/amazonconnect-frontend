@@ -1,46 +1,46 @@
-import ProductCard from "./ProductCard";
 import { useState } from "react";
+import ProductCard from "./ProductCard";
 import ProductList from "./ProductList";
 import ProductsCategoryList from "./ProductsCategoryList";
 
 const SalesMasterCard = (props) => {
 
-    const ProductInfo = () => {
-        return (
-            <ProductCard
-                products={{
-                  internet: {
-                    image: "ejemploTelmex",
-                    name: "Internet plan",
-                    price: "100",
-                    desc: "Un plan de servicio de Internet con una velocidad de 50 megas.",
-                  },
-                  TV: {
-                    image: "ejemploTelmex",
-                    name: "TV plan",
-                    price: "150",
-                    desc: "Un plan de servicio de TV con 100 canales.",
-                  },
-                  mobile: {
-                    image: "ejemploTelmex",
-                    name: "Mobile roaming plan",
-                    price: "200",
-                    desc: "Un plan de datos celulares con un limite de consumo de ancho de banda de 1 gigabyte.",
-                  },
-                }}
-              />
-        );
+    const Views = {
+      CATEGORIES : 1,
+      PRODUCTS : 2,
+      PRODUCT : 3
     };
 
-    const [stateKey, setStateKey] = useState();
-    
+    const [currentView, setCurrentView] = useState(Views.CATEGORIES);
+    const [currentCategory, setCurrentCategory] = useState();
+    const [currentProduct, setCurrentProduct] = useState();
+ 
+    const client_id = 1;
 
-    return (
-        <div>
-            <p>Sales</p>
-        </div>
+    const goToProducts = (category_id) => {
+      setCurrentCategory(category_id);
+      setCurrentView(Views.PRODUCTS);
+    };
 
-    );
+    const goToProduct = (product_id) => {
+      setCurrentProduct(product_id);
+      setCurrentView(Views.PRODUCT);
+    };
+
+    const backToProducts = () => {
+      setCurrentView(Views.PRODUCTS);
+    };
+
+    const backToCategories = () => {
+      setCurrentView(Views.CATEGORIES);
+    };
+
+    if (currentView === Views.CATEGORIES)
+      return (<ProductsCategoryList buttonAction={goToProducts}/>)
+    else if (currentView === Views.PRODUCTS) 
+      return (<ProductList client_id={client_id} category_id={currentCategory} buttonAction={goToProduct} backAction={backToCategories}/>) 
+    else if (currentView === Views.PRODUCT) 
+      return (<ProductCard product_id={currentProduct} buttonAction={backToProducts}/>);
 };
 
 export default SalesMasterCard;

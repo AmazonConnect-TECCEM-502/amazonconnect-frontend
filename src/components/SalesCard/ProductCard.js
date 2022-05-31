@@ -15,7 +15,7 @@ const ProductCard = (props) => {
       console.log(product);
     };
     fetchData();
-  }, []);
+  });
 
   return(
     <div className="product-card">
@@ -24,7 +24,7 @@ const ProductCard = (props) => {
           <div>
             <p className="product-name">{product.product_name}</p>
             <p className="product-price">Price: {product.price} $</p>
-            <button>Back</button>
+            <button onClick={props.buttonAction}>Back</button>
             <button className="add-button">Add</button>
           </div>
         </div>

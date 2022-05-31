@@ -13,12 +13,7 @@ const ProductList = (props) => {
       setProducts(jsonProducts[0]);
     };
     fetchData();
-  }, []);
-
-  const displayAvailableProducts = async () => {
-    // this function will allow us to display the available products on another card
-    console.log("Entre");
-  }
+  });
 
   return (
     <Fragment>
@@ -27,11 +22,11 @@ const ProductList = (props) => {
       {products.map(product => {
         return(
           <div className="categorys">
-            <button type="text" onClick={displayAvailableProducts}>{product.product_name}</button>
+            <button type="text" onClick={() => {props.buttonAction(product.product_id)}}>{product.product_name}</button>
           </div>
         )
       })}
-      <button>back</button>
+      <button onClick={props.backAction}>back</button>
       
     </Fragment>
   );
