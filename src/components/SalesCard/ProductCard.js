@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-
 const ProductCard = (props) => {
 
   const [product, setProduct] = useState({});
@@ -24,8 +23,8 @@ const ProductCard = (props) => {
           <div>
             <p className="product-name">{product.product_name}</p>
             <p className="product-price">Price: {product.price} $</p>
-            <button onClick={props.buttonAction}>Back</button>
-            <button className="add-button">Add</button>
+            <button className="back-button-product" onClick={props.buttonAction}>Back</button>{" "}
+            <button className="product-header-add-button">Add</button>
           </div>
         </div>
         <p className="product-description"> {product.product_desc} </p>
