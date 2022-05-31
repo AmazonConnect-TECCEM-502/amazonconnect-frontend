@@ -8,10 +8,8 @@ const ProductsCategoryList = () => {
   // useEffect will be used so before the component is created it fetch the data from our back
   useEffect(() => {
     const fetchData = async () => {
-      // const productsData = await fetch('http://3.80.44.247:3000/problem/getProblemCategorys');
-      const productsData = await fetch(
-        "http://localhost:8080/sales/getProductCategories"
-      );
+      // const productsData = await fetch('http://3.80.44.247:3000/problem/getProductCategories');
+      const productsData = await fetch("http://localhost:8080/sales/getProductCategories");
       const jsonProducts = await productsData.json();
 
       setProducts(jsonProducts);
