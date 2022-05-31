@@ -6,11 +6,12 @@ import NewProduct from "../AdminCards/NewProduct";
 import NewUser from "../AdminCards/NewUser";
 import UpdateUser from "../AdminCards/UpdateUser";
 import UpdateProduct from "../AdminCards/UpdateProduct";
-import AdminCardProvider from "../AdminCards/AdminCardProvider";
 import AdminCard from "../AdminCards/AdminCard";
 import NewCategory from "../AdminCards/NewCategory";
-import UpdateAnswer from "../AdminCards/UpdateAnswer";
 import UpdateQuestionList from "../AdminCards/UpdateQuestionList";
+import UpdateAnswerList from "../AdminCards/UpdateAnswerList";
+import AdminCardProvider from "../AdminCards/AdminCardProvider";
+import NewAnswer from "../AdminCards/NewAnswer";
 
 function AdminConfiguration() {
   return (
@@ -30,10 +31,11 @@ function AdminConfiguration() {
       </AgentBoard>
 
       <AgentBoard id="board-3" className="board board-menu">
-      <AdminCard id="card-5" draggable="true" component={<UpdateQuestionList/>} />
+        <AdminCard id="card-5" draggable="true" component={<UpdateQuestionList/>} />
         <AdminCard id="card-9" draggable="true" component={<UpdateProduct/>} />
         <AdminCard id="card-7" draggable="true" component={<UpdateUser/>} />
-        <AdminCard id="card-12" draggable="true" component={<UpdateAnswer />} />
+        <AdminCard id="card-12" draggable="true" component={<UpdateAnswerList />} />
+        <AdminCard id="card-13" draggable="true" component={<NewAnswer/>}/>
       </AgentBoard>
     </div>
     </AdminCardProvider>

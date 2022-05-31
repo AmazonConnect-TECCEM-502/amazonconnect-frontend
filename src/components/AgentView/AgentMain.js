@@ -20,6 +20,8 @@ import NavBar from "../NavBar/NavBar";
 import CardsProvider from "../AgentCards/CardsProvider";
 import ProductsCategoryList from "../SalesCard/ProductsCategoryList";
 import KeystrokeRecording from "../Recordings/KeystrokeRecording";
+import SalesMasterCard from "../SalesCard/SalesMasterCard";
+import AmazonCCP from "../AgentCards/AmazonCCP";
 
 function AgentMain() {
   return (
@@ -44,6 +46,7 @@ function AgentMain() {
 
 
         <AgentBoard id="board-3" className="board">
+          <Card id="card-0" draggable="true" component={<AmazonCCP />}/>
           <Card
             id="card-4"
             draggable="true"
@@ -62,28 +65,7 @@ function AgentMain() {
             id="card-7"
             draggable="true"
             component={
-              <ProductCard
-                products={{
-                  internet: {
-                    image: "ejemploTelmex",
-                    name: "Internet plan",
-                    price: "100",
-                    desc: "Un plan de servicio de Internet con una velocidad de 50 megas.",
-                  },
-                  TV: {
-                    image: "ejemploTelmex",
-                    name: "TV plan",
-                    price: "150",
-                    desc: "Un plan de servicio de TV con 100 canales.",
-                  },
-                  mobile: {
-                    image: "ejemploTelmex",
-                    name: "Mobile roaming plan",
-                    price: "200",
-                    desc: "Un plan de datos celulares con un limite de consumo de ancho de banda de 1 gigabyte.",
-                  },
-                }}
-              />
+              <SalesMasterCard />
             }
           />
         </AgentBoard>

@@ -26,8 +26,8 @@ const ProductCard = (props) => {
           <div>
             <p className="product-name">{productsArr.name}</p>
             <p className="product-price">Price: {productsArr.price} $</p>
+            <button>Back</button>
             <button className="add-button">Add</button>
-            <button onClick={NextButton}>{productKey}</button>
           </div>
         </div>
         <p className="product-description"> {productsArr.desc} </p>

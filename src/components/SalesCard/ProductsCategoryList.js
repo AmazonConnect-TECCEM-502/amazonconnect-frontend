@@ -1,9 +1,3 @@
-/*
-  Author: Diego Armando Ulibarri Hernández
-  
-  Description: Component that show a list with all
-  the categorys of products
-*/
 import SearchBar from "../AgentCards/SearchBar";
 import { Fragment, useEffect, useState } from "react";
 
@@ -16,7 +10,7 @@ const ProductsCategoryList = () => {
     const fetchData = async () => {
       // const productsData = await fetch('http://3.80.44.247:3000/problem/getProblemCategorys');
       const productsData = await fetch(
-        "http://localhost:8080/product/getProductsCategorys"
+        "http://localhost:8080/sales/getProductCategories"
       );
       const jsonProducts = await productsData.json();
 

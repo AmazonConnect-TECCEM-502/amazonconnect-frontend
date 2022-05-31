@@ -36,3 +36,5 @@
 @import url("./ManagerMain.css");
 /* Log In */
 @import url("./LogIn/LogIn.css");
+/* Settings*/
+@import url("./AgentCards/Settings.css");
