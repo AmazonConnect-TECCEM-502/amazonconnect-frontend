@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Fragment, useContext, useState } from "react";
-import { CardContext } from "../AgentCards/CardsProvider";
+import { AgentContext } from "../AgentView/AgentProvider";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
 
@@ -10,7 +10,7 @@ const ClientForms = (props) => {
     const [clientEmail, setClientEmail] = useState("");
     //const [clientPhone, setClientPhone] = useState("");
     const [newPhone, setNewPhone] = useState(false);
-    const [, , , , , , , , , , clientPhone, setClientPhone, showClient, setShowClient] = useContext(CardContext);
+    const [, , , , , , , , , , clientPhone, setClientPhone, showClient, setShowClient] = useContext(AgentContext);
 
     const clientFnameHandler = (event) => {
         setClientFname(event.target.value);

@@ -1,10 +1,10 @@
 import { Fragment, useContext, useState } from "react";
-import { CardContext } from "../AgentCards/CardsProvider";
+import { AgentContext } from "../AgentView/AgentProvider";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
 
 const ClientQuestion = (props) => {
-    const [, , , , , , , , , , clientPhone, , showClient, setShowClient] = useContext(CardContext);
+    const [, , , , , , , , , , clientPhone, , showClient, setShowClient] = useContext(AgentContext);
 
     const [lastNameClient, setLastNameClient] = useState("");
     const [emailClient, setEmailClient] = useState("");

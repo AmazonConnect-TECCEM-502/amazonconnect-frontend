@@ -8,10 +8,10 @@
 
 import SearchBar from "./SearchBar";
 import { Fragment, useEffect, useState, useContext } from "react";
-import { CardContext } from "./CardsProvider";
+import { AgentContext } from "../AgentView/AgentProvider";
 
 const ProblemCategoryList = () => {
-  const [, , , , , , questions, setQuestions] = useContext(CardContext);
+  const [, , , , , , questions, setQuestions] = useContext(AgentContext);
   const [problems, setProblems] = useState([]);
   const [activeLink, setActiveLink] = useState(0);
 

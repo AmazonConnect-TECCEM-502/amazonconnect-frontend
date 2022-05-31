@@ -1,6 +1,5 @@
-import { Component } from 'react';
-import React from 'react';
-import 'amazon-connect-streams';
+import React, { Component } from "react";
+import "amazon-connect-streams";
 
 class AmazonCCP extends Component {
     constructor(props) {
@@ -10,8 +9,9 @@ class AmazonCCP extends Component {
 
     componentDidMount() {
         connect.core.initCCP(this.containerDiv.current, {
-            ccpUrl: 'https://tec2022bloqueaws.my.connect.aws/connect/ccp-v2/',
+            ccpUrl: "https://tec2022bloqueaws.my.connect.aws/connect/ccp-v2/",
             loginPopup: true,
+            region: "us-east-1",
             softphone: {
                 allowFramedSoftphone: true
             }
@@ -20,9 +20,9 @@ class AmazonCCP extends Component {
 
     render() {
         return (
-            <div className="ccp">
+            <div>
                 <h1>Contact Control Panel</h1>
-                <div style={{width: "400px", height: "500px" }} className="containerDiv" ref={this.containerDiv} />
+                <div style={{ height: "450px" }} ref={this.containerDiv} />
             </div>
         );
     }
