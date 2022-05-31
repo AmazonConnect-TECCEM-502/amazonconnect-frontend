@@ -55,6 +55,11 @@ Description: Css file with the styles for Sales Card.
     transition: .8s;
 }
 
+.back-button:hover{
+    background-color: #0463B9;
+    transition: .8s;
+}
+
 .product-header-add-button {
     background-color: green;
     font-size: 16px;
