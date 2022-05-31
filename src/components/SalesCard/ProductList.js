@@ -6,7 +6,7 @@ const ProductList = (props) => {
   
   useEffect(() => {
     const fetchData = async () => {
-      //const productsData = await fetch(`http://3.80.44.247:3000/sales/getRecommendedProducts/${props.client_id}/${props.category_id}`);
+      //const productsData = await fetch(`http://3.80.44.247:8080/sales/getRecommendedProducts/${props.client_id}/${props.category_id}`);
       const productsData = await fetch(`http://localhost:8080/sales/getRecommendedProducts/${props.client_id}/${props.category_id}`);
       const jsonProducts = await productsData.json();
 
