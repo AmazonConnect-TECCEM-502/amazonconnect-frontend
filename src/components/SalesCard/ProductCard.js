@@ -7,7 +7,7 @@ const ProductCard = (props) => {
   
   useEffect(() => {
     const fetchData = async () => {
-      //const productsData = await fetch(`http://3.80.44.247:3000/sales/getProduct/${props.product_id}`);
+      //const productsData = await fetch(`http://3.80.44.247:8080/sales/getProduct/${props.product_id}`);
       const productData = await fetch(`http://localhost:8080/sales/getProduct/${props.product_id}`);
       const jsonProduct = await productData.json();
 
