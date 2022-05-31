@@ -19,12 +19,10 @@ function AgentSettings() {
       <CardsProvider>
         <NavBar />
         <div
-          className="manager-dashboard-container"
+          className="user-settings"
           style={{ justifyContent: "space-around" }}
         >
-          <AgentBoard id="board-4" className="board board-menu profile-card">
-            <Card id="card-7" draggable="true" component={<Settings />} />
-          </AgentBoard>
+          <Card id="" draggable="" component={<Settings />} />
         </div>
       </CardsProvider>
     </div>
