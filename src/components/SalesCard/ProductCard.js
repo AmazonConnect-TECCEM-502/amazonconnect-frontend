@@ -1,36 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const ProductCard = (props) => {
 
-  const [productKey, setKey] = useState('TV');
-  const [productsArr, setProducts] = useState(props.products['internet']);
+  const [product, setProduct] = useState({});
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      //const productsData = await fetch(`http://3.80.44.247:3000/sales/getProduct/${props.product_id}`);
+      const productData = await fetch(`http://localhost:8080/sales/getProduct/${props.product_id}`);
+      const jsonProduct = await productData.json();
 
-  const NextButton = (event) => {
-    if (productKey === 'internet') {
-      setKey('TV');
-    }
-    else if (productKey === 'TV') {
-      setKey('mobile');
-    }
-    else if (productKey === 'mobile') {
-      setKey('internet');
-    }
-    setProducts(props.products[productKey]);
-  };
+      setProduct(jsonProduct);
+      console.log(product);
+    };
+    fetchData();
+  }, []);
 
   return(
     <div className="product-card">
         <div className="product-header">
-          <img src = {require(`../../images/sales/${productsArr.image}.jpg`)} alt = "Product" />
+          <img src = {require(`../../images/sales/ejemploTelmex.jpg`)} alt = "Product" />
           <div>
-            <p className="product-name">{productsArr.name}</p>
-            <p className="product-price">Price: {productsArr.price} $</p>
+            <p className="product-name">{product.product_name}</p>
+            <p className="product-price">Price: {product.price} $</p>
             <button>Back</button>
             <button className="add-button">Add</button>
           </div>
         </div>
-        <p className="product-description"> {productsArr.desc} </p>
+        <p className="product-description"> {product.product_desc} </p>
 
     </div>
   )
