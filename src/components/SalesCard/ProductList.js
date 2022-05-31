@@ -26,7 +26,7 @@ const ProductList = (props) => {
           </div>
         )
       })}
-      <button onClick={props.backAction}>back</button>
+      <button className="back-button" onClick={props.backAction}>Back</button>
 
     </Fragment>
   );
