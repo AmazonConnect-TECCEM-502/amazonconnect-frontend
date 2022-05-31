@@ -7,7 +7,7 @@ const ProductCard = (props) => {
   
   useEffect(() => {
     const fetchData = async () => {
-      //const productsData = await fetch(`http://3.80.44.247:3000/sales/getProduct/${props.product_id}`);
+      //const productsData = await fetch(`http://3.80.44.247:8080/sales/getProduct/${props.product_id}`);
       const productData = await fetch(`http://localhost:8080/sales/getProduct/${props.product_id}`);
       const jsonProduct = await productData.json();
 
@@ -15,7 +15,7 @@ const ProductCard = (props) => {
       console.log(product);
     };
     fetchData();
-  }, []);
+  });
 
   return(
     <div className="product-card">
@@ -24,7 +24,7 @@ const ProductCard = (props) => {
           <div>
             <p className="product-name">{product.product_name}</p>
             <p className="product-price">Price: {product.price} $</p>
-            <button>Back</button>
+            <button onClick={props.buttonAction}>Back</button>
             <button className="add-button">Add</button>
           </div>
         </div>

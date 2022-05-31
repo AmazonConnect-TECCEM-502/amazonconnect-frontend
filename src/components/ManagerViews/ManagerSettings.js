@@ -9,10 +9,7 @@ function ManagerSettings() {
     <div>
       <CardsProvider>
         <NavBarManager />
-        <div
-          className="user-settings"
-          style={{ justifyContent: "space-around" }}
-        >
+        <div className="user-settings">
           <Card id="card-7" draggable="true" component={<Settings />} />
         </div>
       </CardsProvider>

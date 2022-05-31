@@ -32,10 +32,12 @@
 .user-settings{
     display: flex;
     min-height: 95vh;
+    justify-content: center;
 }
 .user-settings .card {
     margin: 32px 0;
     min-height: 380px;
+    
 }
 
 .user-profile{

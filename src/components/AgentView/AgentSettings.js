@@ -18,10 +18,7 @@ function AgentSettings() {
     <div>
       <CardsProvider>
         <NavBar />
-        <div
-          className="user-settings"
-          style={{ justifyContent: "space-around" }}
-        >
+        <div className="user-settings">
           <Card id="" draggable="" component={<Settings />} />
         </div>
       </CardsProvider>
