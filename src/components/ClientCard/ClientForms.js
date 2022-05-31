@@ -1,13 +1,16 @@
 import axios from "axios";
-import { useState } from "react";
+import { Fragment, useContext, useState } from "react";
+import { CardContext } from "../AgentCards/CardsProvider";
+import ClientInfo from "./ClientInfo";
+import ClientName from "./ClientName";
 
 const ClientForms = (props) => {
     const [clientFname, setClientFname] = useState("");
     const [clientLname, setClientLname] = useState("");
     const [clientEmail, setClientEmail] = useState("");
-    const [clientPhone, setClientPhone] = useState("");
-    const [clientAnswer, setClientAnswer] = useState("");
-
+    //const [clientPhone, setClientPhone] = useState("");
+    const [newPhone, setNewPhone] = useState(false);
+    const [, , , , , , , , , , clientPhone, setClientPhone, showClient, setShowClient] = useContext(CardContext);
 
     const clientFnameHandler = (event) => {
         setClientFname(event.target.value);
@@ -21,66 +24,83 @@ const ClientForms = (props) => {
     const clientPhoneHandler = (event) => {
         setClientPhone(event.target.value);
     }
-    const clientAnswerHandler = (event) => {
-        setClientAnswer(event.target.value);
+    const newPhoneHandler = () => {
+        setNewPhone(!newPhone);
     }
-
+    
     const postNewClient = async () => {
         await axios.post('http://3.80.44.247:8080/vid/sendClientData',{
         "first_name": clientFname,
         "last_name": clientLname,
         "email": clientEmail,
         "phone": clientPhone
-        // Future features
-        // "question": "Where were your last vacations?",
-        // "response": clientAnswer
         })
+        setShowClient(true);
     }
-
+    console.log(clientPhone);
     return (
         <div className="client">
-            <h1 className="title"> New user registry </h1><br/>
-            <div className="element">
-                <label htmlFor={props.elementID}>
-                    &nbsp;{"First name"}&nbsp;{<input className="client-input"
-                    type = "text"
-                    placeholder = "Client first name"
-                    onChange={clientFnameHandler}/>}
-                </label>
-            </div>
-            <div className="element">
-                <label htmlFor={props.elementID}>
-                    &nbsp;{"Last name"}&nbsp;{<input className="client-input"
-                    type = "text"
-                    placeholder = "Client last name"
-                    onChange={clientLnameHandler}/>}
-                </label>
-            </div>
-            <div className="element">
-                <label htmlFor={props.elementID}>
-                    &nbsp;{"Email"}&nbsp;{<input className="client-input"
-                    type = "email"
-                    placeholder = "example@gmail.com"
-                    onChange={clientEmailHandler}/>}
-                </label>
-            </div>
-            <div className="element">
-                <label htmlFor={props.elementID}>
-                    &nbsp;{"Phone number"}&nbsp;{<input className="client-input"
-                    type = "tel"
-                    placeholder = "+52"
-                    onChange={clientPhoneHandler}/>}
-                </label>
-            </div>
-            <div className="element">
-                <label htmlFor={props.elementID}>
-                    &nbsp;{"Where were your last vacations?"}&nbsp;{<input className="client-input"
-                    type = "text"
-                    placeholder = "Client answer"
-                    onChange={clientAnswerHandler}/>}
-                </label>
-            </div>
-            <button className="button" onClick={() => postNewClient()}> Register </button>
+            {
+                (!showClient) &&
+                <Fragment>
+                    <h1 className="title"> New user registry </h1><br/>
+                    <div className="element">
+                        <label htmlFor={props.elementID}>
+                            &nbsp;{"First name"}&nbsp;{<input className="client-input"
+                            type = "text"
+                            placeholder = "Client first name"
+                            onChange={clientFnameHandler}/>}
+                        </label>
+                    </div>
+                    <div className="element">
+                        <label htmlFor={props.elementID}>
+                            &nbsp;{"Last name"}&nbsp;{<input className="client-input"
+                            type = "text"
+                            placeholder = "Client last name"
+                            onChange={clientLnameHandler}/>}
+                        </label>
+                    </div>
+                    <div className="element">
+                        <label htmlFor={props.elementID}>
+                            &nbsp;{"Email"}&nbsp;{<input className="client-input"
+                            type = "email"
+                            placeholder = "example@gmail.com"
+                            onChange={clientEmailHandler}/>}
+                        </label>
+                    </div>
+                    <div className="element">
+                        <label htmlFor={props.elementID}>
+                            &nbsp;{"Phone number"}
+                            &nbsp;{<input className="client-input"
+                            type = "tel"
+                            placeholder = "+52"
+                            value = {clientPhone}
+                            disabled/>}
+                            &nbsp;{<input type = "checkbox"
+                            onChange={newPhoneHandler}/>}
+                        </label>
+                    </div>
+                    {
+                        newPhone &&
+                        <label htmlFor={props.elementID}>
+                            &nbsp;{"New phone number"}
+                            &nbsp;{<input className="client-input"
+                            type = "tel"
+                            placeholder = "+52"
+                            onChange={clientPhoneHandler}/>}
+                        </label>
+                    }
+                    <button className="button" onClick={() => postNewClient()}> Register </button>
+                </Fragment>
+            }
+            {
+                (showClient) &&
+                <Fragment>
+                    <ClientName name={clientFname + ", " + clientLname} />
+                    <ClientInfo text={clientEmail} />
+                    <ClientInfo text={clientPhone} />
+                </Fragment>
+            }
         </div>
     );
 };
