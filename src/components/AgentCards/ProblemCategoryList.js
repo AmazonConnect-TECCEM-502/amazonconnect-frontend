@@ -11,7 +11,11 @@ import { Fragment, useEffect, useState, useContext } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 
 const ProblemCategoryList = () => {
-  const [, , , , , , , setQuestions] = useContext(AgentContext);
+  const [ , , , , , , , 
+    setQuestions, , , , , , , , , , , , , , , , ,
+    qna, setQnA
+  ] = useContext(AgentContext);
+
   const [problems, setProblems] = useState([]);
   const [activeLink, setActiveLink] = useState(0);
 
@@ -49,6 +53,12 @@ const ProblemCategoryList = () => {
     setQuestions(jsonProblems);
   };
 
+  const showQnA = () => {
+    const card = document.getElementById("card-3");
+    card.display = "block";
+    setQnA(true);
+  }
+
   return (
     <Fragment>
       <p className="title"> Problems by category</p>
@@ -61,9 +71,10 @@ const ProblemCategoryList = () => {
               className={
                 activeLink === problem.category_id && "categorys-active"
               }
-              onClick={() => {
+              onClick={async() => {
                 setActiveLink(problem.category_id);
-                checkQnA(problem.category_id);
+                await checkQnA(problem.category_id);
+                showQnA();
               }}
             >
               {problem.category_name}

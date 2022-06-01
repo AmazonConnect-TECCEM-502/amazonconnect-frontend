@@ -5,7 +5,9 @@ import SearchBar from "./SearchBar";
 const QuestionList = (props) => {
   // Questions where assigned in RowCategoryProblem.js
   // We access those questions through CardContext
-  const [,,,,,,questions,,,,,,,,,,,,,,,setSolutions
+  const [,,,,,,
+    questions,,,,,,,,,,,,,,,
+    setSolutions, , , , setQnA, ,setSolutionCard
   ] = useContext(AgentContext);
 
   const checkSolution = async (id, problem) => {
@@ -27,10 +29,20 @@ const QuestionList = (props) => {
     jsonSolution[0].problem_description = problem;
     console.log(jsonSolution[0]);
     setSolutions(jsonSolution);
+    const card = document.getElementById("card-6");
+    card.display = "block";
+    setSolutionCard(true);
+  }
+
+  const hideQnA = () => {
+    const card = document.getElementById("card-3");
+    card.display = "none";
+    setQnA(false);
   }
 
   return (
     <Fragment>
+      <div className="close-btn" onClick={() => hideQnA()}>+</div>
       <p className="title"> Frequent questions </p>
       <SearchBar SearchType="preguntas" />
       {questions.map(question => {
