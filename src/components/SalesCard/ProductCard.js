@@ -1,4 +1,7 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+import AddButton from "./addButton";
+import addButton from "./addButton";
 
 const ProductCard = (props) => {
 
@@ -11,7 +14,7 @@ const ProductCard = (props) => {
       const jsonProduct = await productData.json();
 
       setProduct(jsonProduct);
-      console.log(product);
+      //console.log(product);
     };
     fetchData();
   });
@@ -24,7 +27,7 @@ const ProductCard = (props) => {
             <p className="product-name">{product.product_name}</p>
             <p className="product-price">Price: {product.price} $</p>
             <button className="back-button-product" onClick={props.buttonAction}>Back</button>{" "}
-            <button className="product-header-add-button">Add</button>
+            <AddButton client_id ={props.client_id} product_id= {props.product_id}/>
           </div>
         </div>
         <p className="product-description"> {product.product_desc} </p>
