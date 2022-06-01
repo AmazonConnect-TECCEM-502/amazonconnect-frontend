@@ -5,13 +5,13 @@ import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
 
 const ClientForms = (props) => {
+    const [, , , , , , , , , , clientPhone, , showClient, setShowClient, clientEmail, setClientEmail] = useContext(AgentContext);
+    
     const [clientFname, setClientFname] = useState("");
     const [clientLname, setClientLname] = useState("");
-    const [inputEmail, setInputEmail] = useState("");
-    const [newPhone, setNewPhone] = useState(false);
     const [emptyPhone, setEmptyPhone] = useState(false);
-    const [inputError, setInputError] = useState(false);
-    const [, , , , , , , , , , clientPhone, setClientPhone, showClient, setShowClient, clientEmail, setClientEmail] = useContext(AgentContext);
+
+    console.log(clientPhone + "..................");
 
     useEffect( () => {
         if(clientPhone === "")
@@ -27,24 +27,9 @@ const ClientForms = (props) => {
         setClientLname(event.target.value);
     }
     const clientEmailHandler = (event) => {
-        setInputEmail(event.target.value);
-        console.log(inputEmail);
-        if(clientEmail === inputEmail)
-        {
-            setShowClient(true);
-        }
-        else
-        {
-            setInputError(true);
-        }
+        setClientEmail(event.target.value);
     }
-    const clientPhoneHandler = (event) => {
-        setClientPhone(event.target.value);
-    }
-    const newPhoneHandler = () => {
-        setNewPhone(!newPhone);
-    }
-    
+
     const postNewClient = async () => {
         await axios.post('http://3.80.44.247:8080/vid/sendClientData',{
         "first_name": clientFname,
@@ -52,9 +37,9 @@ const ClientForms = (props) => {
         "email": clientEmail,
         "phone": clientPhone
         })
-        setShowClient(true);
+        setShowClient(true);   
     }
-    console.log(clientPhone);
+    
     return (
         <div className="client">
             {
@@ -104,20 +89,8 @@ const ClientForms = (props) => {
                             value = {clientPhone}
                             />
                             }
-                            &nbsp;{ !emptyPhone && <input type = "checkbox"
-                            onChange={newPhoneHandler}/>}
                         </label>
                     </div>
-                    {
-                        newPhone &&
-                        <label htmlFor={props.elementID}>
-                            &nbsp;{"New phone number"}
-                            &nbsp;{<input className="client-input"
-                            type = "tel"
-                            placeholder = "+52"
-                            onChange={clientPhoneHandler}/>}
-                        </label>
-                    }
                     <button className="button" onClick={() => postNewClient()}> Register </button>
                 </Fragment>
             }
@@ -128,10 +101,6 @@ const ClientForms = (props) => {
                     <ClientInfo text={clientEmail} />
                     <ClientInfo text={clientPhone} />
                 </Fragment>
-            }
-            {
-                inputError &&
-                <h1> Alv </h1>
             }
         </div>
     );

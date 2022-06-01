@@ -22,24 +22,25 @@ import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 import ClientForms from "./ClientForms";
-import ClientImage from "./ClientImage";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
 import ClientQuestion from "./ClientQuestion";
 
-const ClientCard = (props) => {
-  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient, clientEmail, setClientEmail] = useContext(AgentContext);
+const ClientCard = () => {
+  const [, , , , , setClientID, , , , , clientPhone, , , setShowClient, clientEmail, setClientEmail] = useContext(AgentContext);
 
-  const [lastNameClient, setLastNameClient] = useState("");
-  const [nameClient, setNameClient] = useState("");
-  const [result, setResult] = useState("");
+  const [clientFname, setClientFname] = useState("");
+  const [clientLname, setClientLname] = useState("");
+  const [result, setResult] = useState(""); // AuthenticationType
 
-  console.log(clientPhone + "------------------------------");
+  console.log(clientPhone + "..................");
+
+  useEffect( () => {
+    update();
+  }, []);
 
   const update = async () => {
-    console.log("Sacando valores ?? ...")
-    //await fetch('http://3.80.44.247:8080/vid/getAuthRes')
-    
+    console.log("Sacando valores..................")
     await axios.post('http://3.80.44.247:8080/vid/getAuthRes',{
       "phoneNumber": clientPhone
     })
@@ -53,10 +54,6 @@ const ClientCard = (props) => {
     });
   }
 
-  useEffect( () => {
-    update();
-  });
-
   const showContent = (message) => {
     if(message === "authenticated"){
       getClientData();
@@ -66,17 +63,14 @@ const ClientCard = (props) => {
   };
 
   const getClientData = async () => {
-    //await fetch('http://3.80.44.247:8080/vid/getUserData')
-
     await axios.post('http://3.80.44.247:8080/vid/getUserData',{
       "phoneNumber": clientPhone
     })
-    .then(response => response.json())
-    .then(data => {
-      setClientID(data.client_id)
-      setNameClient(data.first_name)
-      setLastNameClient(data.last_name)
-      setClientEmail(data.email)
+    .then(res => {
+      setClientID(res.data.client_id)
+      setClientFname(res.data.first_name)
+      setClientLname(res.data.last_name)
+      setClientEmail(res.data.email)
     })
     .catch(function(err) {
       console.log(err);
@@ -98,19 +92,18 @@ const ClientCard = (props) => {
         //Show User Info
         (result === "authenticated") &&
         <Fragment>
-          <ClientImage image={props.image} />
-          <ClientName name={nameClient + ", " + lastNameClient} />
+          <ClientName name={clientFname + ", " + clientLname} />
           <ClientInfo text={clientEmail} />
           <ClientInfo text={clientPhone} />
         </Fragment>
       }
       {
         //Show Message error and form 
-        (result === "not enrolled" || result === "opted out") &&  <ClientForms />
+        (result === "not enrolled") &&  <ClientForms />
       }
       {
         //Show verification question 
-        (result === "not authenticated" || result === "inconclusive") && 
+        (result === "not authenticated" || result === "inconclusive" || result === "opted out") && 
         <ClientQuestion />
       }
       {
