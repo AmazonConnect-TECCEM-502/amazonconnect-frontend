@@ -48,23 +48,21 @@ const ClientForms = (props) => {
                     <h1 className="title"> New user registry </h1><br/>
                     <div className="element">
                         <label htmlFor={props.elementID}>
-                            &nbsp;{"First name"}&nbsp;{<input className="client-input"
+                            &nbsp;{"First name"}&nbsp;{<input className="user-ID"
                             type = "text"
-                            placeholder = "Client first name"
                             onChange={clientFnameHandler}/>}
                         </label>
                     </div>
                     <div className="element">
                         <label htmlFor={props.elementID}>
-                            &nbsp;{"Last name"}&nbsp;{<input className="client-input"
+                            &nbsp;{"Last name"}&nbsp;{<input className="user-ID"
                             type = "text"
-                            placeholder = "Client last name"
                             onChange={clientLnameHandler}/>}
                         </label>
                     </div>
                     <div className="element">
                         <label htmlFor={props.elementID}>
-                            &nbsp;{"Email"}&nbsp;{<input className="client-input"
+                            &nbsp;{"Email"}&nbsp;{<input className="user-ID"
                             type = "email"
                             placeholder = "example@gmail.com"
                             onChange={clientEmailHandler}/>}
@@ -75,7 +73,7 @@ const ClientForms = (props) => {
                             &nbsp;{"Phone number"}
                             &nbsp;
                             { !emptyPhone &&
-                            <input className="client-input"
+                            <input className="user-ID disabled"
                             type = "tel"
                             placeholder = "+52"
                             value = {clientPhone}
@@ -83,7 +81,7 @@ const ClientForms = (props) => {
                             />
                             }
                             { emptyPhone &&
-                            <input className="client-input"
+                            <input className="user-ID"
                             type = "tel"
                             placeholder = "+52"
                             value = {clientPhone}

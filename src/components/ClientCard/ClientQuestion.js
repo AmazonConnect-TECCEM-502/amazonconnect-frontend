@@ -43,12 +43,12 @@ const ClientQuestion = (props) => {
           <br />
           <div className="element">
             <label htmlFor={props.elementID}>
-              &nbsp;{"Please confirm email"}&nbsp;
-              {
+              &nbsp;{"Confirm email"}
+              &nbsp;{
                 <input
-                  className="client-input"
+                  className="user-ID"
                   type="text"
-                  placeholder="Client email"
+                  placeholder="example@gmail.com"
                   onChange={clientEmailHandler}
                 />
               }
