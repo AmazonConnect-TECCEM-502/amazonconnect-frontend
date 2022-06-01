@@ -1,5 +1,4 @@
 import NavBarManager from "../NavBar/NavBarManager";
-import AgentBoard from "../AgentCards/AgentBoard";
 import Card from "../AgentCards/Card";
 import CardsProvider from "../AgentCards/CardsProvider";
 import Settings from "../AgentCards/Setting";
