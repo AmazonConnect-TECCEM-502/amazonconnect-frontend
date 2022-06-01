@@ -28,24 +28,24 @@ import ClientName from "./ClientName";
 import ClientQuestion from "./ClientQuestion";
 
 const ClientCard = (props) => {
-  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient] = useContext(AgentContext);
+  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient, clientEmail, setClientEmail] = useContext(AgentContext);
 
   const [lastNameClient, setLastNameClient] = useState("");
-  const [emailClient, setEmailClient] = useState("");
   const [nameClient, setNameClient] = useState("");
   const [result, setResult] = useState("");
+
+  console.log(clientPhone + "------------------------------");
 
   const update = async () => {
     console.log("Sacando valores ?? ...")
     //await fetch('http://3.80.44.247:8080/vid/getAuthRes')
     
-    axios.post('http://3.80.44.247:8080/vid/getAuthRes',{
+    await axios.post('http://3.80.44.247:8080/vid/getAuthRes',{
       "phoneNumber": clientPhone
     })
     .then(res => {
-      console.log(res)
-      setClientPhone(res.phoneNumber)
-      showContent(res.authenticationType)
+      console.log(res.data.authenticationType)
+      showContent(res.data.authenticationType)
     })
     .catch(function(err) {
       console.log(err);
@@ -76,7 +76,7 @@ const ClientCard = (props) => {
       setClientID(data.client_id)
       setNameClient(data.first_name)
       setLastNameClient(data.last_name)
-      setEmailClient(data.email)
+      setClientEmail(data.email)
     })
     .catch(function(err) {
       console.log(err);
@@ -100,7 +100,7 @@ const ClientCard = (props) => {
         <Fragment>
           <ClientImage image={props.image} />
           <ClientName name={nameClient + ", " + lastNameClient} />
-          <ClientInfo text={emailClient} />
+          <ClientInfo text={clientEmail} />
           <ClientInfo text={clientPhone} />
         </Fragment>
       }
