@@ -1,23 +1,30 @@
+/*
+  Authors: Andrea Vianey Diaz Alvarez
+  Description: Represent a Problem of the proposal list in the admin configuration.
+  Functionalities: 
+    - Change to Solutions Card after fetching all the approved solutions.
+    - Delete a Problem. (FALTA)
+
+*/
 import { Fragment, useContext} from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { CardContext2 } from "./AdminCardProvider";
+import { AdminContext } from "./AdminContextProvider";
 
 const UpdateQuestions = (props) => {
-  const [,,,,,,,,,,,,,,,,,setSolutions,,,,,,setPreg_id] = useContext(CardContext2);
+  const [,setSolutions,,setPreg_id,] = useContext(AdminContext);
 
   const SolutionCard = async () => {
     const card2 = document.getElementById("card-13");
-    card2.style.display = "none";
-    //Get solutions by problem ID
+    card2.style.display = "none"; //Hide New Solution Card if showing
+    const card3 = document.getElementById("card-14");
+    card3.style.display = "none"; //Hide Proposals Card if showing
     const response = await fetch(`http://localhost:8080/problem/getSolutions/${props.pregunta_id}`)
-    const json = await response.json()
+    const json = await response.json()//Get solutions by problem ID
     setSolutions(json)
     setPreg_id(props.pregunta_id.toString())
-
-    //Show card
     const card = document.getElementById("card-12");
-    card.style.display = "block"
+    card.style.display = "block"//Show solutions card
   };
 
   return (

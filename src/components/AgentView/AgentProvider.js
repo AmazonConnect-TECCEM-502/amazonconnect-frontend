@@ -1,17 +1,20 @@
 import { createContext, useState } from "react"
-export const CardContext = createContext(); 
+export const AgentContext = createContext(); 
 
-const CardsProvider = ({children}) => {
+const AgentProvider = ({children}) => {
   const [problem, setProblem] = useState(false);
   const [client, setClient] = useState(false);
-  const [clientID, setClientID] = useState("");
   const [showClient, setShowClient] = useState(false);
+  const [product, setProduct] = useState(false);
+  const [recording, setRecording] = useState(false);
+  const [keyStroke, setKeyStroke] = useState(false);
+  const [AC, setAC] = useState(false);
+  const [clientID, setClientID] = useState("");
   const [clientPhone, setClientPhone] = useState("");
   const [questions, setQuestions] = useState([]);
-  const [product, setProduct] = useState(false);
 
   return (
-    <CardContext.Provider
+    <AgentContext.Provider
       value={[
         problem,
         setProblem,
@@ -26,11 +29,17 @@ const CardsProvider = ({children}) => {
         clientPhone,
         setClientPhone,
         showClient,
-        setShowClient
+        setShowClient,
+        recording,
+        setRecording,
+        keyStroke,
+        setKeyStroke,
+        AC,
+        setAC
       ]}>
       {children}
-    </CardContext.Provider>
+    </AgentContext.Provider>
   )
 }
 
-export default CardsProvider
+export default AgentProvider

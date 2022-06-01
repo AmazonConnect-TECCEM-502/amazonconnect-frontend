@@ -24,10 +24,17 @@
 */
 import { Fragment } from "react";
 import { useContext } from "react";
-import { CardContext } from "./CardsProvider";
+import { AgentContext } from "../AgentView/AgentProvider";
 
 const Card = (props) => {
-  const [problem, , client, , , , , , product] = useContext(CardContext);
+  const [ problem, ,
+    client, ,
+    ,,,,
+    product, ,
+    ,,,,
+    recording, ,
+    keyStroke, ,
+    AC,  ] = useContext(AgentContext);
 
   const dragStart = (e) => {
     // Change Paramater name
@@ -46,7 +53,10 @@ const Card = (props) => {
   if (
     (props.id === "card-5" && !problem) ||
     (props.id === "card-4" && !client) ||
-    (props.id === "card-8" && !product)
+    (props.id === "card-8" && !product) ||
+    (props.id === "card-2" && !recording) ||
+    (props.id === "card-7" && !keyStroke) ||
+    (props.id === "card-0" && !AC)
   ) {
     cardStyle = { display: "none" };
   }

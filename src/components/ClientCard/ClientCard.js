@@ -20,7 +20,7 @@
 
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
-import { CardContext } from "../AgentCards/CardsProvider";
+import { AgentContext } from "../AgentView/AgentProvider";
 import ClientForms from "./ClientForms";
 import ClientImage from "./ClientImage";
 import ClientInfo from "./ClientInfo";
@@ -28,7 +28,7 @@ import ClientName from "./ClientName";
 import ClientQuestion from "./ClientQuestion";
 
 const ClientCard = (props) => {
-  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient] = useContext(CardContext);
+  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient] = useContext(AgentContext);
 
   const [lastNameClient, setLastNameClient] = useState("");
   const [emailClient, setEmailClient] = useState("");
@@ -42,7 +42,6 @@ const ClientCard = (props) => {
     .then(data => {
       console.log(data)
       setClientPhone(data.phoneNumber)
-      //console.log(clientPhone)
       showContent(data.authenticationType)
     })
     .catch(function(err) {
@@ -53,13 +52,6 @@ const ClientCard = (props) => {
 
   useEffect( () => {
     update();
-    /* Possible modification
-    const interval = setInterval( () => {
-      update();
-    }, 25000)
-    
-    return () => clearInterval(interval)
-    */
   });
 
   const showContent = (message) => {
@@ -71,7 +63,6 @@ const ClientCard = (props) => {
   };
 
   const getClientData = async () => {
-    // fetch('http://3.80.44.247:8080/vid/getUserData?phone=' + phoneClient)
     await fetch('http://3.80.44.247:8080/vid/getUserData')
     .then(response => response.json())
     .then(data => {
@@ -114,7 +105,6 @@ const ClientCard = (props) => {
         //Show verification question 
         (result === "not authenticated" || result === "inconclusive") && 
         <ClientQuestion />
-        //<h1> Client not authenticated or inconclusive </h1>
       }
       {
         //Show no data error

@@ -1,17 +1,17 @@
 import NavBarManager from "../NavBar/NavBarManager";
 import Card from "../AgentCards/Card";
-import CardsProvider from "../AgentCards/CardsProvider";
+import AgentProvider from "../AgentView/AgentProvider";
 import Settings from "../AgentCards/Setting";
 
 function ManagerSettings() {
   return (
     <div>
-      <CardsProvider>
+      <AgentProvider>
         <NavBarManager />
         <div className="user-settings">
           <Card id="card-7" draggable="true" component={<Settings />} />
         </div>
-      </CardsProvider>
+      </AgentProvider>
     </div>
   );
 }
