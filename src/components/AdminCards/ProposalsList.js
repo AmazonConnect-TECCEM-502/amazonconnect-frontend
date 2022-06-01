@@ -1,0 +1,37 @@
+import { Fragment, useContext } from "react";
+import { CgCloseR } from "react-icons/cg";
+import { AdminContext } from "./AdminContextProvider";
+import UpdateProposal from "./UpdateProposals";
+
+const ProposalsList = (props) => {
+  const [,,,,,,proposals,]= useContext(AdminContext);
+
+  const close = () => {
+    //Listen to the click of "close" button
+    const card2 = document.getElementById("card-14");
+    card2.style.display = "none";
+    const card = document.getElementById("card-12");
+    card.style.display = "block";
+  };
+
+    return (
+      <Fragment>
+        <CgCloseR className="closebutton" onClick={close} size={20}></CgCloseR>
+        <div className="title">
+          <p>User Proposals</p>
+        </div>
+        <div className="container-questions">
+          {proposals.map((proposal) => (
+            <UpdateProposal
+              text={proposal.solution_description}
+              proposal_id={proposal.solution_id}
+            />
+          ))}
+          {proposals.length === 0 && <p>No hay registros</p>}
+        </div>
+      </Fragment>
+    );
+  };
+  
+  export default ProposalsList;
+  
