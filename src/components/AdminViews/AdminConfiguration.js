@@ -12,20 +12,21 @@ import UpdateAnswerList from "../AdminCards/UpdateAnswerList";
 import AdminCardProvider from "../AdminCards/AdminCardProvider";
 import NewAnswer from "../AdminCards/NewAnswer";
 import ClientForms from "../ClientCard/ClientForms";
-import AgentProvider from "../AgentView/AgentProvider";
 import AdminContextProvider from "../AdminCards/AdminContextProvider";
 import NewProblem from "../AdminCards/NewProblem";
 import ProposalsList from "../AdminCards/ProposalsList";
+import ClientProvider from "../ClientCard/ClientProvider";
 
 function AdminConfiguration() {
   return (
     <AdminCardProvider>
     <AdminContextProvider>
+    <ClientProvider>
     <NavBarAdmin />
     <div className="agent-container admin">
       <AgentBoard id="board-1" className="board board-menu">
         <AdminCard id="card-1" draggable="false" component={<MenuConfiguration/>} />
-        <AdminCard id="card-10" draggable="true" component={<AgentProvider><ClientForms/></AgentProvider>} />
+        <AdminCard id="card-10" draggable="true" component={<ClientForms/>} />
         <AdminCard id="card-11" draggable="true" component={<NewCategory/>} />
       </AgentBoard>
       
@@ -44,6 +45,7 @@ function AdminConfiguration() {
         <AdminCard id="card-14" draggable="true" component={<ProposalsList/>}/>
       </AgentBoard>
     </div>
+    </ClientProvider>
     </AdminContextProvider>
     </AdminCardProvider>
   );

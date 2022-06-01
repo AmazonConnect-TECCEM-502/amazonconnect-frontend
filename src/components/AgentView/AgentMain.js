@@ -20,10 +20,12 @@ import AgentProvider from "./AgentProvider";
 import KeystrokeRecording from "../Recordings/KeystrokeRecording";
 import SalesMasterCard from "../SalesCard/SalesMasterCard";
 import AmazonCCP from "../AgentCards/AmazonCCP";
+import ClientProvider from "../ClientCard/ClientProvider";
 
 function AgentMain() {
   return (
     <AgentProvider>
+    <ClientProvider>
       <NavBar />
       <div className="agent-container">
         <AgentBoard id="board-1" className="board board-menu">
@@ -49,13 +51,7 @@ function AgentMain() {
             id="card-4"
             draggable="true"
             component={
-              <ClientCard
-                image="IconClient"
-                fname="Rosa"
-                lname="Example"
-                email="example@gmail.com"
-                phone="55 5555 5555"
-              />
+              <ClientCard />
             }
           />
           <Card
@@ -67,6 +63,7 @@ function AgentMain() {
           />
         </AgentBoard>
       </div>
+    </ClientProvider>
     </AgentProvider>
   );
 }

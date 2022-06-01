@@ -1,15 +1,12 @@
 import axios from "axios";
 import { Fragment, useContext, useState } from "react";
-import { AgentContext } from "../AgentView/AgentProvider";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
+import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
-  const [, , , , , , , , , , clientPhone, , showClient, setShowClient, clientEmail, setClientEmail, ] = useContext(AgentContext);
+  const [ , , clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError] = useContext(ClientContext);
 
-  const [clientFname, setClientFname] = useState("");
-  const [clientLname, setClientLname] = useState("");
-  const [showError, setShowError] = useState(false);
   const [inputEmail, setInputEmail] = useState("");
 
   const clientEmailHandler = (event) => {

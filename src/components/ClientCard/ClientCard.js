@@ -20,27 +20,22 @@
 
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
-import { AgentContext } from "../AgentView/AgentProvider";
 import ClientForms from "./ClientForms";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
 import ClientQuestion from "./ClientQuestion";
+import { ClientContext } from "./ClientProvider";
 
 const ClientCard = () => {
-  const [, , , , , setClientID, , , , , clientPhone, , , setShowClient, clientEmail, setClientEmail] = useContext(AgentContext);
+  const [ , setClientID, clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , setShowClient, , setShowError] = useContext(ClientContext);
 
-  const [clientFname, setClientFname] = useState("");
-  const [clientLname, setClientLname] = useState("");
   const [result, setResult] = useState(""); // AuthenticationType
-
-  console.log(clientPhone + "..................");
 
   useEffect( () => {
     update();
   }, []);
 
   const update = async () => {
-    console.log("Sacando valores..................")
     await axios.post('http://3.80.44.247:8080/vid/getAuthRes',{
       "phoneNumber": clientPhone
     })
@@ -81,6 +76,7 @@ const ClientCard = () => {
   const resetUserData = async () => {
     showContent("not yet");
     setShowClient(false);
+    setShowError(false);
     await axios.post('http://3.80.44.247:8080/vid/reset',{
       "phoneNumber": clientPhone
     })
