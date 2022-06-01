@@ -1,10 +1,17 @@
+/*
+  Authors: Andrea Vianey Diaz Alvarez
+  Description: 
+
+*/
 import { Fragment, useContext, useState } from "react";
 import { CgCloseR } from "react-icons/cg";
-import { CardContext2 } from "./AdminCardProvider";
+import { AdminContext } from "./AdminContextProvider";
+import toast, { Toaster } from 'react-hot-toast';
 
 const NewAnswer = (props) => {
-  const [,,,,,,,,,,,,,,,,,,,,,,preg_id,] = useContext(CardContext2);
+  const [,,preg_id,,]= useContext(AdminContext);
   const [descriptionSol, setDescriptionSol] = useState("");
+  const notify = () => toast.success('New Solution Created');
 
   const changeDescription = (event) =>{
     setDescriptionSol(event.target.value)
@@ -19,19 +26,17 @@ const NewAnswer = (props) => {
   };
 
   const CreateSolution = async () =>{
-    console.log(preg_id)
+    const newdate = new Date() // Todays date
+    const date = newdate.getFullYear() + '-' + newdate.getMonth() + '-' + newdate.getDay()
+
     const request_options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ solution_description: descriptionSol.toString(), problem_id:preg_id,submitted_id:2,approved_by:2})}
+      body: JSON.stringify({ solution_description: descriptionSol.toString(),approved_date: date, problem_id:preg_id,submitted_id:2,approved_by:2})}
 
     await fetch(`http://localhost:8080/problem/postCreateSolution`, request_options);
-
-    const card = document.getElementById("card-13");
-    card.style.display = "none";
+    notify();
   }
-
-
 
   return (
     <Fragment>
@@ -44,6 +49,7 @@ const NewAnswer = (props) => {
         <input className="user-ID" type="text" name="Description" onChange={changeDescription}/>
         <br />
         <button className="buttonSubmit" onClick={CreateSolution} > Submit </button>
+        <Toaster />
       </div>
     </Fragment>
   );
