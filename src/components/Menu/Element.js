@@ -78,7 +78,7 @@ const Element = (props) => {
       </label>
       {
         showInput &&
-        <input className="client-input"
+        <input className="user-ID"
         type = "text"
         placeholder = "Client phone"
         onChange = {clientPhoneHandler}/>
