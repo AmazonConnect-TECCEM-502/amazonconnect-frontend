@@ -1,15 +1,24 @@
-import { Fragment } from "react";
-import Answers from "./Answers";
+import { Fragment, useContext } from "react";
+import { AgentContext } from "../AgentView/AgentProvider";
 
 const AnswerList = (props) => {
+  const [,,,,,,,,,,,,,,,,,,,,solutions, , , , , , , setSolutionCard] = useContext(AgentContext);
+
+  const hideSolution = () => {
+    const card = document.getElementById("card-6");
+    card.display = "none";
+    setSolutionCard(false);
+  }
+
   return (
     <Fragment>
-      <Answers
-        title="No internet Conection"
-        text="Lorem ipsum dolor sit amet consectetur adipiscing elit rhoncus et 
-        fusce a, convallis lacus commodo lectus faucibus ornare tincidunt mattis vestibulum aenean. 
-        Aliquet at "
-      />
+      <div className="close-btn" onClick={() => hideSolution()}>+</div>
+      <div className="container-answers">
+        <p className="title">{solutions.length > 0 && solutions[0].problem_description}</p>
+        {solutions.map(solution => {
+          return<p className="answer">{solution.solution_description}</p>
+        })}
+      </div>
     </Fragment>
   );
 };

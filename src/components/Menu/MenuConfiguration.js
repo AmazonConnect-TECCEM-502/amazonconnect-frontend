@@ -1,7 +1,7 @@
 /*
   Authors: Andrea Vianey Diaz Alvarez
   Description: 
-
+    Menu for the components in the admin configuration tab.
 */
 
 import { Fragment } from "react";

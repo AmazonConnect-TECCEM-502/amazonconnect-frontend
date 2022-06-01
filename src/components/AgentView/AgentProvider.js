@@ -9,9 +9,13 @@ const AgentProvider = ({children}) => {
   const [recording, setRecording] = useState(false);
   const [keyStroke, setKeyStroke] = useState(false);
   const [AC, setAC] = useState(false);
+  const [qna, setQnA] = useState(false);
+  const [solutionCard, setSolutionCard] = useState(false);
   const [clientID, setClientID] = useState("");
+  const [clientEmail, setClientEmail] = useState("");
   const [clientPhone, setClientPhone] = useState("");
   const [questions, setQuestions] = useState([]);
+  const [solutions, setSolutions] = useState([]);
 
   return (
     <AgentContext.Provider
@@ -35,7 +39,15 @@ const AgentProvider = ({children}) => {
         keyStroke,
         setKeyStroke,
         AC,
-        setAC
+        setAC,
+        solutions,
+        setSolutions,
+        clientEmail,
+        setClientEmail,
+        qna,
+        setQnA,
+        solutionCard,
+        setSolutionCard
       ]}>
       {children}
     </AgentContext.Provider>

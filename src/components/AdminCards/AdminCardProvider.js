@@ -1,22 +1,26 @@
+/*
+  Authors: Andrea Vianey Diaz Alvarez
+  Description: Context that saves the data for the admin configuration cards
+  to enable or desable.
+*/
 import { createContext, useState } from "react"
-export const CardContext2 = createContext(); 
+export const AdminCardContext = createContext(); 
 
 const AdminCardProvider = ({children}) => {
-  const [nqna, setnqna] = useState(false);
-  const [uqna, setuqna] = useState(false);
-  const [nu, setnu] = useState(false);
-  const [uu, setuu] = useState(false);
-  const [np, setnp] = useState(false);
-  const [up, setup] = useState(false);
-  const [nc, setnc] = useState(false);
-  const [nca, setnca] = useState(false);
-  const [arrsolutions, setSolutions] = useState([]);
-  const [csol, setcsol] = useState(false)
-  const [na,setna] = useState(false);
-  const [preg_id, setPreg_id] = useState([])
+  const [nqna, setnqna] = useState(false); // New Problem and Solution card
+  const [uqna, setuqna] = useState(false); // Update Problem and Solution card
+  const [nu, setnu] = useState(false); // New user card
+  const [uu, setuu] = useState(false); // Uptade user card
+  const [np, setnp] = useState(false); // New product card
+  const [up, setup] = useState(false); // Update product card
+  const [nc, setnc] = useState(false); // New Client card
+  const [nca, setnca] = useState(false); // New category card
+  const [csol, setcsol] = useState(false) // Solutions card
+  const [na,setna] = useState(false); // New solution card
+  const [ap, setap] = useState(false); //Update Proposal Card
 
   return (
-    <CardContext2.Provider
+    <AdminCardContext.Provider
       value={[
         nqna,
         setnqna,
@@ -34,17 +38,15 @@ const AdminCardProvider = ({children}) => {
         setnc,
         nca,
         setnca,
-        arrsolutions,
-        setSolutions,
         csol,
         setcsol,
         na,
         setna,
-        preg_id,
-        setPreg_id,
+        ap,
+        setap
       ]}>
       {children}
-    </CardContext2.Provider>
+    </AdminCardContext.Provider>
   )
 }
 

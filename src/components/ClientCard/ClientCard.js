@@ -28,21 +28,24 @@ import ClientName from "./ClientName";
 import ClientQuestion from "./ClientQuestion";
 
 const ClientCard = (props) => {
-  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient] = useContext(AgentContext);
+  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient, clientEmail, setClientEmail] = useContext(AgentContext);
 
   const [lastNameClient, setLastNameClient] = useState("");
-  const [emailClient, setEmailClient] = useState("");
   const [nameClient, setNameClient] = useState("");
   const [result, setResult] = useState("");
 
+  console.log(clientPhone + "------------------------------");
+
   const update = async () => {
     console.log("Sacando valores ?? ...")
-    fetch('http://3.80.44.247:8080/vid/getAuthRes')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      setClientPhone(data.phoneNumber)
-      showContent(data.authenticationType)
+    //await fetch('http://3.80.44.247:8080/vid/getAuthRes')
+    
+    await axios.post('http://3.80.44.247:8080/vid/getAuthRes',{
+      "phoneNumber": clientPhone
+    })
+    .then(res => {
+      console.log(res.data.authenticationType)
+      showContent(res.data.authenticationType)
     })
     .catch(function(err) {
       console.log(err);
@@ -63,13 +66,17 @@ const ClientCard = (props) => {
   };
 
   const getClientData = async () => {
-    await fetch('http://3.80.44.247:8080/vid/getUserData')
+    //await fetch('http://3.80.44.247:8080/vid/getUserData')
+
+    await axios.post('http://3.80.44.247:8080/vid/getUserData',{
+      "phoneNumber": clientPhone
+    })
     .then(response => response.json())
     .then(data => {
       setClientID(data.client_id)
       setNameClient(data.first_name)
       setLastNameClient(data.last_name)
-      setEmailClient(data.email)
+      setClientEmail(data.email)
     })
     .catch(function(err) {
       console.log(err);
@@ -81,7 +88,7 @@ const ClientCard = (props) => {
     showContent("not yet");
     setShowClient(false);
     await axios.post('http://3.80.44.247:8080/vid/reset',{
-      "message": "not yet"
+      "phoneNumber": clientPhone
     })
   };
 
@@ -93,7 +100,7 @@ const ClientCard = (props) => {
         <Fragment>
           <ClientImage image={props.image} />
           <ClientName name={nameClient + ", " + lastNameClient} />
-          <ClientInfo text={emailClient} />
+          <ClientInfo text={clientEmail} />
           <ClientInfo text={clientPhone} />
         </Fragment>
       }
