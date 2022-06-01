@@ -40,7 +40,7 @@ const SalesMasterCard = (props) => {
     else if (currentView === Views.PRODUCTS) 
       return (<ProductList client_id={client_id} category_id={currentCategory} buttonAction={goToProduct} backAction={backToCategories}/>) 
     else if (currentView === Views.PRODUCT) 
-      return (<ProductCard product_id={currentProduct} buttonAction={backToProducts}/>);
+      return (<ProductCard product_id={currentProduct} client_id={client_id} buttonAction={backToProducts}/>);
 };
 
 export default SalesMasterCard;
