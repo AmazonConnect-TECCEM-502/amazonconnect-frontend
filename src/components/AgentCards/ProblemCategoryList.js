@@ -11,7 +11,7 @@ import { Fragment, useEffect, useState, useContext } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 
 const ProblemCategoryList = () => {
-  const [, , , , , , questions, setQuestions] = useContext(AgentContext);
+  const [, , , , , , , setQuestions] = useContext(AgentContext);
   const [problems, setProblems] = useState([]);
   const [activeLink, setActiveLink] = useState(0);
 
@@ -33,7 +33,6 @@ const ProblemCategoryList = () => {
     const data = {
       category_id: id,
     };
-    console.log(JSON.stringify(data));
 
     await fetch("http://localhost:8080/problem/postProblem", {
       method: "POST",
@@ -42,14 +41,12 @@ const ProblemCategoryList = () => {
       },
       body: JSON.stringify(data),
     });
-    //const resultJSON = await result.json()
 
     const questionData = await fetch(
       "http://localhost:8080/problem/getProblem"
     );
     const jsonProblems = await questionData.json();
     setQuestions(jsonProblems);
-    console.log(questions);
   };
 
   return (

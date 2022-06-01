@@ -11,7 +11,6 @@ const ProductCard = (props) => {
       const jsonProduct = await productData.json();
 
       setProduct(jsonProduct);
-      console.log(product);
     };
     fetchData();
   });
