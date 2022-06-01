@@ -4,10 +4,10 @@
 
 */
 import { useContext } from "react";
-import { CardContext2 } from "../AdminCards/AdminCardProvider";
+import { AdminCardContext } from "../AdminCards/AdminCardProvider";
 
 const ElementConfiguration = (props) => {
-  const [nqna, setnqna, uqna, setuqna, nu, setnu, uu, setuu, np, setnp, up, setup, nc, setnc, nca,setnca] = useContext(CardContext2);
+  const [nqna, setnqna, uqna, setuqna, nu, setnu, uu, setuu, np, setnp, up, setup, nc, setnc, nca,setnca] = useContext(AdminCardContext);
 
   const newCardHandler = (event) => {
     if (event.target.value === "nqna") {

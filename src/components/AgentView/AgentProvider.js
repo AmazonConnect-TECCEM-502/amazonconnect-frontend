@@ -12,6 +12,7 @@ const AgentProvider = ({children}) => {
   const [clientID, setClientID] = useState("");
   const [clientPhone, setClientPhone] = useState("");
   const [questions, setQuestions] = useState([]);
+  const [solutions, setSolutions] = useState([]);
 
   return (
     <AgentContext.Provider
@@ -35,7 +36,9 @@ const AgentProvider = ({children}) => {
         keyStroke,
         setKeyStroke,
         AC,
-        setAC
+        setAC,
+        solutions,
+        setSolutions
       ]}>
       {children}
     </AgentContext.Provider>
