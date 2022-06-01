@@ -12,6 +12,8 @@ import UpdateQuestionList from "../AdminCards/UpdateQuestionList";
 import UpdateAnswerList from "../AdminCards/UpdateAnswerList";
 import AdminCardProvider from "../AdminCards/AdminCardProvider";
 import NewAnswer from "../AdminCards/NewAnswer";
+import ClientForms from "../ClientCard/ClientForms";
+import AgentProvider from "../AgentView/AgentProvider";
 
 function AdminConfiguration() {
   return (
@@ -20,7 +22,7 @@ function AdminConfiguration() {
     <div className="agent-container admin">
       <AgentBoard id="board-1" className="board board-menu">
         <AdminCard id="card-1" draggable="false" component={<MenuConfiguration/>} />
-        {/*<AdminCard id="card-10" draggable="false" component={<ClientCard/>} />*/}
+        <AdminCard id="card-10" draggable="true" component={<AgentProvider><ClientForms/></AgentProvider>} />
         <AdminCard id="card-11" draggable="true" component={<NewCategory/>} />
       </AgentBoard>
       

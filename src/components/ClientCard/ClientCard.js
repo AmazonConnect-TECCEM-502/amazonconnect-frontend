@@ -37,12 +37,15 @@ const ClientCard = (props) => {
 
   const update = async () => {
     console.log("Sacando valores ?? ...")
-    fetch('http://3.80.44.247:8080/vid/getAuthRes')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      setClientPhone(data.phoneNumber)
-      showContent(data.authenticationType)
+    //await fetch('http://3.80.44.247:8080/vid/getAuthRes')
+    
+    axios.post('http://3.80.44.247:8080/vid/getAuthRes',{
+      "phoneNumber": clientPhone
+    })
+    .then(res => {
+      console.log(res)
+      setClientPhone(res.phoneNumber)
+      showContent(res.authenticationType)
     })
     .catch(function(err) {
       console.log(err);
@@ -63,7 +66,11 @@ const ClientCard = (props) => {
   };
 
   const getClientData = async () => {
-    await fetch('http://3.80.44.247:8080/vid/getUserData')
+    //await fetch('http://3.80.44.247:8080/vid/getUserData')
+
+    await axios.post('http://3.80.44.247:8080/vid/getUserData',{
+      "phoneNumber": clientPhone
+    })
     .then(response => response.json())
     .then(data => {
       setClientID(data.client_id)
@@ -81,7 +88,7 @@ const ClientCard = (props) => {
     showContent("not yet");
     setShowClient(false);
     await axios.post('http://3.80.44.247:8080/vid/reset',{
-      "message": "not yet"
+      "phoneNumber": clientPhone
     })
   };
 

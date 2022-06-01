@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
@@ -8,10 +8,17 @@ const ClientForms = (props) => {
     const [clientFname, setClientFname] = useState("");
     const [clientLname, setClientLname] = useState("");
     const [clientEmail, setClientEmail] = useState("");
-    //const [clientPhone, setClientPhone] = useState("");
     const [newPhone, setNewPhone] = useState(false);
+    const [emptyPhone, setEmptyPhone] = useState(false);
     const [, , , , , , , , , , clientPhone, setClientPhone, showClient, setShowClient] = useContext(AgentContext);
 
+    useEffect( () => {
+        if(clientPhone === "")
+        {
+            setEmptyPhone(true);
+        }
+      }, []);
+    
     const clientFnameHandler = (event) => {
         setClientFname(event.target.value);
     }
@@ -71,12 +78,23 @@ const ClientForms = (props) => {
                     <div className="element">
                         <label htmlFor={props.elementID}>
                             &nbsp;{"Phone number"}
-                            &nbsp;{<input className="client-input"
+                            &nbsp;
+                            { !emptyPhone &&
+                            <input className="client-input"
                             type = "tel"
                             placeholder = "+52"
                             value = {clientPhone}
-                            disabled/>}
-                            &nbsp;{<input type = "checkbox"
+                            disabled
+                            />
+                            }
+                            { emptyPhone &&
+                            <input className="client-input"
+                            type = "tel"
+                            placeholder = "+52"
+                            value = {clientPhone}
+                            />
+                            }
+                            &nbsp;{ !emptyPhone && <input type = "checkbox"
                             onChange={newPhoneHandler}/>}
                         </label>
                     </div>
