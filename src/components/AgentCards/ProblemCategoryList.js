@@ -34,21 +34,19 @@ const ProblemCategoryList = () => {
   }, []);
 
   const checkQnA = async (id) => {
-    const data = {
-      category_id: id,
-    };
+    // const data = {
+    //   category_id: id,
+    // };
 
-    await fetch("http://localhost:8080/problem/postProblem", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    // await fetch("http://localhost:8080/problem/postProblem", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // });
 
-    const questionData = await fetch(
-      "http://localhost:8080/problem/getProblem"
-    );
+    const questionData = await fetch(`http://localhost:8080/problem/getProblem/${id}`);
     const jsonProblems = await questionData.json();
     setQuestions(jsonProblems);
   };
