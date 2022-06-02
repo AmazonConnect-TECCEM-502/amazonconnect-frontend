@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ClientContext } from "../ClientCard/ClientProvider";
 import ProductCard from "./ProductCard";
 import ProductList from "./ProductList";
 import ProductsCategoryList from "./ProductsCategoryList";
 
-const SalesMasterCard = (props) => {
+const SalesMasterCard = () => {
+  const [clientID, , , , , , , , , , , , , ] = useContext(ClientContext);
 
     const Views = {
       CATEGORIES : 1,
@@ -15,7 +17,8 @@ const SalesMasterCard = (props) => {
     const [currentCategory, setCurrentCategory] = useState();
     const [currentProduct, setCurrentProduct] = useState();
  
-    const client_id = 1;
+    const client_id = clientID;
+    console.log("CLIENT ID: " + client_id);
 
     const goToProducts = (category_id) => {
       setCurrentCategory(category_id);

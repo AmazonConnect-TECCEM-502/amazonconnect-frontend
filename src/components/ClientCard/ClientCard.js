@@ -81,6 +81,12 @@ const ClientCard = () => {
       "phoneNumber": clientPhone
     })
   };
+  
+  /*              DEBUG BUTTONS (Must be under line 94)
+  <button onClick={() => showContent("authenticated")}> Card </button>
+  <button onClick={() => showContent("not enrolled")}> Forms </button>
+  <button onClick={() => showContent("not authenticated")}> Question </button>
+  */
 
   return (
     <div className="client">
