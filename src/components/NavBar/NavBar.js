@@ -43,7 +43,9 @@ const NavBar = () => {
           {NavBarOptions.map((props, index) => {
             return (
               <li>
-                <Link to={props.url} className={props.cName}>{props.title}</Link>
+                <Link to={props.url} className={props.cName}>
+                  {props.title}
+                </Link>
               </li>
             );
           })}

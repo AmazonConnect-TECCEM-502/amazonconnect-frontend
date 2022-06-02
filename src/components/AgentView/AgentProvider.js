@@ -1,7 +1,7 @@
-import { createContext, useState } from "react"
-export const AgentContext = createContext(); 
+import { createContext, useState } from "react";
+export const AgentContext = createContext();
 
-const AgentProvider = ({children}) => {
+const AgentProvider = ({ children }) => {
   const [problem, setProblem] = useState(false);
   const [client, setClient] = useState(false);
   const [product, setProduct] = useState(false);
@@ -35,11 +35,12 @@ const AgentProvider = ({children}) => {
         qna,
         setQnA,
         solutionCard,
-        setSolutionCard
-      ]}>
+        setSolutionCard,
+      ]}
+    >
       {children}
     </AgentContext.Provider>
-  )
-}
+  );
+};
 
-export default AgentProvider
+export default AgentProvider;

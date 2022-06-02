@@ -7,13 +7,13 @@
   <AgentSettings />
 */
 
-import AgentBoard from "../AgentCards/AgentBoard";
 import Card from "../AgentCards/Card";
 import AgentProvider from "../AgentView/AgentProvider";
 import Settings from "../AgentCards/Setting";
 import NavBar from "../NavBar/NavBar";
+import ThemeOptions from "../AgentCards/ThemeOptions";
 
-function AgentSettings() {
+function AgentSettings(props) {
   return (
     <div>
       <AgentProvider>
@@ -21,6 +21,7 @@ function AgentSettings() {
         <div className="user-settings">
           <Card id="" draggable="" component={<Settings />} />
         </div>
+        <ThemeOptions newTheme={props.newTheme} />
       </AgentProvider>
     </div>
   );

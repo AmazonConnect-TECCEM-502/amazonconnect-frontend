@@ -44,15 +44,15 @@ Dropdown menu style sheet
   border-radius: 10px;
 }
 .nav-links {
-  color: #8484a0;
+  color: var(--text-primary);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-bottom: 1.5px solid transparent;
 }
 
 .nav-links:hover {
-  border-bottom: 1.5px solid black;
-  color: #000;
+  border-bottom: var(--border-bottom);
+  color: var(--navlinks-hover);
 }
 
 @media (max-width: 700px) {
