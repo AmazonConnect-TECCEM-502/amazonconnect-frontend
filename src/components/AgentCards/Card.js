@@ -27,16 +27,17 @@ import { useContext } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 
 const Card = (props) => {
-  const [ problem, ,
-    client, ,
-    , ,
-    product, ,
-    recording, ,
-    keyStroke, ,
-    AC, ,
-    , ,
-    qna, ,
-    solutionCard, ,
+  const [ 
+    problem,,
+    client,,
+    ,,
+    product,,
+    recording,,
+    keyStroke,,
+    AC,,
+    ,,
+    qna,,
+    solutionCard,
   ] = useContext(AgentContext);
 
   const dragStart = (e) => {

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 
 const AddSolutionModal = (props) => {
-  const [,,,,,,questions] = useContext(AgentContext);
+  const [,,,,questions] = useContext(AgentContext);
   const [solutionDescription, setSolutionDescription] = useState("");
 
   const textHandler = (event) => {

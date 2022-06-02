@@ -11,14 +11,21 @@ import { AgentContext } from "../AgentView/AgentProvider";
 import { ClientContext } from "../ClientCard/ClientProvider";
 
 const Element = (props) => {
-  const [ problem, setProblem,
-    client, setClient,
-    ,,,,
-    product, setProduct,
-    ,,,,
-    recording, setRecording,
-    keyStroke, setKeyStroke,
-    AC, setAC ] = useContext(AgentContext);
+  const [ 
+    problem,
+    setProblem,
+    client,
+    setClient,
+    , ,
+    product,
+    setProduct,
+    recording,
+    setRecording,
+    keyStroke,
+    setKeyStroke,
+    AC,
+    setAC,
+  ] = useContext(AgentContext);
   
   const [ , , , , , , , , clientPhone, setClientPhone, , , , ] = useContext(ClientContext);
 
