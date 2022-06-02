@@ -1,8 +1,8 @@
 import { Fragment, useContext } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 
-const AnswerList = (props) => {
-  const [,,,,,,,,,,,,,,,,,,,,solutions, , , , , , , setSolutionCard] = useContext(AgentContext);
+const AnswerList = () => {
+  const [,,,,,,,,,,,,,, solutions,,,,, setSolutionCard] = useContext(AgentContext);
 
   const hideSolution = () => {
     const card = document.getElementById("card-6");
@@ -15,9 +15,9 @@ const AnswerList = (props) => {
       <div className="close-btn" onClick={() => hideSolution()}>+</div>
       <div className="container-answers">
         <p className="title">{solutions.length > 0 && solutions[0].problem_description}</p>
-        {solutions.map(solution => {
+        {() => {solutions.map(solution => {
           return<p className="answer">{solution.solution_description}</p>
-        })}
+        })}}
       </div>
     </Fragment>
   );
