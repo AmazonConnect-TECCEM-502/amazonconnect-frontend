@@ -13,6 +13,7 @@
 .container-question:hover {
   transition-duration: 0.4s;
   background-color: azure;
+  color: var(--text-contrary);
 }
 .question {
   font-family: 'Montserrat';

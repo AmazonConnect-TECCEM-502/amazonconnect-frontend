@@ -20,42 +20,34 @@
 
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
-import { AgentContext } from "../AgentView/AgentProvider";
 import ClientForms from "./ClientForms";
-import ClientImage from "./ClientImage";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
 import ClientQuestion from "./ClientQuestion";
+import { ClientContext } from "./ClientProvider";
 
-const ClientCard = (props) => {
-  const [, , , , , setClientID, , , , , clientPhone, setClientPhone, , setShowClient] = useContext(AgentContext);
+const ClientCard = () => {
+  const [ , setClientID, clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , setShowClient, , setShowError] = useContext(ClientContext);
 
-  const [lastNameClient, setLastNameClient] = useState("");
-  const [emailClient, setEmailClient] = useState("");
-  const [nameClient, setNameClient] = useState("");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(""); // AuthenticationType
+
+  useEffect( () => {
+    update();
+  }, []);
 
   const update = async () => {
-    console.log("Sacando valores ?? ...")
-    //await fetch('http://3.80.44.247:8080/vid/getAuthRes')
-    
-    axios.post('http://3.80.44.247:8080/vid/getAuthRes',{
+    await axios.post('https://3.80.44.247:8443/vid/getAuthRes',{
       "phoneNumber": clientPhone
     })
     .then(res => {
-      console.log(res)
-      setClientPhone(res.phoneNumber)
-      showContent(res.authenticationType)
+      console.log(res.data.authenticationType)
+      showContent(res.data.authenticationType)
     })
     .catch(function(err) {
       console.log(err);
       showContent("not yet");
     });
   }
-
-  useEffect( () => {
-    update();
-  });
 
   const showContent = (message) => {
     if(message === "authenticated"){
@@ -66,17 +58,14 @@ const ClientCard = (props) => {
   };
 
   const getClientData = async () => {
-    //await fetch('http://3.80.44.247:8080/vid/getUserData')
-
-    await axios.post('http://3.80.44.247:8080/vid/getUserData',{
+    await axios.post('https://3.80.44.247:8443/vid/getUserData',{
       "phoneNumber": clientPhone
     })
-    .then(response => response.json())
-    .then(data => {
-      setClientID(data.client_id)
-      setNameClient(data.first_name)
-      setLastNameClient(data.last_name)
-      setEmailClient(data.email)
+    .then(res => {
+      setClientID(res.data.client_id)
+      setClientFname(res.data.first_name)
+      setClientLname(res.data.last_name)
+      setClientEmail(res.data.email)
     })
     .catch(function(err) {
       console.log(err);
@@ -87,10 +76,17 @@ const ClientCard = (props) => {
   const resetUserData = async () => {
     showContent("not yet");
     setShowClient(false);
-    await axios.post('http://3.80.44.247:8080/vid/reset',{
+    setShowError(false);
+    await axios.post('https://3.80.44.247:8443/vid/reset',{
       "phoneNumber": clientPhone
     })
   };
+  
+  /*              DEBUG BUTTONS (Must be under line 94)
+  <button onClick={() => showContent("authenticated")}> Card </button>
+  <button onClick={() => showContent("not enrolled")}> Forms </button>
+  <button onClick={() => showContent("not authenticated")}> Question </button>
+  */
 
   return (
     <div className="client">
@@ -98,19 +94,18 @@ const ClientCard = (props) => {
         //Show User Info
         (result === "authenticated") &&
         <Fragment>
-          <ClientImage image={props.image} />
-          <ClientName name={nameClient + ", " + lastNameClient} />
-          <ClientInfo text={emailClient} />
+          <ClientName name={clientFname + ", " + clientLname} />
+          <ClientInfo text={clientEmail} />
           <ClientInfo text={clientPhone} />
         </Fragment>
       }
       {
         //Show Message error and form 
-        (result === "not enrolled" || result === "opted out") &&  <ClientForms />
+        (result === "not enrolled") &&  <ClientForms />
       }
       {
         //Show verification question 
-        (result === "not authenticated" || result === "inconclusive") && 
+        (result === "not authenticated" || result === "inconclusive" || result === "opted out") && 
         <ClientQuestion />
       }
       {
@@ -118,8 +113,8 @@ const ClientCard = (props) => {
         (result !== "authenticated") && (result !== "opted out") && (result !== "not enrolled") && (result !== "inconclusive")
         && (result !== "not authenticated") && <h1 className="title"> Data not recieved yet </h1>
       }
+      <button className="button-reset refresh" onClick={() => update()}> Refresh </button>
       <button className="button-reset" onClick={() => resetUserData()}> Reset values </button>
-      <button className="button-reset" onClick={() => update()}> Refresh </button>
     </div>
   );
 };

@@ -1,9 +1,17 @@
 import NavBarAdmin from "../NavBar/NavBarAdmin";
+import AgentProvider from "../AgentView/AgentProvider";
+import Card from "../AgentCards/Card";
+import ProfileCard from "../ManagerCards/ProfileCard";
 
 function AdminProfile() {
-    return (
+  return (
+    <AgentProvider>
       <NavBarAdmin />
-    );
-  }
-  
-  export default AdminProfile;
+      <div className="user-profile">
+        <Card id="" draggable="" component={<ProfileCard />} />
+      </div>
+    </AgentProvider>
+  );
+}
+
+export default AdminProfile;

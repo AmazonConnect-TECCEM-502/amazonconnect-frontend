@@ -6,14 +6,17 @@
 
 import { Fragment } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import toast from 'react-hot-toast';
 
-const UpdateAnswer = (props) => {
+const AdminSolution = (props) => {
+
   const Deletesolution = async () => {
     //Delete Solution
     await fetch(
       `http://localhost:8080/problem/deleteSolution/${props.sol_id}`,
       { method: "DELETE" }
     );
+    toast.success("Solution deleted")
     const card = document.getElementById("card-12");
     card.style.display = "none";
   };
@@ -34,4 +37,4 @@ const UpdateAnswer = (props) => {
   );
 };
 
-export default UpdateAnswer;
+export default AdminSolution;

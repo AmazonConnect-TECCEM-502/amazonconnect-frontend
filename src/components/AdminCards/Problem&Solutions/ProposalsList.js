@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react";
 import { CgCloseR } from "react-icons/cg";
-import { AdminContext } from "./AdminContextProvider";
-import UpdateProposal from "./UpdateProposals";
+import { AdminContext } from "../AdminContextProvider";
+import Proposal from "./Proposal";
 
 const ProposalsList = (props) => {
   const [,,,,,,proposals,]= useContext(AdminContext);
@@ -22,7 +22,7 @@ const ProposalsList = (props) => {
         </div>
         <div className="container-questions">
           {proposals.map((proposal) => (
-            <UpdateProposal
+            <Proposal
               text={proposal.solution_description}
               proposal_id={proposal.solution_id}
             />

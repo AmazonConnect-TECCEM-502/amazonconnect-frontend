@@ -8,7 +8,7 @@
 .manager-container {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(to bottom left, #fff, #0799E6, #0463B9);
+    background: var(--background);
 }
 
 .manager-container h1{
@@ -64,7 +64,7 @@
 
 
 .agent-title{
-    color: #000;
+    color: var(--text-primary);
     font-family: Montserrat;
     font-size: 25px;
     font-weight: bold;

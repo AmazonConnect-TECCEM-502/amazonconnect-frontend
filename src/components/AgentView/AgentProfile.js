@@ -1,7 +1,6 @@
 import NavBar from "../NavBar/NavBar";
 import AgentProvider from "../AgentView/AgentProvider";
 import Card from "../AgentCards/Card";
-import AgentBoard from "../AgentCards/AgentBoard";
 import ProfileCard from "../ManagerCards/ProfileCard";
 
 function AgentProfile() {

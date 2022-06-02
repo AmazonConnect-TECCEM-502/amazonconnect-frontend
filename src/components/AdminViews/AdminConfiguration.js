@@ -7,15 +7,15 @@ import UpdateUser from "../AdminCards/UpdateUser";
 import UpdateProduct from "../AdminCards/UpdateProduct";
 import AdminCard from "../AdminCards/AdminCard";
 import NewCategory from "../AdminCards/NewCategory";
-import UpdateQuestionList from "../AdminCards/UpdateQuestionList";
-import UpdateAnswerList from "../AdminCards/UpdateAnswerList";
 import AdminCardProvider from "../AdminCards/AdminCardProvider";
-import NewAnswer from "../AdminCards/NewAnswer";
 import ClientForms from "../ClientCard/ClientForms";
-import AgentProvider from "../AgentView/AgentProvider";
 import AdminContextProvider from "../AdminCards/AdminContextProvider";
-import NewProblem from "../AdminCards/NewProblem";
-import ProposalsList from "../AdminCards/ProposalsList";
+import ClientProvider from "../ClientCard/ClientProvider";
+import ProposalsList from "../AdminCards/Problem&Solutions/ProposalsList";
+import AdminSolutionList from "../AdminCards/Problem&Solutions/AdminSolutionList";
+import AdminProblemList from "../AdminCards/Problem&Solutions/AdminProblemList";
+import NewProblem from "../AdminCards/Problem&Solutions/NewProblem";
+import NewSolution from "../AdminCards/Problem&Solutions/NewSolution";
 
 function AdminConfiguration() {
   return (

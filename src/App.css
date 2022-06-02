@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom left, #fff, #0799E6,#0463B9);
+  background: var(--background)
 }
 
 body::-webkit-scrollbar {

@@ -8,16 +8,27 @@
 
 import { useContext, useEffect, useState } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
+import { ClientContext } from "../ClientCard/ClientProvider";
 
 const Element = (props) => {
-  const [ problem, setProblem,
-    client, setClient,
-    ,,,,
-    product, setProduct,
-    clientPhone,setClientPhone,,,
-    recording, setRecording,
-    keyStroke, setKeyStroke,
-    AC, setAC ] = useContext(AgentContext);
+  const [ 
+    problem,
+    setProblem,
+    client,
+    setClient,
+    , ,
+    product,
+    setProduct,
+    recording,
+    setRecording,
+    keyStroke,
+    setKeyStroke,
+    AC,
+    setAC,
+  ] = useContext(AgentContext);
+  
+  const [ , , , , , , , , clientPhone, setClientPhone, , , , ] = useContext(ClientContext);
+
 
   const [showInput, setShowInput] = useState(false);
   
@@ -78,7 +89,7 @@ const Element = (props) => {
       </label>
       {
         showInput &&
-        <input className="client-input"
+        <input className="user-ID"
         type = "text"
         placeholder = "Client phone"
         onChange = {clientPhoneHandler}/>

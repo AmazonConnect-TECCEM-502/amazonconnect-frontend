@@ -10,6 +10,7 @@ const AdminContextProvider = ({children}) => {
   const [preg_id, setPreg_id] = useState([]); // Problem id 
   const [categories, setCategories] = useState([]);
   const [proposals, setProposals] = useState([]);
+  const [arrpreguntas, setPreguntas] = useState([]);
 
   return (
     <AdminContext.Provider
@@ -21,7 +22,9 @@ const AdminContextProvider = ({children}) => {
         categories,
         setCategories,
         proposals,
-        setProposals
+        setProposals,
+        arrpreguntas,
+        setPreguntas
       ]}>
       {children}
     </AdminContext.Provider>
