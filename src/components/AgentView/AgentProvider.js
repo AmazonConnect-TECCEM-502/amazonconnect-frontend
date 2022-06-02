@@ -1,7 +1,7 @@
-import { createContext, useState } from "react"
-export const AgentContext = createContext(); 
+import { createContext, useState } from "react";
+export const AgentContext = createContext();
 
-const AgentProvider = ({children}) => {
+const AgentProvider = ({ children }) => {
   const [problem, setProblem] = useState(false);
   const [client, setClient] = useState(false);
   const [showClient, setShowClient] = useState(false);
@@ -12,6 +12,7 @@ const AgentProvider = ({children}) => {
   const [clientID, setClientID] = useState("");
   const [clientPhone, setClientPhone] = useState("");
   const [questions, setQuestions] = useState([]);
+  const [theme, setTheme] = useState("light");
 
   return (
     <AgentContext.Provider
@@ -35,11 +36,14 @@ const AgentProvider = ({children}) => {
         keyStroke,
         setKeyStroke,
         AC,
-        setAC
-      ]}>
+        setAC,
+        theme,
+        setTheme,
+      ]}
+    >
       {children}
     </AgentContext.Provider>
-  )
-}
+  );
+};
 
-export default AgentProvider
+export default AgentProvider;

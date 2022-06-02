@@ -17,16 +17,28 @@ import AdminSettings from "./components/AdminViews/AdminSettings";
 import AdminProfile from "./components/AdminViews/AdminProfile";
 import AdminConfiguration from "./components/AdminViews/AdminConfiguration";
 import ManagerCalls from "./components/ManagerViews/Calls";
+import AgentProvider, {
+  AgentContext,
+} from "./components/AgentView/AgentProvider";
+import { useContext, useState } from "react";
 
 function App() {
+  const [theme, setTheme] = useState("light");
+
+  const getTheme = (newTheme) => {
+    setTheme(newTheme);
+  };
   return (
-    <div className="App">
+    <div className="App" data-theme={theme}>
       <Routes>
         <Route path="/" element={<LogIn />} />
         <Route path="/agent/home" element={<AgentMain />} />
         <Route path="/agent/statics" element={<AgentStatics />} />
         <Route path="/agent/capacitations" element={<AgentCapacitation />} />
-        <Route path="/agent/settings" element={<AgentSettings />} />
+        <Route
+          path="/agent/settings"
+          element={<AgentSettings newTheme={getTheme} />}
+        />
         <Route path="/agent/profile" element={<AgentProfile />} />
 
         <Route path="/manager/home" element={<ManagerMain />} />

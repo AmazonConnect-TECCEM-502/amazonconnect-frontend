@@ -1,0 +1,12 @@
+:root {
+    --background: linear-gradient(to bottom left, #fff, #0799E6, #0463B9);
+}
+
+[data-theme='dark'] {
+    --background: #000;
+}
+
+[data-theme='blue'] {
+    --background: blue;
+}
+
