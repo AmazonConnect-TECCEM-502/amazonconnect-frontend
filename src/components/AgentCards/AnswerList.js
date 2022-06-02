@@ -2,7 +2,7 @@ import { Fragment, useContext } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 
 const AnswerList = (props) => {
-  const [,,,,,,,,,,,,,,,,,,,,solutions, , , , , , , setSolutionCard] = useContext(AgentContext);
+  const [,,,,,,,,,,,,,, solutions,,,,, setSolutionCard] = useContext(AgentContext);
 
   const hideSolution = () => {
     const card = document.getElementById("card-6");

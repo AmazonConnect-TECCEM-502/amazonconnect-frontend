@@ -11,9 +11,9 @@ import { Fragment, useEffect, useState, useContext } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 
 const ProblemCategoryList = () => {
-  const [ , , , , , , , 
-    setQuestions, , , , , , , , , , , , , , , , ,
-    qna, setQnA
+  const [ , , , , , , 
+    setQuestions, , , , , , , , , , , ,
+    , setQnA, , 
   ] = useContext(AgentContext);
 
   const [problems, setProblems] = useState([]);

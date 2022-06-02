@@ -40,3 +40,5 @@
 @import url("./AgentCards/Settings.css");
 /* Solutions */
 @import url("./AgentCards/Solution.css");
+/* Admin */
+@import url("./AdminCards/AdminCards.css")

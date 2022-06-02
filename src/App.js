@@ -17,6 +17,7 @@ import AdminSettings from "./components/AdminViews/AdminSettings";
 import AdminProfile from "./components/AdminViews/AdminProfile";
 import AdminConfiguration from "./components/AdminViews/AdminConfiguration";
 import ManagerCalls from "./components/ManagerViews/Calls";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/configuration" element={<AdminConfiguration />} />
       </Routes>
+      <div>
+        <Toaster />
+      </div>
     </div>
   );
 }
