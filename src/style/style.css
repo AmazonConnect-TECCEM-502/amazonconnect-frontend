@@ -40,3 +40,7 @@
 @import url("./AgentCards/Settings.css");
 /* Themes */
 @import url("../Themes.css");
+/* Solutions */
+@import url("./AgentCards/Solution.css");
+/* Admin */
+@import url("./AdminCards/AdminCards.css")

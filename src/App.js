@@ -17,10 +17,9 @@ import AdminSettings from "./components/AdminViews/AdminSettings";
 import AdminProfile from "./components/AdminViews/AdminProfile";
 import AdminConfiguration from "./components/AdminViews/AdminConfiguration";
 import ManagerCalls from "./components/ManagerViews/Calls";
-import AgentProvider, {
-  AgentContext,
-} from "./components/AgentView/AgentProvider";
-import { useContext, useState } from "react";
+
+import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -28,6 +27,7 @@ function App() {
   const getTheme = (newTheme) => {
     setTheme(newTheme);
   };
+
   return (
     <div className="App" data-theme={theme}>
       <Routes>
@@ -56,6 +56,9 @@ function App() {
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/configuration" element={<AdminConfiguration />} />
       </Routes>
+      <div>
+        <Toaster />
+      </div>
     </div>
   );
 }

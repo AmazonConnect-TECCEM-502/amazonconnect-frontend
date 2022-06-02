@@ -17,6 +17,8 @@ const UpdateProduct = (props) => {
                 <input className="user-ID" type="text" name="Answer" />
                 <p>Stock: </p>
                 <input className="user-ID" type="text" name="Answer" />
+                <p>Image: </p>
+                <input className="user-ID" type="text" name="Answer" />
                 <br/>
                 <div className="buttondelete">
                     <button className="buttonSubmit"> Make changes </button>

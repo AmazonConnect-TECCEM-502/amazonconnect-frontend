@@ -1,22 +1,102 @@
-import { Fragment, useContext} from "react";
+import { Fragment, useContext, useState} from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
-import Questions from "./Questions";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 
 const QuestionList = (props) => {
   // Questions where assigned in RowCategoryProblem.js
   // We access those questions through CardContext
-  const [, , , , , , questions, ] = useContext(AgentContext);
+  const [  ,,,,
+    questions,,,,,,,,,,,
+    setSolutions,,
+    setQnA,,
+    setSolutionCard
+  ] = useContext(AgentContext);
+
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+
+  const searchHandler = async (event) => {
+    setSearchTerm(event.target.value);
+    if(searchTerm !== "") {
+      const newQuestionList = await questions.filter((question) => {
+        return Object.values(question)
+          .join(" ")
+          .toLowerCase().includes(searchTerm.toLowerCase());
+      });
+      setSearchResult(newQuestionList);
+      //console.log(searchResult);
+    } else {
+      setSearchResult(questions)
+    }
+  };
+
+
+  const checkSolution = async (id, problem) => {
+    // const data = {
+    //   solution_id: id
+    // };
+
+    // await fetch("http://localhost:8080/problem/postProblem", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // });
+    // console.log(data);
+
+    const solutionData = await fetch(`http://localhost:8080/problem/getSolutions/${id}`);
+    const jsonSolution = await solutionData.json();
+    if(jsonSolution.length > 0){
+      jsonSolution[0].problem_description = problem;
+      setSolutions(jsonSolution);
+    } else {
+      setSolutions([{problem_description: problem, problem_id: id}]);
+      //alert("The problem does not have solution");
+    }
+    const card = document.getElementById("card-6");
+    card.display = "block";
+    setSolutionCard(true);
+  }
+
+  const hideQnA = () => {
+    const card = document.getElementById("card-3");
+    card.display = "none";
+    setQnA(false);
+  }
 
   return (
     <Fragment>
+      <div className="close-btn" onClick={() => hideQnA()}>+</div>
       <p className="title"> Frequent questions </p>
-      <SearchBar SearchType="preguntas" />
-      {questions.map(question => {
-        return <Questions text={question.problem_description} />
+      {/* <SearchBar SearchType="preguntas" /> */}
+      <input type="text" placeholder="search question" value={searchTerm} onChange={searchHandler} />
+
+      {searchTerm.length < 1 ? questions.map(question => {
+        return (
+          <div className="container-question">
+            <p 
+              className="question" 
+              onClick={() => checkSolution(question.problem_id, question.problem_description)}>
+                {question.problem_description}
+            </p>
+          </div>
+        )
+      }) : searchResult.map(question => {
+        return(
+          <div className="container-question">
+            <p 
+              className="question" 
+              onClick={() => checkSolution(question.problem_id, question.problem_description)}>
+                {question.problem_description}
+            </p>
+          </div>
+        )
       })}
     </Fragment>
   );
+
 };
 
 export default QuestionList;

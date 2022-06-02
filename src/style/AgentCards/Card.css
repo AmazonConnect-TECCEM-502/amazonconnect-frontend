@@ -1,5 +1,5 @@
 .card {
-  padding: 16px;
+  padding: 20px;
   margin-bottom: 16px;
   transition: 1s;
   background: var(--card-color);
@@ -9,6 +9,7 @@
   min-width: 340px;
   overflow: hidden;
   color: var(--text-primary);
+  position: relative;
 }
 .cardscroll{
   width: 100%;
@@ -33,4 +34,16 @@
 .cardscroll::-webkit-scrollbar-thumb {
   background: rgb(94 125 171); 
   border-radius: 5px;
+}
+.close-btn{
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  transform: rotate(45deg);
+  top: -7px;
+  left: 4px;
+}
+.close-btn:hover{
+  color: rgb(94 125 171);
 }

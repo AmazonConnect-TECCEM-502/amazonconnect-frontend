@@ -7,12 +7,14 @@
 
 */
 import { Fragment, useContext} from "react";
+import toast from "react-hot-toast";
 import { AiFillEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { AdminContext } from "./AdminContextProvider";
+import { AdminContext } from "../AdminContextProvider";
 
-const UpdateQuestions = (props) => {
-  const [,setSolutions,,setPreg_id,] = useContext(AdminContext);
+
+const AdminProblem = (props) => {
+  const [,setSolutions,,setPreg_id,,,,,arrpreguntas,setPreguntas]= useContext(AdminContext);
 
   const SolutionCard = async () => {
     const card2 = document.getElementById("card-13");
@@ -27,17 +29,25 @@ const UpdateQuestions = (props) => {
     card.style.display = "block"//Show solutions card
   };
 
+  const DeleteProblem = async () => {
+    await fetch(`http://localhost:8080/problem/deleteProblem/${props.pregunta_id}`, { method: "DELETE"});
+    const response = await fetch("http://localhost:8080/problem/getProblemid")
+    const json = await response.json()
+    setPreguntas(json)
+    toast.success("Problem deleted")
+  };
+
   return (
     <Fragment>
       <div className="container-question">
         <AiFillEdit className="closebutton" size={20} onClick={SolutionCard} preg_id = {props.pregunta_id} />
         <p className="question">{props.text}</p>
         <div className="buttondelete">
-          <RiDeleteBin6Line className="closebutton" size={20}/>
+          <RiDeleteBin6Line className="closebutton" onClick={DeleteProblem} size={20}/>
         </div>
       </div>
     </Fragment>
   );
 };
 
-export default UpdateQuestions;
+export default AdminProblem;

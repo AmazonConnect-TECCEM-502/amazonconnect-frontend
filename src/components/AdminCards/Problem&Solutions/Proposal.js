@@ -10,8 +10,9 @@
 import { Fragment } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import {BsCheck2Square} from 'react-icons/bs'
+import toast from "react-hot-toast";
 
-const UpdateProposal = (props) => {
+const Proposal = (props) => {
 
   const DeleteProposal = async () => {
     //Delete a Proposal
@@ -19,8 +20,11 @@ const UpdateProposal = (props) => {
       `http://localhost:8080/problem/deleteSolution/${props.proposal_id}`,
       { method: "DELETE" }
     );
-    const card = document.getElementById("card-12");
+    toast.success("Proposal deleted")
+    const card = document.getElementById("card-14");
     card.style.display = "none";
+    const card2 = document.getElementById("card-12");
+    card2.style.display = "block";
   };
   
   const ApproveProposal = async() =>{
@@ -33,10 +37,11 @@ const UpdateProposal = (props) => {
       }),
     };
     await fetch(`http://localhost:8080/problem/postApproveProposals/${props.proposal_id}`,request_options);
-    const card2 = document.getElementById("card-14");
-    card2.style.display = "none";
-    const card = document.getElementById("card-12");
-    card.style.display = "block";
+    toast.success("Solution approved")
+    const card = document.getElementById("card-14");
+    card.style.display = "none";
+    const card2 = document.getElementById("card-12");
+    card2.style.display = "block";
   }
 
   return (
@@ -60,4 +65,4 @@ const UpdateProposal = (props) => {
   );
 };
 
-export default UpdateProposal;
+export default Proposal;

@@ -6,18 +6,41 @@
   <Element />
 */
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
+import { ClientContext } from "../ClientCard/ClientProvider";
 
 const Element = (props) => {
-  const [ problem, setProblem,
-    client, setClient,
-    ,,,,
-    product, setProduct,
-    ,,,,
-    recording, setRecording,
-    keyStroke, setKeyStroke,
-    AC, setAC ] = useContext(AgentContext);
+  const [ 
+    problem,
+    setProblem,
+    client,
+    setClient,
+    , ,
+    product,
+    setProduct,
+    recording,
+    setRecording,
+    keyStroke,
+    setKeyStroke,
+    AC,
+    setAC,
+  ] = useContext(AgentContext);
+  
+  const [ , , , , , , , , clientPhone, setClientPhone, , , , ] = useContext(ClientContext);
+
+
+  const [showInput, setShowInput] = useState(false);
+  
+  useEffect( () => {
+    if(props.elementID === "client"){
+      setShowInput(true);
+    }
+  }, []);
+  
+  const clientPhoneHandler = (event) => {
+    setClientPhone(event.target.value);
+  }
 
   const newCardHandler = (event) => {
     if (event.target.value === "problems") {
@@ -25,7 +48,7 @@ const Element = (props) => {
       card.style.display = !problem ? "block" : "none";
       setProblem(!problem);
     }
-    if(event.target.value === "client"){
+    if(event.target.value === "client" && clientPhone !== ""){
       const card = document.getElementById("card-4");
       card.style.display = !client ? "block" : "none";
       setClient(!client);
@@ -52,6 +75,7 @@ const Element = (props) => {
     }
   };
 
+  console.log(showInput);
   return (
     <div className="element">
       <input
@@ -63,6 +87,13 @@ const Element = (props) => {
       <label htmlFor={props.elementID}>
         &nbsp;{props.element}
       </label>
+      {
+        showInput &&
+        <input className="user-ID"
+        type = "text"
+        placeholder = "Client phone"
+        onChange = {clientPhoneHandler}/>
+      }
     </div>
   );
 };
