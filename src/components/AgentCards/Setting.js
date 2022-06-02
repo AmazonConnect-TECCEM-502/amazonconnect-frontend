@@ -86,7 +86,7 @@ const Settings = () => {
           <p className="agent-title" style={{ marginBottom: "3px" }}>
             <UserInfo text={firstName + " " + lastName} />
           </p>
-          <p style={{ color: "blue", marginTop: "0px" }}> {userType} </p>
+          <p className="user-type"> {userType} </p>
           <hr />
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <div className="personal-data">

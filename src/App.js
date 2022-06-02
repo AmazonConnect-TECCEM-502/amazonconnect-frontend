@@ -52,7 +52,10 @@ function App() {
         <Route path="/manager/profile" element={<ManagerProfile />} />
 
         <Route path="/admin/home" element={<AdminMain />} />
-        <Route path="/admin/settings" element={<AdminSettings />} />
+        <Route
+          path="/admin/settings"
+          element={<AdminSettings newTheme={getTheme} />}
+        />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/configuration" element={<AdminConfiguration />} />
       </Routes>

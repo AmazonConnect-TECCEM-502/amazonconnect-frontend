@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { AgentContext } from "../AgentView/AgentProvider";
-
 const ThemeOptions = (props) => {
   return (
     <div>
