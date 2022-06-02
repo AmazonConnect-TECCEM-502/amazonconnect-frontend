@@ -30,16 +30,8 @@ const KeystrokeRecording = () => {
 
       time = performance.now();
       Update(placeholder.text);
-      // refresh(event);
     });
   }, []);
-
-  function refresh(event) {
-    //console.log(`Tecla: ${placeholder.text} `);
-    placeholder.text = placeholder.text + event.key + "+";
-    
-    Update(placeholder.text);
-  }
 
   return (
     <Fragment>

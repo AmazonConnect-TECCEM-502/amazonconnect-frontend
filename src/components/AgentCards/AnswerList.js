@@ -18,6 +18,7 @@ const AnswerList = (props) => {
         {solutions.map(solution => {
           return<p className="answer">{solution.solution_description}</p>
         })}
+        <button className="btn-main" onClick={() => props.addSolution(true)}> Add Solution </button>
       </div>
     </Fragment>
   );

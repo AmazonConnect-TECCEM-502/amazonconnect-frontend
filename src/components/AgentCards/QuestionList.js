@@ -45,8 +45,13 @@ const QuestionList = (props) => {
 
     const solutionData = await fetch(`http://localhost:8080/problem/getSolutions/${id}`);
     const jsonSolution = await solutionData.json();
-    jsonSolution[0].problem_description = problem;
-    setSolutions(jsonSolution);
+    if(jsonSolution.length > 0){
+      jsonSolution[0].problem_description = problem;
+      setSolutions(jsonSolution);
+    } else {
+      setSolutions([{problem_description: problem, problem_id: id}]);
+      //alert("The problem does not have solution");
+    }
     const card = document.getElementById("card-6");
     card.display = "block";
     setSolutionCard(true);

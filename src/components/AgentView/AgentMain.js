@@ -20,10 +20,28 @@ import AgentProvider from "./AgentProvider";
 import KeystrokeRecording from "../Recordings/KeystrokeRecording";
 import SalesMasterCard from "../SalesCard/SalesMasterCard";
 import AmazonCCP from "../AgentCards/AmazonCCP";
+import AddSolutionModal from "../AgentCards/AddSolutionModal";
+import { useEffect, useState } from "react";
 
 function AgentMain() {
+  const [modal, setModal] = useState(false);
+
+  // Check if modal is displayed so agent can't scroll the page
+  useEffect(() => {
+    if(modal){
+      document.querySelector("body").style.overflow = "hidden";
+    }else {
+      document.querySelector("body").style.overflow = "auto";
+    }
+  })
+
+  const addNewSolution = (modal) => {
+    setModal(modal);
+  }
+
   return (
     <AgentProvider>
+      {modal && <AddSolutionModal addSolution={addNewSolution}/>}
       <NavBar />
       <div className="agent-container">
         <AgentBoard id="board-1" className="board board-menu">
@@ -40,7 +58,7 @@ function AgentMain() {
             component={<ProblemCategoryList />}
           />
           <Card id="card-3" draggable="true" component={<QuestionList />} />
-          <Card id="card-6" draggable="true" component={<AnswerList />} />
+          <Card id="card-6" draggable="true" component={<AnswerList addSolution={addNewSolution}/>} />
         </AgentBoard>
 
 
