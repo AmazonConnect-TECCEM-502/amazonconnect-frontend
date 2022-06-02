@@ -45,7 +45,10 @@ function App() {
         <Route path="/manager/dashboard" element={<ManagerAgentsDashboard />} />
         <Route path="/manager/overview" element={<ManagerOverview />} />
         <Route path="/manager/calls" element={<ManagerCalls />} />
-        <Route path="/manager/settings" element={<ManagerSettings />} />
+        <Route
+          path="/manager/settings"
+          element={<ManagerSettings newTheme={getTheme} />}
+        />
         <Route path="/manager/profile" element={<ManagerProfile />} />
 
         <Route path="/admin/home" element={<AdminMain />} />

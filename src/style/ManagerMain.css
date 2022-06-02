@@ -64,7 +64,7 @@
 
 
 .agent-title{
-    color: #000;
+    color: var(--text-primary);
     font-family: Montserrat;
     font-size: 25px;
     font-weight: bold;

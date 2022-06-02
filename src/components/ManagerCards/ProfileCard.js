@@ -15,29 +15,29 @@ const ProfileCard = () => {
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState("");
 
-    const getClientData = async () => {
-      const json = {user_id : 14};
-      console.log(JSON.stringify(json));
-      await fetch('http://localhost:8080/suc/userData',{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(json)
+  const getClientData = async () => {
+    const json = { user_id: 14 };
+    console.log(JSON.stringify(json));
+    await fetch("http://localhost:8080/suc/userData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(json),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUserId(data.user_id);
+        setFirstName(data.first_name);
+        setLastName(data.last_name);
+        setEmail(data.email);
+        setUserType(data.user_type);
       })
-      .then(response => response.json())
-      .then(data => {
-      setUserId(data.user_id)
-      setFirstName(data.first_name)
-      setLastName(data.last_name)
-      setEmail(data.email)
-      setUserType(data.user_type)
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
-  }
-  useEffect( () => {
+      .catch(function (err) {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
     getClientData();
   });
 

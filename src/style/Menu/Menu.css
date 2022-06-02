@@ -2,7 +2,7 @@
   font-family: "Montserrat";
   font-size: 20px;
   letter-spacing: 0.44px;
-  color: #000000;
+  color: var(--text-primary);
   text-align: left;
   display: flex;
   align-items: center;
