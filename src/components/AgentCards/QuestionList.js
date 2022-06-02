@@ -5,9 +5,9 @@ import { AgentContext } from "../AgentView/AgentProvider";
 const QuestionList = (props) => {
   // Questions where assigned in RowCategoryProblem.js
   // We access those questions through CardContext
-  const [,,,,,,
-    questions,,,,,,,,,,,,,,,
-    setSolutions, , , , setQnA, ,setSolutionCard
+  const [,,,,
+    questions,,,,,,,,,,
+    setSolutions, , setQnA, ,setSolutionCard
   ] = useContext(AgentContext);
 
   const [searchTerm, setSearchTerm] = useState("");
