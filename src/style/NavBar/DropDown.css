@@ -17,6 +17,7 @@ Dropdown menu style sheet
   right: 8px;
   justify-content: space-evenly;
   border-radius: 10px;
+  z-index: 1;
 }
 .dropdown-menu::before {
   content: "";

@@ -4,7 +4,7 @@ Author: María Fernanda Ramirez Barragán
 Navbar functionality 
 */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -13,8 +13,17 @@ import DropDown from "./DropDown";
 const NavBar = () => {
   const [userPopup, setUserPopup] = useState(false);
 
-  const userPopupState = () => {
-    setUserPopup(!userPopup);
+  useEffect(() => {
+    document.body.addEventListener("click", userPopupState);
+  });
+
+  const userPopupState = (event) => {
+    event.stopPropagation();
+    if(userPopup && !event.target.closest("#u-settings")){
+      setUserPopup(false);
+    } else if(!userPopup && event.target.closest("#u-settings")){
+      setUserPopup(true);
+    }
   };
 
   const NavBarOptions = [
@@ -51,7 +60,7 @@ const NavBar = () => {
           })}
           <BsEye className="icons" />
 
-          <AiOutlineUser className="icons" onClick={userPopupState} />
+          <AiOutlineUser id="u-settings" className="icons" onClick={userPopupState} />
         </ul>
       </nav>
       {userPopup && <DropDown />}
