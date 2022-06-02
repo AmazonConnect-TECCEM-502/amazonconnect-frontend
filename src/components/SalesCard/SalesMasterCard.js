@@ -17,16 +17,21 @@ const SalesMasterCard = () => {
     const [currentCategory, setCurrentCategory] = useState();
     const [currentProduct, setCurrentProduct] = useState();
  
-    const client_id = clientID;
-    console.log("CLIENT ID: " + client_id);
+    //const client_id = clientID;
+    const client_id = 1;
+    //console.log("CLIENT ID: " + client_id);
 
-    const goToProducts = (category_id) => {
-      setCurrentCategory(category_id);
+    const goToProducts = async (category_id) => {
+      const productsData = await fetch(`http://localhost:8080/sales/getRecommendedProducts/${client_id}/${category_id}`);
+      const jsonProducts = await productsData.json();
+      setCurrentCategory(jsonProducts);
       setCurrentView(Views.PRODUCTS);
     };
 
-    const goToProduct = (product_id) => {
-      setCurrentProduct(product_id);
+    const goToProduct = async (product_id) => {
+      const productData = await fetch(`http://localhost:8080/sales/getProduct/${product_id}`);
+      const jsonProduct = await productData.json();
+      setCurrentProduct(jsonProduct);
       setCurrentView(Views.PRODUCT);
     };
 
@@ -41,9 +46,9 @@ const SalesMasterCard = () => {
     if (currentView === Views.CATEGORIES)
       return (<ProductsCategoryList buttonAction={goToProducts}/>)
     else if (currentView === Views.PRODUCTS) 
-      return (<ProductList client_id={client_id} category_id={currentCategory} buttonAction={goToProduct} backAction={backToCategories}/>) 
+      return (<ProductList products={currentCategory} buttonAction={goToProduct} backAction={backToCategories}/>) 
     else if (currentView === Views.PRODUCT) 
-      return (<ProductCard product_id={currentProduct} client_id={client_id} buttonAction={backToProducts}/>);
+      return (<ProductCard product={currentProduct} client_id={client_id} buttonAction={backToProducts}/>);
 };
 
 export default SalesMasterCard;
