@@ -8,16 +8,20 @@
 
 import { useContext, useEffect, useState } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
+import { ClientContext } from "../ClientCard/ClientProvider";
 
 const Element = (props) => {
   const [ problem, setProblem,
     client, setClient,
     ,,,,
     product, setProduct,
-    clientPhone,setClientPhone,,,
+    ,,,,
     recording, setRecording,
     keyStroke, setKeyStroke,
     AC, setAC ] = useContext(AgentContext);
+  
+  const [ , , , , , , , , clientPhone, setClientPhone, , , , ] = useContext(ClientContext);
+
 
   const [showInput, setShowInput] = useState(false);
   
