@@ -8,7 +8,7 @@
     border-style: none;
     justify-self: flex-end;
 
-    background-color: #0799E6;
+    background-color: var(--button);
     cursor: pointer;
     
     border-radius: 15px;
@@ -18,14 +18,14 @@
     font-size: 14px;
     line-height: 28px;
     text-align: center;
-    color: #FFFFFF;
+    color: var(--text-primary);
     cursor: pointer;
 }
 .buttondelete{
     justify-self: flex-end;
 }
 .closebutton{
-    color: #0799E6;
+    color: var(--button);
     cursor: pointer;
     justify-self: flex-end;
 }

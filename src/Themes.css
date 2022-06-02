@@ -5,18 +5,22 @@
     --navlinks-hover: #000;
     --border-bottom: 1.5px solid black;
     --navbar-icons: #009ad9;
+    --image: url("../src/images/TelmexLogo.jpg");
+    --button: #0799E6;
 }
 
 [data-theme='dark'] {
     --background: linear-gradient(to bottom right, rgb(0, 0, 0), #262626, #353535);
-    --card-color: rgb(41, 41, 41);
+    --card-color: rgb(56, 56, 56);
     --text-primary: #fff;
     --text-secondary: rgb(255, 255, 76);
-    --shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+    --shadow: 0 0 4px rgba(255, 255, 255, 0.5);
     --navbar-color: rgb(125, 125, 125);
     --navlinks-hover: #cdcdcd;
     --border-bottom: 1.5px solid white;
     --navbar-icons: #fff;
+    --image: url("../src/images/LogoTelmexWhite.jpg");
+    --button: #000000;
 }
 
 [data-theme='blue'] {
