@@ -14,7 +14,7 @@ const ClientQuestion = (props) => {
   };
 
   const getClientData = async () => {
-    await axios.post('http://3.80.44.247:8080/vid/getUserData',{
+    await axios.post('https://3.80.44.247:8443/vid/getUserData',{
       "phoneNumber": clientPhone
     })
     .then(res => {

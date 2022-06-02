@@ -36,7 +36,7 @@ const ClientCard = () => {
   }, []);
 
   const update = async () => {
-    await axios.post('http://3.80.44.247:8080/vid/getAuthRes',{
+    await axios.post('https://3.80.44.247:8443/vid/getAuthRes',{
       "phoneNumber": clientPhone
     })
     .then(res => {
@@ -58,7 +58,7 @@ const ClientCard = () => {
   };
 
   const getClientData = async () => {
-    await axios.post('http://3.80.44.247:8080/vid/getUserData',{
+    await axios.post('https://3.80.44.247:8443/vid/getUserData',{
       "phoneNumber": clientPhone
     })
     .then(res => {
@@ -77,7 +77,7 @@ const ClientCard = () => {
     showContent("not yet");
     setShowClient(false);
     setShowError(false);
-    await axios.post('http://3.80.44.247:8080/vid/reset',{
+    await axios.post('https://3.80.44.247:8443/vid/reset',{
       "phoneNumber": clientPhone
     })
   };

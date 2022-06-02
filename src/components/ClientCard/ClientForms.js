@@ -26,7 +26,7 @@ const ClientForms = (props) => {
   };
 
   const postNewClient = async () => {
-    await axios.post("http://3.80.44.247:8080/vid/sendClientData", {
+    await axios.post("https://3.80.44.247:8443/vid/sendClientData", {
       first_name: clientFname,
       last_name: clientLname,
       email: clientEmail,
