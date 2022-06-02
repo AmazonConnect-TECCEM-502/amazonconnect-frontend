@@ -7,11 +7,11 @@
      - Close this card component.
 */
 import { Fragment, useContext } from "react";
-import UpdateAnswer from "./UpdateAnswer";
 import { CgCloseR } from "react-icons/cg";
-import { AdminContext } from "./AdminContextProvider";
+import { AdminContext } from "../AdminContextProvider";
+import AdminSolution from "./AdminSolution";
 
-const UpdateAnswerList = (props) => {
+const AdminSolutionList = (props) => {
   const [arrsolutions,,preg_id,,,,,setProposals] =useContext(AdminContext);
 
   const close = () => {
@@ -57,7 +57,7 @@ const UpdateAnswerList = (props) => {
       </button>
       <div className="container-questions">
         {arrsolutions.map((solution) => (
-          <UpdateAnswer
+          <AdminSolution
             text={solution.solution_description}
             sol_id={solution.solution_id}
           />
@@ -68,4 +68,4 @@ const UpdateAnswerList = (props) => {
   );
 };
 
-export default UpdateAnswerList;
+export default AdminSolutionList;

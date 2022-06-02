@@ -1,19 +1,18 @@
 import { Fragment, useContext, useState } from "react";
-import "../../style/AdminCards/AdminCards.css";
-import { AdminContext } from "./AdminContextProvider";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
+import { AdminContext } from "../AdminContextProvider";
 
 const NewProblem = (props) => {
   const [,,,,categories,setCategories] = useContext(AdminContext);
   const [descriptionProblem, setDescriptionProblem] = useState("");
   const [category_id,setCategoryid] = useState("")
-  const notify = () => toast.success('New Problem Created');
 
   const changeDescription = (event) =>{
     setDescriptionProblem(event.target.value)
   };
 
   const changeCategoryID= (event) =>{
+    console.log(event.target.value)
     setCategoryid(event.target.value)
     console.log(event.target.value)
   };
@@ -28,8 +27,12 @@ const NewProblem = (props) => {
         category_id: category_id
       }),
     };
-    await fetch(`http://localhost:8080/problem/postCreateProblem`,request_options);
-    notify();
+    if ((descriptionProblem.toString() && category_id) !== ''){
+      await fetch(`http://localhost:8080/problem/postCreateProblem`,request_options);
+      toast.success("New Problem created")
+    }else{
+      toast.error("All fields must be filled in")
+    }
   };
 
   const getCategories = async () =>{
@@ -52,9 +55,7 @@ const NewProblem = (props) => {
         </select>
         <br />
         <button className="buttonSubmit" onClick={CreateProblem}> Submit </button>
-        <Toaster />
       </div>
-
     </Fragment>
   );
 };

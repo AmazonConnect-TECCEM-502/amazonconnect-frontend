@@ -5,12 +5,13 @@
 */
 
 
-import { Fragment, useEffect, useState } from "react";
-import UpdateQuestions from "./UpdateQuestions";
+import { Fragment, useContext, useEffect, useState } from "react";
+import { AdminContext } from "../AdminContextProvider";
+import AdminProblem from "./AdminProblem";
 
 
-const UpdateQuestionList = (props) => {
-  const [arrpreguntas, setPreguntas] = useState([]);
+const AdminProblemList = (props) => {
+  const [,,,,,,,,arrpreguntas,setPreguntas]= useContext(AdminContext);
 
   useEffect(() => {
     console.log("Descargando datos...");
@@ -27,11 +28,12 @@ const UpdateQuestionList = (props) => {
       <p className="title"> Update Problems & Solutions </p>
       <div className="container-questions">
         {arrpreguntas.map((pregunta) => (
-          <UpdateQuestions text={pregunta.question} pregunta_id={pregunta.ID} />
+          <AdminProblem text={pregunta.question} pregunta_id={pregunta.ID} />
         ))}
+        {arrpreguntas.length === 0 && <p>No hay registros</p>}
       </div>
     </Fragment>
   );
 };
 
-export default UpdateQuestionList;
+export default AdminProblemList;

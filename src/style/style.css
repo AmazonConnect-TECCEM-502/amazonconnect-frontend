@@ -38,3 +38,5 @@
 @import url("./LogIn/LogIn.css");
 /* Settings*/
 @import url("./AgentCards/Settings.css");
+/* Admin */
+@import url("./AdminCards/AdminCards.css")
