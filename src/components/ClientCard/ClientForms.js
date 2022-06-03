@@ -127,7 +127,7 @@ const ClientForms = (props) => {
         </Fragment>
       )}
       {showClient && (
-        <ClientCard />
+        <h2 className="subtitle"> Client registered </h2>
       )}
     </div>
   );
