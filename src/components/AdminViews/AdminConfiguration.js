@@ -2,8 +2,6 @@ import AgentBoard from "../AgentCards/AgentBoard";
 import MenuConfiguration from "../Menu/MenuConfiguration";
 import NavBarAdmin from "../NavBar/NavBarAdmin";
 import NewProduct from "../AdminCards/NewProduct";
-import NewUser from "../AdminCards/NewUser";
-import UpdateUser from "../AdminCards/UpdateUser";
 import UpdateProduct from "../AdminCards/UpdateProduct";
 import AdminCard from "../AdminCards/AdminCard";
 import NewCategory from "../AdminCards/NewCategory";
@@ -16,6 +14,7 @@ import AdminSolutionList from "../AdminCards/Problem&Solutions/AdminSolutionList
 import AdminProblemList from "../AdminCards/Problem&Solutions/AdminProblemList";
 import NewProblem from "../AdminCards/Problem&Solutions/NewProblem";
 import NewSolution from "../AdminCards/Problem&Solutions/NewSolution";
+import NewUser from "../AdminCards/User/NewUser";
 
 function AdminConfiguration() {
   return (
@@ -66,11 +65,6 @@ function AdminConfiguration() {
                 id="card-9"
                 draggable="true"
                 component={<UpdateProduct />}
-              />
-              <AdminCard
-                id="card-7"
-                draggable="true"
-                component={<UpdateUser />}
               />
               <AdminCard
                 id="card-12"
