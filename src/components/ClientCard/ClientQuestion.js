@@ -34,10 +34,7 @@ const ClientQuestion = (props) => {
       setClientLname(res.data.last_name);
       setClientEmail(res.data.email);
       if (res.data.email === inputEmail) {    
-        await axios.post("https://3.80.44.247:8443/vid/sendAuthRes", {
-          phoneNumber: clientPhone,
-          authenticationType: "authenticated"
-        });
+        sendAuth();
         setShowClient(true);
       } else {
         setShowError(true);
@@ -47,6 +44,13 @@ const ClientQuestion = (props) => {
       console.log(err);
     });
   };
+
+  const sendAuth = async () => {
+    await axios.post("https://3.80.44.247:8443/vid/sendAuthRes", {
+      phoneNumber: clientPhone,
+      authenticationType: "authenticated"
+    });
+  }
 
   return (
     <div className="client">
