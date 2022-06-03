@@ -28,12 +28,13 @@
     color: var(--button);
     cursor: pointer;
     justify-self: flex-end;
+    margin-right: 5px;
 
 }
 .closebutton{
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 5px;
 }
 .admin .card{
     height: 100%;
