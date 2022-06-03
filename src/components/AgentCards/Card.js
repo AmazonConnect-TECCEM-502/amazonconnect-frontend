@@ -1,6 +1,6 @@
 /*
-  Authors:  Andrea
-            Benjamin
+  Authors:  Andrea Vianey Diaz Alvarez
+            Benjamín Ruiz
             Diego Armando Ulibarri Hernández
 
   Description: the card component is a container 
@@ -27,6 +27,10 @@ import { useContext } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 
 const Card = (props) => {
+  /** Contains the values ​​of the cards that are used in the agentView, 
+   * it helps us to see which ones are hidden at the beginning of the 
+   * application
+   */
   const [ 
     problem,,
     client,,
@@ -40,19 +44,24 @@ const Card = (props) => {
     solutionCard,
   ] = useContext(AgentContext);
 
+  /**
+   * When the dragStart event is triggered, the target is set to the id 
+   * of the element that triggered the event.
+   * @param e - The event object.
+   */
   const dragStart = (e) => {
-    // Change Paramater name
-    // Function Description
     const target = e.target;
     e.dataTransfer.setData("card_id", target.id);
   };
 
   const dragOver = (e) => {
-    // Change Paramete name
-    // Function Description
     e.stopPropagation();
   };
 
+  /* 
+    Setting the style of the card to display:none 
+    if the condition is met. 
+  */
   let cardStyle = { display: "block" };
   if (
     (props.id === "card-5" && !problem) ||
