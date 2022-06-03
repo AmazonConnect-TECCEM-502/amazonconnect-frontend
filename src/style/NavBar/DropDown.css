@@ -16,7 +16,7 @@ Dropdown menu style sheet
   padding: 0;
   right: 8px;
   justify-content: space-evenly;
-  border-radius: 10px;
+  border-radius: 8px;
   z-index: 1;
 }
 .dropdown-menu::before {
@@ -42,7 +42,6 @@ Dropdown menu style sheet
 }
 .dropdown-menu a:hover {
   background-color: rgba(0, 0, 0, 5%);
-  border-radius: 10px;
 }
 .nav-links {
   color: var(--text-primary);
