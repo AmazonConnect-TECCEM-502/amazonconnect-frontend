@@ -2,7 +2,6 @@ import AgentBoard from "../AgentCards/AgentBoard";
 import MenuConfiguration from "../Menu/MenuConfiguration";
 import NavBarAdmin from "../NavBar/NavBarAdmin";
 import NewProduct from "../AdminCards/NewProduct";
-import UpdateProduct from "../AdminCards/UpdateProduct";
 import AdminCard from "../AdminCards/AdminCard";
 import NewCategory from "../AdminCards/NewCategory";
 import AdminCardProvider from "../AdminCards/AdminCardProvider";
@@ -60,11 +59,6 @@ function AdminConfiguration() {
                 id="card-5"
                 draggable="true"
                 component={<AdminProblemList />}
-              />
-              <AdminCard
-                id="card-9"
-                draggable="true"
-                component={<UpdateProduct />}
               />
               <AdminCard
                 id="card-12"
