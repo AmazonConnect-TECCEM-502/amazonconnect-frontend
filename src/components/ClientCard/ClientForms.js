@@ -14,6 +14,7 @@
 
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
+import ClientCard from "./ClientCard";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
 import { ClientContext } from "./ClientProvider";
@@ -45,6 +46,10 @@ const ClientForms = (props) => {
       last_name: clientLname,
       email: clientEmail,
       phone: clientPhone,
+    });
+    await axios.post("https://3.80.44.247:8443/vid/sendAuthRes", {
+      phoneNumber: clientPhone,
+      authenticationType: "authenticated"
     });
     setShowClient(true);
   };
@@ -122,11 +127,7 @@ const ClientForms = (props) => {
         </Fragment>
       )}
       {showClient && (
-        <Fragment>
-          <ClientName name={clientFname + ", " + clientLname} />
-          <ClientInfo text={clientEmail} />
-          <ClientInfo text={clientPhone} />
-        </Fragment>
+        <ClientCard />
       )}
     </div>
   );
