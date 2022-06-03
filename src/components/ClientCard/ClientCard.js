@@ -31,6 +31,9 @@ const ClientCard = () => {
 
   const [result, setResult] = useState(""); // AuthenticationType
 
+  const [products, setProducts] = useState([]);
+
+
   useEffect( () => {
     update();
   }, []);
@@ -62,10 +65,11 @@ const ClientCard = () => {
       "phoneNumber": clientPhone
     })
     .then(res => {
-      setClientID(res.data.client_id)
-      setClientFname(res.data.first_name)
-      setClientLname(res.data.last_name)
-      setClientEmail(res.data.email)
+      setClientID(res.data.userData.client_id)
+      setClientFname(res.data.userData.first_name)
+      setClientLname(res.data.userData.last_name)
+      setClientEmail(res.data.userData.email)
+      setProducts(res.data.userProducts)
     })
     .catch(function(err) {
       console.log(err);
@@ -97,6 +101,14 @@ const ClientCard = () => {
           <ClientName name={clientFname + ", " + clientLname} />
           <ClientInfo text={clientEmail} />
           <ClientInfo text={clientPhone} />
+          <h2>Products</h2>
+          <div className="element">
+            {
+              products.map((product) => (
+                <p>{product.product_name}</p>
+              ))
+            }
+          </div>
         </Fragment>
       }
       {

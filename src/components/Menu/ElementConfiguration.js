@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { AdminCardContext } from "../AdminCards/AdminCardProvider";
 
 const ElementConfiguration = (props) => {
-  const [nqna, setnqna, uqna, setuqna, nu, setnu, uu, setuu, np, setnp, up, setup, nc, setnc, nca,setnca] = useContext(AdminCardContext);
+  const [nqna, setnqna, uqna, setuqna, nu, setnu, np, setnp, up, setup, nc, setnc, nca,setnca] = useContext(AdminCardContext);
 
   const newCardHandler = (event) => {
     if (event.target.value === "nqna") {
@@ -24,11 +24,6 @@ const ElementConfiguration = (props) => {
       const card = document.getElementById("card-6");
       card.style.display = !nu ? "block" : "none";
       setnu(!nu)
-    }
-    if(event.target.value === "uu"){
-      const card = document.getElementById("card-7");
-      card.style.display = !uu ? "block" : "none";
-      setuu(!uu)
     }
     if(event.target.value === "np"){
       const card = document.getElementById("card-8");

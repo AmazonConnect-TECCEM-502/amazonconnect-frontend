@@ -10,7 +10,6 @@ const AdminCardProvider = ({children}) => {
   const [nqna, setnqna] = useState(false); // New Problem and Solution card
   const [uqna, setuqna] = useState(false); // Update Problem and Solution card
   const [nu, setnu] = useState(false); // New user card
-  const [uu, setuu] = useState(false); // Uptade user card
   const [np, setnp] = useState(false); // New product card
   const [up, setup] = useState(false); // Update product card
   const [nc, setnc] = useState(false); // New Client card
@@ -28,8 +27,6 @@ const AdminCardProvider = ({children}) => {
         setuqna,
         nu,
         setnu,
-        uu,
-        setuu,
         np,
         setnp,
         up,

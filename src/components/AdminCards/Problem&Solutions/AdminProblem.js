@@ -14,7 +14,7 @@ import { AdminContext } from "../AdminContextProvider";
 
 
 const AdminProblem = (props) => {
-  const [,setSolutions,,setPreg_id,,,,,arrpreguntas,setPreguntas]= useContext(AdminContext);
+  const [,setSolutions,,setPreg_id,,,,,,setPreguntas]= useContext(AdminContext);
 
   const SolutionCard = async () => {
     const card2 = document.getElementById("card-13");
