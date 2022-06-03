@@ -27,6 +27,7 @@ import ClientProvider from "../ClientCard/ClientProvider";
 function AgentMain() {
   const token = localStorage.getItem("token");
   const user_type = localStorage.getItem("user_type");
+  /* state of modal  */
   const [modal, setModal] = useState(false);
 
   // Check if modal is displayed so agent can't scroll the page
@@ -38,6 +39,10 @@ function AgentMain() {
     }
   });
 
+  /**
+   * When the user clicks the button, the modal will be set to true.
+   * @param modal - modal value (true/false)
+   */
   const addNewSolution = (modal) => {
     setModal(modal);
   };
