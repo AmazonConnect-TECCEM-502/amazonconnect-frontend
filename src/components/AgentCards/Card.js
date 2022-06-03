@@ -1,14 +1,11 @@
 /*
   Authors:  Andrea Vianey Diaz Alvarez
-            Benjamín Ruiz
+            José Benjamín Ruiz García
             Diego Armando Ulibarri Hernández
 
   Description: the card component is a container 
   for different components and can be dragged 
   between different boards
-
-  Creation date: *
-  Modiffied: *
 
   Usage: 
     id -> Unique identifier
