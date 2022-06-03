@@ -7,16 +7,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--text-primary);
 }
 
 .modal-card{
-  background-color: #f7f7f7;
+  background-color: var(--card-color);
   padding: 20px;
   border-radius: 10px;
   position: absolute;
   display: flex;
   flex-direction: column;
 }
+
+.modal-card textarea::placeholder {
+  color: var(--text-primary);
+}
+
+.modal-card textarea {
+  background-color: var(--navbar-color);
+}
+
 .modal-card label{
+  color: var(--text-primary);
   text-align: left;
 }

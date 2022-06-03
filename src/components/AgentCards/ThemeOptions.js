@@ -16,7 +16,7 @@ const ThemeOptions = (props) => {
           await props.newTheme("light");
         }}
       >
-        Light Theme
+        Tecmex Theme
       </button>
       <button
         type="button"

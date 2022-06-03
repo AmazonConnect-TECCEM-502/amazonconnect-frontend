@@ -5,6 +5,7 @@
 .categorys .categorys-active{
   font-weight: bold;
   background-color: rgb(242, 242, 242);
+  color: var(--text-contrary);
 }
 
 .title {
@@ -22,11 +23,13 @@
   letter-spacing: 0.44px;
   border: none;
   outline: none;
-  background-color: #f7f7f7;
+  background-color: var(--card-color);
   cursor: pointer;
   padding: 0;
+  color: var(--text-primary);
 }
 .categorys button:hover{
   font-weight: bold;
   background-color: rgb(242, 242, 242);
+  color: var(--text-contrary);
 }

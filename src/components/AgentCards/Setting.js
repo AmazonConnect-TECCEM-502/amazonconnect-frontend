@@ -122,7 +122,7 @@ const Settings = () => {
               <p> Gender: Male</p>
             </div>
           </div>
-          <button className="button-send-data" onClick={callFunctions}>
+          <button className="btn-main" onClick={callFunctions}>
             {" "}
             Actualizar{" "}
           </button>

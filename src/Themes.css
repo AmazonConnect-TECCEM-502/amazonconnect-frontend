@@ -31,7 +31,7 @@ data-theme={theme}
     --navlinks-hover: #cdcdcd;
     --border-bottom: 1.5px solid white;
     --navbar-icons: #fff;
-    --button: rgb(46, 29, 50);
+    --button: rgb(124, 55, 138);
     --button-hover: rgb(31, 20, 33);
 }
 
@@ -72,8 +72,8 @@ data-theme={theme}
     --navlinks-hover: #cdcdcd;
     --border-bottom: 1.5px solid white;
     --navbar-icons: #58A6FF;
-    --button: rgb(46, 29, 50);
-    --button-hover: rgb(31, 20, 33);
+    --button: rgb(59 80 57);
+    --button-hover: rgb(99, 134, 96);
 }
 
 [data-theme='dark-tritanopia'] {
@@ -87,6 +87,6 @@ data-theme={theme}
     --navlinks-hover: #cdcdcd;
     --border-bottom: 1.5px solid white;
     --navbar-icons: #58A6FF;
-    --button: rgb(46, 29, 50);
-    --button-hover: rgb(31, 20, 33);
+    --button: rgb(192, 192, 93);
+    --button-hover: rgb(139, 139, 64);
 }
