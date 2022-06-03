@@ -30,10 +30,10 @@ const ClientQuestion = (props) => {
       "phoneNumber": clientPhone
     })
     .then(res => {
-      setClientFname(res.data.first_name);
-      setClientLname(res.data.last_name);
-      setClientEmail(res.data.email);
-      if (res.data.email === inputEmail) {    
+      setClientFname(res.data.userData.first_name);
+      setClientLname(res.data.userData.last_name);
+      setClientEmail(res.data.userData.email);
+      if (res.data.userData.email === inputEmail) {    
         sendAuth();
         setShowClient(true);
       } else {
@@ -71,13 +71,11 @@ const ClientQuestion = (props) => {
               }
             </label>
           </div>
-          {showError && <h1> Authentication failed, please try again </h1>}
+          {showError && <h2 className="subtitle"> Authentication failed, please try again </h2>}
           <button className="button" onClick={getClientData}> Submit </button>
         </Fragment>
       )}
-      {showClient && (
-        <h2 className="subtitle"> Client authenticated </h2>
-      )}
+      {showClient && <h2 className="subtitle"> Client authenticated </h2>}
     </div>
   );
 };

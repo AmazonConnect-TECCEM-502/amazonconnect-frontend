@@ -117,15 +117,10 @@ const ClientForms = (props) => {
               )}
             </label>
           </div>
-          <button className="btn-main" onClick={() => postNewClient()}>
-            {" "}
-            Register{" "}
-          </button>
+          <button className="btn-main" onClick={() => postNewClient()}> Register </button>
         </Fragment>
       )}
-      {showClient && (
-        <h2 className="subtitle"> Client registered </h2>
-      )}
+      {showClient && <h2 className="subtitle"> Client registered </h2>}
     </div>
   );
 };
