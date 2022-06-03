@@ -1,9 +1,12 @@
+/*
+  Authors: Andrea Vianey Diaz Alvarez
+  Description: Container for all the admin configuration tab cards. 
+*/
 import AgentBoard from "../AgentCards/AgentBoard";
 import MenuConfiguration from "../Menu/MenuConfiguration";
 import NavBarAdmin from "../NavBar/NavBarAdmin";
 import NewProduct from "../AdminCards/NewProduct";
 import AdminCard from "../AdminCards/AdminCard";
-import NewCategory from "../AdminCards/NewCategory";
 import AdminCardProvider from "../AdminCards/AdminCardProvider";
 import ClientForms from "../ClientCard/ClientForms";
 import AdminContextProvider from "../AdminCards/AdminContextProvider";
@@ -13,7 +16,8 @@ import AdminSolutionList from "../AdminCards/Problem&Solutions/AdminSolutionList
 import AdminProblemList from "../AdminCards/Problem&Solutions/AdminProblemList";
 import NewProblem from "../AdminCards/Problem&Solutions/NewProblem";
 import NewSolution from "../AdminCards/Problem&Solutions/NewSolution";
-import NewUser from "../AdminCards/User/NewUser";
+import NewUser from "../AdminCards/NewUser";
+import NewCategory from "../AdminCards/Problem&Solutions/NewCategory";
 
 function AdminConfiguration() {
   return (

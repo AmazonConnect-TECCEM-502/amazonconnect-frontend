@@ -32,7 +32,7 @@ data-theme={theme}
     --border-bottom: 1.5px solid white;
     --navbar-icons: #fff;
     --button: rgb(124, 55, 138);
-    --button-hover: rgb(31, 20, 33);
+    --button-hover: rgb(198, 129, 210);
 }
 
 [data-theme='light-protanopia'] {

@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 const AdminSolution = (props) => {
 
   const Deletesolution = async () => {
-    //Delete Solution
+    //Listen to the click of "Delete" button for solution
     await fetch(
       `http://localhost:8080/problem/deleteSolution/${props.sol_id}`,
       { method: "DELETE" }

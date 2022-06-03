@@ -21,16 +21,16 @@ const AdminProblem = (props) => {
     card2.style.display = "none"; //Hide New Solution Card if showing
     const card3 = document.getElementById("card-14");
     card3.style.display = "none"; //Hide Proposals Card if showing
-    const response = await fetch(`http://localhost:8080/problem/getSolutions/${props.pregunta_id}`)
+    const response = await fetch(`http://localhost:8080/problem/getSolutions/${props.problem_id}`)
     const json = await response.json()//Get solutions by problem ID
     setSolutions(json)
-    setPreg_id(props.pregunta_id.toString())
+    setPreg_id(props.problem_id.toString())
     const card = document.getElementById("card-12");
     card.style.display = "block"//Show solutions card
   };
 
   const DeleteProblem = async () => {
-    await fetch(`http://localhost:8080/problem/deleteProblem/${props.pregunta_id}`, { method: "DELETE"});
+    await fetch(`http://localhost:8080/problem/deleteProblem/${props.problem_id}`, { method: "DELETE"});
     const response = await fetch("http://localhost:8080/problem/getProblemid")
     const json = await response.json()
     setPreguntas(json)

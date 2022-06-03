@@ -1,3 +1,7 @@
+/*
+  Authors: Andrea Vianey Diaz Alvarez
+  Description: Component that fetch all the categories for the proposals card.
+*/
 import { Fragment, useContext } from "react";
 import { CgCloseR } from "react-icons/cg";
 import { AdminContext } from "../AdminContextProvider";

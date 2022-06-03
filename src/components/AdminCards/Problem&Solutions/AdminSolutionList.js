@@ -1,6 +1,6 @@
 /*
   Authors: Andrea Vianey Diaz Alvarez
-  Description: Component that shows all the aproved solutions
+  Description: Component that shows all the approved solutions
     Functionalities:
      - Change to create solution card.
      - Change to proposal card after fetching all the not approval solutions.
