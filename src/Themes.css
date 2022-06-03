@@ -6,26 +6,77 @@
     --navlinks-hover: #000;
     --border-bottom: 1.5px solid black;
     --navbar-icons: #009ad9;
-    --image: "../src/images/TelmexLogo.jpg";
-    --button: #0799E6;
+    --button: rgb(106, 91, 191);
+    --button-hover: rgb(91, 76, 174);
 }
 
 [data-theme='dark'] {
-    --background: linear-gradient(to bottom right, rgb(0, 0, 0), #262626, #353535);
-    --card-color: rgb(56, 56, 56);
+    --background: linear-gradient(to bottom right, #0D1117, #161c26, #161d27);
+    --card-color: rgb(29, 29, 31);
     --text-primary: #fff;
     --text-secondary: rgb(192, 192, 93);
     --text-contrary: #000;
     --shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-    --navbar-color: rgb(125, 125, 125);
+    --navbar-color: #161B22;
     --navlinks-hover: #cdcdcd;
     --border-bottom: 1.5px solid white;
     --navbar-icons: #fff;
-    --image: "../src/images/LogoTelmexWhite.jpg";
-    --button: #000000;
+    --button: rgb(46, 29, 50);
+    --button-hover: rgb(31, 20, 33);
 }
 
-[data-theme='blue'] {
-    --background: blue;
-    --card-color: #fff;
+[data-theme='light-protanopia'] {
+    --background: linear-gradient(to bottom left, #fff, #ebf8ff, #d1e7fd);
+    --card-color: #f7f7f7;
+    --text-secondary: green;
+    --navbar-color: rgb(250, 250, 250);
+    --navlinks-hover: #000;
+    --border-bottom: 1.5px solid black;
+    --shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+    --navbar-icons: #009ad9;
+    --button: green;
+    --button-hover: rgb(0, 71, 0);
+}
+
+[data-theme='light-tritanopia'] {
+    --background: linear-gradient(to bottom left, #fff, #6eccff, #198cff);
+    --card-color: #f7f7f7;
+    --text-secondary: rgb(210, 210, 0);
+    --navbar-color: rgb(250, 250, 250);
+    --navlinks-hover: #000;
+    --border-bottom: 1.5px solid black;
+    --shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+    --navbar-icons: #009ad9;
+    --button: rgb(169, 169, 0);
+    --button-hover: rgb(137, 137, 0);
+}
+
+[data-theme='dark-protonopia'] {
+    --background: linear-gradient(to bottom right, #0D1117, #161c26, #161d27);
+    --card-color: rgb(29, 29, 31);
+    --text-primary: #58A6FF;
+    --text-secondary: rgb(93, 192, 93);
+    --text-contrary: #000;
+    --shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+    --navbar-color: #161B22;
+    --navlinks-hover: #cdcdcd;
+    --border-bottom: 1.5px solid white;
+    --navbar-icons: #58A6FF;
+    --button: rgb(46, 29, 50);
+    --button-hover: rgb(31, 20, 33);
+}
+
+[data-theme='dark-tritanopia'] {
+    --background: linear-gradient(to bottom right, #0D1117, #161c26, #161d27);
+    --card-color: rgb(29, 29, 31);
+    --text-primary: #58A6FF;
+    --text-secondary: rgb(192, 192, 93);
+    --text-contrary: #000;
+    --shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+    --navbar-color: #161B22;
+    --navlinks-hover: #cdcdcd;
+    --border-bottom: 1.5px solid white;
+    --navbar-icons: #58A6FF;
+    --button: rgb(46, 29, 50);
+    --button-hover: rgb(31, 20, 33);
 }
