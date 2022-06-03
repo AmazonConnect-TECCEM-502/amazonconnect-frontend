@@ -25,6 +25,8 @@ import { useEffect, useState } from "react";
 import ClientProvider from "../ClientCard/ClientProvider";
 
 function AgentMain() {
+  const token = localStorage.getItem("token");
+  const user_type = localStorage.getItem("user_type");
   const [modal, setModal] = useState(false);
 
   // Check if modal is displayed so agent can't scroll the page

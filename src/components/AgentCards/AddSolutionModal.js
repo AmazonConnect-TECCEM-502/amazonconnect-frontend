@@ -5,17 +5,19 @@ const AddSolutionModal = (props) => {
   const [,,,,questions] = useContext(AgentContext);
   const [solutionDescription, setSolutionDescription] = useState("");
 
+  const user_id = localStorage.getItem("user_id");
+
   const textHandler = (event) => {
     setSolutionDescription(event.target.value);
   }
 
   const sendSolution = async (event) => {
     event.preventDefault();
+    
     const newSolution = {
       problem_id: questions[0].problem_id,
       solution_description: solutionDescription,
-      submitted_id: 1,
-      approved_by: 1,
+      submitted_id: user_id ? user_id : 1,
     }
 
     await fetch("http://localhost:8080/problem/postCreateSolution", {
