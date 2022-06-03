@@ -1,3 +1,17 @@
+/* 
+  Author: Joan Daniel Guerrero García.
+
+  Last modified date: June 3rd, 2022.
+  
+  Description: Card displaying a forms to register a client 
+  not registered in Tecmex database.
+
+  Usage: To create a ClientForms, you need to import this file
+  and use the following line:
+
+  <ClientForms />
+*/
+
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
 import ClientInfo from "./ClientInfo";

@@ -1,3 +1,17 @@
+/* 
+  Author: Joan Daniel Guerrero García.
+
+  Last modified date: June 3rd, 2022.
+  
+  Description: Card displaying a verification question 
+  for a not authenticated client.
+
+  Usage: To create a ClientQuestion, you need to import 
+  this file and use the following line:
+
+  <ClientQuestion />
+*/
+
 import axios from "axios";
 import { Fragment, useContext, useState } from "react";
 import ClientInfo from "./ClientInfo";

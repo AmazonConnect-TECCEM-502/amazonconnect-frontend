@@ -9,13 +9,7 @@
   Usage: To create a ClientCard, you need to import this file
   and use the following line:
 
-  <ClientCard 
-    image = {name of the .jpg image} 
-    fname = {first name}
-    lname = {last name}
-    email = {email}
-    phone = {phone number} 
-  />
+  <ClientCard />
 */
 
 import axios from "axios";
@@ -30,7 +24,6 @@ const ClientCard = () => {
   const [ , setClientID, clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , setShowClient, , setShowError] = useContext(ClientContext);
 
   const [result, setResult] = useState(""); // AuthenticationType
-
   const [products, setProducts] = useState([]);
 
 
