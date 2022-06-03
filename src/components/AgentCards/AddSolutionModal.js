@@ -14,24 +14,30 @@ import { useContext, useState } from "react";
 import { AgentContext } from "../AgentView/AgentProvider";
 
 const AddSolutionModal = (props) => {
+  // Receives questions from agentContext to get the title of the
+  // question to which you want to add a solution
   const [, , , , questions] = useContext(AgentContext);
+  // Contains the solution to be added to the question
   const [solutionDescription, setSolutionDescription] = useState("");
-
+  // Id of the user that is logedIn
   const user_id = localStorage.getItem("user_id");
-
+  // Function whose purpose is to change the value of the solution
   const textHandler = (event) => {
     setSolutionDescription(event.target.value);
   };
 
+  /**
+   * It sends a POST request to the server with the solution description,
+   * the problem id and the user_id
+   * @param event - the event that triggered the function
+   */
   const sendSolution = async (event) => {
     event.preventDefault();
-
     const newSolution = {
       problem_id: questions[0].problem_id,
       solution_description: solutionDescription,
       submitted_id: user_id ? user_id : 1,
     };
-
     await fetch("http://localhost:8080/problem/postCreateSolution", {
       method: "POST",
       headers: {
