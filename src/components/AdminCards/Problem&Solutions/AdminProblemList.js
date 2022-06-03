@@ -25,7 +25,7 @@ const AdminProblemList = (props) => {
 
   return (
     <Fragment>
-      <p className="title"> Update Problems and Solutions </p>
+      <p className="title"> Update Problem Solutions </p>
       <div className="container-questions">
         {arrpreguntas.map((pregunta) => (
           <AdminProblem text={pregunta.question} pregunta_id={pregunta.ID} />

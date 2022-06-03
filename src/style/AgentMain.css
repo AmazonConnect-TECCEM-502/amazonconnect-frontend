@@ -27,6 +27,7 @@
   color: #fff;
   cursor: pointer;
   transition: 0.5s;
+  margin-top:16px;
 }
 .btn-main:hover{
   transition: 0.5s;

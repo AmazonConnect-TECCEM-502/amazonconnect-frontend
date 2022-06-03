@@ -43,7 +43,7 @@ const NewSolution = (props) => {
 
   return (
     <Fragment>
-      <CgCloseR className="closebutton" onClick={close} size={20}></CgCloseR>
+      <CgCloseR className="icon-buttons closebutton" onClick={close} size={20}></CgCloseR>
       <div className="title">
         <p>Create Solutions</p>
       </div>

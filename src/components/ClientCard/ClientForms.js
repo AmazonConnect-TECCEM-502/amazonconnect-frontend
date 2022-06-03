@@ -101,7 +101,7 @@ const ClientForms = (props) => {
               )}
             </label>
           </div>
-          <button className="button" onClick={() => postNewClient()}>
+          <button className="btn-main" onClick={() => postNewClient()}>
             {" "}
             Register{" "}
           </button>

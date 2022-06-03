@@ -94,8 +94,7 @@ const NewProduct = (props) => {
                 })}
                 <p>Image: </p>
                 <input className="user-ID" type="text" name="Answer" />
-                <br/>
-                <button className="buttonSubmit" onClick={createProduct} > Submit </button>
+                <button className="btn-main" onClick={createProduct} > Submit </button>
             </form>
           </div>
       </Fragment>

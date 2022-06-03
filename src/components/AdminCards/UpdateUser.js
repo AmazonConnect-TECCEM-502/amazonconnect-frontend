@@ -13,9 +13,9 @@ const UpdateUser = (props) => {
         <input className="user-ID" type="text" name="Answer" />
         <br />
         <div className="buttondelete">
-          <button className="buttonSubmit"> Make changes </button>
+          <button className="btn-main"> Make changes </button>
           &nbsp;
-          <button className="buttonSubmit"> Delete </button>
+          <button className="btn-main"> Delete </button>
         </div>
       </div>
     </Fragment>
