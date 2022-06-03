@@ -1,3 +1,13 @@
+/*
+Author: María Fernanda Ramirez Barragán
+
+Description: Different themes of the app
+
+Usage:
+data-theme={theme}
+*/
+
+
 :root {
     --background: linear-gradient(to bottom left, #fff, #0799E6, #0463B9);
     --card-color: #f7f7f7;

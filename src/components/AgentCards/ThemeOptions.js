@@ -1,3 +1,12 @@
+/*
+Author: María Fernanda Ramirez Barragán
+
+Description: Buttons of the different themes of the app
+
+Usage:
+<ThemeOptions />
+*/
+
 const ThemeOptions = (props) => {
   return (
     <div>
