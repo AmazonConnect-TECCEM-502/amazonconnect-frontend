@@ -14,15 +14,32 @@ const ProfileCard = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState("");
+  const [Displayimg, setDisplayImg] = useState("");
+
+    const imageSource = async () =>{
+      const res = await fetch("https://images-texmex-users-2-0.s3.amazonaws.com/"+ userId +".jpg");
+      const data = await res.status;
+      console.log(data)
+
+    if (data === 200){
+      console.log("Se encontro la imagen que buscas")
+      setDisplayImg("https://images-texmex-users-2-0.s3.amazonaws.com/"+ userId +".jpg")
+
+    }else{
+      console.log("Tu imagen no existe")
+      setDisplayImg("https://images-texmex-users-2-0.s3.amazonaws.com/NoImage.jpg")
+    }
+  }
 
   const getClientData = async () => {
-    const json = { user_id: 14 };
+    const user_id = localStorage.getItem("user_id");
+    const token = localStorage.getItem("token");
+    const header = new Headers({ Authorization: token, "Content-Type": "application/json"});
+    const json = { user_id: user_id };
     console.log(JSON.stringify(json));
     await fetch("http://localhost:8080/suc/userData", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: header,
       body: JSON.stringify(json),
     })
       .then((response) => response.json())
@@ -38,6 +55,7 @@ const ProfileCard = () => {
       });
   };
   useEffect(() => {
+    imageSource();
     getClientData();
   });
 
@@ -46,7 +64,7 @@ const ProfileCard = () => {
       <div className="profile-info">
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
-            src="https://experiencia21.tec.mx/users/221/files/4808076/preview?verifier=trAIuyGaUvXXaoLmpScp3A2GU9IkVMiBCpu6HNOc"
+            src={Displayimg}
             alt="Profile Photo"
           />
         </div>
