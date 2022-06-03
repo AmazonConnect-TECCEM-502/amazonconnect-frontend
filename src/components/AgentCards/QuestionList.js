@@ -43,7 +43,6 @@ const QuestionList = () => {
           .includes(searchTerm.toLowerCase());
       });
       setSearchResult(newQuestionList);
-      //console.log(searchResult);
     } else {
       setSearchResult(questions);
     }

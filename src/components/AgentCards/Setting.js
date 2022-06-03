@@ -23,7 +23,6 @@ const Settings = () => {
   //Request to back end to get the info of X user
   const getClientData = async () => {
     const json = { user_id: 14 }; // Cambiar el numero por el valor real del usuario
-    console.log(JSON.stringify(json));
     await fetch("http://localhost:8080/suc/userData", {
       method: "POST",
       headers: {

@@ -65,7 +65,6 @@ const Card = (props) => {
     (props.id === "card-4" && !client) ||
     (props.id === "card-8" && !product) ||
     (props.id === "card-2" && !recording) ||
-    (props.id === "card-7" && !keyStroke) ||
     (props.id === "card-0" && !AC) ||
     (props.id === "card-3" && !qna) ||
     (props.id === "card-6" && !solutionCard)

@@ -45,7 +45,6 @@ const AddSolutionModal = (props) => {
       },
       body: JSON.stringify(newSolution),
     });
-    console.log("Solution sended");
     props.addSolution(false);
   };
 
