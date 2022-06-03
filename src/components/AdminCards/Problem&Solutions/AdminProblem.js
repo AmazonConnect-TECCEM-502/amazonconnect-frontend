@@ -40,10 +40,12 @@ const AdminProblem = (props) => {
   return (
     <Fragment>
       <div className="container-question">
-        <AiFillEdit className="closebutton" size={20} onClick={SolutionCard} preg_id = {props.pregunta_id} />
         <p className="question">{props.text}</p>
-        <div className="buttondelete">
-          <RiDeleteBin6Line className="closebutton" onClick={DeleteProblem} size={20}/>
+        <div>
+          <AiFillEdit className="icon-buttons" size={20} onClick={SolutionCard} preg_id = {props.pregunta_id} />
+          <div className="buttondelete">
+            <RiDeleteBin6Line className="icon-buttons" onClick={DeleteProblem} size={20}/>
+          </div>
         </div>
       </div>
     </Fragment>

@@ -51,7 +51,7 @@ const NewSolution = (props) => {
         <p>Description: </p>
         <input className="user-ID" type="text" name="Description" onChange={changeDescription}/>
         <br />
-        <button className="buttonSubmit" onClick={CreateSolution} > Submit </button>
+        <button className="btn-main" onClick={CreateSolution} > Submit </button>
       </div>
     </Fragment>
   );

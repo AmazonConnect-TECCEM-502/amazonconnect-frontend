@@ -16,7 +16,7 @@ const ProposalsList = (props) => {
 
     return (
       <Fragment>
-        <CgCloseR className="closebutton" onClick={close} size={20}></CgCloseR>
+        <CgCloseR className="icon-buttons closebutton" onClick={close} size={20}></CgCloseR>
         <div className="title">
           <p>User Proposals</p>
         </div>
@@ -27,7 +27,7 @@ const ProposalsList = (props) => {
               proposal_id={proposal.solution_id}
             />
           ))}
-          {proposals.length === 0 && <p>No hay registros</p>}
+          {proposals.length === 0 && <p>No Records</p>}
         </div>
       </Fragment>
     );
