@@ -17,7 +17,13 @@
 */
 
 const AgentBoard = (props) => {
-  //
+
+  /**
+  * When a card is dropped, get the card's id, get the card, 
+  * make the card visible, and append the card
+  * to the board target.
+  * @param e - The event object.
+  */
   const drop = (e) => {
     const card_id = e.dataTransfer.getData("card_id");
     const card = document.getElementById(card_id);
