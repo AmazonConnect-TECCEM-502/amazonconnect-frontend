@@ -28,12 +28,15 @@ const Proposal = (props) => {
   };
   
   const ApproveProposal = async() =>{
+    //Add a new solution and delete de proposal
     const newdate = new Date() // Todays date
+    const user_id = localStorage.getItem("user_id")
     const request_options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        date: newdate.getFullYear() + '-' + newdate.getMonth() + '-' + newdate.getDay()
+        date: newdate.getFullYear() + '-' + newdate.getMonth() + '-' + newdate.getDay(),
+        approved_by: user_id
       }),
     };
     await fetch(`http://localhost:8080/problem/postApproveProposals/${props.proposal_id}`,request_options);

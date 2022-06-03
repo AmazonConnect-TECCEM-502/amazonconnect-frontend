@@ -1,6 +1,6 @@
 /*
   Authors: Andrea Vianey Diaz Alvarez
-  Description: 
+  Description: Component that show the card to add a new solution.
 
 */
 import { Fragment, useContext, useState } from "react";
@@ -13,6 +13,7 @@ const NewSolution = (props) => {
   const [descriptionSol, setDescriptionSol] = useState("");
 
   const changeDescription = (event) =>{
+    //Listen to change on "Description" input
     setDescriptionSol(event.target.value)
   };
 
