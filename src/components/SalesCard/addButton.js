@@ -8,7 +8,7 @@ const AddButton = (props) => {
         UNUSED : 2
       };
 
-    const addProduct = async (productID, clientID) => {
+    const buyProduct = async (productID, clientID) => {
 
       const request_options = {
         method: 'POST',
@@ -25,7 +25,7 @@ const AddButton = (props) => {
     
     if (currentButtonView === ButtonViews.UNUSED)
       return(<button className="product-header-add-button-UNUSED" onClick={() => {
-                                                                                    addProduct(props.product_id, props.client_id)
+                                                                                    buyProduct(props.product_id, props.client_id)
                                                                                     setCurrentButtonView(ButtonViews.USED)
                                                                                 }
                                                                             }>Add</button>)

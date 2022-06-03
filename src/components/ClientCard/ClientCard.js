@@ -101,14 +101,14 @@ const ClientCard = () => {
           <ClientName name={clientFname + ", " + clientLname} />
           <ClientInfo text={clientEmail} />
           <ClientInfo text={clientPhone} />
-          <h2>Products</h2>
-          <div className="element">
-            {
-              products.map((product) => (
-                <p>{product.product_name}</p>
-              ))
-            }
-          </div>
+          <br/><h2 className="subtitle">Acquired products</h2>
+          {
+            products.map((product) => (
+              <div className="element">
+                {product.product_name}
+              </div>
+            ))
+          }
         </Fragment>
       }
       {
