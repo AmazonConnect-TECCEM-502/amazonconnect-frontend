@@ -117,7 +117,7 @@ const LogIn = () => {
               I have a verification code
             </button>
             <button
-              className="buttonSignIn"
+              className="btn-main"
               onClick={() => login(email, password)}
             >
               Sign In

@@ -1,3 +1,9 @@
+/*
+  Author: Maria Fernanda Ramirez Barragan
+  Description: Show the Agent information
+  when clicked "profile" 
+
+*/
 import NavBar from "../NavBar/NavBar";
 import AgentProvider from "../AgentView/AgentProvider";
 import Card from "../AgentCards/Card";

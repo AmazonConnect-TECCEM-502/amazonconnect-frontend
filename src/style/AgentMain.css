@@ -18,7 +18,7 @@
   max-width: 390px;
 }
 .btn-main{
-  background-color: rgb(106, 91, 191);
+  background-color: var(--button);
   font-weight: bold;
   font-family: Montserrat;
   border-radius: 4px;
@@ -27,8 +27,9 @@
   color: #fff;
   cursor: pointer;
   transition: 0.5s;
+  margin-top:16px;
 }
 .btn-main:hover{
   transition: 0.5s;
-  background-color: rgb(91, 76, 174);
+  background-color: var(--button-hover);
 }

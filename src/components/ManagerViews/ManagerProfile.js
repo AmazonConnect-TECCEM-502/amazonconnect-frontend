@@ -1,3 +1,10 @@
+/*
+  Author: Maria Fernanda Ramirez Barragan
+  Description: Show the Manager information
+  when clicked "profile" 
+
+*/
+
 import NavBarManager from "../NavBar/NavBarManager";
 import AgentProvider from "../AgentView/AgentProvider";
 import Card from "../AgentCards/Card";

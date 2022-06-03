@@ -43,16 +43,14 @@ const AdminSolutionList = (props) => {
 
   return (
     <Fragment>
-      <CgCloseR name="close-button" className="closebutton" onClick={close} size={20}></CgCloseR>
+      <CgCloseR name="close-button" className="icon-buttons closebutton" onClick={close} size={20}></CgCloseR>
       <div className="title">
         <p>Update Solutions</p>
       </div>
       <button className="forget" onClick={CreateSolution}>
-        {" "}
-        Add solution
+        Add new solution
       </button>
       <button className="forget" onClick={ProposalsCard}>
-        {" "}
         See Proposals
       </button>
       <div className="container-questions">

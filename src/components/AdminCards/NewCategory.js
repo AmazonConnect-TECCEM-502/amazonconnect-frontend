@@ -11,7 +11,7 @@ const NewCategory = (props) => {
                 <p>Description: </p>
                 <input className="user-ID" type="text" name="Answer" />
                 <br/>
-                <button className="buttonSubmit"> Submit </button>
+                <button className="btn-main"> Submit </button>
           </div>
           </div>
 

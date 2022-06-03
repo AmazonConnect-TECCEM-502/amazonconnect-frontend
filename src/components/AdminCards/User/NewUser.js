@@ -78,7 +78,7 @@ const NewUser = (props) => {
           </Fragment>
         )}
         <br />
-        <button className="buttonSubmit" onClick={SignUp}> Submit </button>
+        <button className="btn-main" onClick={SignUp}> Submit </button>
       </div>
     </Fragment>
   );

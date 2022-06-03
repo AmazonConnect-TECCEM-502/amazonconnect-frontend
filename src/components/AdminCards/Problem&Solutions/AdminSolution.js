@@ -27,7 +27,7 @@ const AdminSolution = (props) => {
         <p className="question">{props.text}</p>
         <div className="buttondelete">
           <RiDeleteBin6Line
-            className="closebutton"
+            className="icon-buttons"
             size={20}
             onClick={Deletesolution}
           />

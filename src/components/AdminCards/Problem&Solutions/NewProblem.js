@@ -54,7 +54,7 @@ const NewProblem = (props) => {
         ))}
         </select>
         <br />
-        <button className="buttonSubmit" onClick={CreateProblem}> Submit </button>
+        <button className="btn-main" onClick={CreateProblem}> Submit </button>
       </div>
     </Fragment>
   );
