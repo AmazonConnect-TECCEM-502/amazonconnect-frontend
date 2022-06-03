@@ -31,7 +31,7 @@ const NewProblem = (props) => {
       await fetch(`http://localhost:8080/problem/postCreateProblem`,request_options);
       toast.success("New Problem created")
     }else{
-      toast.error("All fields must be filled in")
+      toast.error("All fields must be filled")
     }
   };
 

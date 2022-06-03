@@ -1,11 +1,12 @@
 import AddButton from "./addButton";
+import ProductImage from "./ProductImage";
 
 const ProductCard = (props) => {
 
   return(
     <div className="product-card">
         <div className="product-header">
-          <img src = {require(`../../images/sales/ejemploTelmex.jpg`)} alt = "Product" />
+          <ProductImage product_sku={props.product.product_sku}/>
           <div>
             <p className="product-name">{props.product.product_name}</p>
             <p className="product-price">Price: {props.product.price} $</p>
@@ -13,8 +14,7 @@ const ProductCard = (props) => {
             <AddButton client_id={props.client_id} product_id={props.product.product_id}/>
           </div>
         </div>
-        <p className="product-description"> {props.product.product_desc} </p>
-
+        <p className="product-description"> {props.product.product_description} </p>
     </div>
   )
 };
