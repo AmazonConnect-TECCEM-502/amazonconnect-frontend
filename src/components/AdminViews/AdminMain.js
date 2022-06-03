@@ -1,10 +1,25 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import NavBarAdmin from "../NavBar/NavBarAdmin";
 import NotLoggedIn from "../LogIn/NotLoggedIn";
 
 function AdminMain() {
   const token = localStorage.getItem("token");
   const user_type = localStorage.getItem("user_type");
+
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const header = new Headers({ Authorization: token });
+    fetch("http://localhost:8080/user/readUser", {
+      method: "GET",
+      headers: header,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        setName(() => result.first_name);
+      });
+  }, []);
 
   return (
     <Fragment>
@@ -13,7 +28,7 @@ function AdminMain() {
           <NavBarAdmin />
           <div className="manager-container">
             <h1>Welcome home,</h1>
-            <h1>Rosa!</h1>
+            <h1>{name}</h1>
           </div>
         </Fragment>
       )}

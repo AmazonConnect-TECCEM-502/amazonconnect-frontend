@@ -5,6 +5,7 @@ our system
 */
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 import ReactInputVerificationCode from "react-input-verification-code";
 import { useNavigate } from "react-router-dom";
 
@@ -32,8 +33,14 @@ const VerifCode = () => {
 
     fetch("http://localhost:8080/auth/verify", requestOptions)
       .then((response) => response.json())
-      .then((result) => navigate("/"))
-      .catch((error) => console.log("error", error));
+      .then((result) => {
+        toast.success("Code verified");
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error("Invalid code or email");
+        console.log("error", error);
+      });
   };
 
   const changeEmailValue = (event) => {
