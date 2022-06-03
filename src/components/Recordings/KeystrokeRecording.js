@@ -1,33 +1,41 @@
+/*
+  Author: Ariel Alvarez
+          Diego Armando Ulibarri Hernández
+  Description: Detect the keys that are being typed by the agent
+
+  Usage:
+  <KeystrokeRecording />
+*/
+
 import React, { Fragment } from "react";
-import {useState} from 'react'
-import KeystrokeText from "./KeystrokeText"
-const KeystrokeRecording = () =>{
+import { useState } from "react";
+import KeystrokeText from "./KeystrokeText";
+const KeystrokeRecording = () => {
+  const [display, Update] = useState(".");
 
-    const [display,Update] = useState('')
-    const placeholder = {
-        text: ""
-    }
+  const placeholder = {
+    text: "",
+  };
+  let time = performance.now();
 
-    React.useEffect(() =>{
-      document.addEventListener("keyup",function (event) {
+  React.useEffect(() => {
+    document.addEventListener("keyup", event => {
+      if (placeholder.text === "" || placeholder.text === "."){
+        placeholder.text = event.key;
+      }else if (performance.now() - time > 1000){
+        placeholder.text = event.key;
+      } else{
+        placeholder.text = placeholder.text + " + " + event.key;
+      }
 
-        refresh(event)
-      })
-      }, []);
+      time = performance.now();
+      Update(placeholder.text);
+    });
+  }, []);
 
-
-
-    function refresh(event)
-    {
-      placeholder.text = placeholder.text + event.key 
-      console.log(`Tecla: ${placeholder.text} `);
-      Update(placeholder.text)
-    }
-
-
-return (
+  return (
     <Fragment>
-      <KeystrokeText text = {display} />
+      <KeystrokeText text={display} />
     </Fragment>
   );
 };

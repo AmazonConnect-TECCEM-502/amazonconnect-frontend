@@ -1,23 +1,19 @@
 import NavBarManager from "../NavBar/NavBarManager";
-import AgentBoard from "../AgentCards/AgentBoard";
 import Card from "../AgentCards/Card";
-import CardsProvider from "../AgentCards/CardsProvider";
+import AgentProvider from "../AgentView/AgentProvider";
 import Settings from "../AgentCards/Setting";
+import ThemeOptions from "../AgentCards/ThemeOptions";
 
-function ManagerSettings() {
+function ManagerSettings(props) {
   return (
     <div>
-      <CardsProvider>
+      <AgentProvider>
         <NavBarManager />
-        <div
-          className="manager-dashboard-container"
-          style={{ justifyContent: "space-around" }}
-        >
-          <AgentBoard id="board-4" className="board board-menu profile-card">
-            <Card id="card-7" draggable="true" component={<Settings />} />
-          </AgentBoard>
+        <div className="user-settings">
+          <Card id="" draggable="" component={<Settings />} />
         </div>
-      </CardsProvider>
+        <ThemeOptions newTheme={props.newTheme} />
+      </AgentProvider>
     </div>
   );
 }

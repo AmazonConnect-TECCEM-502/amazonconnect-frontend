@@ -12,163 +12,67 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import UserInfo from "./UserInfo";
 
+const Settings = () => {
+  //Info from the json
+  const [userId, setUserId] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [userType, setUserType] = useState("");
 
-
-const Settings =() => {
-
-        //Info from the json 
-        const [userId, setUserId] = useState("");
-        const [firstName, setFirstName] = useState("");
-        const [lastName, setLastName] = useState("");
-        const [email, setEmail] = useState("");
-        const [userType, setUserType] = useState("");
-        const [img, setImg] = useState("");
-        const [Displayimg, setDisplayImg] = useState("");
-        const [useImage,setUseImage] = useState(false);
-
-        const imageSource = async () =>{
-            const res = await fetch("https://images-texmex-users-2-0.s3.amazonaws.com/"+ userId +".jpg");
-            const data = await res.status;
-            console.log(data)
-
-          if (data === 200){
-            console.log("Se encontro la imagen que buscas")
-            setDisplayImg("https://images-texmex-users-2-0.s3.amazonaws.com/"+ userId +".jpg")
-
-          }else{
-            console.log("Tu imagen no existe")
-            setDisplayImg("https://images-texmex-users-2-0.s3.amazonaws.com/NoImage.jpg")
-          }
-        }
-        var dataUriNoState = "";
-        
-        const getImageD =  async (file) => {
-          setUseImage(true)
-          if (file){
-
-          }
-          const fileToDataUri = (file) => new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-              resolve(event.target.result)
-            };
-            reader.readAsDataURL(file);
-            })
-
-          await fileToDataUri(file)
-            .then((fileb64) => {
-              dataUriNoState = fileb64.split(',')[1].toString()
-            })
-            
-              console.log("dataUriNoState " ,dataUriNoState)
-
-          const base64 = dataUriNoState
-          var binary_string = window.atob(base64);
-          var len = binary_string.length;
-          var bytes = new Uint8Array(len);
-          for (var i = 0; i < len; i++) {
-            bytes[i] = binary_string.charCodeAt(i); //infomracion en BIN
-          }
-          console.log(bytes.buffer)
-          setImg(bytes.buffer)
-
-      }
-
-        //Request to back end to get the info of X user
-        const getClientData = async () => {
-            const json = {user_id : 14}; // Cambiar el numero por el valor real del usuario
-            console.log(JSON.stringify(json));
-            await fetch('http://localhost:8080/suc/userData',{
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(json)
-            })
-            .then(response => response.json())
-            .then(data => {
-            setUserId(data.user_id)
-            setFirstName(data.first_name)
-            setLastName(data.last_name)
-            setEmail(data.email)
-            setUserType(data.user_type)
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
-      }
-      useEffect( () => {
-        getClientData();
-        imageSource();
+  //Request to back end to get the info of X user
+  const getClientData = async () => {
+    const json = { user_id: 14 }; // Cambiar el numero por el valor real del usuario
+    await fetch("http://localhost:8080/suc/userData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(json),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUserId(data.user_id);
+        setFirstName(data.first_name);
+        setLastName(data.last_name);
+        setEmail(data.email);
+        setUserType(data.user_type);
+      })
+      .catch(function (err) {
+        console.log(err);
       });
-      
-    const navigate = useNavigate();
-      // Input info
-    const [nuevoFirstName, setNuevoFirstName] = useState("")
-    const [nuevoLastName, setNuevoLastName] = useState("")
-      // Change of the input  
-    const cambioFirstName = (event) => {
-        setNuevoFirstName(event.target.value); 
+  };
+  useEffect(() => {
+    getClientData();
+  });
+
+  const navigate = useNavigate();
+  // Input info
+  const [nuevoFirstName, setNuevoFirstName] = useState("");
+  const [nuevoLastName, setNuevoLastName] = useState("");
+  // Change of the input
+  const cambioFirstName = (event) => {
+    setNuevoFirstName(event.target.value);
   };
   const cambioLastName = (event) => {
-
     setNuevoLastName(event.target.value);
-
   };
 
-    //Send new data to the back end
-    const sendNewName = async () => {
+  //Send new data to the back end
+  const sendNewName = async () => {
+    await axios.post("http://localhost:8080/suc/changeName", {
+      user_id: 14, //Modificar No siempre tiene que ser 14
+      first_name: nuevoFirstName,
+      last_name: nuevoLastName,
+    });
+  };
 
-        await axios.post('http://localhost:8080/suc/changeName',{
-            "user_id": 14, //Modificar No siempre tiene que ser 14
-            "first_name": nuevoFirstName,
-            "last_name": nuevoLastName
-        })
-    
-      };
-      //sendFile();
-      const getUrl = async () => {
-        console.log("img:",img)
-        const file = new File([img], userId, {type: 'image/jpg', lastModified:Date.now()})
-
-        const response = await axios({
-          url:'https://g6fpu8h62l.execute-api.us-east-1.amazonaws.com/default/image-user-lamda-2-0?pet='+userId,
-          method: 'GET'
-        });
-        console.log(response.data)
-        
-        
-        if (response.status === 200) {
-          const uploaded = await fetch(response.data.uploadURL, {
-            method: "PUT",
-            body: file,
-          });
-          if (uploaded.status === 200) {
-            console.log("Imagen subida a S3");
-          } else {
-            console.log("Error al subir imagen");
-          }
-        } else {
-          console.log("Error al obtener el link de subida");
-        }
-      };
-
-
-      //Navegate button
-      const callFunctions = () => {
-        sendNewName();
-        if (useImage){
-
-          getUrl();
-        }
-        
-        navigate("/agent/profile");
-
-
-      };
-      
+  //Navegate button
+  const callFunctions = () => {
+    sendNewName();
+    navigate("/agent/profile");
+  };
   return (
-
     <Fragment>
       <div className="profile-info">
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -185,32 +89,46 @@ const Settings =() => {
           <p className="agent-title" style={{ marginBottom: "3px" }}>
             <UserInfo text={firstName + " " + lastName} />
           </p>
-          <p style={{ color: "blue", marginTop: "0px" }}> {userType} </p>
+          <p className="user-type"> {userType} </p>
           <hr />
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <div className="personal-data">
               <p> First_Name: </p>
               <div>
-                <input className="user-name-changed" type="text" name="First Name" onChange={cambioFirstName}/>
+                <input
+                  className="user-name-changed"
+                  type="text"
+                  name="First Name"
+                  onChange={cambioFirstName}
+                  placeholder={firstName}
+                />
               </div>
               <div>
-                  <p>Email: {email} </p>
-              <p> </p>
-              </div> 
-              <div> 
-              <p> ID: {userId}</p>
-              
-              </div> 
+                <p>Email: {email} </p>
+                <p> </p>
+              </div>
+              <div>
+                <p> ID: {userId}</p>
+              </div>
             </div>
             <div className="personal-data">
               <p> Last Name:</p>
               <div>
-                <input className="user-name-changed" type="text" name="Last Name" onChange={cambioLastName} />
+                <input
+                  className="user-name-changed"
+                  type="text"
+                  name="Last Name"
+                  onChange={cambioLastName}
+                  placeholder={lastName}
+                />
               </div>
               <p> Gender: Male</p>
             </div>
           </div>
-          <button className="button-send-data" onClick={callFunctions}  > Actualizar </button>
+          <button className="btn-main" onClick={callFunctions}>
+            {" "}
+            Actualizar{" "}
+          </button>
         </div>
       </div>
     </Fragment>

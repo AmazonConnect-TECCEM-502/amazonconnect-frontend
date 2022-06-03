@@ -15,62 +15,80 @@ import QuestionList from "../AgentCards/QuestionList";
 import ClientCard from "../ClientCard/ClientCard";
 import ProblemCategoryList from "../AgentCards/ProblemCategoryList";
 import AnswerList from "../AgentCards/AnswerList";
-import ProductCard from "../SalesCard/ProductCard";
 import NavBar from "../NavBar/NavBar";
-import CardsProvider from "../AgentCards/CardsProvider";
-import ProductsCategoryList from "../SalesCard/ProductsCategoryList";
+import AgentProvider from "./AgentProvider";
 import KeystrokeRecording from "../Recordings/KeystrokeRecording";
 import SalesMasterCard from "../SalesCard/SalesMasterCard";
 import AmazonCCP from "../AgentCards/AmazonCCP";
+import AddSolutionModal from "../AgentCards/AddSolutionModal";
+import { useEffect, useState } from "react";
+import ClientProvider from "../ClientCard/ClientProvider";
 
 function AgentMain() {
+  const token = localStorage.getItem("token");
+  const user_type = localStorage.getItem("user_type");
+  /* state of modal  */
+  const [modal, setModal] = useState(false);
+
+  // Check if modal is displayed so agent can't scroll the page
+  useEffect(() => {
+    if (modal) {
+      document.querySelector("body").style.overflow = "hidden";
+    } else {
+      document.querySelector("body").style.overflow = "auto";
+    }
+  });
+
+  /**
+   * When the user clicks the button, the modal will be set to true.
+   * @param modal - modal value (true/false)
+   */
+  const addNewSolution = (modal) => {
+    setModal(modal);
+  };
+
   return (
-    <CardsProvider>
-      <NavBar />
-      <div className="agent-container">
-        <AgentBoard id="board-1" className="board board-menu">
-          <Card id="card-1" draggable="false" component={<Menu />} />
-          <Card id="card-2" draggable="false" component={<Recording />} />
-          <Card id="card-9" draggable="false" component={<KeystrokeRecording />} />
-        </AgentBoard>
+    <AgentProvider>
+      <ClientProvider>
+        {modal && <AddSolutionModal addSolution={addNewSolution} />}
+        <NavBar />
+        <div className="agent-container">
+          <AgentBoard id="board-1" className="board board-menu">
+            <Card id="card-1" draggable="false" component={<Menu />} />
+            <Card id="card-2" draggable="false" component={<Recording />} />
+            <Card
+              id="card-7"
+              draggable="false"
+              component={<KeystrokeRecording />}
+            />
+            <Card id="card-0" draggable="false" component={<AmazonCCP />} />
+          </AgentBoard>
 
-        <AgentBoard id="board-2" className="board">
-          <Card
-            id="card-5"
-            draggable="true"
-            component={<ProblemCategoryList />}
-          />
-          <Card id="card-3" draggable="true" component={<QuestionList />} />
-          <Card id="card-6" draggable="true" component={<AnswerList />} />
-        </AgentBoard>
+          <AgentBoard id="board-2" className="board">
+            <Card
+              id="card-5"
+              draggable="true"
+              component={<ProblemCategoryList />}
+            />
+            <Card id="card-3" draggable="true" component={<QuestionList />} />
+            <Card
+              id="card-6"
+              draggable="true"
+              component={<AnswerList addSolution={addNewSolution} />}
+            />
+          </AgentBoard>
 
-
-        <AgentBoard id="board-3" className="board">
-          <Card id="card-0" draggable="true" component={<AmazonCCP />}/>
-          <Card
-            id="card-4"
-            draggable="true"
-            component={
-              <ClientCard
-                image="IconClient"
-                fname="Rosa"
-                lname="Example"
-                email="example@gmail.com"
-                phone="55 5555 5555"
-              />
-            }
-          />
-          <Card id="card-8" draggable="true" component={<ProductsCategoryList />}/>
-          <Card
-            id="card-7"
-            draggable="true"
-            component={
-              <SalesMasterCard />
-            }
-          />
-        </AgentBoard>
-      </div>
-    </CardsProvider>
+          <AgentBoard id="board-3" className="board">
+            <Card id="card-4" draggable="true" component={<ClientCard />} />
+            <Card
+              id="card-8"
+              draggable="true"
+              component={<SalesMasterCard />}
+            />
+          </AgentBoard>
+        </div>
+      </ClientProvider>
+    </AgentProvider>
   );
 }
 

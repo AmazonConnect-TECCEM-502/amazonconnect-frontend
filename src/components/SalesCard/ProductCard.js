@@ -1,37 +1,20 @@
-import { useState } from "react";
-
+import AddButton from "./addButton";
+import ProductImage from "./ProductImage";
 
 const ProductCard = (props) => {
-
-  const [productKey, setKey] = useState('TV');
-  const [productsArr, setProducts] = useState(props.products['internet']);
-
-  const NextButton = (event) => {
-    if (productKey === 'internet') {
-      setKey('TV');
-    }
-    else if (productKey === 'TV') {
-      setKey('mobile');
-    }
-    else if (productKey === 'mobile') {
-      setKey('internet');
-    }
-    setProducts(props.products[productKey]);
-  };
 
   return(
     <div className="product-card">
         <div className="product-header">
-          <img src = {require(`../../images/sales/${productsArr.image}.jpg`)} alt = "Product" />
+          <ProductImage product_sku={props.product.product_sku}/>
           <div>
-            <p className="product-name">{productsArr.name}</p>
-            <p className="product-price">Price: {productsArr.price} $</p>
-            <button>Back</button>
-            <button className="add-button">Add</button>
+            <p className="product-name">{props.product.product_name}</p>
+            <p className="product-price">Price: {props.product.price} $</p>
+            <button className="back-button-product" onClick={props.buttonAction}>Back</button>{" "}
+            <AddButton client_id={props.client_id} product_id={props.product.product_id}/>
           </div>
         </div>
-        <p className="product-description"> {productsArr.desc} </p>
-
+        <p className="product-description"> {props.product.product_description} </p>
     </div>
   )
 };

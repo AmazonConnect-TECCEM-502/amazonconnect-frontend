@@ -1,46 +1,58 @@
+import { useContext, useState } from "react";
+import { ClientContext } from "../ClientCard/ClientProvider";
 import ProductCard from "./ProductCard";
-import { useState } from "react";
 import ProductList from "./ProductList";
 import ProductsCategoryList from "./ProductsCategoryList";
 
-const SalesMasterCard = (props) => {
+const SalesMasterCard = () => {
 
-    const ProductInfo = () => {
-        return (
-            <ProductCard
-                products={{
-                  internet: {
-                    image: "ejemploTelmex",
-                    name: "Internet plan",
-                    price: "100",
-                    desc: "Un plan de servicio de Internet con una velocidad de 50 megas.",
-                  },
-                  TV: {
-                    image: "ejemploTelmex",
-                    name: "TV plan",
-                    price: "150",
-                    desc: "Un plan de servicio de TV con 100 canales.",
-                  },
-                  mobile: {
-                    image: "ejemploTelmex",
-                    name: "Mobile roaming plan",
-                    price: "200",
-                    desc: "Un plan de datos celulares con un limite de consumo de ancho de banda de 1 gigabyte.",
-                  },
-                }}
-              />
-        );
+    const backend = "http://localhost:8080";
+    //const backend = "http://3.80.44.247:8080";
+
+    const [clientID, , , , , , , , , , , , , ] = useContext(ClientContext);
+
+    const Views = {
+      CATEGORIES : 1,
+      PRODUCTS : 2,
+      PRODUCT : 3
     };
 
-    const [stateKey, setStateKey] = useState();
-    
+    const [currentView, setCurrentView] = useState(Views.CATEGORIES);
+    const [currentCategory, setCurrentCategory] = useState();
+    const [currentProduct, setCurrentProduct] = useState();
 
-    return (
-        <div>
-            <p>Sales</p>
-        </div>
+    //const client_id = clientID;
+    const client_id = 1;
+    //console.log("CLIENT ID: " + client_id);
 
-    );
+    const goToProducts = async (category_id) => {
+      const productsData = await fetch(`${backend}/sales/getRecommendedProducts/${client_id}/${category_id}`);
+      const jsonProducts = await productsData.json();
+      setCurrentCategory(jsonProducts);
+      setCurrentView(Views.PRODUCTS);
+    };
+
+    const goToProduct = async (product_id) => {
+      const productData = await fetch(`${backend}/sales/getProduct/${product_id}`);
+      const jsonProduct = await productData.json();
+      setCurrentProduct(jsonProduct);
+      setCurrentView(Views.PRODUCT);
+    };
+
+    const backToProducts = () => {
+      setCurrentView(Views.PRODUCTS);
+    };
+
+    const backToCategories = () => {
+      setCurrentView(Views.CATEGORIES);
+    };
+
+    if (currentView === Views.CATEGORIES)
+      return (<ProductsCategoryList backend={backend} buttonAction={goToProducts}/>)
+    else if (currentView === Views.PRODUCTS)
+      return (<ProductList products={currentCategory} buttonAction={goToProduct} backAction={backToCategories}/>)
+    else if (currentView === Views.PRODUCT)
+      return (<ProductCard product={currentProduct} client_id={client_id} buttonAction={backToProducts}/>);
 };
 
 export default SalesMasterCard;

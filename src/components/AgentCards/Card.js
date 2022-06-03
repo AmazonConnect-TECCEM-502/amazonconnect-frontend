@@ -1,14 +1,11 @@
 /*
-  Authors:  Andrea
-            Benjamin
+  Authors:  Andrea Vianey Diaz Alvarez
+            José Benjamín Ruiz García
             Diego Armando Ulibarri Hernández
 
   Description: the card component is a container 
   for different components and can be dragged 
   between different boards
-
-  Creation date: *
-  Modiffied: *
 
   Usage: 
     id -> Unique identifier
@@ -24,29 +21,53 @@
 */
 import { Fragment } from "react";
 import { useContext } from "react";
-import { CardContext } from "./CardsProvider";
+import { AgentContext } from "../AgentView/AgentProvider";
 
 const Card = (props) => {
-  const [problem, , client, , , , , , product] = useContext(CardContext);
+  /** Contains the values ​​of the cards that are used in the agentView, 
+   * it helps us to see which ones are hidden at the beginning of the 
+   * application
+   */
+  const [ 
+    problem,,
+    client,,
+    ,,
+    product,,
+    recording,,
+    keyStroke,,
+    AC,,
+    ,,
+    qna,,
+    solutionCard,
+  ] = useContext(AgentContext);
 
+  /**
+   * When the dragStart event is triggered, the target is set to the id 
+   * of the element that triggered the event.
+   * @param e - The event object.
+   */
   const dragStart = (e) => {
-    // Change Paramater name
-    // Function Description
     const target = e.target;
     e.dataTransfer.setData("card_id", target.id);
   };
 
   const dragOver = (e) => {
-    // Change Paramete name
-    // Function Description
     e.stopPropagation();
   };
 
+  /* 
+    Setting the style of the card to display:none 
+    if the condition is met. 
+  */
   let cardStyle = { display: "block" };
   if (
     (props.id === "card-5" && !problem) ||
     (props.id === "card-4" && !client) ||
-    (props.id === "card-8" && !product)
+    (props.id === "card-8" && !product) ||
+    (props.id === "card-2" && !recording) ||
+    (props.id === "card-0" && !AC) ||
+    (props.id === "card-3" && !qna) ||
+    (props.id === "card-6" && !solutionCard)
   ) {
     cardStyle = { display: "none" };
   }

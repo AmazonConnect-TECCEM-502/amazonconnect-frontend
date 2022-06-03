@@ -9,59 +9,41 @@
   Usage: To create a ClientCard, you need to import this file
   and use the following line:
 
-  <ClientCard 
-    image = {name of the .jpg image} 
-    fname = {first name}
-    lname = {last name}
-    email = {email}
-    phone = {phone number} 
-  />
+  <ClientCard />
 */
 
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
-import { CardContext } from "../AgentCards/CardsProvider";
 import ClientForms from "./ClientForms";
-import ClientImage from "./ClientImage";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
-// import ClientQuestion from "./ClientQuestion";
+import ClientQuestion from "./ClientQuestion";
+import { ClientContext } from "./ClientProvider";
 
-const ClientCard = (props) => {
-  const [, , , , , setClientID] = useContext(CardContext);
+const ClientCard = () => {
+  const [ , setClientID, clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , setShowClient, , setShowError] = useContext(ClientContext);
 
-  const [lastNameClient, setLastNameClient] = useState("");
-  const [phoneClient, setPhoneClient] = useState("");
-  const [emailClient, setEmailClient] = useState("");
-  const [nameClient, setNameClient] = useState("");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(""); // AuthenticationType
+  const [products, setProducts] = useState([]);
+
+
+  useEffect( () => {
+    update();
+  }, []);
 
   const update = async () => {
-    console.log("Sacando valores ?? ...")
-    fetch('http://3.80.44.247:8080/vid/getAuthRes')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      console.log(data.phoneNumber)
-      setPhoneClient(data.phoneNumber)
-      showContent(data.authenticationType)
+    await axios.post('https://3.80.44.247:8443/vid/getAuthRes',{
+      "phoneNumber": clientPhone
+    })
+    .then(res => {
+      console.log(res.data.authenticationType)
+      showContent(res.data.authenticationType)
     })
     .catch(function(err) {
       console.log(err);
       showContent("not yet");
     });
   }
-
-  useEffect( () => {
-    update();
-    /* Possible modification
-    const interval = setInterval( () => {
-      update();
-    }, 25000)
-    
-    return () => clearInterval(interval)
-    */
-  });
 
   const showContent = (message) => {
     if(message === "authenticated"){
@@ -72,14 +54,15 @@ const ClientCard = (props) => {
   };
 
   const getClientData = async () => {
-    // fetch('http://3.80.44.247:8080/vid/getUserData?phone=' + phoneClient)
-    await fetch('http://3.80.44.247:8080/vid/getUserData')
-    .then(response => response.json())
-    .then(data => {
-      setClientID(data.client_id)
-      setNameClient(data.first_name)
-      setLastNameClient(data.last_name)
-      setEmailClient(data.email)
+    await axios.post('https://3.80.44.247:8443/vid/getUserData',{
+      "phoneNumber": clientPhone
+    })
+    .then(res => {
+      setClientID(res.data.userData.client_id)
+      setClientFname(res.data.userData.first_name)
+      setClientLname(res.data.userData.last_name)
+      setClientEmail(res.data.userData.email)
+      setProducts(res.data.userProducts)
     })
     .catch(function(err) {
       console.log(err);
@@ -89,10 +72,18 @@ const ClientCard = (props) => {
 
   const resetUserData = async () => {
     showContent("not yet");
-    await axios.post('http://3.80.44.247:8080/vid/reset',{
-      "message": "not yet"
+    setShowClient(false);
+    setShowError(false);
+    await axios.post('https://3.80.44.247:8443/vid/reset',{
+      "phoneNumber": clientPhone
     })
   };
+  
+  /*              DEBUG BUTTONS (Must be under line 94)
+  <button onClick={() => showContent("authenticated")}> Card </button>
+  <button onClick={() => showContent("not enrolled")}> Forms </button>
+  <button onClick={() => showContent("not authenticated")}> Question </button>
+  */
 
   return (
     <div className="client">
@@ -100,29 +91,35 @@ const ClientCard = (props) => {
         //Show User Info
         (result === "authenticated") &&
         <Fragment>
-          <ClientImage image={props.image} />
-          <ClientName name={nameClient + ", " + lastNameClient} />
-          <ClientInfo text={emailClient} />
-          <ClientInfo text={phoneClient} />
+          <ClientName name={clientFname + ", " + clientLname} />
+          <ClientInfo text={clientEmail} />
+          <ClientInfo text={clientPhone} />
+          <br/><h2 className="subtitle">Acquired products</h2>
+          {
+            products.map((product) => (
+              <div className="element">
+                {product.product_name}
+              </div>
+            ))
+          }
         </Fragment>
       }
       {
         //Show Message error and form 
-        (result === "not enrolled") && (result === "opted out") &&  <ClientForms />
+        (result === "not enrolled") &&  <ClientForms />
       }
       {
         //Show verification question 
-        (result === "not authenticated" || result === "inconclusive") && 
-        // <ClientQuestion />
-        <h1> Client not authenticated or inconclusive </h1>
+        (result === "not authenticated" || result === "inconclusive" || result === "opted out") && 
+        <ClientQuestion />
       }
       {
         //Show no data error
         (result !== "authenticated") && (result !== "opted out") && (result !== "not enrolled") && (result !== "inconclusive")
         && (result !== "not authenticated") && <h1 className="title"> Data not recieved yet </h1>
       }
+      <button className="button-reset refresh" onClick={() => update()}> Refresh </button>
       <button className="button-reset" onClick={() => resetUserData()}> Reset values </button>
-      <button className="button-reset" onClick={() => update()}> Refresh </button>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import "../../style/Recordings/KeystrokeText.css"
 const KeystrokeText = (props) => {
-    return (
-      <div className="scroll">
-        <p>{props.text}</p>
-      </div>
-    );
-  };
+  return (
+    <div>
+      <p className="title">KeyStrokes</p>
+      <p>{props.text}</p>
+    </div>
+  );
+};
 
-  export default KeystrokeText;
+export default KeystrokeText;

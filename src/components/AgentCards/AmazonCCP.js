@@ -1,12 +1,31 @@
-import { Fragment } from "react";
+import React, { Component } from "react";
+import "amazon-connect-streams";
 
-const AmazonCCP = () => {
-    return (
-        <Fragment>
-            <h1>Contact Control Panel</h1>
-            <iframe src="https://3.80.211.101:8443" width="400px" height="500px" title="EMBED" />
-        </Fragment>
-    );
-};
+class AmazonCCP extends Component {
+    constructor(props) {
+        super(props);
+        this.containerDiv = React.createRef();
+    }
+
+    componentDidMount() {
+        connect.core.initCCP(this.containerDiv.current, {
+            ccpUrl: "https://tec2022bloqueaws.my.connect.aws/connect/ccp-v2/",
+            loginPopup: true,
+            region: "us-east-1",
+            softphone: {
+                allowFramedSoftphone: true
+            }
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>Contact Control Panel</h1>
+                <div style={{ height: "450px" }} ref={this.containerDiv} />
+            </div>
+        );
+    }
+}
 
 export default AmazonCCP;

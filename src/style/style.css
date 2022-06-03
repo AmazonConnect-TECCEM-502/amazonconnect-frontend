@@ -34,7 +34,16 @@
 @import url("./Recordings/Recordings.css");
 /* Manager View */
 @import url("./ManagerMain.css");
+@import url("./ManagerCards/ManagerProfile.css");
 /* Log In */
 @import url("./LogIn/LogIn.css");
 /* Settings*/
 @import url("./AgentCards/Settings.css");
+/* Themes */
+@import url("../Themes.css");
+/* Solutions */
+@import url("./AgentCards/Solution.css");
+/* Admin */
+@import url("./AdminCards/AdminCards.css");
+/* Verification Code */
+@import url("./LogIn/VerifCode.css");

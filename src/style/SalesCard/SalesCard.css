@@ -27,7 +27,7 @@ Description: Css file with the styles for Sales Card.
     margin-right: 8px;
     max-width: 150px;
 }
-.product-header button {
+.back-button-product {
     background-color: #0799E6;
     font-size: 16px;
     padding: 8px 16px;
@@ -38,8 +38,54 @@ Description: Css file with the styles for Sales Card.
     cursor: pointer;
     transition: .8s;
 }
-.product-header button:hover{
+.back-button-product:hover{
     background-color: #0463B9;
+    transition: .8s;
+}
+
+.back-button {
+    background-color: #0799E6;
+    font-size: 16px;
+    padding: 8px 16px;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .8s;
+}
+
+.product-header-add-button-UNUSED {
+    background-color: green;
+    font-size: 16px;
+    padding: 8px 16px;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .8s;
+}
+
+.product-header-add-button-UNUSED:hover{
+    background-color: #0eff12;
+    transition: .8s;
+}
+
+.product-header-add-button-USED {
+    background-color: gray;
+    font-size: 16px;
+    padding: 8px 16px;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .8s;
+}
+
+.product-header-add-button-USED:hover{
+    background-color: gray;
     transition: .8s;
 }
 
@@ -79,3 +125,4 @@ Description: Css file with the styles for Sales Card.
 .add-button{
     margin-right: 1em;
 }
+

@@ -4,17 +4,27 @@
   
   Description: Component to show a list with all the categories of the
   problem suggestions
+
+  Usage: 
+  <ProblemCategoryList />
 */
 
 import SearchBar from "./SearchBar";
 import { Fragment, useEffect, useState, useContext } from "react";
-import { CardContext } from "./CardsProvider";
+import { AgentContext } from "../AgentView/AgentProvider";
 
 const ProblemCategoryList = () => {
-  const [, , , , , , questions, setQuestions] = useContext(CardContext);
+  // setQuestions -> Method used to add the questions
+  // setQna -> Method used to display the Questions card
+  const [, , , , , setQuestions, , , , , , , , , , , , setQnA] =
+    useContext(AgentContext);
+
+  // Contains a List of problems
   const [problems, setProblems] = useState([]);
+  // Used to see which problem was selected
   const [activeLink, setActiveLink] = useState(0);
 
+  /* Fetching data from the server and adding it to problems */
   useEffect(() => {
     const fetchData = async () => {
       // const problemsData = await fetch('http://3.80.44.247:3000/problem/getProblemCategorys');
@@ -25,31 +35,29 @@ const ProblemCategoryList = () => {
 
       setProblems(jsonProblems);
     };
-
     fetchData();
   }, []);
 
+  /**
+   * It fetches the data from the API and sets the state of the questions.
+   * @param id - the id of the question
+   */
   const checkQnA = async (id) => {
-    const data = {
-      category_id: id,
-    };
-    console.log(JSON.stringify(data));
-
-    await fetch("http://localhost:8080/problem/postProblem", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    //const resultJSON = await result.json()
-
     const questionData = await fetch(
-      "http://localhost:8080/problem/getProblem"
+      `http://localhost:8080/problem/getProblem/${id}`
     );
     const jsonProblems = await questionData.json();
     setQuestions(jsonProblems);
-    console.log(questions);
+  };
+
+  /**
+   * When the user clicks the problem category, the QnA card will be
+   * displayed and the state of the QnA will be set to true.
+   */
+  const showQnA = () => {
+    const card = document.getElementById("card-3");
+    card.display = "block";
+    setQnA(true);
   };
 
   return (
@@ -64,9 +72,10 @@ const ProblemCategoryList = () => {
               className={
                 activeLink === problem.category_id && "categorys-active"
               }
-              onClick={() => {
+              onClick={async () => {
                 setActiveLink(problem.category_id);
-                checkQnA(problem.category_id);
+                await checkQnA(problem.category_id);
+                showQnA();
               }}
             >
               {problem.category_name}

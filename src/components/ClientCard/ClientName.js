@@ -14,7 +14,7 @@
 const ClientName = (props) => {
   return (
     <div className="client-name">
-      <p>{props.name}</p>
+      <p>{"Client name: " + props.name}</p>
     </div>
   );
 };
