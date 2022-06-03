@@ -95,6 +95,9 @@ const LogIn = () => {
               onChange={changePasswordValue}
             />
             <button className="forget"> Did you forget your password?</button>
+            <button className="forget" onClick={() => navigate("/verifCode")}>
+              I have a verification code
+            </button>
             <button
               className="buttonSignIn"
               onClick={() => login(email, password)}
