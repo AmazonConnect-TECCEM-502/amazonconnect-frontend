@@ -14,12 +14,10 @@
 
 import axios from "axios";
 import { Fragment, useContext, useState } from "react";
-import ClientInfo from "./ClientInfo";
-import ClientName from "./ClientName";
 import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
-  const [ , , clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError] = useContext(ClientContext);
+  const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError] = useContext(ClientContext);
 
   const [inputEmail, setInputEmail] = useState("");
 
@@ -35,7 +33,11 @@ const ClientQuestion = (props) => {
       setClientFname(res.data.first_name);
       setClientLname(res.data.last_name);
       setClientEmail(res.data.email);
-      if (res.data.email === inputEmail) {
+      if (res.data.email === inputEmail) {    
+        await axios.post("https://3.80.44.247:8443/vid/sendAuthRes", {
+          phoneNumber: clientPhone,
+          authenticationType: "authenticated"
+        });
         setShowClient(true);
       } else {
         setShowError(true);
@@ -70,11 +72,7 @@ const ClientQuestion = (props) => {
         </Fragment>
       )}
       {showClient && (
-        <Fragment>
-          <ClientName name={clientFname + ", " + clientLname} />
-          <ClientInfo text={clientEmail} />
-          <ClientInfo text={clientPhone} />
-        </Fragment>
+        <h2 className="subtitle"> Client authenticated </h2>
       )}
     </div>
   );

@@ -14,9 +14,6 @@
 
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
-import ClientCard from "./ClientCard";
-import ClientInfo from "./ClientInfo";
-import ClientName from "./ClientName";
 import { ClientContext } from "./ClientProvider";
 
 const ClientForms = (props) => {
