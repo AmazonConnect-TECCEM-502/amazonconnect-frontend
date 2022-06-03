@@ -17,6 +17,7 @@ import AdminSettings from "./components/AdminViews/AdminSettings";
 import AdminProfile from "./components/AdminViews/AdminProfile";
 import AdminConfiguration from "./components/AdminViews/AdminConfiguration";
 import ManagerCalls from "./components/ManagerViews/Calls";
+import VerifCode from "./components/LogIn/VerifCode";
 
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
@@ -32,6 +33,7 @@ function App() {
     <div className="App" data-theme={theme}>
       <Routes>
         <Route path="/" element={<LogIn />} />
+        <Route path="/verifCode" element={<VerifCode />} />
         <Route path="/agent/home" element={<AgentMain />} />
         <Route path="/agent/statics" element={<AgentStatics />} />
         <Route path="/agent/capacitations" element={<AgentCapacitation />} />

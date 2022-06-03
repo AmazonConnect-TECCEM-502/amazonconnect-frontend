@@ -44,4 +44,6 @@
 /* Solutions */
 @import url("./AgentCards/Solution.css");
 /* Admin */
-@import url("./AdminCards/AdminCards.css")
+@import url("./AdminCards/AdminCards.css");
+/* Verification Code */
+@import url("./LogIn/VerifCode.css");
