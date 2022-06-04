@@ -1,4 +1,3 @@
-import NavBarManager from "../NavBar/NavBarManager";
 import Card from "../AgentCards/Card";
 import AgentProvider from "../AgentView/AgentProvider";
 import Settings from "../AgentCards/Setting";
@@ -8,7 +7,6 @@ function ManagerSettings(props) {
   return (
     <div>
       <AgentProvider>
-        <NavBarManager />
         <div className="user-settings">
           <Card id="" draggable="" component={<Settings />} />
         </div>

@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from "react";
-import NavBarAdmin from "../NavBar/NavBarAdmin";
 import NotLoggedIn from "../LogIn/NotLoggedIn";
 
 function AdminMain() {
@@ -25,7 +24,6 @@ function AdminMain() {
     <Fragment>
       {(token !== "") & (user_type === "admin") && (
         <Fragment>
-          <NavBarAdmin />
           <div className="manager-container">
             <h1>Welcome home,</h1>
             <h1>{name}</h1>

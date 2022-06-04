@@ -34,7 +34,7 @@ const Card = (props) => {
     ,,
     product,,
     recording,,
-    keyStroke,,
+    ,,
     AC,,
     ,,
     qna,,

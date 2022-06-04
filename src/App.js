@@ -21,6 +21,7 @@ import VerifCode from "./components/LogIn/VerifCode";
 
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <div className="App" data-theme={theme}>
+      <NavBar />
       <Routes>
         <Route path="/" element={<LogIn />} />
         <Route path="/verifCode" element={<VerifCode />} />

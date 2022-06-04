@@ -5,7 +5,7 @@ Dropdown menu style sheet
 */
 
 .dropdown-menu {
-  width: 100px;
+  min-width: 100px;
   background-color: #fff;
   box-shadow: 0 0 4px rgba(0, 0, 0, 50%);
   height: 80px;
@@ -43,6 +43,31 @@ Dropdown menu style sheet
 .dropdown-menu a:hover {
   background-color: rgba(0, 0, 0, 5%);
 }
+
+
+.dropdown-menu-themes{
+  min-width: 100px;
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 50%);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin: 5px 0 0 0;
+  padding: 8px;
+  right: 8px;
+  border-radius: 8px;
+  z-index: 1;
+}
+.dropdown-menu-themes a{
+  line-height: 32px;
+  border-bottom: 1px solid #000;
+}
+.dropdown-menu-themes a:hover {
+  background-color: rgba(0, 0, 0, 5%);
+  cursor: pointer;
+}
+
+
 .nav-links {
   color: var(--text-primary);
   text-decoration: none;

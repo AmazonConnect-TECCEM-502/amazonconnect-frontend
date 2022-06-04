@@ -1,4 +1,3 @@
-import NavBarAdmin from "../NavBar/NavBarAdmin";
 import Card from "../AgentCards/Card";
 import AgentProvider from "../AgentView/AgentProvider";
 import Settings from "../AgentCards/Setting";
@@ -8,7 +7,6 @@ function AdminSettings(props) {
   return (
     <div>
       <AgentProvider>
-        <NavBarAdmin />
         <div className="user-settings">
           <Card id="" draggable="" component={<Settings />} />
         </div>

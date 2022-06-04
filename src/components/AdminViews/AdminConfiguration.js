@@ -4,7 +4,6 @@
 */
 import AgentBoard from "../AgentCards/AgentBoard";
 import MenuConfiguration from "../Menu/MenuConfiguration";
-import NavBarAdmin from "../NavBar/NavBarAdmin";
 import NewProduct from "../AdminCards/NewProduct";
 import AdminCard from "../AdminCards/AdminCard";
 import AdminCardProvider from "../AdminCards/AdminCardProvider";
@@ -24,7 +23,6 @@ function AdminConfiguration() {
     <AdminCardProvider>
       <AdminContextProvider>
         <ClientProvider>
-          <NavBarAdmin />
           <div className="agent-container admin">
             <AgentBoard id="board-1" className="board board-menu">
               <AdminCard

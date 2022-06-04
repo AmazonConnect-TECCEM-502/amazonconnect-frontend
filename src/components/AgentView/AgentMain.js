@@ -15,7 +15,6 @@ import QuestionList from "../AgentCards/QuestionList";
 import ClientCard from "../ClientCard/ClientCard";
 import ProblemCategoryList from "../AgentCards/ProblemCategoryList";
 import AnswerList from "../AgentCards/AnswerList";
-import NavBar from "../NavBar/NavBar";
 import AgentProvider from "./AgentProvider";
 import KeystrokeRecording from "../Recordings/KeystrokeRecording";
 import SalesMasterCard from "../SalesCard/SalesMasterCard";
@@ -51,14 +50,13 @@ function AgentMain() {
     <AgentProvider>
       <ClientProvider>
         {modal && <AddSolutionModal addSolution={addNewSolution} />}
-        <NavBar />
         <div className="agent-container">
           <AgentBoard id="board-1" className="board board-menu">
             <Card id="card-1" draggable="false" component={<Menu />} />
-            <Card id="card-2" draggable="false" component={<Recording />} />
+            <Card id="card-2" draggable="true" component={<Recording />} />
             <Card
               id="card-7"
-              draggable="false"
+              draggable="true"
               component={<KeystrokeRecording />}
             />
             <Card id="card-0" draggable="false" component={<AmazonCCP />} />
