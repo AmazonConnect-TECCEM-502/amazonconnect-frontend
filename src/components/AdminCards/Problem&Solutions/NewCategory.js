@@ -46,7 +46,7 @@ const NewCategory = (props) => {
         <p>Description: </p>
         <input className="user-ID" type="text" name="Description" onChange={changeDescription}/>
         <br />
-        <button className="buttonSubmit" onClick={CreateCategory}> Submit </button>
+        <button className="btn-main" onClick={CreateCategory}> Submit </button>
       </div>
     </Fragment>
   );

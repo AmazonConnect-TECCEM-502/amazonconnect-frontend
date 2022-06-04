@@ -36,7 +36,6 @@ const ClientCard = () => {
       "phoneNumber": clientPhone
     })
     .then(res => {
-      console.log(res.data.authenticationType)
       showContent(res.data.authenticationType)
     })
     .catch(function(err) {

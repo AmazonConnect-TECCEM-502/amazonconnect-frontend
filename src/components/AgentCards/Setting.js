@@ -19,15 +19,67 @@ const Settings = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState("");
+  const [img, setImg] = useState("");
+  const [Displayimg, setDisplayImg] = useState("");
+  const [useImage,setUseImage] = useState(false);
+
+        const imageSource = async () =>{
+            const res = await fetch("https://images-texmex-users-2-0.s3.amazonaws.com/"+ userId +".jpg");
+            const data = await res.status;
+            console.log(data)
+
+          if (data === 200){
+            console.log("Se encontro la imagen que buscas")
+            setDisplayImg("https://images-texmex-users-2-0.s3.amazonaws.com/"+ userId +".jpg")
+
+          }else{
+            console.log("Tu imagen no existe")
+            setDisplayImg("https://images-texmex-users-2-0.s3.amazonaws.com/NoImage.jpg")
+          }
+        }
+        var dataUriNoState = "";
+        
+        const getImageD =  async (file) => {
+          setUseImage(true)
+          if (file){
+
+          }
+          const fileToDataUri = (file) => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              resolve(event.target.result)
+            };
+            reader.readAsDataURL(file);
+            })
+
+          await fileToDataUri(file)
+            .then((fileb64) => {
+              dataUriNoState = fileb64.split(',')[1].toString()
+            })
+            
+              console.log("dataUriNoState " ,dataUriNoState)
+
+          const base64 = dataUriNoState
+          var binary_string = window.atob(base64);
+          var len = binary_string.length;
+          var bytes = new Uint8Array(len);
+          for (var i = 0; i < len; i++) {
+            bytes[i] = binary_string.charCodeAt(i); //infomracion en BIN
+          }
+          console.log(bytes.buffer)
+          setImg(bytes.buffer)
+
+      }
 
   //Request to back end to get the info of X user
   const getClientData = async () => {
-    const json = { user_id: 14 }; // Cambiar el numero por el valor real del usuario
+    const user_id = localStorage.getItem("user_id");
+    const token = localStorage.getItem("token");
+    const header = new Headers({ Authorization: token, "Content-Type": "application/json"});
+    const json = { user_id: user_id }; // Cambiar el numero por el valor real del usuario
     await fetch("http://localhost:8080/suc/userData", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: header,
       body: JSON.stringify(json),
     })
       .then((response) => response.json())
@@ -44,6 +96,7 @@ const Settings = () => {
   };
   useEffect(() => {
     getClientData();
+    imageSource();
   });
 
   const navigate = useNavigate();
@@ -60,27 +113,66 @@ const Settings = () => {
 
   //Send new data to the back end
   const sendNewName = async () => {
+    const token = localStorage.getItem("token");
+    const header = new Headers({ Authorization: token, "Content-Type": "application/json"});
     await axios.post("http://localhost:8080/suc/changeName", {
       user_id: 14, //Modificar No siempre tiene que ser 14
       first_name: nuevoFirstName,
       last_name: nuevoLastName,
+      headers:header
     });
+  };
+
+  //sendFile();
+  const getUrl = async () => {
+    console.log("img:",img)
+    const file = new File([img], userId, {type: 'image/jpg', lastModified:Date.now()})
+
+    const response = await axios({
+      url:'https://g6fpu8h62l.execute-api.us-east-1.amazonaws.com/default/image-user-lamda-2-0?pet='+userId,
+      method: 'GET'
+    });
+    console.log(response.data)
+    
+    
+    if (response.status === 200) {
+      const uploaded = await fetch(response.data.uploadURL, {
+        method: "PUT",
+        body: file,
+      });
+      if (uploaded.status === 200) {
+        console.log("Imagen subida a S3");
+      } else {
+        console.log("Error al subir imagen");
+      }
+    } else {
+      console.log("Error al obtener el link de subida");
+    }
   };
 
   //Navegate button
   const callFunctions = () => {
     sendNewName();
-    navigate("/agent/profile");
+        if (useImage){
+
+          getUrl();
+        }
+        
+        navigate("/agent/profile");
   };
   return (
     <Fragment>
       <div className="profile-info">
         <div style={{ display: "flex", alignItems: "center" }}>
-          <img
-            src="https://experiencia21.tec.mx/users/221/files/4808076/preview?verifier=trAIuyGaUvXXaoLmpScp3A2GU9IkVMiBCpu6HNOc"
+          <p><img
+            src={Displayimg}
             alt="Profile"
           />
+          <input type="file" accept=".jpg" alt="login" onChange={(event) => getImageD(event.target.files[0])} />
+          
+          </p>
         </div>
+        
         <div className="person-info">
           <p className="agent-title" style={{ marginBottom: "3px" }}>
             <UserInfo text={firstName + " " + lastName} />

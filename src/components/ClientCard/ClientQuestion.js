@@ -14,12 +14,10 @@
 
 import axios from "axios";
 import { Fragment, useContext, useState } from "react";
-import ClientInfo from "./ClientInfo";
-import ClientName from "./ClientName";
 import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
-  const [ , , clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError] = useContext(ClientContext);
+  const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError] = useContext(ClientContext);
 
   const [inputEmail, setInputEmail] = useState("");
 
@@ -32,10 +30,11 @@ const ClientQuestion = (props) => {
       "phoneNumber": clientPhone
     })
     .then(res => {
-      setClientFname(res.data.first_name);
-      setClientLname(res.data.last_name);
-      setClientEmail(res.data.email);
-      if (res.data.email === inputEmail) {
+      setClientFname(res.data.userData.first_name);
+      setClientLname(res.data.userData.last_name);
+      setClientEmail(res.data.userData.email);
+      if (res.data.userData.email === inputEmail) {    
+        sendAuth();
         setShowClient(true);
       } else {
         setShowError(true);
@@ -45,6 +44,13 @@ const ClientQuestion = (props) => {
       console.log(err);
     });
   };
+
+  const sendAuth = async () => {
+    await axios.post("https://3.80.44.247:8443/vid/sendAuthRes", {
+      phoneNumber: clientPhone,
+      authenticationType: "authenticated"
+    });
+  }
 
   return (
     <div className="client">
@@ -65,17 +71,11 @@ const ClientQuestion = (props) => {
               }
             </label>
           </div>
-          {showError && <h1> Authentication failed, please try again </h1>}
+          {showError && <h2 className="subtitle"> Authentication failed, please try again </h2>}
           <button className="button" onClick={getClientData}> Submit </button>
         </Fragment>
       )}
-      {showClient && (
-        <Fragment>
-          <ClientName name={clientFname + ", " + clientLname} />
-          <ClientInfo text={clientEmail} />
-          <ClientInfo text={clientPhone} />
-        </Fragment>
-      )}
+      {showClient && <h2 className="subtitle"> Client authenticated </h2>}
     </div>
   );
 };

@@ -14,8 +14,6 @@
 
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
-import ClientInfo from "./ClientInfo";
-import ClientName from "./ClientName";
 import { ClientContext } from "./ClientProvider";
 
 const ClientForms = (props) => {
@@ -45,6 +43,10 @@ const ClientForms = (props) => {
       last_name: clientLname,
       email: clientEmail,
       phone: clientPhone,
+    });
+    await axios.post("https://3.80.44.247:8443/vid/sendAuthRes", {
+      phoneNumber: clientPhone,
+      authenticationType: "authenticated"
     });
     setShowClient(true);
   };
@@ -115,19 +117,10 @@ const ClientForms = (props) => {
               )}
             </label>
           </div>
-          <button className="btn-main" onClick={() => postNewClient()}>
-            {" "}
-            Register{" "}
-          </button>
+          <button className="btn-main" onClick={() => postNewClient()}> Register </button>
         </Fragment>
       )}
-      {showClient && (
-        <Fragment>
-          <ClientName name={clientFname + ", " + clientLname} />
-          <ClientInfo text={clientEmail} />
-          <ClientInfo text={clientPhone} />
-        </Fragment>
-      )}
+      {showClient && <h2 className="subtitle"> Client registered </h2>}
     </div>
   );
 };
