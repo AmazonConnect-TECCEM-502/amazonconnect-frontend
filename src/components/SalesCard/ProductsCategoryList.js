@@ -2,7 +2,7 @@ import SearchBar from "../AgentCards/SearchBar";
 import { Fragment, useEffect, useState } from "react";
 
 const ProductsCategoryList = (props) => {
-  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   // useEffect will be used so before the component is created it fetch the data from our back
   useEffect(() => {
@@ -11,7 +11,7 @@ const ProductsCategoryList = (props) => {
       const productsData = await fetch(`${props.backend}/sales/getProductCategories`);
       const jsonProducts = await productsData.json();
 
-      setProducts(jsonProducts);
+      setCategories(jsonProducts);
     };
     fetchData();
   }, []);
@@ -20,16 +20,16 @@ const ProductsCategoryList = (props) => {
     <Fragment>
       <p className="title"> Products by category</p>
       <SearchBar SearchType="preguntas" />
-      {products.map((product) => {
+      {categories.map((category) => {
         return (
-          <div className="categorys">
+          <div className="categorys" key={category.category_id}>
             <button
               type="text"
               onClick={() => {
-                props.buttonAction(product.category_id);
+                props.buttonAction(category.category_id);
               }}
             >
-              {product.category_name}
+              {category.category_name}
             </button>
           </div>
         );

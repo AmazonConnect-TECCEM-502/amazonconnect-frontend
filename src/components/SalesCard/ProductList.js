@@ -9,7 +9,7 @@ const ProductList = (props) => {
       <SearchBar SearchType="preguntas" />
       {props.products.map(product => {
         return(
-          <div className="categorys">
+          <div className="categorys" key={product.product_id}>
             <button type="text" onClick={() => {props.buttonAction(product.product_id)}}>{product.product_name}</button>
           </div>
         )
