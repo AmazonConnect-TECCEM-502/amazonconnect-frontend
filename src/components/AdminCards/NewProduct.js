@@ -17,7 +17,6 @@ const NewProduct = (props) => {
 
 
     const createProduct = async () => {
-      //await getUrl();
       if ((sku && name && description && price && stock && category) !== ''){
       const request_options = {
         method: 'POST',
@@ -30,8 +29,9 @@ const NewProduct = (props) => {
           stock: stock.toString(),
           category: category.toString()
         })};
-     //await fetch(`http://localhost:8080/sales/createProduct`, request_options);
-      const card = document.getElementById("card-6");
+      await fetch(`http://localhost:8080/sales/createProduct`, request_options);
+      await getUrl();
+      const card = document.getElementById("card-8");
       card.style.display = "none";
       toast.success("New Product created")
     }else{
@@ -71,10 +71,6 @@ const NewProduct = (props) => {
       setCategory(event.target.value);
     };
 
-    const changeImage = (event) => {
-      setImage(event.target.value);
-    };
-
     var dataUriNoState = "";
 
 
@@ -98,7 +94,6 @@ const NewProduct = (props) => {
         })
         
           console.log("dataUriNoState " ,dataUriNoState)
-          axios.post("http://localhost:8080/sales/print", {"dataUriNoState": dataUriNoState})
 
       const base64 = dataUriNoState
       var binary_string = window.atob(base64);
@@ -108,27 +103,21 @@ const NewProduct = (props) => {
         bytes[i] = binary_string.charCodeAt(i); //infomracion en BIN
       }
       console.log(bytes.buffer)
-      axios.post("http://localhost:8080/sales/print", {"bytes.buffer": bytes.buffer})
-
       setImage(bytes.buffer)
 
   }
 
   const getUrl = async () => {
-    if (useImage) {
-      const userID = sku;
+    if (useImage && sku.length !== 0) {
+    
     console.log("img:",image)
-    axios.post("http://localhost:8080/sales/print", {"img": image})
-
-    const file = new File([image], userID, {type: 'image/jpg', lastModified:Date.now()})
+    const file = new File([image], sku, {type: 'image/jpg', lastModified:Date.now()})
 
     const response = await axios({
-      url:'https://g6fpu8h62l.execute-api.us-east-1.amazonaws.com/default/image-user-lamda-2-0?pet='+sku,
+      url:'https://g6fpu8h62l.execute-api.us-east-1.amazonaws.com/default/image-user-lamda-2-0?pet=sales/'+sku,
       method: 'GET'
     });
     console.log(response.data)
-    axios.post("http://localhost:8080/sales/print", {"response.data": response.data})
-
     
     
     if (response.status === 200) {
@@ -138,17 +127,11 @@ const NewProduct = (props) => {
       });
       if (uploaded.status === 200) {
         console.log("Imagen subida a S3");
-        axios.post("http://localhost:8080/sales/print", {"message":"Imagen subida a S3"})
-
       } else {
         console.log("Error al subir imagen");
-        axios.post("http://localhost:8080/sales/print", {"message":"Error al subir imagen"})
-
       }
     } else {
       console.log("Error al obtener el link de subida");
-      axios.post("http://localhost:8080/sales/print", {"message":"Error al obtener el link de subida"})
-
     }
   }};
 

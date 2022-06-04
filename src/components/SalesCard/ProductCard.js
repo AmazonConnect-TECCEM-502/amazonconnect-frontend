@@ -2,7 +2,6 @@ import AddButton from "./addButton";
 import ProductImage from "./ProductImage";
 
 const ProductCard = (props) => {
-
   return(
     <div className="product-card">
         <div className="product-header">
