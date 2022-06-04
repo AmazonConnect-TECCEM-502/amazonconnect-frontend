@@ -19,9 +19,9 @@ const NewProduct = (props) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          sku: sku.toString(),
-          name: name.toString(),
-          description: description.toString(),
+          product_sku: sku.toString(),
+          product_name: name.toString(),
+          product_description: description.toString(),
           price: price.toString(),
           stock: stock.toString(),
           category: category.toString()
