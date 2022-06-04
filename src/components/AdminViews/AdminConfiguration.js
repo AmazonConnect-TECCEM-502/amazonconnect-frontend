@@ -17,6 +17,7 @@ import NewProblem from "../AdminCards/Problem&Solutions/NewProblem";
 import NewSolution from "../AdminCards/Problem&Solutions/NewSolution";
 import NewUser from "../AdminCards/NewUser";
 import NewCategory from "../AdminCards/Problem&Solutions/NewCategory";
+import AdminCategoriesList from "../AdminCards/Problem&Solutions/AdminCategoriesList";
 
 function AdminConfiguration() {
   return (
@@ -59,6 +60,11 @@ function AdminConfiguration() {
             <AgentBoard id="board-3" className="board">
               <AdminCard
                 id="card-5"
+                draggable="true"
+                component={<AdminCategoriesList />}
+              />
+              <AdminCard
+                id="card-15"
                 draggable="true"
                 component={<AdminProblemList />}
               />

@@ -8,7 +8,7 @@ export const AdminCardContext = createContext();
 
 const AdminCardProvider = ({children}) => {
   const [nqna, setnqna] = useState(false); // New Problem and Solution card
-  const [uqna, setuqna] = useState(false); // Update Problem and Solution card
+  const [uc, setc] = useState(false); // Categories card
   const [nu, setnu] = useState(false); // New user card
   const [np, setnp] = useState(false); // New product card
   const [up, setup] = useState(false); // Update product card
@@ -17,14 +17,15 @@ const AdminCardProvider = ({children}) => {
   const [csol, setcsol] = useState(false) // Solutions card
   const [na,setna] = useState(false); // New solution card
   const [ap, setap] = useState(false); //Update Proposal Card
+  const [uq, setuq] = useState(false); //Problems card 
 
   return (
     <AdminCardContext.Provider
       value={[
         nqna,
         setnqna,
-        uqna,
-        setuqna,
+        uc,
+        setc,
         nu,
         setnu,
         np,
@@ -40,7 +41,9 @@ const AdminCardProvider = ({children}) => {
         na,
         setna,
         ap,
-        setap
+        setap,
+        uq,
+        setuq
       ]}>
       {children}
     </AdminCardContext.Provider>

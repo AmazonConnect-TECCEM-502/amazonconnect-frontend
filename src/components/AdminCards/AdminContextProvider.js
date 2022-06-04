@@ -8,9 +8,11 @@ export const AdminContext = createContext();
 const AdminContextProvider = ({children}) => {
   const [arrsolutions, setSolutions] = useState([]); //Array with all the solutions of one problem id
   const [preg_id, setPreg_id] = useState([]); // Problem id 
-  const [categories, setCategories] = useState([]);
-  const [proposals, setProposals] = useState([]);
-  const [arrpreguntas, setPreguntas] = useState([]);
+  const [categories, setCategories] = useState([]); //Array with all the problem categories
+  const [proposals, setProposals] = useState([]); // Array with all the proposals
+  const [arrpreguntas, setPreguntas] = useState([]);//Array with all the problems
+  const [ProbDesc, setProbDesc]=useState([]); //Problem Description 
+  const [category, setCategory]=useState([]); 
 
   return (
     <AdminContext.Provider
@@ -24,7 +26,11 @@ const AdminContextProvider = ({children}) => {
         proposals,
         setProposals,
         arrpreguntas,
-        setPreguntas
+        setPreguntas,
+        ProbDesc,
+        setProbDesc,
+        category,
+        setCategory
       ]}>
       {children}
     </AdminContext.Provider>

@@ -3,7 +3,7 @@
   Description: Represent a Problem of the proposal list in the admin configuration.
   Functionalities: 
     - Change to Solutions Card after fetching all the approved solutions.
-    - Delete a Problem. (FALTA)
+    - Delete a Problem.
 
 */
 import { Fragment, useContext} from "react";
@@ -14,9 +14,10 @@ import { AdminContext } from "../AdminContextProvider";
 
 
 const AdminProblem = (props) => {
-  const [,setSolutions,,setPreg_id,,,,,,setPreguntas]= useContext(AdminContext);
+  const [,setSolutions,,setPreg_id,,,,,,setPreguntas,,setProbDesc]= useContext(AdminContext);
 
   const SolutionCard = async () => {
+    setProbDesc(props.text.toString())
     const card2 = document.getElementById("card-13");
     card2.style.display = "none"; //Hide New Solution Card if showing
     const card3 = document.getElementById("card-14");

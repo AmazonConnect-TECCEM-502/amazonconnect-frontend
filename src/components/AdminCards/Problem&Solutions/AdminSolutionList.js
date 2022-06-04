@@ -12,7 +12,7 @@ import { AdminContext } from "../AdminContextProvider";
 import AdminSolution from "./AdminSolution";
 
 const AdminSolutionList = (props) => {
-  const [arrsolutions,,preg_id,,,,,setProposals] =useContext(AdminContext);
+  const [arrsolutions,,preg_id,,,,,setProposals,,,ProbDesc] =useContext(AdminContext);
 
   const close = () => {
     //Listen to the click of "close" button
@@ -45,7 +45,8 @@ const AdminSolutionList = (props) => {
     <Fragment>
       <CgCloseR name="close-button" className="icon-buttons closebutton" onClick={close} size={20}></CgCloseR>
       <div className="title">
-        <p>Update Solutions</p>
+        <p>{ProbDesc}</p>
+        <p>Solutions</p>
       </div>
       <button className="forget" onClick={CreateSolution}>
         Add new solution
@@ -60,7 +61,7 @@ const AdminSolutionList = (props) => {
             sol_id={solution.solution_id}
           />
         ))}
-        {arrsolutions.length === 0 && <p>No hay registros</p>}
+        {arrsolutions.length === 0 && <p>No Solutions</p>}
       </div>
     </Fragment>
   );

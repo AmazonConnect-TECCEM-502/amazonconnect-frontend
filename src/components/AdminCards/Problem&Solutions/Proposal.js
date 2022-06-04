@@ -44,7 +44,7 @@ const Proposal = (props) => {
     const card = document.getElementById("card-14");
     card.style.display = "none";
     const card2 = document.getElementById("card-12");
-    card2.style.display = "block";
+    card2.style.display = "none";
   }
 
   return (

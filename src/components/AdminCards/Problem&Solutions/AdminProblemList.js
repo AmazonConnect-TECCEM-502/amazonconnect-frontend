@@ -5,29 +5,29 @@
 import { Fragment, useContext, useEffect} from "react";
 import { AdminContext } from "../AdminContextProvider";
 import AdminProblem from "./AdminProblem";
+import {CgCloseR} from "react-icons/cg"
 
 
 const AdminProblemList = (props) => {
-  const [,,,,,,,,arrpreguntas,setPreguntas]= useContext(AdminContext);
+  const [,,,,,,,,arrpreguntas,,,,category]= useContext(AdminContext);
 
-  useEffect(() => {
-    console.log("Descargando datos...");
-    fetch("http://localhost:8080/problem/getProblemid")
-      .then((response) => response.json())
-      .then((data) => {
-        const preguntas = data;
-        setPreguntas(preguntas);
-      })
-  }, []);
+  const close = () =>{
+    const card = document.getElementById("card-15");
+    card.style.display = "none";
+  }
 
   return (
     <Fragment>
-      <p className="title"> Update Problem Solutions </p>
+      <CgCloseR name="close-button" className="icon-buttons closebutton" onClick={close} size={20}></CgCloseR>
+      <div className="title">
+        <p> {category} </p>
+        <p> Problems </p>
+      </div>
       <div className="container-questions">
         {arrpreguntas.map((pregunta) => (
-          <AdminProblem text={pregunta.question} problem_id={pregunta.ID} />
+          <AdminProblem text={pregunta.problem_description} problem_id={pregunta.problem_id} />
         ))}
-        {arrpreguntas.length === 0 && <p>No hay registros</p>}
+        {arrpreguntas.length === 0 && <p>No Problems</p>}
       </div>
     </Fragment>
   );

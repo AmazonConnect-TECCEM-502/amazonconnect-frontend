@@ -8,7 +8,7 @@ import { AdminContext } from "../AdminContextProvider";
 import Proposal from "./Proposal";
 
 const ProposalsList = (props) => {
-  const [,,,,,,proposals,]= useContext(AdminContext);
+  const [,,,,,,proposals,,,,ProbDesc]= useContext(AdminContext);
 
   const close = () => {
     //Listen to the click of "close" button
@@ -22,7 +22,8 @@ const ProposalsList = (props) => {
       <Fragment>
         <CgCloseR className="icon-buttons closebutton" onClick={close} size={20}></CgCloseR>
         <div className="title">
-          <p>User Proposals</p>
+          <p>{ProbDesc}</p>
+          <p>Proposals</p>
         </div>
         <div className="container-questions">
           {proposals.map((proposal) => (
@@ -31,7 +32,7 @@ const ProposalsList = (props) => {
               proposal_id={proposal.solution_id}
             />
           ))}
-          {proposals.length === 0 && <p>No Records</p>}
+          {proposals.length === 0 && <p>No Proposals</p>}
         </div>
       </Fragment>
     );
