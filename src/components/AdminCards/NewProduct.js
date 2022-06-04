@@ -17,7 +17,7 @@ const NewProduct = (props) => {
 
 
     const createProduct = async () => {
-      if ((sku && name && description && price && stock && category) !== ''){
+      if (((sku && name && description && price && stock && category) !== '') && image){
       const request_options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -29,11 +29,16 @@ const NewProduct = (props) => {
           stock: stock.toString(),
           category: category.toString()
         })};
-      await fetch(`http://localhost:8080/sales/createProduct`, request_options);
-      await getUrl();
-      const card = document.getElementById("card-8");
-      card.style.display = "none";
-      toast.success("New Product created")
+      const response = await fetch(`http://localhost:8080/sales/createProduct`, request_options);
+      if (response.status === 400) {
+        toast.error("A product with this sku already exists")
+      }
+      else {
+        await getUrl();
+        const card = document.getElementById("card-8");
+        card.style.display = "none";
+        toast.success("New Product created")
+      }
     }else{
       toast.error("All fields must be filled")
     }
