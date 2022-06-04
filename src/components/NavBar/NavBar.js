@@ -9,25 +9,19 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
+import ThemeOptions from "../AgentCards/ThemeOptions";
 
-const NavBar = () => {
+const NavBar = (props) => {
   const [userPopup, setUserPopup] = useState(false);
-
+  const [userPopupThemes, setUserPopupThemes] = useState(false);
+  const user_type = localStorage.getItem("user_type");
+  var nav = [];
+  
   useEffect(() => {
     document.body.addEventListener("click", userPopupState);
   });
-
-  const userPopupState = (event) => {
-    event.stopPropagation();
-    if(userPopup && !event.target.closest("#u-settings")){
-      setUserPopup(false);
-    } else if(!userPopup && event.target.closest("#u-settings")){
-      setUserPopup(true);
-    }
-  };
-
-  const NavBarOptions = [
-    {
+  if(user_type === "agent"){
+    nav =[{
       title: "Home",
       url: "/agent/home",
       cName: "nav-links",
@@ -41,15 +35,62 @@ const NavBar = () => {
       title: "Capacitations",
       url: "/agent/capacitations",
       cName: "nav-links",
+    }];
+  } else if(user_type === "manager"){
+    nav =[{
+      title: "Home",
+      url: "/manager/home",
+      cName: "nav-links",
     },
-  ];
+    {
+      title: "Overview",
+      url: "/manager/overview",
+      cName: "nav-links",
+    },
+    {
+      title: "Agent Dashboards",
+      url: "/manager/dashboard",
+      cName: "nav-links",
+    },
+    {
+      title: "Calls",
+      url: "/manager/calls",
+      cName: "nav-links",
+    }];
+  } else if(user_type === "admin"){
+    nav =[{
+      title: "Home",
+      url: "/admin/home",
+      cName: "nav-links",
+    },
+    {
+      title: "Configuration",
+      url: "/admin/configuration",
+      cName: "nav-links",
+    }];
+  }
+
+
+  const userPopupState = (event) => {
+    event.stopPropagation();
+    if(userPopup && !event.target.closest("#u-settings")){
+      setUserPopup(false);
+    } else if(!userPopup && event.target.closest("#u-settings")){
+      setUserPopup(true);
+    }
+    if(userPopupThemes && !event.target.closest("#u-themes")){
+      setUserPopupThemes(false);
+    } else if(!userPopupThemes && event.target.closest("#u-themes")){
+      setUserPopupThemes(true);
+    }
+  };
 
   return (
     <div>
       <nav className="navbar">
         <img src={require("../../images/TelmexLogo.jpg")} alt="logoTelmex" />
         <ul className="nav-menu">
-          {NavBarOptions.map((props, index) => {
+          {nav.map((props, index) => {
             return (
               <li>
                 <Link to={props.url} className={props.cName}>
@@ -58,12 +99,13 @@ const NavBar = () => {
               </li>
             );
           })}
-          <BsEye className="icons" />
+          <BsEye className="icons" id="u-themes" onClick={userPopupState}/>
 
           <AiOutlineUser id="u-settings" className="icons" onClick={userPopupState} />
         </ul>
       </nav>
       {userPopup && <DropDown />}
+      {userPopupThemes && <ThemeOptions newTheme={props.newTheme} />}
     </div>
   );
 };

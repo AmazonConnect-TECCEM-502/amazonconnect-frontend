@@ -21,6 +21,7 @@ import VerifCode from "./components/LogIn/VerifCode";
 
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <div className="App" data-theme={theme}>
+      <NavBar newTheme={getTheme}/>
       <Routes>
         <Route path="/" element={<LogIn />} />
         <Route path="/verifCode" element={<VerifCode />} />
@@ -49,7 +51,7 @@ function App() {
         <Route path="/manager/calls" element={<ManagerCalls />} />
         <Route
           path="/manager/settings"
-          element={<ManagerSettings newTheme={getTheme} />}
+          element={<ManagerSettings />}
         />
         <Route path="/manager/profile" element={<ManagerProfile />} />
 

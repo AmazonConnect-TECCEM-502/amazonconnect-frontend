@@ -26,6 +26,37 @@ const Recording = (props) => {
       });
       if (uploaded.status === 200) {
         console.log("Video subido a S3");
+        //console.log(uploaded.url)
+        const URLVideo = uploaded.url.split("?")[0].toString();
+        console.log(URLVideo) // URL video
+        const headers = new Headers({'ContentType': 'application/json'})
+
+        // Fecth // dato importe que tomar reponse.url para el fecth (recortar hasta el ?)
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+          "file": URLVideo
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+        };
+
+        fetch("http://localhost:8080/call/postVideoBD", requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+        /*
+        if (bdVideo.status === 200) {
+          console.log("Video subido a BD");
+          console.log( "El bdvideo es: " + bdVideo);
+          console.log( "El body es: " + bdVideo.body);
+        }else{
+          console.log("Error al subir el video a la BD");
+        }*/
       } else {
         console.log("Error al subir video");
       }

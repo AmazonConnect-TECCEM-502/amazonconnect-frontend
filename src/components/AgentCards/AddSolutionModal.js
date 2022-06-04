@@ -60,8 +60,8 @@ const AddSolutionModal = (props) => {
           id=""
           name="solution"
           placeholder="Write your solution..."
-          rows="30"
-          cols="50"
+          rows="20"
+          cols="60"
           onChange={textHandler}
         ></textarea>
         <br />
