@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="App" data-theme={theme}>
-      <NavBar />
+      <NavBar newTheme={getTheme}/>
       <Routes>
         <Route path="/" element={<LogIn />} />
         <Route path="/verifCode" element={<VerifCode />} />
@@ -51,7 +51,7 @@ function App() {
         <Route path="/manager/calls" element={<ManagerCalls />} />
         <Route
           path="/manager/settings"
-          element={<ManagerSettings newTheme={getTheme} />}
+          element={<ManagerSettings />}
         />
         <Route path="/manager/profile" element={<ManagerProfile />} />
 
