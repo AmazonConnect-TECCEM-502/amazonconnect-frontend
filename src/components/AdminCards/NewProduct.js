@@ -162,7 +162,6 @@ const NewProduct = (props) => {
                 })}
                 <p>Image: </p>
                 <input className="user-ID" type="file" name="Answer" onChange={(event) => getImageD(event.target.files[0])}/>
-                <button onClick={() => getUrl()} >upload</button>
                 <button className="btn-main" onClick={createProduct} > Submit </button>
            
           </div>
