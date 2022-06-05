@@ -2,8 +2,7 @@
   Authors: Andrea Vianey Diaz Alvarez
   Description: 
 */
-import { Fragment, useContext, useEffect, useState} from "react";
-import { AdminContext } from "../AdminContextProvider";
+import { Fragment, useEffect, useState} from "react";
 import AdminCategory from "./AdminCategory";
 
 

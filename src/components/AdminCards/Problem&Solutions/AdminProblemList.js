@@ -2,7 +2,7 @@
   Authors: Andrea Vianey Diaz Alvarez
   Description: Component that fetch all the problems for the update problem card.
 */
-import { Fragment, useContext, useEffect} from "react";
+import { Fragment, useContext} from "react";
 import { AdminContext } from "../AdminContextProvider";
 import AdminProblem from "./AdminProblem";
 import {CgCloseR} from "react-icons/cg"
