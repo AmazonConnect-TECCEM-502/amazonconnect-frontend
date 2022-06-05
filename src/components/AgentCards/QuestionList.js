@@ -96,9 +96,9 @@ const QuestionList = () => {
       />
 
       {searchTerm.length < 1
-        ? questions.map((question) => {
+        ? questions.map((question, index) => {
             return (
-              <div className="container-question">
+              <div key={index} className="container-question">
                 <p
                   className="question"
                   onClick={() =>
@@ -113,9 +113,9 @@ const QuestionList = () => {
               </div>
             );
           })
-        : searchResult.map((question) => {
+        : searchResult.map((question, index) => {
             return (
-              <div className="container-question">
+              <div key={index} className="container-question">
                 <p
                   className="question"
                   onClick={() =>

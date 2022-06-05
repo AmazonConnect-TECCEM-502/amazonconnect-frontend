@@ -20,6 +20,7 @@ const NavBar = (props) => {
   useEffect(() => {
     document.body.addEventListener("click", userPopupState);
   });
+
   if(user_type === "agent"){
     nav =[{
       title: "Home",
@@ -85,29 +86,33 @@ const NavBar = (props) => {
     }
   };
 
-  return (
-    <div>
-      <nav className="navbar">
-        <img src={require("../../images/TelmexLogo.jpg")} alt="logoTelmex" />
-        <ul className="nav-menu">
-          {nav.map((props, index) => {
-            return (
-              <li>
-                <Link to={props.url} className={props.cName}>
-                  {props.title}
-                </Link>
-              </li>
-            );
-          })}
-          <BsEye className="icons" id="u-themes" onClick={userPopupState}/>
+  if (nav.length === 0){
+    return <div></div>
+  }else {
+    return (
+      <div>
+        <nav className="navbar">
+          <img src={require("../../images/TelmexLogo.jpg")} alt="logoTelmex" />
+          <ul className="nav-menu">
+            {nav.map((props, index) => {
+              return (
+                <li key={index}>
+                  <Link to={props.url} className={props.cName}>
+                    {props.title}
+                  </Link>
+                </li>
+              );
+            })}
+            <BsEye className="icons" id="u-themes" onClick={userPopupState}/>
 
-          <AiOutlineUser id="u-settings" className="icons" onClick={userPopupState} />
-        </ul>
-      </nav>
-      {userPopup && <DropDown />}
-      {userPopupThemes && <ThemeOptions newTheme={props.newTheme} />}
-    </div>
-  );
+            <AiOutlineUser id="u-settings" className="icons" onClick={userPopupState} />
+          </ul>
+        </nav>
+        {userPopup && <DropDown />}
+        {userPopupThemes && <ThemeOptions newTheme={props.newTheme} />}
+      </div>
+    );
+  }
 };
 
 export default NavBar;

@@ -66,11 +66,11 @@ const VerifCode = () => {
               value={value}
             />
             &nbsp;&nbsp;
-            <button className="buttonSubmit" onClick={clearValue}>
+            <button className="btn-main" onClick={clearValue}>
               Clear
             </button>
           </div>
-          <button className="buttonSignIn" onClick={verify}>
+          <button className="btn-main" onClick={verify}>
             Verify
           </button>
         </div>

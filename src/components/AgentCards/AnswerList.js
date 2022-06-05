@@ -41,8 +41,8 @@ const AnswerList = (props) => {
         <p className="title">
           {solutions.length > 0 && solutions[0].problem_description}
         </p>
-        {solutions.map((solution) => {
-          return <p className="answer">{solution.solution_description}</p>;
+        {solutions.map((solution, index) => {
+          return <p key={index} className="answer">{solution.solution_description}</p>;
         })}
         <button className="btn-main" onClick={() => props.addSolution(true)}>
           Add Solution

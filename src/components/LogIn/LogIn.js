@@ -8,6 +8,7 @@ import { Fragment, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
+
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -66,11 +67,14 @@ const LogIn = () => {
                 localStorage.setItem("user_type", user_type);
                 localStorage.setItem("user_id", user_id);
                 if (localStorage.getItem("user_type") === "agent") {
-                  navigate("/agent/home");
+                  window.location.href="/agent/home";
+                  //navigate("/agent/home");
                 } else if (localStorage.getItem("user_type") === "manager") {
-                  navigate("/manager/home");
+                  window.location.href="/manager/home";
+                  //navigate("/manager/home");
                 } else if (localStorage.getItem("user_type") === "admin") {
-                  navigate("/admin/home");
+                  window.location.href="/admin/home";
+                  //navigate("/admin/home");
                 }
               });
             })
@@ -117,6 +121,7 @@ const LogIn = () => {
               I have a verification code
             </button>
             <button
+              style= {{marginTop: 0}}
               className="btn-main"
               onClick={() => login(email, password)}
             >

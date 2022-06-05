@@ -27,10 +27,8 @@ const ProblemCategoryList = () => {
   /* Fetching data from the server and adding it to problems */
   useEffect(() => {
     const fetchData = async () => {
-      // const problemsData = await fetch('http://3.80.44.247:3000/problem/getProblemCategorys');
-      const problemsData = await fetch(
-        "http://localhost:8080/problem/getProblemCategorys"
-      );
+      // const problemsData = await fetch('https://3.80.44.247:8443/problem/getProblemCategorys');
+      const problemsData = await fetch("http://localhost:8080/problem/getProblemCategorys");
       const jsonProblems = await problemsData.json();
 
       setProblems(jsonProblems);
@@ -64,13 +62,13 @@ const ProblemCategoryList = () => {
     <Fragment>
       <p className="title"> Problems by category</p>
       <SearchBar SearchType="preguntas" />
-      {problems.map((problem) => {
+      {problems.map((problem, index) => {
         return (
-          <div className="categorys">
+          <div key={index}  className="categorys">
             <button
               type="text"
               className={
-                activeLink === problem.category_id && "categorys-active"
+                activeLink === problem.category_id ? "categorys-active" : undefined
               }
               onClick={async () => {
                 setActiveLink(problem.category_id);

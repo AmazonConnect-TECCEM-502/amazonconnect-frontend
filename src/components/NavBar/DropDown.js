@@ -58,11 +58,14 @@ const DropDown = () => {
       url: "/",
     }]
   }
-
   return (
     <div className="dropdown-menu">
-      {dropdownOptions.map((item) => {
-        return <Link to={item.url} >{item.title}</Link>;
+      {dropdownOptions.map((item, index) => {
+        if (item.title === "Exit"){
+          return <Link key={index} to={item.url} onClick={() => localStorage.clear()} >{item.title}</Link>;
+        } else {
+          return <Link key={index} to={item.url} >{item.title}</Link>;
+        }
       })}
     </div>
   );
