@@ -113,9 +113,6 @@ const Recording = () => {
           {<GoMute size={28} />}
         </button>
       )}
-      {document.addEventListener("keydown", function (event) {
-        console.log(`Tecla: ${event.key} `);
-      })}
     </Fragment>
   );
 };

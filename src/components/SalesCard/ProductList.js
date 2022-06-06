@@ -1,4 +1,3 @@
-import SearchBar from "../AgentCards/SearchBar";
 import { Fragment } from "react";
 
 const ProductList = (props) => {
@@ -6,7 +5,6 @@ const ProductList = (props) => {
   return (
     <Fragment>
       <p className="title"> Products by category</p>
-      <SearchBar SearchType="preguntas" />
       {props.products.map(product => {
         return(
           <div className="categorys" key={product.product_id}>
