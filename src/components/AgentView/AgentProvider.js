@@ -30,6 +30,8 @@
     setQnA,
     solutionCard,
     setSolutionCard,
+    categoryProblem,
+    setCategoryProblem
   ] = useContext(AgentContext);
 */
 import { createContext, useState } from "react";
@@ -48,6 +50,9 @@ const AgentProvider = ({ children }) => {
   // List of questions and it's solutions
   const [questions, setQuestions] = useState([]);
   const [solutions, setSolutions] = useState([]);
+  // Problem Category
+  //const [categoryProblem, setCategoryProblem] = useState("");
+  const [categoryProblem, setCategoryProblem] = useState([]);
 
   return (
     <AgentContext.Provider
@@ -72,6 +77,8 @@ const AgentProvider = ({ children }) => {
         setQnA,
         solutionCard,
         setSolutionCard,
+        categoryProblem,
+        setCategoryProblem
       ]}
     >
       {children}

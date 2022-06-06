@@ -16,8 +16,8 @@ import { AgentContext } from "../AgentView/AgentProvider";
 const ProblemCategoryList = () => {
   // setQuestions -> Method used to add the questions
   // setQna -> Method used to display the Questions card
-  const [, , , , , setQuestions, , , , , , , , , , , , setQnA] =
-    useContext(AgentContext);
+    const [,,,,,setQuestions,,,,,,,,,,,,setQnA,,,categoryProblem,setCategoryProblem
+    ] = useContext(AgentContext);
 
   // Contains a List of problems
   const [problems, setProblems] = useState([]);
@@ -73,6 +73,7 @@ const ProblemCategoryList = () => {
               }
               onClick={async () => {
                 setActiveLink(problem.category_id);
+                setCategoryProblem([...categoryProblem, problem.category_id])
                 await checkQnA(problem.category_id);
                 showQnA();
               }}

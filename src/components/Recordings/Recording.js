@@ -2,14 +2,19 @@
 // Component that allows the agent to record his or her screen and produce
 // an MP4 file with the media recorded which will be uploaded to an AWS S3 bucket
 
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { BsFillRecordFill, BsPauseFill, BsFillPlayFill } from "react-icons/bs";
 import { FaStop } from "react-icons/fa";
 import { GoUnmute, GoMute } from "react-icons/go";
 import axios from "axios";
+import { AgentContext } from "../AgentView/AgentProvider";
 
-const Recording = (props) => {
+const Recording = () => {
+  const [,,,,,,,,,,,,,,,,,,,,categoryProblem
+  ] = useContext(AgentContext);
+
+  console.log(categoryProblem);
   const onStop = async (url, blob) => {
     const API_ENDPOINT =
       "https://6tggc5vevc.execute-api.us-east-1.amazonaws.com/default/getPresignedS3URL";

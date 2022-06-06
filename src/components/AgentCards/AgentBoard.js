@@ -27,7 +27,11 @@ const AgentBoard = (props) => {
     const card_id = e.dataTransfer.getData("card_id");
     const card = document.getElementById(card_id);
     card.style.display = "block";
-    e.target.appendChild(card);
+    if(e.target.id === "board-1"){
+      e.target.append(card)
+    }else{
+      e.target.prepend(card);
+    }
   };
 
   const dragOver = (e) => {
