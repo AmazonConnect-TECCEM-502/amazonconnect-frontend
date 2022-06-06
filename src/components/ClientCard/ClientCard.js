@@ -118,7 +118,7 @@ const ClientCard = () => {
         && (result !== "not authenticated") && <h1 className="title"> Data not recieved yet </h1>
       }
       <button className="btn-main refresh" onClick={() => update()}> Refresh </button>
-      <button className="btn-main" onClick={() => resetUserData()}> Reset values </button>
+      <button className="btn-main" onClick={() => resetUserData()}> Close contact </button>
     </div>
   );
 };
