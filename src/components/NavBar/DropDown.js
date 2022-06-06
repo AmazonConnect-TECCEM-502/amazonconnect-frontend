@@ -6,7 +6,7 @@ Dropdown menu functionality
 
 import { Link } from "react-router-dom";
 
-const DropDown = () => {
+const DropDown = (props) => {
   const user_type = localStorage.getItem("user_type");
   var dropdownOptions = []
   if(user_type === "agent"){
@@ -64,7 +64,7 @@ const DropDown = () => {
         if (item.title === "Exit"){
           return <Link key={index} to={item.url} onClick={() => localStorage.clear()} >{item.title}</Link>;
         } else {
-          return <Link key={index} to={item.url} >{item.title}</Link>;
+          return <Link key={index} to={item.url} onClick={() => props.noActiveLink(10)} >{item.title}</Link>;
         }
       })}
     </div>

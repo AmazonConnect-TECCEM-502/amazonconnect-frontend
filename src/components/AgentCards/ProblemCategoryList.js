@@ -41,6 +41,7 @@ const ProblemCategoryList = () => {
    * @param id - the id of the question
    */
   const checkQnA = async (id) => {
+    //`https://3.80.44.247:8443/problem/getProblem/${id}`
     const questionData = await fetch(
       `http://localhost:8080/problem/getProblem/${id}`
     );

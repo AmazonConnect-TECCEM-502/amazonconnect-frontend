@@ -32,6 +32,8 @@ function AgentMain() {
   // Check if modal is displayed so agent can't scroll the page
   useEffect(() => {
     if (modal) {
+      document.querySelector("body").scrollTop = 0;
+      document.documentElement.scrollTop = 0;
       document.querySelector("body").style.overflow = "hidden";
     } else {
       document.querySelector("body").style.overflow = "auto";

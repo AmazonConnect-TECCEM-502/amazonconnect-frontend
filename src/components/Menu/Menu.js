@@ -14,7 +14,7 @@ const Menu = () => {
     <Fragment>
       <p className="title"> Menu </p>
       <div className="elements-container">
-        <Element element="Problems" elementID="problems" />
+        <Element element="Problems Sugestion" elementID="problems" />
         <Element element="Client Info" elementID="client" />
         <Element element="Products" elementID="products" />
         <Element element="Recording" elementID="startRecording" />

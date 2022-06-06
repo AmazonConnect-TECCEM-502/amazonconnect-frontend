@@ -117,8 +117,8 @@ const ClientCard = () => {
         (result !== "authenticated") && (result !== "opted out") && (result !== "not enrolled") && (result !== "inconclusive")
         && (result !== "not authenticated") && <h1 className="title"> Data not recieved yet </h1>
       }
-      <button className="button-reset refresh" onClick={() => update()}> Refresh </button>
-      <button className="button-reset" onClick={() => resetUserData()}> Reset values </button>
+      <button className="btn-main refresh" onClick={() => update()}> Refresh </button>
+      <button className="btn-main" onClick={() => resetUserData()}> Reset values </button>
     </div>
   );
 };

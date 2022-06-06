@@ -18,7 +18,6 @@ import AdminProfile from "./components/AdminViews/AdminProfile";
 import AdminConfiguration from "./components/AdminViews/AdminConfiguration";
 import ManagerCalls from "./components/ManagerViews/Calls";
 import VerifCode from "./components/LogIn/VerifCode";
-
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import NavBar from "./components/NavBar/NavBar";
@@ -41,7 +40,7 @@ function App() {
         <Route path="/agent/capacitations" element={<AgentCapacitation />} />
         <Route
           path="/agent/settings"
-          element={<AgentSettings newTheme={getTheme} />}
+          element={<AgentSettings />}
         />
         <Route path="/agent/profile" element={<AgentProfile />} />
 
@@ -58,7 +57,7 @@ function App() {
         <Route path="/admin/home" element={<AdminMain />} />
         <Route
           path="/admin/settings"
-          element={<AdminSettings newTheme={getTheme} />}
+          element={<AdminSettings />}
         />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/configuration" element={<AdminConfiguration />} />

@@ -72,7 +72,7 @@ const ClientQuestion = (props) => {
             </label>
           </div>
           {showError && <h2 className="subtitle"> Authentication failed, please try again </h2>}
-          <button className="button" onClick={getClientData}> Submit </button>
+          <button className="btn-main" onClick={getClientData}> Submit </button>
         </Fragment>
       )}
       {showClient && <h2 className="subtitle"> Client authenticated </h2>}

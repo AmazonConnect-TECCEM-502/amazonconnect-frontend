@@ -16,6 +16,8 @@ const NavBar = (props) => {
   const [userPopupThemes, setUserPopupThemes] = useState(false);
   const user_type = localStorage.getItem("user_type");
   var nav = [];
+  // Used to see wich links are active
+  const [activeLink, setActiveLink] = useState(0);
   
   useEffect(() => {
     document.body.addEventListener("click", userPopupState);
@@ -94,11 +96,18 @@ const NavBar = (props) => {
         <nav className="navbar">
           <img src={require("../../images/TelmexLogo.jpg")} alt="logoTelmex" />
           <ul className="nav-menu">
-            {nav.map((props, index) => {
+            {nav.map((link, index) => {
               return (
                 <li key={index}>
-                  <Link to={props.url} className={props.cName}>
-                    {props.title}
+                  <Link 
+                    id={index}
+                    to={link.url} 
+                    className={
+                      activeLink === index ? `${link.cName} activeLink` : link.cName
+                    }
+                    onClick={() => setActiveLink(index)}
+                  >
+                    {link.title}
                   </Link>
                 </li>
               );
@@ -108,7 +117,7 @@ const NavBar = (props) => {
             <AiOutlineUser id="u-settings" className="icons" onClick={userPopupState} />
           </ul>
         </nav>
-        {userPopup && <DropDown />}
+        {userPopup && <DropDown noActiveLink={setActiveLink}/>}
         {userPopupThemes && <ThemeOptions newTheme={props.newTheme} />}
       </div>
     );
