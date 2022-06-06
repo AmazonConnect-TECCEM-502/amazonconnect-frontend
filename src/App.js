@@ -18,7 +18,8 @@ import AdminProfile from "./components/AdminViews/AdminProfile";
 import AdminConfiguration from "./components/AdminViews/AdminConfiguration";
 import ManagerCalls from "./components/ManagerViews/Calls";
 import VerifCode from "./components/LogIn/VerifCode";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import NavBar from "./components/NavBar/NavBar";
 
@@ -28,6 +29,39 @@ function App() {
   const getTheme = (newTheme) => {
     setTheme(newTheme);
   };
+
+  const createCursor = (x, y) => {
+    const cursor = document.createElement('div')
+    cursor.className = 'app-cursor'
+    cursor.style.display = "block";
+    cursor.style.top = (y) + "px";
+    cursor.style.left = (x) + "px";
+    if(theme === "light" || 
+      theme === "light-protanopia" || 
+      theme === "light-tritanopia")
+      {
+      cursor.style.border = "2px solid #000";
+    } else {
+      cursor.style.border = "2px solid rgb(192, 192, 93)";
+    }
+    return cursor;
+  }
+
+  const removeCursor = cursor => {
+    const timeout = setTimeout(() => {
+      cursor.remove();
+      clearTimeout(timeout);
+    }, 1000)
+  }
+  useEffect(() => {
+    document.body.addEventListener('click', event => {
+      console.log("click");
+      const cursor = createCursor(event.pageX, event.pageY);
+      document.body.append(cursor);
+      removeCursor(cursor);
+      console.log("entre");
+    })
+  })
 
   return (
     <div className="App" data-theme={theme}>
@@ -40,7 +74,7 @@ function App() {
         <Route path="/agent/capacitations" element={<AgentCapacitation />} />
         <Route
           path="/agent/settings"
-          element={<AgentSettings />}
+          element={<AgentSettings newTheme={getTheme} />}
         />
         <Route path="/agent/profile" element={<AgentProfile />} />
 
@@ -57,7 +91,7 @@ function App() {
         <Route path="/admin/home" element={<AdminMain />} />
         <Route
           path="/admin/settings"
-          element={<AdminSettings />}
+          element={<AdminSettings newTheme={getTheme} />}
         />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/configuration" element={<AdminConfiguration />} />
