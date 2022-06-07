@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import AgentMain from "./components/AgentView/AgentMain";
 import ManagerMain from "./components/ManagerViews/ManagerMain";
 import ManagerAgentsDashboard from "./components/ManagerViews/ManagerAgentsDashboard";
-import ManagerOverview from "./components/ManagerViews/ManagerOverview";
 import ManagerSettings from "./components/ManagerViews/ManagerSettings";
 import ManagerProfile from "./components/ManagerViews/ManagerProfile";
 import LogIn from "./components/LogIn/LogIn";
@@ -31,8 +30,8 @@ function App() {
   };
 
   const createCursor = (x, y) => {
-    const cursor = document.createElement('div')
-    cursor.className = 'app-cursor'
+    const cursor = document.createElement("div");
+    cursor.className = "app-cursor";
     cursor.style.display = "block";
     cursor.style.top = (y) + "px";
     cursor.style.left = (x) + "px";
@@ -40,7 +39,6 @@ function App() {
       theme === "light-protanopia" || 
       theme === "light-tritanopia")
       {
-      //cursor.style.border = "2px solid #000";
       cursor.style.background = "rgba(0,0,0,0.5)";
     } else {
       cursor.style.background = "rgb(192, 192, 93, 0.5)";
@@ -85,12 +83,8 @@ function App() {
 
         <Route path="/manager/home" element={<ManagerMain />} />
         <Route path="/manager/dashboard" element={<ManagerAgentsDashboard />} />
-        <Route path="/manager/overview" element={<ManagerOverview />} />
         <Route path="/manager/calls" element={<ManagerCalls />} />
-        <Route
-          path="/manager/settings"
-          element={<ManagerSettings />}
-        />
+        <Route path="/manager/settings" element={<ManagerSettings />} />
         <Route path="/manager/profile" element={<ManagerProfile />} />
 
         <Route path="/admin/home" element={<AdminMain />} />
