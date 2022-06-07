@@ -11,8 +11,8 @@ import axios from "axios";
 import { AgentContext } from "../AgentView/AgentProvider";
 
 const Recording = () => {
-  const [,,,,,,,,,,,,,,,,,,,,categoryProblem
-  ] = useContext(AgentContext);
+  const [, , , , , , , , , , , , , , , , , , , , categoryProblem] =
+    useContext(AgentContext);
 
   console.log(categoryProblem);
   const onStop = async (url, blob) => {
@@ -24,6 +24,15 @@ const Recording = () => {
       method: "GET",
     });
 
+    var key = response.data.Key.toString();
+    console.log(key);
+    key = key.split("/")[1];
+    key = key.split(".")[0];
+    key = key + "_SUB.mp4";
+    const videoURL = process.env.REACT_APP_S3_OBJECTS_URL + key;
+    const token = localStorage.getItem("token");
+    const user_id = localStorage.getItem("user_id");
+
     if (response.status === 200) {
       const uploaded = await fetch(response.data.uploadURL, {
         method: "PUT",
@@ -32,26 +41,27 @@ const Recording = () => {
       if (uploaded.status === 200) {
         console.log("Video subido a S3");
         //Url from the video created
-        const URLVideo = uploaded.url.split("?")[0].toString();
-        const headers = new Headers({'ContentType': 'application/json'})
+
         // Headers
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-      
+        myHeaders.append("Authorization", token);
+
         var raw = JSON.stringify({
-          "file": URLVideo
+          file: videoURL,
+          agent_id: user_id,
         });
 
         var requestOptions = {
-          method: 'POST',
+          method: "POST",
           headers: myHeaders,
           body: raw,
         };
 
         fetch("http://localhost:8080/call/postVideoBD", requestOptions)
-          .then(response => response.text())
-          .then(result => console.log(result))
-          .catch(error => console.log('error', error));
+          .then((response) => response.text())
+          .then((result) => console.log(result))
+          .catch((error) => console.log("error", error));
       } else {
         console.log("Error al subir video");
       }
