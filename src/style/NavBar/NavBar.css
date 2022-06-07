@@ -8,6 +8,7 @@ Navbar style sheet
   min-width: 100%;
   width: 100%;
   min-height: 5vh;
+  transition: 0.6s;
   background-color: var(--navbar-color);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
   display: flex;

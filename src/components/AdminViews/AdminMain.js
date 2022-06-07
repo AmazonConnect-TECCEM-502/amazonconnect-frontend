@@ -1,12 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
-import NotLoggedIn from "../LogIn/NotLoggedIn";
+import { useNavigate } from "react-router";
 
 function AdminMain() {
   const token = localStorage.getItem("token");
   const user_type = localStorage.getItem("user_type");
-
+  const navigate = useNavigate();
   const [name, setName] = useState("");
 
+  /* Checking if the user is an admin, if not it will redirect to the previous page. */
   useEffect(() => {
     const token = localStorage.getItem("token");
     const header = new Headers({ Authorization: token });
@@ -18,22 +19,29 @@ function AdminMain() {
       .then((result) => {
         setName(() => result.first_name);
       });
-  }, []);
 
-  return (
-    <Fragment>
-      {(token !== "") & (user_type === "admin") && (
-        <Fragment>
-          <div className="manager-container">
-            <h1>Welcome home,</h1>
-            <h1>{name}</h1>
-          </div>
-        </Fragment>
-      )}
-      {user_type !== "admin" && <NotLoggedIn message="You are not an admin" />}
-      {token === "" && <NotLoggedIn message="You are not logged in" />}
-    </Fragment>
-  );
+    if(user_type === ""){
+      navigate("/");
+    }
+    else if(user_type !== "admin"){
+      navigate(-1);
+    }
+  }, [user_type, navigate]);
+
+  if(user_type === "admin"){
+    return (
+      <Fragment>
+        {(token !== "") & (user_type === "admin") && (
+          <Fragment>
+            <div className="manager-container">
+              <h1>Welcome home,</h1>
+              <h1>{name}</h1>
+            </div>
+          </Fragment>
+        )}
+      </Fragment>
+    );
+  }
 }
 
 export default AdminMain;

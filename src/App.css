@@ -15,7 +15,7 @@ html{
   height: 2rem;
   transform: translate(-50%, -50%) scale(0);
   border-radius: 50%;
-  animation: scale-up 1s;
+  animation: scale-up 0.3s;
   display: none;
 }
 
@@ -28,7 +28,7 @@ html{
     opacity: 1;
   }
   100%{
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1.5);
     opacity: 0;
   }
 }

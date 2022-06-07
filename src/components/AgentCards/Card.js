@@ -69,7 +69,7 @@ const Card = (props) => {
     (props.id === "card-3" && !qna) ||
     (props.id === "card-6" && !solutionCard)
   ) {
-    cardStyle = { display: "none" };
+    cardStyle = { display: "none"};
   }
 
   return (

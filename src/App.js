@@ -19,7 +19,7 @@ import AdminConfiguration from "./components/AdminViews/AdminConfiguration";
 import ManagerCalls from "./components/ManagerViews/Calls";
 import VerifCode from "./components/LogIn/VerifCode";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import NavBar from "./components/NavBar/NavBar";
 
@@ -40,31 +40,36 @@ function App() {
       theme === "light-protanopia" || 
       theme === "light-tritanopia")
       {
-      cursor.style.border = "2px solid #000";
+      //cursor.style.border = "2px solid #000";
+      cursor.style.background = "rgba(0,0,0,0.5)";
     } else {
-      cursor.style.border = "2px solid rgb(192, 192, 93)";
+      cursor.style.background = "rgb(192, 192, 93, 0.5)";
     }
     return cursor;
   }
-
   const removeCursor = cursor => {
     const timeout = setTimeout(() => {
       cursor.remove();
       clearTimeout(timeout);
-    }, 1000)
+    }, 500)
   }
-  useEffect(() => {
-    document.body.addEventListener('click', event => {
-      console.log("click");
-      const cursor = createCursor(event.pageX, event.pageY);
-      document.body.append(cursor);
-      removeCursor(cursor);
-      console.log("entre");
-    })
-  })
+  const cursorHandler = (event) => {
+    const cursor = createCursor(event.pageX, event.pageY);
+    document.body.append(cursor);
+    removeCursor(cursor);
+  }
+
+  let token = localStorage.getItem("token");
+  const tokenHeader = new Headers({ Authorization : token});
+  fetch("http://localhost:8080/auth/verifyToken", {headers: tokenHeader})
+    .then((response) => {
+      if(response.status !== 200){
+        localStorage.clear();
+      }
+    });
 
   return (
-    <div className="App" data-theme={theme}>
+    <div className="App" onClick={cursorHandler} data-theme={theme}>
       <NavBar newTheme={getTheme}/>
       <Routes>
         <Route path="/" element={<LogIn />} />
@@ -95,6 +100,7 @@ function App() {
         />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/configuration" element={<AdminConfiguration />} />
+        <Route path="*" element={<LogIn/>} />
       </Routes>
       <div>
         <Toaster />

@@ -4,7 +4,7 @@ Component that allows the login of a user in our system validating
 the provided email and password
 */
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const user_type = localStorage.getItem("user_type");
   const navigate = useNavigate();
 
   // This function sends two requests to the backend with the input data to
@@ -96,6 +96,19 @@ const LogIn = () => {
   const changePasswordValue = (event) => {
     setPassword(event.target.value);
   };
+
+  /* Checking if the user is logged in and redirecting to the correct page. */
+  useEffect(() => {
+    if(user_type === "agent"){
+      navigate("/agent/home"); 
+    }
+    else if(user_type === "admin"){
+      navigate("/admin/home"); 
+    }
+    else if(user_type === "manager"){
+      navigate("/manager/home"); 
+    }
+  }, [navigate, user_type]);
 
   return (
     <Fragment>
