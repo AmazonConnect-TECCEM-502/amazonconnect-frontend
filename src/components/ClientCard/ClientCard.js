@@ -26,11 +26,6 @@ const ClientCard = () => {
   const [result, setResult] = useState(""); // AuthenticationType
   const [products, setProducts] = useState([]);
 
-
-  useEffect( () => {
-    update();
-  }, []);
-
   const update = async () => {
     await axios.post('https://3.80.44.247:8443/vid/getAuthRes',{
       "phoneNumber": clientPhone
@@ -77,6 +72,10 @@ const ClientCard = () => {
       "phoneNumber": clientPhone
     })
   };
+
+  useEffect( () => {
+    update();
+  });
   
   /*              DEBUG BUTTONS (Must be under line 94)
   <button onClick={() => showContent("authenticated")}> Card </button>
