@@ -18,35 +18,40 @@ const NewProduct = (props) => {
 
   const createProduct = async () => {
     if ((sku && name && description && price && stock && category) !== '') {
-      if (category >= 1 && category <= categories.length) {
-        const categoryAtUpload = category;
-        const request_options = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            product_sku: sku.toString(),
-            product_name: name.toString(),
-            product_description: description.toString(),
-            price: price.toString(),
-            stock: stock.toString(),
-            category: category.toString()
-          })};
-        const response = await fetch(`http://localhost:8080/sales/createProduct`, request_options);
-        if (response.status === 400) {
-          toast.error("A product with this sku already exists")
-        }
-        else if (response.status === 200) {
-          if (categoryAtUpload > 3 && categoryAtUpload <= 6) await getUrl();
-          const card = document.getElementById("card-8");
-          card.style.display = "none";
-          toast.success("New Product created")
+      if (typeof(sku) === "number" && typeof(name) === "string" && typeof(description) === "string" && typeof(price) === "number" && typeof(stock) === "number" && typeof(category) === "number") { 
+        if (category >= 1 && category <= categories.length) {
+          const categoryAtUpload = category;
+          const request_options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              product_sku: sku.toString(),
+              product_name: name.toString(),
+              product_description: description.toString(),
+              price: price.toString(),
+              stock: stock.toString(),
+              category: category.toString()
+            })};
+          const response = await fetch(`http://localhost:8080/sales/createProduct`, request_options);
+          if (response.status === 400) {
+            toast.error("A product with this sku already exists")
+          }
+          else if (response.status === 200) {
+            if (categoryAtUpload > 3 && categoryAtUpload <= 6) await getUrl();
+            const card = document.getElementById("card-8");
+            card.style.display = "none";
+            toast.success("New Product created")
+          }
+          else {
+            toast.error(`Server responded with status ${response.status}`)
+          }
         }
         else {
-          toast.error(`Server responded with status ${response.status}`)
+          toast.error("Please provide a valid category id")
         }
       }
       else {
-        toast.error("Please provide a valid category id")
+      toast.error("One or more fields have incorrect input datatypes")
       }
     } 
     else {
@@ -89,34 +94,33 @@ const NewProduct = (props) => {
 
   const getImageD =  async (file) => {
     setUseImage(true)
-    if (file){
+    if (file) {
+      console.log(file);
+      const fileToDataUri = (file) => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          resolve(event.target.result)
+        };
+        reader.readAsDataURL(file);
+        })
 
+      await fileToDataUri(file)
+        .then((fileb64) => {
+          dataUriNoState = fileb64.split(',')[1].toString()
+        })
+        
+      console.log("dataUriNoState " ,dataUriNoState)
+
+      const base64 = dataUriNoState
+      var binary_string = window.atob(base64);
+      var len = binary_string.length;
+      var bytes = new Uint8Array(len);
+      for (var i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i); //infomracion en BIN
+      }
+      console.log(bytes.buffer)
+      setImage(bytes.buffer)
     }
-    console.log(file);
-    const fileToDataUri = (file) => new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        resolve(event.target.result)
-      };
-      reader.readAsDataURL(file);
-      })
-
-    await fileToDataUri(file)
-      .then((fileb64) => {
-        dataUriNoState = fileb64.split(',')[1].toString()
-      })
-      
-    console.log("dataUriNoState " ,dataUriNoState)
-
-    const base64 = dataUriNoState
-    var binary_string = window.atob(base64);
-    var len = binary_string.length;
-    var bytes = new Uint8Array(len);
-    for (var i = 0; i < len; i++) {
-      bytes[i] = binary_string.charCodeAt(i); //infomracion en BIN
-    }
-    console.log(bytes.buffer)
-    setImage(bytes.buffer)
   }
 
   const getUrl = async () => {
@@ -164,7 +168,7 @@ const NewProduct = (props) => {
         <p>Available Product Categories</p>
         {categories.map((category) => {
           return (
-            <div className="categorys">
+            <div className="categorys" key={category.category_id}>
                 {category.category_name}&nbsp;&nbsp;&nbsp;&nbsp;{"ID: "}{category.category_id}
             </div>
           );
