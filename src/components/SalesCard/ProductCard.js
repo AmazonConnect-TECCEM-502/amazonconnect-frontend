@@ -1,4 +1,3 @@
-import AddButton from "./addButton";
 import ProductImage from "./ProductImage";
 
 const ProductCard = (props) => {
