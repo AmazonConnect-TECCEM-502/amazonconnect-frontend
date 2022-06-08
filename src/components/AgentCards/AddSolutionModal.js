@@ -38,7 +38,7 @@ const AddSolutionModal = (props) => {
       solution_description: solutionDescription,
       submitted_id: user_id ? user_id : 1,
     };
-    await fetch("http://localhost:8080/problem/postCreateSolution", {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/postCreateSolution`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
