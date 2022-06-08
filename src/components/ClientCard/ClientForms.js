@@ -38,13 +38,13 @@ const ClientForms = (props) => {
   };
 
   const postNewClient = async () => {
-    await axios.post("https://3.80.44.247:8443/vid/sendClientData", {
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendClientData`, {
       first_name: clientFname,
       last_name: clientLname,
       email: clientEmail,
       phone: clientPhone,
     });
-    await axios.post("https://3.80.44.247:8443/vid/sendAuthRes", {
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendAuthRes`, {
       phoneNumber: clientPhone,
       authenticationType: "authenticated"
     });
