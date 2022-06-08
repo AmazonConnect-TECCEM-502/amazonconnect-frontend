@@ -1,8 +1,9 @@
 /*
   Authors: Omar Rodrigo Sorchini Puente
            Javier Emilio Moreno Márquez 
+           Renata De Luna Flores
            
-  Description: Component that permits the Administrator the creation of a new product. 
+  Description: Component that shows the Agent the product selected. 
 */
 
 import AddButton from "./addButton";
