@@ -1,9 +1,28 @@
+/*
+  Authors: Omar Rodrigo Sorchini Puente
+            Javier Emilio Moreno Márquez 
+  Description: Component that permits the Administrator the creation of a new product. 
+*/
+
 import { Fragment, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import ProductImageInput from "./ProductImageInput";
 
 const NewProduct = (props) => {
+
+  /*
+    State vars:
+    categories: A json that has all the available cateogries for the products
+    sku: An integer id that is used for each product
+    name: A string containing the complete name of the product
+    description: A string containing the complete description of the product
+    price: A number containing the price of the product
+    stock: A number containing the stock available for the product
+    category: A string containig the category in which the product is contained
+    image: An image file for the product
+    useImage: A statement that determines if a image is deployed
+  */
 
   const [categories, setCategories] = useState([]);
   const [sku, setSku] = useState("");

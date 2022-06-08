@@ -1,3 +1,10 @@
+/*
+  Authors: Omar Rodrigo Sorchini Puente
+           Javier Emilio Moreno Márquez 
+           
+  Description: Component that permits the Administrator the creation of a new product. 
+*/
+
 import AddButton from "./addButton";
 import ProductImage from "./ProductImage";
 
