@@ -5,7 +5,7 @@ const ConfirmCard = (props) => {
         <button className="back-button-product" onClick={props.backAction}>Back</button>{" "}
         <button className="product-header-add-button-UNUSED" onClick={async () => {
                                                                             await props.buttonAction(props.product.product_id, props.client_id)
-                                                                            await props.afterAction()}
+                                                                            await props.afterAction(props.category_id)}
                                                                     }>Add</button>
     </div>
     );
