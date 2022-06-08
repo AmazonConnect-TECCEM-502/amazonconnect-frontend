@@ -9,8 +9,8 @@ const ProductCard = (props) => {
           <div>
             <p className="product-name">{props.product.product_name}</p>
             <p className="product-price">Price: {props.product.price} $</p>
-            <button className="back-button-product" onClick={props.buttonAction}>Back</button>{" "}
-            <AddButton client_id={props.client_id} product_id={props.product.product_id}/>
+            <button className="back-button-product" onClick={props.backAction}>Back</button>{" "}
+            <button className="product-header-add-button-UNUSED" onClick={props.buttonAction} />
           </div>
         </div>
         <p className="product-description"> {props.product.product_description} </p>

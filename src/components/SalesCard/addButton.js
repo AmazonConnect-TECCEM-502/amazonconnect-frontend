@@ -6,19 +6,6 @@ const AddButton = (props) => {
     UNUSED: 2,
   };
 
-  const buyProduct = async (productID, clientID) => {
-    const request_options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        product_id: productID,
-        client_id: clientID,
-      }),
-    };
-
-    await fetch(`http://localhost:8080/sales/buyProduct`, request_options);
-  };
-
   const [currentButtonView, setCurrentButtonView] = useState(
     ButtonViews.UNUSED
   );
