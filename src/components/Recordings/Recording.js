@@ -53,7 +53,7 @@ const Recording = () => {
         var raw = JSON.stringify({
           file: videoURL,
           agent_id: user_id,
-          //client_id: clientID,
+          client_id: clientID,
         });
 
         var requestOptions = {
