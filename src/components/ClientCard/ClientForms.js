@@ -39,17 +39,24 @@ const ClientForms = (props) => {
   };
 
   const postNewClient = async () => {
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendClientData`, {
-      first_name: clientFname,
-      last_name: clientLname,
-      email: clientEmail,
-      phone: clientPhone,
-    });
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendAuthRes`, {
-      phoneNumber: clientPhone,
-      authenticationType: "authenticated"
-    });
-    setShowClient(true);
+    if(clientFname === "" || clientLname === "" || clientEmail === "")
+    {
+      toast.error("Please fill out all the fields");
+    }
+    else
+    {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendClientData`, {
+        first_name: clientFname,
+        last_name: clientLname,
+        email: clientEmail,
+        phone: clientPhone,
+      });
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendAuthRes`, {
+        phoneNumber: clientPhone,
+        authenticationType: "authenticated"
+      });
+      setShowClient(true);
+    } 
   };
 
   return (
@@ -66,7 +73,6 @@ const ClientForms = (props) => {
                   className="user-ID"
                   type="text"
                   onChange={clientFnameHandler}
-                  required
                 />
               }
             </label>
@@ -79,7 +85,6 @@ const ClientForms = (props) => {
                   className="user-ID"
                   type="text"
                   onChange={clientLnameHandler}
-                  required
                 />
               }
             </label>
@@ -93,7 +98,6 @@ const ClientForms = (props) => {
                   type="email"
                   placeholder="example@gmail.com"
                   onChange={clientEmailHandler}
-                  required
                 />
               }
             </label>
@@ -117,7 +121,6 @@ const ClientForms = (props) => {
                   type="tel"
                   placeholder="+52"
                   value={clientPhone}
-                  required
                 />
               )}
             </label>

@@ -26,23 +26,30 @@ const ClientQuestion = (props) => {
   };
 
   const getClientData = async () => {
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getUserData`,{
-      "phoneNumber": clientPhone
-    })
-    .then(res => {
-      setClientFname(res.data.userData.first_name);
-      setClientLname(res.data.userData.last_name);
-      setClientEmail(res.data.userData.email);
-      if (res.data.userData.email === inputEmail) {    
-        sendAuth();
-        setShowClient(true);
-      } else {
-        setShowError(true);
-      }
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+    if(inputEmail === "")
+    {
+      toast.error("Please fill in the email");
+    }
+    else
+    {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getUserData`,{
+        "phoneNumber": clientPhone
+      })
+      .then(res => {
+        setClientFname(res.data.userData.first_name);
+        setClientLname(res.data.userData.last_name);
+        setClientEmail(res.data.userData.email);
+        if (res.data.userData.email === inputEmail) {    
+          sendAuth();
+          setShowClient(true);
+        } else {
+          setShowError(true);
+        }
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+    }
   };
 
   const sendAuth = async () => {
@@ -70,7 +77,6 @@ const ClientQuestion = (props) => {
                   type="email"
                   placeholder="example@gmail.com"
                   onChange={clientEmailHandler}
-                  required
                 />
               }
             </label>
