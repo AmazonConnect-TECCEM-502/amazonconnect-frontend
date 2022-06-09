@@ -11,6 +11,7 @@
 
 import { useContext, useState } from "react";
 import { ClientContext } from "../ClientCard/ClientProvider";
+import ConfirmCard from "./ConfirmCard";
 import ProductCard from "./ProductCard";
 import ProductList from "./ProductList";
 import ProductsCategoryList from "./ProductsCategoryList";
@@ -25,7 +26,8 @@ const SalesMasterCard = () => {
     const Views = {
       CATEGORIES : 1,
       PRODUCTS : 2,
-      PRODUCT : 3
+      PRODUCT : 3,
+      CONFIRM: 4
     };
 
     const [currentView, setCurrentView] = useState(Views.CATEGORIES);
@@ -50,12 +52,33 @@ const SalesMasterCard = () => {
       setCurrentView(Views.PRODUCT);
     };
 
-    const backToProducts = () => {
-      setCurrentView(Views.PRODUCTS);
+    const goToConfirm = () => {
+      setCurrentView(Views.CONFIRM);
     };
 
     const backToCategories = () => {
       setCurrentView(Views.CATEGORIES);
+    };
+
+    const backToProducts = () => {
+      setCurrentView(Views.PRODUCTS);
+    };
+
+    const backToProduct = () => {
+      setCurrentView(Views.PRODUCT);
+    }
+
+    const buyProduct = async (productID, clientID) => {
+      const request_options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product_id: productID,
+          client_id: clientID,
+        }),
+      };
+  
+      await fetch(`http://localhost:8080/sales/buyProduct`, request_options);
     };
 
     if (currentView === Views.CATEGORIES)
@@ -63,7 +86,9 @@ const SalesMasterCard = () => {
     else if (currentView === Views.PRODUCTS)
       return (<ProductList products={currentCategory} buttonAction={goToProduct} backAction={backToCategories}/>)
     else if (currentView === Views.PRODUCT)
-      return (<ProductCard product={currentProduct} client_id={client_id} buttonAction={backToProducts}/>);
+      return (<ProductCard product={currentProduct} client_id={client_id} backAction={backToProducts} buttonAction={goToConfirm}/>);
+    else if (currentView === Views.CONFIRM)
+      return (<ConfirmCard product={currentProduct} client_id={client_id} category_id={currentCategory} backAction={backToProduct} buttonAction={buyProduct} afterAction={backToCategories} />);
 };
 
 export default SalesMasterCard;
