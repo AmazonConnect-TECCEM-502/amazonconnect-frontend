@@ -22,7 +22,7 @@ const AdminProblem = (props) => {
     card2.style.display = "none"; //Hide New Solution Card if showing
     const card3 = document.getElementById("card-14");
     card3.style.display = "none"; //Hide Proposals Card if showing
-    const response = await fetch(`http://localhost:8080/problem/getSolutions/${props.problem_id}`)
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getSolutions/${props.problem_id}`)
     const json = await response.json()//Get solutions by problem ID
     setSolutions(json)
     setPreg_id(props.problem_id.toString())
@@ -31,8 +31,8 @@ const AdminProblem = (props) => {
   };
 
   const DeleteProblem = async () => {
-    await fetch(`http://localhost:8080/problem/deleteProblem/${props.problem_id}`, { method: "DELETE"});
-    const response = await fetch("http://localhost:8080/problem/getProblemid")
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/deleteProblem/${props.problem_id}`, { method: "DELETE"});
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getProblemid`)
     const json = await response.json()
     setPreguntas(json)
     toast.success("Problem deleted")

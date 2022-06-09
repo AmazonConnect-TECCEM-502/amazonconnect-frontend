@@ -35,7 +35,7 @@ const NewUser = (props) => {
   };
 
   const Managers = async () => {
-    const response = await fetch("http://localhost:8080/problem/getManagers")
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getManagers`)
     const json = await response.json()
     setmanagers(json)
   };
@@ -56,7 +56,7 @@ const NewUser = (props) => {
             password: password.toString(),
           }),
         };
-        await fetch(`http://localhost:8080/auth/signup`, request_options)
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/signup`, request_options)
           .then((response) => response.json())
           .then((result) => {
             console.log(result);
@@ -74,7 +74,7 @@ const NewUser = (props) => {
           }),
         };
         toast.success("New User created");
-        await fetch(`http://localhost:8080/auth/signup`, request_options)
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/signup`, request_options)
           .then((response) => response.json())
           .then((result) => {
             console.log(result);

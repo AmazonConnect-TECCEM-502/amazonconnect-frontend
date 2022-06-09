@@ -18,7 +18,7 @@ function ManagerAgentsDashboard() {
 
   /* Checking if the user is an manager, if not it will redirect to the previous page. */
   useEffect(() => {
-    fetch("http://localhost:8080/user/readUser", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/user/readUser`, {
       method: "GET",
       headers: header,
     })

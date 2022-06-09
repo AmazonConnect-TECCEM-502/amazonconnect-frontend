@@ -25,7 +25,6 @@ const ProblemCategoryList = () => {
   /* Fetching data from the server and adding it to problems */
   useEffect(() => {
     const fetchData = async () => {
-      //const problemsData = await fetch('https://fronttest.tecmex-connect.link/');
       const problemsData = await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getProblemCategorys`);
       const jsonProblems = await problemsData.json();
 
@@ -38,9 +37,8 @@ const ProblemCategoryList = () => {
    * @param id - the id of the question
    */
   const checkQnA = async (id) => {
-    //`https://3.80.44.247:8443/problem/getProblem/${id}`
     const questionData = await fetch(
-      `http://localhost:8080/problem/getProblem/${id}`
+      `${process.env.REACT_APP_BACKEND_URL}/problem/getProblem/${id}`
     );
     const jsonProblems = await questionData.json();
     setQuestions(jsonProblems);

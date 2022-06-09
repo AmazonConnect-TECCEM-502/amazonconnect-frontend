@@ -13,7 +13,7 @@ const AdminCategory = (props) => {
   const ProblemsCard = async () => {
     setCategories(props.text)
     const response = await fetch(
-      `http://localhost:8080/problem/getProblemid/${props.category_id.toString()}`
+      `${process.env.REACT_APP_BACKEND_URL}/problem/getProblemid/${props.category_id.toString()}`
     );
     const JSON = await response.json()
     console.log(JSON)

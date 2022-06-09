@@ -13,7 +13,7 @@ const AdminSolution = (props) => {
   const Deletesolution = async () => {
     //Listen to the click of "Delete" button for solution
     await fetch(
-      `http://localhost:8080/problem/deleteSolution/${props.sol_id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/problem/deleteSolution/${props.sol_id}`,
       { method: "DELETE" }
     );
     toast.success("Solution deleted")

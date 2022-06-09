@@ -30,7 +30,7 @@ function AdminConfiguration() {
   /* Checking if the user is an admin, if not it will redirect to the previous page. */
   useEffect(() => {
     const header = new Headers({ Authorization: token });
-    fetch("http://localhost:8080/user/readUser", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/user/readUser`, {
       method: "GET",
       headers: header,
     })

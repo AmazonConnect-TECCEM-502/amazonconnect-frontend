@@ -17,7 +17,7 @@ const Proposal = (props) => {
   const DeleteProposal = async () => {
     //Delete a Proposal
     await fetch(
-      `http://localhost:8080/problem/deleteSolution/${props.proposal_id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/problem/deleteSolution/${props.proposal_id}`,
       { method: "DELETE" }
     );
     toast.success("Proposal deleted")
@@ -39,7 +39,7 @@ const Proposal = (props) => {
         approved_by: user_id
       }),
     };
-    await fetch(`http://localhost:8080/problem/postApproveProposals/${props.proposal_id}`,request_options);
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/postApproveProposals/${props.proposal_id}`,request_options);
     toast.success("Solution approved")
     const card = document.getElementById("card-14");
     card.style.display = "none";
