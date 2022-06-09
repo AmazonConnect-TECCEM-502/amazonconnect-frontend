@@ -2,7 +2,6 @@ import "./App.css";
 import "./style/style.css";
 import { Route, Routes } from "react-router-dom";
 import AgentMain from "./components/AgentView/AgentMain";
-import ManagerMain from "./components/ManagerViews/ManagerMain";
 import ManagerAgentsDashboard from "./components/ManagerViews/ManagerAgentsDashboard";
 import ManagerSettings from "./components/ManagerViews/ManagerSettings";
 import ManagerProfile from "./components/ManagerViews/ManagerProfile";
@@ -11,7 +10,6 @@ import AgentStatics from "./components/AgentView/AgentStatics";
 import AgentCapacitation from "./components/AgentView/AgentCapacitations";
 import AgentSettings from "./components/AgentView/AgentSettings";
 import AgentProfile from "./components/AgentView/AgentProfile";
-import AdminMain from "./components/AdminViews/AdminMain";
 import AdminSettings from "./components/AdminViews/AdminSettings";
 import AdminProfile from "./components/AdminViews/AdminProfile";
 import AdminConfiguration from "./components/AdminViews/AdminConfiguration";
@@ -81,19 +79,17 @@ function App() {
         />
         <Route path="/agent/profile" element={<AgentProfile />} />
 
-        <Route path="/manager/home" element={<ManagerMain />} />
         <Route path="/manager/dashboard" element={<ManagerAgentsDashboard />} />
         <Route path="/manager/calls" element={<ManagerCalls />} />
         <Route path="/manager/settings" element={<ManagerSettings />} />
         <Route path="/manager/profile" element={<ManagerProfile />} />
 
-        <Route path="/admin/home" element={<AdminMain />} />
+        <Route path="/admin/home" element={<AdminConfiguration />} />
         <Route
           path="/admin/settings"
           element={<AdminSettings newTheme={getTheme} />}
         />
         <Route path="/admin/profile" element={<AdminProfile />} />
-        <Route path="/admin/configuration" element={<AdminConfiguration />} />
         <Route path="*" element={<LogIn/>} />
       </Routes>
       <div>

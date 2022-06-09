@@ -19,27 +19,41 @@ import NewUser from "../AdminCards/NewUser";
 import NewCategory from "../AdminCards/Problem&Solutions/NewCategory";
 import AdminCategoriesList from "../AdminCards/Problem&Solutions/AdminCategoriesList";
 import { useNavigate } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function AdminConfiguration() {
+  const [name, setName] = useState("");
   const user_type = localStorage.getItem("user_type");
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   /* Checking if the user is an admin, if not it will redirect to the previous page. */
   useEffect(() => {
-    if(user_type === ""){
+    const header = new Headers({ Authorization: token });
+    fetch("http://localhost:8080/user/readUser", {
+      method: "GET",
+      headers: header,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        setName(() => result.first_name);
+      });
+
+    if (user_type === "") {
       navigate("/");
-    }
-    else if(user_type !== "admin"){
+    } else if (user_type !== "admin") {
       navigate(-1);
     }
   }, [user_type, navigate]);
 
-  if (user_type === "admin"){
+  if (user_type === "admin") {
     return (
       <AdminCardProvider>
         <AdminContextProvider>
           <ClientProvider>
+            <div className="manager-container">
+              <h1>Welcome home, {name}</h1>
+            </div>
             <div className="agent-container admin">
               <AgentBoard id="board-1" className="board board-menu">
                 <AdminCard
@@ -58,21 +72,25 @@ function AdminConfiguration() {
                   component={<NewCategory />}
                 />
               </AgentBoard>
-  
+
               <AgentBoard id="board-2" className="board">
                 <AdminCard
                   id="card-4"
                   draggable="true"
                   component={<NewProblem />}
                 />
-                <AdminCard id="card-6" draggable="true" component={<NewUser />} />
+                <AdminCard
+                  id="card-6"
+                  draggable="true"
+                  component={<NewUser />}
+                />
                 <AdminCard
                   id="card-8"
                   draggable="true"
                   component={<NewProduct />}
                 />
               </AgentBoard>
-  
+
               <AgentBoard id="board-3" className="board">
                 <AdminCard
                   id="card-5"

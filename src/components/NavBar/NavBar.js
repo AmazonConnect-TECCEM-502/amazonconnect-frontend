@@ -44,11 +44,6 @@ const NavBar = (props) => {
   } else if (user_type === "manager") {
     nav = [
       {
-        title: "Home",
-        url: "/manager/home",
-        cName: "nav-links",
-      },
-      {
         title: "Agent Dashboards",
         url: "/manager/dashboard",
         cName: "nav-links",
@@ -65,12 +60,7 @@ const NavBar = (props) => {
         title: "Home",
         url: "/admin/home",
         cName: "nav-links",
-      },
-      {
-        title: "Configuration",
-        url: "/admin/configuration",
-        cName: "nav-links",
-      },
+      }
     ];
   }
 

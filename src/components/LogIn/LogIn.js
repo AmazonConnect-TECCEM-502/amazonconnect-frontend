@@ -70,7 +70,7 @@ const LogIn = () => {
                   window.location.href="/agent/home";
                   //navigate("/agent/home");
                 } else if (localStorage.getItem("user_type") === "manager") {
-                  window.location.href="/manager/home";
+                  window.location.href="/manager/dashboard";
                   //navigate("/manager/home");
                 } else if (localStorage.getItem("user_type") === "admin") {
                   window.location.href="/admin/home";
@@ -106,7 +106,7 @@ const LogIn = () => {
       navigate("/admin/home"); 
     }
     else if(user_type === "manager"){
-      navigate("/manager/home"); 
+      navigate("/manager/dashboard"); 
     }
   }, [navigate, user_type]);
 

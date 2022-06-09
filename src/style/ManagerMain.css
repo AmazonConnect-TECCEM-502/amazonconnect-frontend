@@ -6,13 +6,11 @@
 @import url('./PersonalizedFonts.css');
 
 .manager-container {
-    width: 100%;
-    min-height: 100vh;
-    background: var(--background);
+    text-align: left;
 }
 
 .manager-container h1{
-    color: #fff;
+    color: var(--text-primary);
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
     font-weight: normal;
     font-family: Montserrat;
