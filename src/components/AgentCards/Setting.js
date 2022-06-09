@@ -115,7 +115,7 @@ const Settings = () => {
   const sendNewName = async () => {
     const token = localStorage.getItem("token");
     const header = new Headers({ Authorization: token, "Content-Type": "application/json"});
-    await axios.post("http://localhost:8080/suc/changeName", {
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/suc/changeName`, {
       user_id: 14, //Modificar No siempre tiene que ser 14
       first_name: nuevoFirstName,
       last_name: nuevoLastName,

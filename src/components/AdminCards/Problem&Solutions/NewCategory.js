@@ -30,7 +30,7 @@ const NewCategory = (props) => {
       }),
     };
     if ((description && name) !== ''){
-      await fetch(`http://localhost:8080/problem/postCreateCategory`,request_options);
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/postCreateCategory`,request_options);
       toast.success("New Category created")
     }else{
       toast.error("All fields must be filled")

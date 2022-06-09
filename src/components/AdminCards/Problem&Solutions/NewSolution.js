@@ -45,7 +45,7 @@ const NewSolution = (props) => {
 
     if (descriptionSol.toString() !== "") {
       await fetch(
-        `http://localhost:8080/problem/postCreateSolution`,
+        `${process.env.REACT_APP_BACKEND_URL}/problem/postCreateSolution`,
         request_options
       );
 

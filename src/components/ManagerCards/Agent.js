@@ -13,7 +13,7 @@ const Agent = () => {
   const [agents, setAgents] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const agentsData = await fetch("http://localhost:8080/user/readAgents");
+      const agentsData = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/readAgents`);
       const jsonAgents = await agentsData.json();
 
       setAgents(jsonAgents);

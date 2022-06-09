@@ -25,8 +25,8 @@ const LogIn = () => {
       toast.error("Please fill both fields");
       return;
     }
-    const LOGIN_API_URL = "http://localhost:8080/auth/signin";
-    const USER_TYPE_API_URL = "http://localhost:8080/user/userType";
+    const LOGIN_API_URL = `${process.env.REACT_APP_BACKEND_URL}/auth/signin`;
+    const USER_TYPE_API_URL = `${process.env.REACT_APP_BACKEND_URL}/user/userType`;
     var tempToken = "";
 
     var headers = new Headers();

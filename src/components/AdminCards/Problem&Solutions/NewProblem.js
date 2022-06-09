@@ -36,7 +36,7 @@ const NewProblem = (props) => {
       }),
     };
     if ((descriptionProblem.toString() && category_id) !== ''){
-      await fetch(`http://localhost:8080/problem/postCreateProblem`,request_options);
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/postCreateProblem`,request_options);
       toast.success("New Problem created")
     }else{
       toast.error("All fields must be filled")
@@ -44,7 +44,7 @@ const NewProblem = (props) => {
   };
 
   const getCategories = async () =>{
-    const response = await fetch(`http://localhost:8080/problem/getCategories`)
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getCategories`)
     const json = await response.json()
     setCategories(json)
   }

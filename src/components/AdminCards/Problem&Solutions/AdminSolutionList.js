@@ -34,7 +34,7 @@ const AdminSolutionList = (props) => {
   const ProposalsCard = async () => {
     const card2 = document.getElementById("card-12");
     card2.style.display = "none"; //Hide Update Answers card
-    const response = await fetch(`http://localhost:8080/problem/getProposals/${preg_id}`) //Get proposals by problem ID
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getProposals/${preg_id}`) //Get proposals by problem ID
     const json = await response.json()
     setProposals(json) //Save proposals list in context
     const card = document.getElementById("card-14");

@@ -51,7 +51,7 @@ const NewProduct = (props) => {
               stock: stock.toString(),
               category: category.toString()
             })};
-          const response = await fetch(`http://localhost:8080/sales/createProduct`, request_options);
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/createProduct`, request_options);
           if (response.status === 400) {
             toast.error("A product with this sku already exists")
           }
@@ -81,7 +81,7 @@ const NewProduct = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const categoriesData = await fetch(
-        "http://localhost:8080/sales/getProductCategories"
+        `${process.env.REACT_APP_BACKEND_URL}/sales/getProductCategories`
       );
       const jsonCategories = await categoriesData.json();
       setCategories(jsonCategories);

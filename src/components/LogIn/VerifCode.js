@@ -31,7 +31,7 @@ const VerifCode = () => {
       redirect: "follow",
     };
 
-    fetch("http://localhost:8080/auth/verify", requestOptions)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/verify`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         toast.success("Code verified");

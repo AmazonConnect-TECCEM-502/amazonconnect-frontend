@@ -12,7 +12,7 @@ const AdminCategoriesList = (props) => {
 
   useEffect(() => {
     console.log("Descargando datos...");
-    fetch("http://localhost:8080/problem/getCategories")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getCategories`)
       .then((response) => response.json())
       .then((data) => {
         const categories = data;
