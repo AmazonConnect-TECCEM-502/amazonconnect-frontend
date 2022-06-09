@@ -28,19 +28,46 @@ Description: Css file with the styles for Sales Card.
     margin-right: 8px;
     max-width: 150px;
 }
+
+.product-card .product-header div svg{
+    color: var(--button);
+    font-size: 32px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+.product-card .product-header div svg:hover{
+    color: var(--button-hover);
+}
+#card-8 .cardscroll svg{
+    color: var(--button);
+    font-size: 32px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+#card-8 .cardscroll svg:hover{
+    color: var(--button-hover);
+}
+
 .back-button-product {
-    background-color: #0799E6;
+    background-color: var(--button);
     font-size: 16px;
-    padding: 8px 16px;
+    padding: 8px;
     color: #fff;
     font-weight: bold;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: .8s;
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
 .back-button-product:hover{
-    background-color: #0463B9;
+    background-color: var(--button-hover);
     transition: .8s;
 }
 

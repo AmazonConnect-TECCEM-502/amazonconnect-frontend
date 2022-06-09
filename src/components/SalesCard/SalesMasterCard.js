@@ -18,7 +18,7 @@ import ProductsCategoryList from "./ProductsCategoryList";
 
 const SalesMasterCard = () => {
 
-    const backend = "http://localhost:8080";
+    const backend = process.env.REACT_APP_BACKEND_URL;
     //const backend = "http://3.80.44.247:8080";
 
     const [clientID, , , , , , , , , , , , , ] = useContext(ClientContext);
@@ -78,7 +78,7 @@ const SalesMasterCard = () => {
         }),
       };
   
-      await fetch(`http://localhost:8080/sales/buyProduct`, request_options);
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/buyProduct`, request_options);
     };
 
     if (currentView === Views.CATEGORIES)

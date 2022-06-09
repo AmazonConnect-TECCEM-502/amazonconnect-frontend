@@ -7,6 +7,7 @@
 */
 
 import { Fragment } from "react";
+import { BsArrowLeftShort } from "react-icons/bs";
 
 const ProductList = (props) => {
 
@@ -20,7 +21,7 @@ const ProductList = (props) => {
           </div>
         )
       })}
-      <button className="back-button" onClick={props.backAction}>Back</button>
+      < BsArrowLeftShort onClick={props.backAction} />
 
     </Fragment>
   );
