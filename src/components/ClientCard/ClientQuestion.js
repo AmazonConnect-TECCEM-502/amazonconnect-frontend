@@ -13,7 +13,7 @@
 */
 
 import axios from "axios";
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
@@ -58,7 +58,7 @@ const ClientQuestion = (props) => {
   return (
     <div className="client">
       {!showClient && (
-        <form action={getClientData}>
+        <Fragment>
           <h1 className="title"> Authentification question </h1>
           <br />
           <div className="element">
@@ -76,8 +76,8 @@ const ClientQuestion = (props) => {
             </label>
           </div>
           {showError && <h2 className="subtitle"> Authentication failed, please try again </h2>}
-          <input className="btn-main" type="submit" value="Submit"/>
-        </form>
+          <button className="btn-main" onClick={getClientData}> Submit </button>
+        </Fragment>
       )}
       {showClient && <h2 className="subtitle"> Client authenticated </h2>}
     </div>

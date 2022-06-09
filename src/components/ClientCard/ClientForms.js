@@ -13,7 +13,7 @@
 */
 
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { ClientContext } from "./ClientProvider";
 
 const ClientForms = (props) => {
@@ -55,7 +55,7 @@ const ClientForms = (props) => {
   return (
     <div className="client">
       {!showClient && (
-        <form action={postNewClient}>
+        <Fragment>
           <h1 className="title"> New user registry </h1>
           <br />
           <div className="element">
@@ -122,8 +122,8 @@ const ClientForms = (props) => {
               )}
             </label>
           </div>
-          <input className="btn-main" type="submit" value="Register"/>
-        </form>
+          <button className="btn-main" onClick={postNewClient}> Register </button>
+        </Fragment>
       )}
       {showClient && <h2 className="subtitle"> Client registered </h2>}
     </div>
