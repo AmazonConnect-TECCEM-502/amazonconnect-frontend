@@ -6,7 +6,7 @@
   Description: Component that shows the Agent the product selected. 
 */
 
-import AddButton from "./addButton";
+
 import ProductImage from "./ProductImage";
 
 const ProductCard = (props) => {
