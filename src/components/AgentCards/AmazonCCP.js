@@ -5,7 +5,8 @@ class AmazonCCP extends Component {
     constructor(props) {
         super(props);
         this.containerDiv = React.createRef();
-	    this.onload = true;
+        this.onload = true;
+        this.isCall = false;
     }
 
     componentDidMount() {
@@ -22,38 +23,23 @@ class AmazonCCP extends Component {
 
             const eventBus = connect.core.getEventBus();
             eventBus.subscribe(connect.EventType.TERMINATED, () => {
-                    console.log("============================");
-                    console.log('Logged out');
-                    console.log("============================");
-                });
+                console.log('Logged out');
+            });
 
             connect.contact(function (contact) {
                 // Called when the contact is finished (including After Call Work)
-                contact.onDestroy(function(contact) { 
-                    console.log("============================");
-                    console.log('DESTROYED CONTAAAACT');
-                    console.log("============================");
-                });
-                // Called both then the call and ACW finish
-                contact.onEnded(function(contact) { 
-                    console.log("============================");
-                    console.log('ENDED CONTAAAACT');
-                    console.log("============================");
+                contact.onDestroy(function(contact) {
+                    if(this.isCall) {
+                        console.log("============\nCONTACT ENDED\n============");
+                        this.isCall = false;
+                    }
                 });
                 // Called when a new call starts
                 contact.onAccepted(function (contact) {
-                    console.log("============================");
-                    console.log('ACCEPTED CONTAAAACT');
-                    console.log("============================");
-
-                });
-                contact.onMissed(function (contact) {
-                    console.log("============================");
-                    console.log('MISSED CONTAAAACT');
-                    console.log("============================");
+                    console.log("============\nCONTACT STARTED\n============");
+                    this.isCall = true;
                 });
             });
-
             this.onload = false;
         }
 	}
