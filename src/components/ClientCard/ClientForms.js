@@ -1,7 +1,7 @@
 /* 
   Author: Joan Daniel Guerrero García.
 
-  Last modified date: June 3rd, 2022.
+  Last modified date: June 9th, 2022.
   
   Description: Card displaying a forms to register a client 
   not registered in Tecmex database.
@@ -13,7 +13,7 @@
 */
 
 import axios from "axios";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ClientContext } from "./ClientProvider";
 
 const ClientForms = (props) => {
@@ -25,6 +25,7 @@ const ClientForms = (props) => {
     if (clientPhone === "") {
       setEmptyPhone(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const clientFnameHandler = (event) => {
@@ -54,7 +55,7 @@ const ClientForms = (props) => {
   return (
     <div className="client">
       {!showClient && (
-        <Fragment>
+        <form action={postNewClient}>
           <h1 className="title"> New user registry </h1>
           <br />
           <div className="element">
@@ -65,6 +66,7 @@ const ClientForms = (props) => {
                   className="user-ID"
                   type="text"
                   onChange={clientFnameHandler}
+                  required
                 />
               }
             </label>
@@ -77,6 +79,7 @@ const ClientForms = (props) => {
                   className="user-ID"
                   type="text"
                   onChange={clientLnameHandler}
+                  required
                 />
               }
             </label>
@@ -90,6 +93,7 @@ const ClientForms = (props) => {
                   type="email"
                   placeholder="example@gmail.com"
                   onChange={clientEmailHandler}
+                  required
                 />
               }
             </label>
@@ -113,12 +117,13 @@ const ClientForms = (props) => {
                   type="tel"
                   placeholder="+52"
                   value={clientPhone}
+                  required
                 />
               )}
             </label>
           </div>
-          <button className="btn-main" onClick={() => postNewClient()}> Register </button>
-        </Fragment>
+          <input className="btn-main" type="submit" value="Register"/>
+        </form>
       )}
       {showClient && <h2 className="subtitle"> Client registered </h2>}
     </div>

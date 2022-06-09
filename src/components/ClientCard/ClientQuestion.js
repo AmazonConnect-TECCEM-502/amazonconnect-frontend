@@ -1,7 +1,7 @@
 /* 
   Author: Joan Daniel Guerrero García.
 
-  Last modified date: June 3rd, 2022.
+  Last modified date: June 9th, 2022.
   
   Description: Card displaying a verification question 
   for a not authenticated client.
@@ -13,7 +13,7 @@
 */
 
 import axios from "axios";
-import { Fragment, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
@@ -49,13 +49,16 @@ const ClientQuestion = (props) => {
     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendAuthRes`, {
       phoneNumber: clientPhone,
       authenticationType: "authenticated"
+    })
+    .catch(function (err) {
+      console.log(err);
     });
   }
 
   return (
     <div className="client">
       {!showClient && (
-        <Fragment>
+        <form action={getClientData}>
           <h1 className="title"> Authentification question </h1>
           <br />
           <div className="element">
@@ -64,16 +67,17 @@ const ClientQuestion = (props) => {
               &nbsp;{
                 <input
                   className="user-ID"
-                  type="text"
+                  type="email"
                   placeholder="example@gmail.com"
                   onChange={clientEmailHandler}
+                  required
                 />
               }
             </label>
           </div>
           {showError && <h2 className="subtitle"> Authentication failed, please try again </h2>}
-          <button className="btn-main" onClick={getClientData}> Submit </button>
-        </Fragment>
+          <input className="btn-main" type="submit" value="Submit"/>
+        </form>
       )}
       {showClient && <h2 className="subtitle"> Client authenticated </h2>}
     </div>

@@ -1,7 +1,7 @@
 /* 
   Author: Joan Daniel Guerrero García.
 
-  Last modified date: May 25th, 2022.
+  Last modified date: June 9th, 2022.
   
   Description: Card displaying a client's main information.
   (image, full name, and any other additional info given)
@@ -13,7 +13,7 @@
 */
 
 import axios from "axios";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import ClientForms from "./ClientForms";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
@@ -70,14 +70,13 @@ const ClientCard = () => {
     setShowError(false);
     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
       "phoneNumber": clientPhone
-    })
+    }).catch(function(err) {
+      console.log(err);
+    });
   };
 
-  useEffect( () => {
-    update();
-  });
-  
-  /*              DEBUG BUTTONS (Must be under line 94)
+  /*              
+  // DEBUG BUTTONS (Must be under <div className="client">)
   <button onClick={() => showContent("authenticated")}> Card </button>
   <button onClick={() => showContent("not enrolled")}> Forms </button>
   <button onClick={() => showContent("not authenticated")}> Question </button>
