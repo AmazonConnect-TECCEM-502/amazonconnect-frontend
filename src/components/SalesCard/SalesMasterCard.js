@@ -88,7 +88,7 @@ const SalesMasterCard = () => {
     else if (currentView === Views.PRODUCT)
       return (<ProductCard product={currentProduct} client_id={client_id} backAction={backToProducts} buttonAction={goToConfirm}/>);
     else if (currentView === Views.CONFIRM)
-      return (<ConfirmCard product={currentProduct} client_id={client_id} category_id={currentCategory} backAction={backToProduct} buttonAction={buyProduct} afterAction={backToCategories} />);
+      return (<ConfirmCard product={currentProduct} client_id={client_id} backAction={backToProduct} buttonAction={buyProduct} afterAction={backToCategories} />);
 };
 
 export default SalesMasterCard;
