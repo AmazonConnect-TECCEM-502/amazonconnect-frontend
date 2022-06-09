@@ -1,3 +1,8 @@
+/*
+  Authors: Javier Emilio Moreno Márquez 
+  Description: Component that let the Administrator know if an image can be uploaded depending on the category.
+*/
+
 const ProductImageInput = (props) => {
 
   if (props.category >= 1 && props.category <= 3)

@@ -1,3 +1,11 @@
+/*
+  Authors: Javier Emilio Moreno Márquez 
+
+           
+  Description: Component that shows the image in the Product Card from the 
+  selected bucket and the selected category key
+*/
+
 const ProductImage = (props) => {
   const bucket = "https://images-texmex-users-2-0.s3.amazonaws.com";
   const category_key = String(props.product_sku)[0];
