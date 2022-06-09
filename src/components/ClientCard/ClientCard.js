@@ -26,13 +26,8 @@ const ClientCard = () => {
   const [result, setResult] = useState(""); // AuthenticationType
   const [products, setProducts] = useState([]);
 
-
-  useEffect( () => {
-    update();
-  }, []);
-
   const update = async () => {
-    await axios.post('https://3.80.44.247:8443/vid/getAuthRes',{
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getAuthRes`,{
       "phoneNumber": clientPhone
     })
     .then(res => {
@@ -53,7 +48,7 @@ const ClientCard = () => {
   };
 
   const getClientData = async () => {
-    await axios.post('https://3.80.44.247:8443/vid/getUserData',{
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getUserData`,{
       "phoneNumber": clientPhone
     })
     .then(res => {
@@ -73,10 +68,14 @@ const ClientCard = () => {
     showContent("not yet");
     setShowClient(false);
     setShowError(false);
-    await axios.post('https://3.80.44.247:8443/vid/reset',{
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
       "phoneNumber": clientPhone
     })
   };
+
+  useEffect( () => {
+    update();
+  });
   
   /*              DEBUG BUTTONS (Must be under line 94)
   <button onClick={() => showContent("authenticated")}> Card </button>

@@ -77,7 +77,7 @@ const Settings = () => {
     const token = localStorage.getItem("token");
     const header = new Headers({ Authorization: token, "Content-Type": "application/json"});
     const json = { user_id: user_id }; // Cambiar el numero por el valor real del usuario
-    await fetch("http://localhost:8080/suc/userData", {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/suc/userData`, {
       method: "POST",
       headers: header,
       body: JSON.stringify(json),

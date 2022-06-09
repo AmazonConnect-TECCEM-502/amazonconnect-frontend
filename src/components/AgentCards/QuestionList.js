@@ -57,7 +57,7 @@ const QuestionList = () => {
    */
   const checkSolution = async (id, problem) => {
     const solutionData = await fetch(
-      `http://localhost:8080/problem/getSolutions/${id}`
+      `${process.env.REACT_APP_BACKEND_URL}/problem/getSolutions/${id}`
     );
     const jsonSolution = await solutionData.json();
     if (jsonSolution.length > 0) {

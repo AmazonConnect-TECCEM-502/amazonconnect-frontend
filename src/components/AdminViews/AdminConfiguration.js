@@ -18,77 +18,94 @@ import NewSolution from "../AdminCards/Problem&Solutions/NewSolution";
 import NewUser from "../AdminCards/NewUser";
 import NewCategory from "../AdminCards/Problem&Solutions/NewCategory";
 import AdminCategoriesList from "../AdminCards/Problem&Solutions/AdminCategoriesList";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 function AdminConfiguration() {
-  return (
-    <AdminCardProvider>
-      <AdminContextProvider>
-        <ClientProvider>
-          <div className="agent-container admin">
-            <AgentBoard id="board-1" className="board board-menu">
-              <AdminCard
-                id="card-1"
-                draggable="false"
-                component={<MenuConfiguration />}
-              />
-              <AdminCard
-                id="card-10"
-                draggable="true"
-                component={<ClientForms />}
-              />
-              <AdminCard
-                id="card-11"
-                draggable="true"
-                component={<NewCategory />}
-              />
-            </AgentBoard>
+  const user_type = localStorage.getItem("user_type");
+  const navigate = useNavigate();
 
-            <AgentBoard id="board-2" className="board">
-              <AdminCard
-                id="card-4"
-                draggable="true"
-                component={<NewProblem />}
-              />
-              <AdminCard id="card-6" draggable="true" component={<NewUser />} />
-              <AdminCard
-                id="card-8"
-                draggable="true"
-                component={<NewProduct />}
-              />
-            </AgentBoard>
+  /* Checking if the user is an admin, if not it will redirect to the previous page. */
+  useEffect(() => {
+    if(user_type === ""){
+      navigate("/");
+    }
+    else if(user_type !== "admin"){
+      navigate(-1);
+    }
+  }, [user_type, navigate]);
 
-            <AgentBoard id="board-3" className="board">
-              <AdminCard
-                id="card-5"
-                draggable="true"
-                component={<AdminCategoriesList />}
-              />
-              <AdminCard
-                id="card-15"
-                draggable="true"
-                component={<AdminProblemList />}
-              />
-              <AdminCard
-                id="card-12"
-                draggable="true"
-                component={<AdminSolutionList />}
-              />
-              <AdminCard
-                id="card-13"
-                draggable="true"
-                component={<NewSolution />}
-              />
-              <AdminCard
-                id="card-14"
-                draggable="true"
-                component={<ProposalsList />}
-              />
-            </AgentBoard>
-          </div>
-        </ClientProvider>
-      </AdminContextProvider>
-    </AdminCardProvider>
-  );
+  if (user_type === "admin"){
+    return (
+      <AdminCardProvider>
+        <AdminContextProvider>
+          <ClientProvider>
+            <div className="agent-container admin">
+              <AgentBoard id="board-1" className="board board-menu">
+                <AdminCard
+                  id="card-1"
+                  draggable="false"
+                  component={<MenuConfiguration />}
+                />
+                <AdminCard
+                  id="card-10"
+                  draggable="true"
+                  component={<ClientForms />}
+                />
+                <AdminCard
+                  id="card-11"
+                  draggable="true"
+                  component={<NewCategory />}
+                />
+              </AgentBoard>
+  
+              <AgentBoard id="board-2" className="board">
+                <AdminCard
+                  id="card-4"
+                  draggable="true"
+                  component={<NewProblem />}
+                />
+                <AdminCard id="card-6" draggable="true" component={<NewUser />} />
+                <AdminCard
+                  id="card-8"
+                  draggable="true"
+                  component={<NewProduct />}
+                />
+              </AgentBoard>
+  
+              <AgentBoard id="board-3" className="board">
+                <AdminCard
+                  id="card-5"
+                  draggable="true"
+                  component={<AdminCategoriesList />}
+                />
+                <AdminCard
+                  id="card-15"
+                  draggable="true"
+                  component={<AdminProblemList />}
+                />
+                <AdminCard
+                  id="card-12"
+                  draggable="true"
+                  component={<AdminSolutionList />}
+                />
+                <AdminCard
+                  id="card-13"
+                  draggable="true"
+                  component={<NewSolution />}
+                />
+                <AdminCard
+                  id="card-14"
+                  draggable="true"
+                  component={<ProposalsList />}
+                />
+              </AgentBoard>
+            </div>
+          </ClientProvider>
+        </AdminContextProvider>
+      </AdminCardProvider>
+    );
+  }
 }
 
 export default AdminConfiguration;

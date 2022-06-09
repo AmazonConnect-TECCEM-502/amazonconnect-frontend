@@ -26,7 +26,7 @@ const ClientQuestion = (props) => {
   };
 
   const getClientData = async () => {
-    await axios.post('https://3.80.44.247:8443/vid/getUserData',{
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getUserData`,{
       "phoneNumber": clientPhone
     })
     .then(res => {
@@ -46,7 +46,7 @@ const ClientQuestion = (props) => {
   };
 
   const sendAuth = async () => {
-    await axios.post("https://3.80.44.247:8443/vid/sendAuthRes", {
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendAuthRes`, {
       phoneNumber: clientPhone,
       authenticationType: "authenticated"
     });
