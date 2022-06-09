@@ -9,12 +9,15 @@ import { FaStop } from "react-icons/fa";
 import { GoUnmute, GoMute } from "react-icons/go";
 import axios from "axios";
 import { AgentContext } from "../AgentView/AgentProvider";
+import { ClientContext } from "../ClientCard/ClientProvider";
 
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , categoryProblem] =
     useContext(AgentContext);
 
-  console.log(categoryProblem);
+  const [clientID] = useContext(ClientContext);
+
+  console.log("list:", categoryProblem);
   const onStop = async (url, blob) => {
     const API_ENDPOINT =
       "https://6tggc5vevc.execute-api.us-east-1.amazonaws.com/default/getPresignedS3URL";
@@ -50,6 +53,7 @@ const Recording = () => {
         var raw = JSON.stringify({
           file: videoURL,
           agent_id: user_id,
+          client_id: clientID,
         });
 
         var requestOptions = {
@@ -59,8 +63,33 @@ const Recording = () => {
         };
 
         fetch("http://localhost:8080/call/postVideoBD", requestOptions)
-          .then((response) => response.text())
-          .then((result) => console.log(result))
+          .then((response) => response.json())
+          .then((result) => {
+            const call_id = result.call_id;
+
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", token);
+            myHeaders.append("Content-Type", "application/json");
+            console.log("array:", categoryProblem);
+
+            var raw = JSON.stringify({
+              call_id: call_id,
+              categories: categoryProblem,
+            });
+
+            var requestOptions = {
+              method: "POST",
+              headers: myHeaders,
+              body: raw,
+            };
+
+            fetch(
+              "http://localhost:8080/callProblemCategory/createCallPC",
+              requestOptions
+            )
+              .then((response) => console.log(response.status))
+              .catch((error) => console.log("error", error));
+          })
           .catch((error) => console.log("error", error));
       } else {
         console.log("Error al subir video");
