@@ -1,3 +1,12 @@
+/*
+  Authors: Omar Rodrigo Sorchini Puente
+           Javier Emilio Moreno Márquez 
+           Renata De Luna Flores
+           
+  Description: Component that shows the Agent the product selected. 
+*/
+
+import AddButton from "./addButton";
 import ProductImage from "./ProductImage";
 
 const ProductCard = (props) => {
