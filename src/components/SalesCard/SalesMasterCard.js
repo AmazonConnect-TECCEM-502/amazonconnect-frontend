@@ -1,3 +1,14 @@
+/*
+  Authors: Omar Rodrigo Sorchini Puente
+           Javier Emilio Moreno Márquez 
+           Renata De Luna Flores
+           
+  Description: Master component that decides which view is provided to the Agent.
+  The route goes like this...
+  
+  ProductCategoryList <-> ProductList <-> ProductCard
+*/
+
 import { useContext, useState } from "react";
 import { ClientContext } from "../ClientCard/ClientProvider";
 import ProductCard from "./ProductCard";

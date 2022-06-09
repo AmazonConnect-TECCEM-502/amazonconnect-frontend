@@ -1,6 +1,20 @@
+/*
+  Authors: Omar Rodrigo Sorchini Puente
+           Javier Emilio Moreno Márquez 
+           Renata De Luna Flores
+           
+  Description: Component that shows the Agent the product category selected. 
+*/
+
 import { Fragment, useEffect, useState } from "react";
 
 const ProductsCategoryList = (props) => {
+
+  /*State vars:
+    categories: A json containing the categories of the products 
+
+  */
+
   const [categories, setCategories] = useState([]);
 
   // useEffect will be used so before the component is created it fetch the data from our back
