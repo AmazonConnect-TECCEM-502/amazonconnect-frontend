@@ -10,7 +10,7 @@ const options = [
 
 function ManagerCalls() {
   useEffect(() => {
-    fetch("http://localhost:8080/call/getCalls")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/call/getCalls`)
       .then((response) => response.json())
       .then((calls) => {
         const newArr = calls.map((call) => {
