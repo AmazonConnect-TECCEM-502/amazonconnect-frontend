@@ -1,3 +1,9 @@
+/*
+  Authors: Javier Emilio Moreno Márquez 
+           
+  Description: Component that confirms with the Agent the acquisition of product selected.
+*/
+
 const ConfirmCard = (props) => {
     return (
     <div>
