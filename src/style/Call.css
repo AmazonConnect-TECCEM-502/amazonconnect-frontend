@@ -1,0 +1,10 @@
+.call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.call .card div p {
+  margin: 0;
+  text-align: left;
+  font-family: "Montserrat";
+}

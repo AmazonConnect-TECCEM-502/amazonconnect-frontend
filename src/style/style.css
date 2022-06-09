@@ -47,3 +47,5 @@
 @import url("./AdminCards/AdminCards.css");
 /* Verification Code */
 @import url("./LogIn/VerifCode.css");
+/* Calls */
+@import url("./Call.css");
