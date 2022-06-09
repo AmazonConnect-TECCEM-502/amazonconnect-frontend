@@ -5,7 +5,8 @@ class AmazonCCP extends Component {
     constructor(props) {
         super(props);
         this.containerDiv = React.createRef();
-	    this.onload = true;
+	this.onload = true;
+	this.isCall = false;
     }
 
     componentDidMount() {
@@ -30,27 +31,33 @@ class AmazonCCP extends Component {
             connect.contact(function (contact) {
                 // Called when the contact is finished (including After Call Work)
                 contact.onDestroy(function(contact) { 
+			if(this.isCall) {
                     console.log("============================");
                     console.log('DESTROYED CONTAAAACT');
                     console.log("============================");
+				this.isCall = false;
+			}
                 });
                 // Called both then the call and ACW finish
                 contact.onEnded(function(contact) { 
+			if(this.isCall) {
                     console.log("============================");
                     console.log('ENDED CONTAAAACT');
                     console.log("============================");
+			}
                 });
                 // Called when a new call starts
                 contact.onAccepted(function (contact) {
                     console.log("============================");
                     console.log('ACCEPTED CONTAAAACT');
                     console.log("============================");
-
+		    this.isCall = true;
                 });
                 contact.onMissed(function (contact) {
                     console.log("============================");
                     console.log('MISSED CONTAAAACT');
                     console.log("============================");
+			contact.destroy();
                 });
             });
 
