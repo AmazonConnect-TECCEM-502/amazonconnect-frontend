@@ -15,7 +15,29 @@ import { AgentContext } from "../AgentView/AgentProvider";
 const ProblemCategoryList = () => {
   // setQuestions -> Method used to add the questions
   // setQna -> Method used to display the Questions card
-  const [,,,,,setQuestions,,,,,,,,,,,,setQnA,,,categoryProblem,setCategoryProblem
+  const [
+    ,
+    ,
+    ,
+    ,
+    ,
+    setQuestions,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    setQnA,
+    ,
+    ,
+    categoryProblem,
+    setCategoryProblem,
   ] = useContext(AgentContext);
   // Contains a List of problems
   const [problems, setProblems] = useState([]);
@@ -25,7 +47,9 @@ const ProblemCategoryList = () => {
   /* Fetching data from the server and adding it to problems */
   useEffect(() => {
     const fetchData = async () => {
-      const problemsData = await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getProblemCategorys`);
+      const problemsData = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/problem/getProblemCategorys`
+      );
       const jsonProblems = await problemsData.json();
 
       setProblems(jsonProblems);
@@ -37,6 +61,10 @@ const ProblemCategoryList = () => {
    * @param id - the id of the question
    */
   const checkQnA = async (id) => {
+    localStorage.setItem(
+      "categoryProblem",
+      JSON.stringify([...categoryProblem, id])
+    );
     const questionData = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/problem/getProblem/${id}`
     );
@@ -86,48 +114,57 @@ const ProblemCategoryList = () => {
         value={searchTerm}
         onChange={searchHandler}
       />
-      {searchTerm.length < 1 ?
-        problems.map((problem, index) => {
-          return (
-            <div key={index}  className="categorys">
-              <button
-                type="text"
-                className={
-                  activeLink === problem.category_id ? "categorys-active" : undefined
-                }
-                onClick={async () => {
-                  setActiveLink(problem.category_id);
-                  setCategoryProblem([...categoryProblem, problem.category_id])
-                  await checkQnA(problem.category_id);
-                  showQnA();
-                }}
-              >
-                {problem.category_name}
-              </button>
-            </div>
-          );
-        })
+      {searchTerm.length < 1
+        ? problems.map((problem, index) => {
+            return (
+              <div key={index} className="categorys">
+                <button
+                  type="text"
+                  className={
+                    activeLink === problem.category_id
+                      ? "categorys-active"
+                      : undefined
+                  }
+                  onClick={async () => {
+                    setActiveLink(problem.category_id);
+                    setCategoryProblem([
+                      ...categoryProblem,
+                      problem.category_id,
+                    ]);
+                    await checkQnA(problem.category_id);
+                    showQnA();
+                  }}
+                >
+                  {problem.category_name}
+                </button>
+              </div>
+            );
+          })
         : searchResult.map((problem, index) => {
-          return (
-            <div key={index}  className="categorys">
-              <button
-                type="text"
-                className={
-                  activeLink === problem.category_id ? "categorys-active" : undefined
-                }
-                onClick={async () => {
-                  setActiveLink(problem.category_id);
-                  setCategoryProblem([...categoryProblem, problem.category_id])
-                  await checkQnA(problem.category_id);
-                  showQnA();
-                }}
-              >
-                {problem.category_name}
-              </button>
-            </div>
-          );
-        })
-      }
+            return (
+              <div key={index} className="categorys">
+                <button
+                  type="text"
+                  className={
+                    activeLink === problem.category_id
+                      ? "categorys-active"
+                      : undefined
+                  }
+                  onClick={async () => {
+                    setActiveLink(problem.category_id);
+                    setCategoryProblem([
+                      ...categoryProblem,
+                      problem.category_id,
+                    ]);
+                    await checkQnA(problem.category_id);
+                    showQnA();
+                  }}
+                >
+                  {problem.category_name}
+                </button>
+              </div>
+            );
+          })}
     </Fragment>
   );
 };

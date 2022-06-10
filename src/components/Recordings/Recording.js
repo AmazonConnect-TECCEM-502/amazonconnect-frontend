@@ -12,13 +12,15 @@ import { AgentContext } from "../AgentView/AgentProvider";
 import { ClientContext } from "../ClientCard/ClientProvider";
 
 const Recording = () => {
-  const [, , , , , , , , , , , , , , , , , , , , categoryProblem] =
+  const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
 
-  const [clientID] = useContext(ClientContext);
-
-  console.log("list:", categoryProblem);
   const onStop = async (url, blob) => {
+    // await setCategoryProblem([...categoryProblem]);
+    const clientID = parseInt(localStorage.getItem("clientID"));
+    console.log(clientID);
+    const categories = JSON.parse(localStorage.getItem("categoryProblem"));
+
     const API_ENDPOINT =
       "https://6tggc5vevc.execute-api.us-east-1.amazonaws.com/default/getPresignedS3URL";
 
@@ -62,7 +64,7 @@ const Recording = () => {
           body: raw,
         };
 
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/call/postVideoBD`, requestOptions)
+        fetch(`http://localhost:8080/call/postVideoBD`, requestOptions)
           .then((response) => response.json())
           .then((result) => {
             const call_id = result.call_id;
@@ -70,11 +72,10 @@ const Recording = () => {
             var myHeaders = new Headers();
             myHeaders.append("Authorization", token);
             myHeaders.append("Content-Type", "application/json");
-            console.log("array:", categoryProblem);
 
             var raw = JSON.stringify({
               call_id: call_id,
-              categories: categoryProblem,
+              categories: categories,
             });
 
             var requestOptions = {
@@ -84,10 +85,14 @@ const Recording = () => {
             };
 
             fetch(
-              `${process.env.REACT_APP_BACKEND_URL}/callProblemCategory/createCallPC`,
+              `http://localhost:8080/callProblemCategory/createCallPC`,
               requestOptions
             )
-              .then((response) => console.log(response.status))
+              .then((response) => {
+                console.log(response.status);
+                localStorage.removeItem("categoryProblem");
+                setCategoryProblem([]);
+              })
               .catch((error) => console.log("error", error));
           })
           .catch((error) => console.log("error", error));

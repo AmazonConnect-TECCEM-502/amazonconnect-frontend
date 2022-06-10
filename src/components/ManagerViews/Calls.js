@@ -8,6 +8,11 @@ const options = [
   { value: "vanilla", label: "Vanilla" },
 ];
 
+const groups = {
+  label: "Agents",
+  options: options,
+};
+
 function ManagerCalls() {
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/call/getCalls`)
@@ -43,7 +48,8 @@ function ManagerCalls() {
           placeholder={"Category"}
           options={options}
         />
-
+        <br />
+        {console.log(selectedOption)}
         {videosArr.map((video) => (
           <div className="call">
             <div className="card">
