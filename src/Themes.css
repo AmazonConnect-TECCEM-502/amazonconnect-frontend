@@ -9,7 +9,7 @@ data-theme={theme}
 
 
 :root {
-    --background: linear-gradient(to bottom left, #fff, #0799E6, #0463B9);
+    --background: #5bb9ff;
     --text-primary: #000;
     --card-color: #f7f7f7;
     --text-secondary: blue;
@@ -17,13 +17,13 @@ data-theme={theme}
     --navlinks-hover: #000;
     --border-bottom: 1.5px solid black;
     --navbar-icons: #009ad9;
-    --button: rgb(106, 91, 191);
-    --button-hover: rgb(91, 76, 174);
+    --button: rgb(77 109 200);
+    --button-hover: rgb(54, 78, 145);
 }
 
 [data-theme='dark'] {
     --background: linear-gradient(to bottom right, #0D1117, #161c26, #161d27);
-    --card-color: rgb(29, 29, 31);
+    --card-color: #012530;
     --text-primary: #fff;
     --text-secondary: rgb(192, 192, 93);
     --text-contrary: #000;
@@ -32,8 +32,8 @@ data-theme={theme}
     --navlinks-hover: #cdcdcd;
     --border-bottom: 1.5px solid white;
     --navbar-icons: #fff;
-    --button: rgb(124, 55, 138);
-    --button-hover: rgb(198, 129, 210);
+    --button: rgb(77 109 200);
+    --button-hover: rgb(54, 78, 145);
 }
 
 [data-theme='light-protanopia'] {
@@ -50,7 +50,7 @@ data-theme={theme}
 }
 
 [data-theme='light-tritanopia'] {
-    --background: linear-gradient(to bottom left, #fff, #6eccff, #198cff);
+    --background: #5bb9ff;
     --card-color: #f7f7f7;
     --text-secondary: rgb(210, 210, 0);
     --navbar-color: rgb(250, 250, 250);
@@ -64,7 +64,7 @@ data-theme={theme}
 
 [data-theme='dark-protonopia'] {
     --background: linear-gradient(to bottom right, #0D1117, #161c26, #161d27);
-    --card-color: rgb(29, 29, 31);
+    --card-color: #012530;
     --text-primary: #58A6FF;
     --text-secondary: rgb(93, 192, 93);
     --text-contrary: #000;
@@ -79,7 +79,7 @@ data-theme={theme}
 
 [data-theme='dark-tritanopia'] {
     --background: linear-gradient(to bottom right, #0D1117, #161c26, #161d27);
-    --card-color: rgb(29, 29, 31);
+    --card-color: #012530;
     --text-primary: #58A6FF;
     --text-secondary: rgb(192, 192, 93);
     --text-contrary: #000;

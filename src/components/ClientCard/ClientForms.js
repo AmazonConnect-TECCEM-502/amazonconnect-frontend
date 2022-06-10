@@ -44,9 +44,9 @@ const ClientForms = (props) => {
     {
       toast.error("Please fill out all the fields");
     }
-    else if(!clientEmail.includes("@") || !clientEmail.includes(".com"))
+    else if(!clientEmail.includes("@") || !clientEmail.includes("."))
     {
-      toast.error("Invalid email format, please include '@' and '.com'");
+      toast.error("Invalid email format, please include '@' and '.'");
     }
     else
     {
