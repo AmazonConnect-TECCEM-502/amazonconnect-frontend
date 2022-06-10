@@ -21,7 +21,7 @@ const Recording = () => {
 
   
   useEffect(() => {
-    if(this.onload) {
+    if(onload) {
             const eventBus = connect.core.getEventBus();
             eventBus.subscribe(connect.EventType.TERMINATED, () => {
                 console.log('Logged out');
@@ -30,18 +30,18 @@ const Recording = () => {
             connect.contact(function (contact) {
                 // Called when the contact is finished (including After Call Work)
                 contact.onDestroy(function(contact) {
-                    if(this.isCall) {
+                    if(isCall) {
                         console.log("============\nCONTACT ENDED\n============");
-                        this.isCall = false;
+                        isCall = false;
                     }
                 });
                 // Called when a new call starts
                 contact.onAccepted(function (contact) {
                     console.log("============\nCONTACT STARTED\n============");
-                    this.isCall = true;
+                    isCall = true;
                 });
             });
-            this.onload = false;
+            onload = false;
         }
   });
 
