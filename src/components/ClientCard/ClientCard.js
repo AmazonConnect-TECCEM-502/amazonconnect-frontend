@@ -57,6 +57,8 @@ const ClientCard = () => {
       setClientLname(res.data.userData.last_name)
       setClientEmail(res.data.userData.email)
       setProducts(res.data.userProducts)
+      localStorage.removeItem('clientID')
+      localStorage.setItem('clientID', res.data.userData.client_id.toString())
     })
     .catch(function(err) {
       console.log(err);
