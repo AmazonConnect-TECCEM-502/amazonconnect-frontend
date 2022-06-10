@@ -124,7 +124,7 @@ const Recording = () => {
     blobPropertyBag: { type: "video/mp4" },
   });
   
-  //useEffect(() => {
+  useEffect(() => {
     if (onload) {
       const eventBus = connect.core.getEventBus();
       eventBus.subscribe(connect.EventType.TERMINATED, () => {
@@ -147,7 +147,7 @@ const Recording = () => {
       });
       onload = false;
     }
-  //});
+  });
 
   return (
     <Fragment>
