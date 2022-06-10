@@ -46,7 +46,7 @@ const ClientForms = (props) => {
     }
     else if(!clientEmail.includes("@") || !clientEmail.includes(".com"))
     {
-      toast.error("Invalid email format");
+      toast.error("Invalid email format, please include '@' and '.com'");
     }
     else
     {
