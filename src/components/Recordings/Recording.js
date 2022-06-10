@@ -145,6 +145,8 @@ const Recording = () => {
           console.log("#==========>\nCONTACT STARTED\n<==========#");
           startRecording();
           isCall = true;
+          const contactAttributes = contact.getAttributes();
+          console.log(contactAttributes);
         });
       });
       onload = false;
