@@ -11,3 +11,25 @@ Styles for buttons in the Recordings Card
   align-items: center;
   cursor: pointer;
 }
+
+.carousel-recordings{
+  margin: 16px auto 0 auto;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.carousel-recordings .card{
+  margin-right: 16px;
+  padding: 0;
+  border-radius: 5px;
+}
+.carousel-recordings .card .video-info{
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+.carousel-recordings .card .video-info p{
+  margin: 0 0 8px 0;
+}

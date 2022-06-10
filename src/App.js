@@ -57,7 +57,7 @@ function App() {
 
   let token = localStorage.getItem("token");
   const tokenHeader = new Headers({ Authorization : token});
-  fetch("http://localhost:8080/auth/verifyToken", {headers: tokenHeader})
+  fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/verifyToken`, {headers: tokenHeader})
     .then((response) => {
       if(response.status !== 200){
         localStorage.clear();
