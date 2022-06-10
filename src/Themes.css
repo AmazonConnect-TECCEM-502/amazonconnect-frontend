@@ -17,8 +17,8 @@ data-theme={theme}
     --navlinks-hover: #000;
     --border-bottom: 1.5px solid black;
     --navbar-icons: #009ad9;
-    --button: rgb(106, 91, 191);
-    --button-hover: rgb(91, 76, 174);
+    --button: rgb(77 109 200);
+    --button-hover: rgb(54, 78, 145);
 }
 
 [data-theme='dark'] {
@@ -32,8 +32,8 @@ data-theme={theme}
     --navlinks-hover: #cdcdcd;
     --border-bottom: 1.5px solid white;
     --navbar-icons: #fff;
-    --button: rgb(124, 55, 138);
-    --button-hover: rgb(198, 129, 210);
+    --button: rgb(77 109 200);
+    --button-hover: rgb(54, 78, 145);
 }
 
 [data-theme='light-protanopia'] {
