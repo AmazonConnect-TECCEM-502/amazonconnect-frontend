@@ -21,7 +21,7 @@ class AmazonCCP extends Component {
                 }
             });
 
-            const eventBus = connect.core.getEventBus();
+            /*const eventBus = connect.core.getEventBus();
             eventBus.subscribe(connect.EventType.TERMINATED, () => {
                 console.log('Logged out');
             });
@@ -39,7 +39,7 @@ class AmazonCCP extends Component {
                     console.log("============\nCONTACT STARTED\n============");
                     this.isCall = true;
                 });
-            });
+            });*/
             this.onload = false;
         }
 	}
