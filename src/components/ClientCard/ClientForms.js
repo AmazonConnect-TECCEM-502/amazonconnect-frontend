@@ -44,6 +44,10 @@ const ClientForms = (props) => {
     {
       toast.error("Please fill out all the fields");
     }
+    else if(!clientEmail.includes("@") || !clientEmail.includes(".com"))
+    {
+      toast.error("Invalid email format");
+    }
     else
     {
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendClientData`, {
