@@ -1,7 +1,7 @@
 /*
   Authors: Omar Rodrigo Sorchini Puente
-            Javier Emilio Moreno Márquez 
-  Description: Component that permits the Administrator the creation of a new product. 
+            Javier Emilio Moreno Márquez
+  Description: Component that permits the Administrator the creation of a new product.
 */
 
 import { Fragment, useEffect, useState } from "react";
@@ -40,7 +40,7 @@ const UpdateProduct = (props) => {
 
   const createProduct = async () => {
     if ((sku && name && description && price && stock && category) !== '') {
-      if (typeof(sku) === "number" && typeof(name) === "string" && typeof(description) === "string" && typeof(price) === "number" && typeof(stock) === "number" && typeof(category) === "number") { 
+      if (typeof(sku) === "number" && typeof(name) === "string" && typeof(description) === "string" && typeof(price) === "number" && typeof(stock) === "number" && typeof(category) === "number") {
         if (category >= 1 && category <= categories.length) {
           const categoryAtUpload = category;
           const request_options = {
@@ -59,7 +59,7 @@ const UpdateProduct = (props) => {
             toast.error("A product with this sku already exists")
           }
           else if (response.status === 200) {
-            if (categoryAtUpload > 3 && categoryAtUpload <= 6) 
+            if (categoryAtUpload > 3 && categoryAtUpload <= 6)
               await getUrl();
             const card = document.getElementById("card-8");
             card.style.display = "none";
@@ -76,7 +76,7 @@ const UpdateProduct = (props) => {
       else {
       toast.error("One or more fields have incorrect input datatypes")
       }
-    } 
+    }
     else {
       toast.error("All fields must be filled")
     }
@@ -131,7 +131,7 @@ const UpdateProduct = (props) => {
         .then((fileb64) => {
           dataUriNoState = fileb64.split(',')[1].toString()
         })
-        
+
       console.log("dataUriNoState " ,dataUriNoState)
 
       const base64 = dataUriNoState
@@ -156,7 +156,7 @@ const UpdateProduct = (props) => {
         method: 'GET'
       });
       console.log(response.data)
-    
+
       if (response.status === 200) {
         const uploaded = await fetch(response.data.uploadURL, {
           method: "PUT",
@@ -167,7 +167,7 @@ const UpdateProduct = (props) => {
         } else {
           console.log("Error al subir imagen");
         }
-      } 
+      }
       else {
       console.log("Error al obtener el link de subida");
       }
@@ -179,7 +179,9 @@ const UpdateProduct = (props) => {
       `${process.env.REACT_APP_BACKEND_URL}/sales/validateSku/${sku}`
     );
     if (sku_response.status === 200) {
-      await fetchProduct(sku);
+      //await fetchProduct(sku);
+      setProductToUpdate(await sku_response.product.json());
+      setPrevCategory(await sku_response.category_id.json());
       setSkuValidated(true);
     }
     else if (sku_response.status === 400) {
@@ -190,14 +192,6 @@ const UpdateProduct = (props) => {
       toast.error(`Server responded with status ${sku_response.status}`);
       setSkuValidated(false);
     }
-  }
-
-  const fetchProduct = async (sku) => {
-    const productData = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/getProductBySku/${sku}`);
-    const jsonProduct = await productData.json();
-    setProductToUpdate(jsonProduct);
-    const categoryData = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/getCategoryByProduct/${jsonProduct.product_id}`);
-    setPrevCategory(categoryData.json().category_id);
   }
 
   const updateProduct = async (name, description, price, stock, category) => {
@@ -239,7 +233,7 @@ const UpdateProduct = (props) => {
   }
 
   if (skuValidated)
-  return( 
+  return(
     <Fragment>
       <div className="title"> Create Product </div>
       <div className="new">
@@ -266,7 +260,7 @@ const UpdateProduct = (props) => {
       </div>
     </Fragment>
   );
-  else 
+  else
       return(
           <Fragment>
             <p>Provide the sku of the product to be edited</p>
