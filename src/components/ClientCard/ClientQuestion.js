@@ -14,6 +14,7 @@
 
 import axios from "axios";
 import { Fragment, useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
@@ -29,6 +30,10 @@ const ClientQuestion = (props) => {
     if(inputEmail === "")
     {
       toast.error("Please fill in the email");
+    }
+    else if(!inputEmail.includes("@") || !inputEmail.includes(".com"))
+    {
+      toast.error("Invalid email format, please include '@' and '.com'");
     }
     else
     {

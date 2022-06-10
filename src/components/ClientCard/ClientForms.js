@@ -14,6 +14,7 @@
 
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientForms = (props) => {
@@ -42,6 +43,10 @@ const ClientForms = (props) => {
     if(clientFname === "" || clientLname === "" || clientEmail === "")
     {
       toast.error("Please fill out all the fields");
+    }
+    else if(!clientEmail.includes("@") || !clientEmail.includes(".com"))
+    {
+      toast.error("Invalid email format, please include '@' and '.com'");
     }
     else
     {

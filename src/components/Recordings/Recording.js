@@ -2,7 +2,7 @@
 // Component that allows the agent to record his or her screen and produce
 // an MP4 file with the media recorded which will be uploaded to an AWS S3 bucket
 
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { BsFillRecordFill, BsPauseFill, BsFillPlayFill } from "react-icons/bs";
 import { FaStop } from "react-icons/fa";
@@ -10,15 +10,21 @@ import { GoUnmute, GoMute } from "react-icons/go";
 import axios from "axios";
 import { AgentContext } from "../AgentView/AgentProvider";
 import { ClientContext } from "../ClientCard/ClientProvider";
+import "amazon-connect-streams";
+
+var onload = true;
+var isCall = true;
 
 const Recording = () => {
-  const [, , , , , , , , , , , , , , , , , , , , categoryProblem] =
+  const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
 
-  const [clientID] = useContext(ClientContext);
-
-  console.log("list:", categoryProblem);
   const onStop = async (url, blob) => {
+    // await setCategoryProblem([...categoryProblem]);
+    const clientID = parseInt(localStorage.getItem("clientID"));
+    console.log(clientID);
+    const categories = JSON.parse(localStorage.getItem("categoryProblem"));
+
     const API_ENDPOINT =
       "https://6tggc5vevc.execute-api.us-east-1.amazonaws.com/default/getPresignedS3URL";
 
@@ -62,7 +68,7 @@ const Recording = () => {
           body: raw,
         };
 
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/call/postVideoBD`, requestOptions)
+        fetch(`http://localhost:8080/call/postVideoBD`, requestOptions)
           .then((response) => response.json())
           .then((result) => {
             const call_id = result.call_id;
@@ -70,11 +76,10 @@ const Recording = () => {
             var myHeaders = new Headers();
             myHeaders.append("Authorization", token);
             myHeaders.append("Content-Type", "application/json");
-            console.log("array:", categoryProblem);
 
             var raw = JSON.stringify({
               call_id: call_id,
-              categories: categoryProblem,
+              categories: categories,
             });
 
             var requestOptions = {
@@ -84,10 +89,14 @@ const Recording = () => {
             };
 
             fetch(
-              `${process.env.REACT_APP_BACKEND_URL}/callProblemCategory/createCallPC`,
+              `http://localhost:8080/callProblemCategory/createCallPC`,
               requestOptions
             )
-              .then((response) => console.log(response.status))
+              .then((response) => {
+                console.log(response.status);
+                localStorage.removeItem("categoryProblem");
+                setCategoryProblem([]);
+              })
               .catch((error) => console.log("error", error));
           })
           .catch((error) => console.log("error", error));
@@ -113,6 +122,33 @@ const Recording = () => {
     audio: true,
     onStop: onStop,
     blobPropertyBag: { type: "video/mp4" },
+  });
+  
+  useEffect(() => {
+    if (onload) {
+      /*const eventBus = connect.core.getEventBus();
+      eventBus.subscribe(connect.EventType.TERMINATED, () => {
+        console.log("Logged out");
+      });*/
+
+      connect.contact(function (contact) {
+        // Called when the contact is finished (including After Call Work)
+        contact.onDestroy(function (contact) {
+          if (isCall) {
+            console.log("#==========>\nCONTACT ENDED\n<==========#");
+            stopRecording();
+            isCall = false;
+          }
+        });
+        // Called when a new call starts
+        contact.onAccepted(function (contact) {
+          console.log("#==========>\nCONTACT STARTED\n<==========#");
+          startRecording();
+          isCall = true;
+        });
+      });
+      onload = false;
+    }
   });
 
   return (

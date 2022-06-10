@@ -21,7 +21,7 @@ import ClientQuestion from "./ClientQuestion";
 import { ClientContext } from "./ClientProvider";
 
 const ClientCard = () => {
-  const [ , setClientID, clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , setShowClient, , setShowError] = useContext(ClientContext);
+  const [ clientID, setClientID, clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , setShowClient, , setShowError] = useContext(ClientContext);
 
   const [result, setResult] = useState(""); // AuthenticationType
   const [products, setProducts] = useState([]);
@@ -57,11 +57,14 @@ const ClientCard = () => {
       setClientLname(res.data.userData.last_name)
       setClientEmail(res.data.userData.email)
       setProducts(res.data.userProducts)
+      localStorage.removeItem('clientID')
+      localStorage.setItem('clientID', res.data.userData.client_id.toString())
     })
     .catch(function(err) {
       console.log(err);
       showContent("not yet");
     });
+    console.log(clientID);
   }
 
   const resetUserData = async () => {
