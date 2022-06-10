@@ -19,31 +19,6 @@ const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
 
-  useEffect(() => {
-    if (onload) {
-      const eventBus = connect.core.getEventBus();
-      eventBus.subscribe(connect.EventType.TERMINATED, () => {
-        console.log("Logged out");
-      });
-
-      connect.contact(function (contact) {
-        // Called when the contact is finished (including After Call Work)
-        contact.onDestroy(function (contact) {
-          if (isCall) {
-            console.log("============\nCONTACT ENDED\n============");
-            isCall = false;
-          }
-        });
-        // Called when a new call starts
-        contact.onAccepted(function (contact) {
-          console.log("============\nCONTACT STARTED\n============");
-          isCall = true;
-        });
-      });
-      onload = false;
-    }
-  });
-
   const onStop = async (url, blob) => {
     // await setCategoryProblem([...categoryProblem]);
     const clientID = parseInt(localStorage.getItem("clientID"));
@@ -148,6 +123,31 @@ const Recording = () => {
     onStop: onStop,
     blobPropertyBag: { type: "video/mp4" },
   });
+  
+  //useEffect(() => {
+    if (onload) {
+      const eventBus = connect.core.getEventBus();
+      eventBus.subscribe(connect.EventType.TERMINATED, () => {
+        console.log("Logged out");
+      });
+
+      connect.contact(function (contact) {
+        // Called when the contact is finished (including After Call Work)
+        contact.onDestroy(function (contact) {
+          if (isCall) {
+            console.log("#==========>\nCONTACT ENDED\n<==========#");
+            isCall = false;
+          }
+        });
+        // Called when a new call starts
+        contact.onAccepted(function (contact) {
+          console.log("#==========>\nCONTACT STARTED\n<==========#");
+          isCall = true;
+        });
+      });
+      onload = false;
+    }
+  //});
 
   return (
     <Fragment>
