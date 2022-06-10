@@ -181,7 +181,7 @@ const UpdateProduct = (props) => {
     if (sku_response.status === 200) {
       //await fetchProduct(sku);
       setProductToUpdate(await sku_response.product.json());
-      setPrevCategory(await sku_response.category_id.json());
+      setPrevCategory(await sku_response.category.json().category_id);
       setSkuValidated(true);
     }
     else if (sku_response.status === 400) {
