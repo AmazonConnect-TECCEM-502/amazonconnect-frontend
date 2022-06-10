@@ -22,7 +22,7 @@ const ProductsCategoryList = (props) => {
     const fetchData = async () => {
       // const productsData = await fetch('http://3.80.44.247:8080/problem/getProductCategories');
       //const productsData = await fetch(`${props.backend}/sales/getProductCategories`); // This line gives a warning 
-      const productsData = await fetch('http://localhost:8080/sales/getProductCategories');
+      const productsData = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/getProductCategories`);
       const jsonProducts = await productsData.json();
 
       setCategories(jsonProducts);

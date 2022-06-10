@@ -1,7 +1,7 @@
 /* 
   Author: Joan Daniel Guerrero García.
 
-  Last modified date: June 3rd, 2022.
+  Last modified date: June 9th, 2022.
   
   Description: Card displaying a verification question 
   for a not authenticated client.
@@ -14,6 +14,7 @@
 
 import axios from "axios";
 import { Fragment, useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
@@ -26,29 +27,39 @@ const ClientQuestion = (props) => {
   };
 
   const getClientData = async () => {
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getUserData`,{
-      "phoneNumber": clientPhone
-    })
-    .then(res => {
-      setClientFname(res.data.userData.first_name);
-      setClientLname(res.data.userData.last_name);
-      setClientEmail(res.data.userData.email);
-      if (res.data.userData.email === inputEmail) {    
-        sendAuth();
-        setShowClient(true);
-      } else {
-        setShowError(true);
-      }
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+    if(inputEmail === "")
+    {
+      toast.error("Please fill in the email");
+    }
+    else
+    {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getUserData`,{
+        "phoneNumber": clientPhone
+      })
+      .then(res => {
+        setClientFname(res.data.userData.first_name);
+        setClientLname(res.data.userData.last_name);
+        setClientEmail(res.data.userData.email);
+        if (res.data.userData.email === inputEmail) {    
+          sendAuth();
+          setShowClient(true);
+        } else {
+          setShowError(true);
+        }
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+    }
   };
 
   const sendAuth = async () => {
     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendAuthRes`, {
       phoneNumber: clientPhone,
       authenticationType: "authenticated"
+    })
+    .catch(function (err) {
+      console.log(err);
     });
   }
 
@@ -64,7 +75,7 @@ const ClientQuestion = (props) => {
               &nbsp;{
                 <input
                   className="user-ID"
-                  type="text"
+                  type="email"
                   placeholder="example@gmail.com"
                   onChange={clientEmailHandler}
                 />

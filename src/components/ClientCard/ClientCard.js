@@ -1,7 +1,7 @@
 /* 
   Author: Joan Daniel Guerrero García.
 
-  Last modified date: May 25th, 2022.
+  Last modified date: June 9th, 2022.
   
   Description: Card displaying a client's main information.
   (image, full name, and any other additional info given)
@@ -13,7 +13,7 @@
 */
 
 import axios from "axios";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import ClientForms from "./ClientForms";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
@@ -21,7 +21,7 @@ import ClientQuestion from "./ClientQuestion";
 import { ClientContext } from "./ClientProvider";
 
 const ClientCard = () => {
-  const [ , setClientID, clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , setShowClient, , setShowError] = useContext(ClientContext);
+  const [ clientID, setClientID, clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , setShowClient, , setShowError] = useContext(ClientContext);
 
   const [result, setResult] = useState(""); // AuthenticationType
   const [products, setProducts] = useState([]);
@@ -57,11 +57,14 @@ const ClientCard = () => {
       setClientLname(res.data.userData.last_name)
       setClientEmail(res.data.userData.email)
       setProducts(res.data.userProducts)
+      localStorage.removeItem('clientID')
+      localStorage.setItem('clientID', res.data.userData.client_id.toString())
     })
     .catch(function(err) {
       console.log(err);
       showContent("not yet");
     });
+    console.log(clientID);
   }
 
   const resetUserData = async () => {
@@ -70,14 +73,13 @@ const ClientCard = () => {
     setShowError(false);
     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
       "phoneNumber": clientPhone
-    })
+    }).catch(function(err) {
+      console.log(err);
+    });
   };
 
-  useEffect( () => {
-    update();
-  });
-  
-  /*              DEBUG BUTTONS (Must be under line 94)
+  /*              
+  // DEBUG BUTTONS (Must be under <div className="client">)
   <button onClick={() => showContent("authenticated")}> Card </button>
   <button onClick={() => showContent("not enrolled")}> Forms </button>
   <button onClick={() => showContent("not authenticated")}> Question </button>

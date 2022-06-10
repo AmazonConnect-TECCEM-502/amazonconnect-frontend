@@ -2,7 +2,7 @@
 // Component that allows the agent to record his or her screen and produce
 // an MP4 file with the media recorded which will be uploaded to an AWS S3 bucket
 
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { BsFillRecordFill, BsPauseFill, BsFillPlayFill } from "react-icons/bs";
 import { FaStop } from "react-icons/fa";
@@ -10,11 +10,43 @@ import { GoUnmute, GoMute } from "react-icons/go";
 import axios from "axios";
 import { AgentContext } from "../AgentView/AgentProvider";
 import { ClientContext } from "../ClientCard/ClientProvider";
+import "amazon-connect-streams";
+
+var onload = true;
+var isCall = true;
 
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
 
+  useEffect(() => {
+    if (onload) {
+      const eventBus = connect.core.getEventBus();
+      eventBus.subscribe(connect.EventType.TERMINATED, () => {
+        console.log("Logged out");
+      });
+
+      connect.contact(function (contact) {
+        // Called when the contact is finished (including After Call Work)
+        contact.onDestroy(function (contact) {
+          if (isCall) {
+            console.log("============\nCONTACT ENDED\n============");
+            isCall = false;
+          }
+        });
+        // Called when a new call starts
+        contact.onAccepted(function (contact) {
+          console.log("============\nCONTACT STARTED\n============");
+          isCall = true;
+        });
+      });
+      onload = false;
+    }
+  });
+
+  const [clientID] = useContext(ClientContext);
+
+  console.log("list:", categoryProblem);
   const onStop = async (url, blob) => {
     // await setCategoryProblem([...categoryProblem]);
     const clientID = parseInt(localStorage.getItem("clientID"));

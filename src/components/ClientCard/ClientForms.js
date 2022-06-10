@@ -1,7 +1,7 @@
 /* 
   Author: Joan Daniel Guerrero García.
 
-  Last modified date: June 3rd, 2022.
+  Last modified date: June 9th, 2022.
   
   Description: Card displaying a forms to register a client 
   not registered in Tecmex database.
@@ -14,6 +14,7 @@
 
 import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientForms = (props) => {
@@ -25,6 +26,7 @@ const ClientForms = (props) => {
     if (clientPhone === "") {
       setEmptyPhone(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const clientFnameHandler = (event) => {
@@ -38,17 +40,24 @@ const ClientForms = (props) => {
   };
 
   const postNewClient = async () => {
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendClientData`, {
-      first_name: clientFname,
-      last_name: clientLname,
-      email: clientEmail,
-      phone: clientPhone,
-    });
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendAuthRes`, {
-      phoneNumber: clientPhone,
-      authenticationType: "authenticated"
-    });
-    setShowClient(true);
+    if(clientFname === "" || clientLname === "" || clientEmail === "")
+    {
+      toast.error("Please fill out all the fields");
+    }
+    else
+    {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendClientData`, {
+        first_name: clientFname,
+        last_name: clientLname,
+        email: clientEmail,
+        phone: clientPhone,
+      });
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendAuthRes`, {
+        phoneNumber: clientPhone,
+        authenticationType: "authenticated"
+      });
+      setShowClient(true);
+    } 
   };
 
   return (
@@ -117,7 +126,7 @@ const ClientForms = (props) => {
               )}
             </label>
           </div>
-          <button className="btn-main" onClick={() => postNewClient()}> Register </button>
+          <button className="btn-main" onClick={postNewClient}> Register </button>
         </Fragment>
       )}
       {showClient && <h2 className="subtitle"> Client registered </h2>}
