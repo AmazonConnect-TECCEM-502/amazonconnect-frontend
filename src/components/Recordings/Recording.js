@@ -145,8 +145,8 @@ const Recording = () => {
           console.log("#==========>\nCONTACT STARTED\n<==========#");
           startRecording();
           isCall = true;
-          const contactID = contact.getContactId();
-          console.log("Contact id is ", contactID);
+          const contactDescription = contact.getDescription();
+          console.log("Contact description is ", contactDescription);
         });
       });
       onload = false;
