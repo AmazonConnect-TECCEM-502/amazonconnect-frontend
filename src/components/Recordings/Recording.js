@@ -126,10 +126,10 @@ const Recording = () => {
   
   useEffect(() => {
     if (onload) {
-      const eventBus = connect.core.getEventBus();
+      /*const eventBus = connect.core.getEventBus();
       eventBus.subscribe(connect.EventType.TERMINATED, () => {
         console.log("Logged out");
-      });
+      });*/
 
       connect.contact(function (contact) {
         // Called when the contact is finished (including After Call Work)
