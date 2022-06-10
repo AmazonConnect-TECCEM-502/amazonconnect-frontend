@@ -18,7 +18,7 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
-    const [, , , , , , , , , setClientPhone, , , , ] =
+    const [, , , , , , , , clientPhone, setClientPhone, , , , ] =
     useContext(ClientContext);
 
   const onStop = async (url, blob) => {
@@ -150,8 +150,8 @@ const Recording = () => {
           const voiceConnection = contact.getAgentConnection();
           voiceConnection.getVoiceIdSpeakerId()
             .then((data) => {
-              console.log(data.speakerId);
-              setClientPhone(data.speakerId);
+              setClientPhone("+" + data.speakerId);
+              console.log(clientPhone);
             })
             .catch((err) => {
               console.error(err);
