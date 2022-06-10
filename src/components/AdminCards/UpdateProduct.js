@@ -38,50 +38,6 @@ const UpdateProduct = (props) => {
   const [prevCategory, setPrevCategory] = useState();
 
 
-  const createProduct = async () => {
-    if ((sku && name && description && price && stock && category) !== '') {
-      if (typeof(sku) === "number" && typeof(name) === "string" && typeof(description) === "string" && typeof(price) === "number" && typeof(stock) === "number" && typeof(category) === "number") {
-        if (category >= 1 && category <= categories.length) {
-          const categoryAtUpload = category;
-          const request_options = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              product_sku: sku.toString(),
-              product_name: name.toString(),
-              product_description: description.toString(),
-              price: price.toString(),
-              stock: stock.toString(),
-              category: category.toString()
-            })};
-          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/createProduct`, request_options);
-          if (response.status === 400) {
-            toast.error("A product with this sku already exists")
-          }
-          else if (response.status === 200) {
-            if (categoryAtUpload > 3 && categoryAtUpload <= 6)
-              await getUrl();
-            const card = document.getElementById("card-8");
-            card.style.display = "none";
-            toast.success("New Product created")
-          }
-          else {
-            toast.error(`Server responded with status ${response.status}`)
-          }
-        }
-        else {
-          toast.error("Please provide a valid category id")
-        }
-      }
-      else {
-      toast.error("One or more fields have incorrect input datatypes")
-      }
-    }
-    else {
-      toast.error("All fields must be filled")
-    }
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       const categoriesData = await fetch(
@@ -175,13 +131,13 @@ const UpdateProduct = (props) => {
   };
 
   const validateSku = async (sku) => {
-    const sku_response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/sales/validateSku/${sku}`
-    );
+    const sku_response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/validateSku/${sku}`);
+    //const sku_response = await fetch(`http://localhost:8080/sales/validateSku/${sku}`);
     if (sku_response.status === 200) {
       //await fetchProduct(sku);
-      setProductToUpdate(await sku_response.product.json());
-      setPrevCategory(await sku_response.category.json().category_id);
+      const responseData = await sku_response.json();
+      setProductToUpdate(responseData.product);
+      setPrevCategory(responseData.category.category_id);
       setSkuValidated(true);
     }
     else if (sku_response.status === 400) {
@@ -196,39 +152,61 @@ const UpdateProduct = (props) => {
 
   const updateProduct = async (name, description, price, stock, category) => {
     let body = {};
-    if (name !== productToUpdate.product_name) {
+    let changed = false;
+    let imageChanged = false;
+    if (name !== '' && name !== productToUpdate.product_name.toString()) {
       body['product_name'] = name;
+      changed = true;
     }
-    if (description !== productToUpdate.product_description) {
+    if (description !== '' && description !== productToUpdate.product_description.toString()) {
       body['product_description'] = description;
+      changed = true;
     }
-    if (price !== productToUpdate.price) {
+    if (price !== '' && price !== productToUpdate.price.toString()) {
+      console.log(`prevprice: ${productToUpdate.price} newprice: ${price}`);
       body['price'] = price;
+      changed = true;
     }
-    if (stock !== productToUpdate.stock) {
+    if (stock !== '' && stock !== productToUpdate.stock.toString()) {
       body['stock'] = stock;
+      changed = true;
     }
-    if (category !== prevCategory) {
+    if (category !== '' && category !== prevCategory.toString()) {
       body['category_id'] = category;
+      changed = true;
     }
-    if (body.length > 0) {
+    if (image) {
+      imageChanged = true;
+    }
+    if (changed) {
+      body['product_id'] = productToUpdate.product_id;
       const request_options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       };
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/updateProduct`, request_options);
+      //const response = await fetch(`http://localhost:8080/sales/updateProduct`, request_options);
       if (response.status === 200) {
-        if (file) {
+        if (imageChanged) {
         await getUrl();
         }
-        const card = document.getElementById("card-8");
+        const card = document.getElementById("card-16");
         card.style.display = "none";
         toast.success('Product updated successfully');
       }
       else {
         toast.error(`Server responded with status ${response.status} while updating product`);
       }
+    }
+    else if (imageChanged) {
+      await getUrl();
+      const card = document.getElementById("card-16");
+      card.style.display = "none";
+      toast.success('Product image updated successfully');
+    }
+    else {
+      toast.error('No changes were detected')
     }
   }
 
@@ -255,7 +233,7 @@ const UpdateProduct = (props) => {
         })}
         <p>Product Category</p>
         <input className="user-ID" type="text" name="Answer" placeholder={prevCategory} onChange={changeCategory}/>
-        <ProductImageInput category={category} maxCategoryId={categories.length} buttonAction={getImageD}/>
+        <ProductImageInput category={prevCategory} maxCategoryId={categories.length} buttonAction={getImageD}/>
         <button className="btn-main" onClick={() => updateProduct(name, description, price, stock, category)}> Submit </button>
       </div>
     </Fragment>
