@@ -42,6 +42,7 @@ const Element = (props) => {
     if (props.elementID === "client") {
       setShowInput(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
