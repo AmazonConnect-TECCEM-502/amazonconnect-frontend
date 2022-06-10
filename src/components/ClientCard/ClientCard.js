@@ -13,7 +13,7 @@
 */
 
 import axios from "axios";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import ClientForms from "./ClientForms";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
@@ -26,6 +26,12 @@ const ClientCard = () => {
   const [result, setResult] = useState(""); // AuthenticationType
   const [products, setProducts] = useState([]);
 
+  /*
+  // Functionality in progress
+  useEffect(() => {
+    update();
+  });
+  */
   const update = async () => {
     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getAuthRes`,{
       "phoneNumber": clientPhone
