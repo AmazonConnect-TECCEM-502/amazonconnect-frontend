@@ -44,9 +44,6 @@ const Recording = () => {
     }
   });
 
-  const [clientID] = useContext(ClientContext);
-
-  console.log("list:", categoryProblem);
   const onStop = async (url, blob) => {
     // await setCategoryProblem([...categoryProblem]);
     const clientID = parseInt(localStorage.getItem("clientID"));
