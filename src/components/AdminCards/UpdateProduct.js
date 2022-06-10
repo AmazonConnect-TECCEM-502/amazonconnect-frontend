@@ -35,6 +35,7 @@ const UpdateProduct = (props) => {
   const [useImage,setUseImage] = useState(false);
   const [skuValidated, setSkuValidated] = useState(false);
   const [productToUpdate, setProductToUpdate] = useState();
+  const [prevCategory, setPrevCategory] = useState();
 
 
   const createProduct = async () => {
@@ -58,7 +59,8 @@ const UpdateProduct = (props) => {
             toast.error("A product with this sku already exists")
           }
           else if (response.status === 200) {
-            if (categoryAtUpload > 3 && categoryAtUpload <= 6) await getUrl();
+            if (categoryAtUpload > 3 && categoryAtUpload <= 6) 
+              await getUrl();
             const card = document.getElementById("card-8");
             card.style.display = "none";
             toast.success("New Product created")
@@ -177,8 +179,8 @@ const UpdateProduct = (props) => {
       `${process.env.REACT_APP_BACKEND_URL}/sales/validateSku/${sku}`
     );
     if (sku_response.status === 200) {
-      setSkuValidated(true);
       await fetchProduct(sku);
+      setSkuValidated(true);
     }
     else if (sku_response.status === 400) {
       toast.error("No product was found with the given sku");
@@ -194,6 +196,46 @@ const UpdateProduct = (props) => {
     const productData = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/getProductBySku/${sku}`);
     const jsonProduct = await productData.json();
     setProductToUpdate(jsonProduct);
+    const categoryData = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/getCategoryByProduct/${jsonProduct.product_id}`);
+    setPrevCategory(categoryData.json().category_id);
+  }
+
+  const updateProduct = async (name, description, price, stock, category) => {
+    let body = {};
+    if (name !== productToUpdate.product_name) {
+      body['product_name'] = name;
+    }
+    if (description !== productToUpdate.product_description) {
+      body['product_description'] = description;
+    }
+    if (price !== productToUpdate.price) {
+      body['price'] = price;
+    }
+    if (stock !== productToUpdate.stock) {
+      body['stock'] = stock;
+    }
+    if (category !== prevCategory) {
+      body['category_id'] = category;
+    }
+    if (body.length > 0) {
+      const request_options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      };
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/updateProduct`, request_options);
+      if (response.status === 200) {
+        if (file) {
+        await getUrl();
+        }
+        const card = document.getElementById("card-8");
+        card.style.display = "none";
+        toast.success('Product updated successfully');
+      }
+      else {
+        toast.error(`Server responded with status ${response.status} while updating product`);
+      }
+    }
   }
 
   if (skuValidated)
@@ -202,13 +244,13 @@ const UpdateProduct = (props) => {
       <div className="title"> Create Product </div>
       <div className="new">
         <p>Name: </p>
-        <input className="user-ID" type="text" name="Answer" placeholder={} onChange={changeName}/>
+        <input className="user-ID" type="text" name="Answer" placeholder={productToUpdate.product_name} onChange={changeName}/>
         <p>Description: </p>
-        <input className="user-ID" type="text" name="Answer" onChange={changeDescription}/>
+        <input className="user-ID" type="text" name="Answer" placeholder={productToUpdate.product_description} onChange={changeDescription}/>
         <p>Price: </p>
-        <input className="user-ID" type="text" name="Answer" onChange={changePrice}/>
+        <input className="user-ID" type="text" name="Answer" placeholder={productToUpdate.price} onChange={changePrice}/>
         <p>Stock: </p>
-        <input className="user-ID" type="text" name="Answer" onChange={changeStock}/>
+        <input className="user-ID" type="text" name="Answer" placeholder={productToUpdate.stock} onChange={changeStock}/>
         <p>Available Product Categories</p>
         {categories.map((category) => {
           return (
@@ -218,9 +260,9 @@ const UpdateProduct = (props) => {
           );
         })}
         <p>Product Category</p>
-        <input className="user-ID" type="text" name="Answer" onChange={changeCategory}/>
+        <input className="user-ID" type="text" name="Answer" placeholder={prevCategory} onChange={changeCategory}/>
         <ProductImageInput category={category} maxCategoryId={categories.length} buttonAction={getImageD}/>
-        <button className="btn-main" onClick={createProduct}> Submit </button>
+        <button className="btn-main" onClick={() => updateProduct(name, description, price, stock, category)}> Submit </button>
       </div>
     </Fragment>
   );
