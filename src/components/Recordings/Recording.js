@@ -136,12 +136,14 @@ const Recording = () => {
         contact.onDestroy(function (contact) {
           if (isCall) {
             console.log("#==========>\nCONTACT ENDED\n<==========#");
+            stopRecording();
             isCall = false;
           }
         });
         // Called when a new call starts
         contact.onAccepted(function (contact) {
           console.log("#==========>\nCONTACT STARTED\n<==========#");
+          startRecording();
           isCall = true;
         });
       });
