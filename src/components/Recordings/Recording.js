@@ -145,8 +145,15 @@ const Recording = () => {
           console.log("#==========>\nCONTACT STARTED\n<==========#");
           startRecording();
           isCall = true;
-          const contactDescription = contact.getDescription();
-          console.log("Contact description is ", contactDescription);
+          const voiceConnection = contact.getAgentConnection();
+          voiceConnection.getVoiceIdSpeakerId()
+            .then((data) => {
+              console.log(data.speakerId);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+          
         });
       });
       onload = false;
