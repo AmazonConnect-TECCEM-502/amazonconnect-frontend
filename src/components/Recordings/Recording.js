@@ -139,18 +139,18 @@ const Recording = () => {
           if (isCall) {
             console.log("#==========>\nCONTACT ENDED\n<==========#");
             stopRecording();
-
-            localStorage.removeItem('clientPhone')
-            localStorage.setItem('clientPhone', "")
+            
             const clientPhone = localStorage.getItem("clientPhone");
-            showContent("not yet");
-            setShowClient(false);
-            setShowError(false);
             axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
               "phoneNumber": clientPhone
             }).catch(function(err) {
               console.log(err);
             });
+            localStorage.removeItem('clientPhone')
+            localStorage.setItem('clientPhone', "")
+            showContent("not yet");
+            setShowClient(false);
+            setShowError(false);
             
             isCall = false;
           }
