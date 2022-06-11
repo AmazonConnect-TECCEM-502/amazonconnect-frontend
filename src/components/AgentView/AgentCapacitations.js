@@ -8,11 +8,39 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import Call from "../Recordings/Call";
 
 function AgentCapacitation() {
   const user_type = localStorage.getItem("user_type");
   const navigate = useNavigate();
+
+  // Setings for carousel
+  const settings = {
+    slidesToShow: 3,
+    infinite: true,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1250,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 890,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 0
+        }
+      }
+    ]
+  };
 
   /* Checking if the user is an agent, if not it will redirect to the previous page. */
   useEffect(() => {
@@ -46,17 +74,19 @@ function AgentCapacitation() {
   if (user_type === "agent") {
     return(
       <div className="carousel-recordings">
-        {videosArr.map((video) => (
-            <div className="card">
-              <Call
-                video_url={video.video_url}
-                duration={video.duration}
-                rating={video.rating}
-                client={video.client}
-                agent={video.agent}
-              />
-            </div>
-        ))}
+        <Slider {...settings}>
+            {videosArr.map((video) => (
+              <div className="card">
+                  <Call
+                    video_url={video.video_url}
+                    duration={video.duration}
+                    rating={video.rating}
+                    client={video.client}
+                    agent={video.agent}
+                    />
+                </div>
+            ))}
+        </Slider>
       </div>
     )
   }

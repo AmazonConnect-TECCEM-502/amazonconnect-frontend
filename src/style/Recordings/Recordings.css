@@ -15,15 +15,12 @@ Styles for buttons in the Recordings Card
 .carousel-recordings{
   margin: 16px auto 0 auto;
   width: 95%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
 }
 .carousel-recordings .card{
   margin-right: 16px;
   padding: 0;
   border-radius: 5px;
+  max-width: 380px;
 }
 .carousel-recordings .card .video-info{
   display: flex;
@@ -33,3 +30,13 @@ Styles for buttons in the Recordings Card
 .carousel-recordings .card .video-info p{
   margin: 0 0 8px 0;
 }
+.slick-list{
+  padding: 8px !important;
+}
+.slick-next{
+  right: -5px !important;
+}
+.slick-prev{
+  left: -5px !important;
+}
+
