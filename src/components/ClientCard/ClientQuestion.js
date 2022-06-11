@@ -21,11 +21,11 @@ const ClientQuestion = (props) => {
   const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError, , , , , , , inputEmail, setInputEmail] = useContext(ClientContext);
 
   const clientEmailHandler = (event) => {
-    localStorage.removeItem('inputEmail')
     setInputEmail(event.target.value);
-    localStorage.setItem('inputEmail', inputEmail)
-    const inputEmail = localStorage.getItem("inputEmail");
-    console.log(inputEmail);
+    localStorage.removeItem('inputEmailClient')
+    localStorage.setItem('inputEmailClient', inputEmail)
+    const inputEmailClient = localStorage.getItem("inputEmailClient");
+    console.log(inputEmailClient);
   };
 
   const getClientData = async () => {
@@ -46,7 +46,7 @@ const ClientQuestion = (props) => {
         setClientFname(res.data.userData.first_name);
         setClientLname(res.data.userData.last_name);
         setClientEmail(res.data.userData.email);
-        const inputEmail = localStorage.getItem("inputEmail");
+        const inputEmail = localStorage.getItem("inputEmailClient");
         console.log(inputEmail);
         if (res.data.userData.email === inputEmail) {    
           sendAuth();
