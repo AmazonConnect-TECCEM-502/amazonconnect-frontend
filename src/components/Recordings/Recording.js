@@ -18,13 +18,12 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
-    const [, , , , , , , , , setClientPhone, , , , , , setShowClient, , setShowError, , , showContent, , , , , setInputEmail] =
+    const [ , , , , , , , , , setClientPhone, , , , , , setInputEmail, showContent] = 
     useContext(ClientContext);
 
   const onStop = async (url, blob) => {
     // await setCategoryProblem([...categoryProblem]);
     const clientID = parseInt(localStorage.getItem("clientID"));
-    console.log(clientID);
     const categories = JSON.parse(localStorage.getItem("categoryProblem"));
 
     const API_ENDPOINT = process.env.REACT_APP_PRESIGNEDURL_URL;
@@ -139,6 +138,7 @@ const Recording = () => {
             console.log("#==========>\nCONTACT ENDED\n<==========#");
             stopRecording();
             
+            // Reset Client values
             const clientPhone = localStorage.getItem("clientPhone");
             axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
               "phoneNumber": clientPhone
@@ -147,12 +147,9 @@ const Recording = () => {
             });
             localStorage.removeItem('clientPhone')
             localStorage.setItem('clientPhone', "")
-            localStorage.removeItem('inputEmailClient')
-            localStorage.setItem('inputEmailClient', "")
             showContent("not yet");
-            setShowClient(false);
-            setShowError(false);
             setInputEmail("");
+
             isCall = false;
           }
         });
@@ -160,18 +157,20 @@ const Recording = () => {
         contact.onAccepted(function (contact) {
           console.log("#==========>\nCONTACT STARTED\n<==========#");
           startRecording();
-          isCall = true;
+          
+          // Get Client phone number from Connect  
           const voiceConnection = contact.getAgentConnection();
           voiceConnection.getVoiceIdSpeakerId()
-            .then((data) => {
-              setClientPhone("+" + data.speakerId);
-              localStorage.removeItem('clientPhone')
-              localStorage.setItem('clientPhone', "+" + data.speakerId.toString())
-            })
-            .catch((err) => {
-              console.error(err);
-            });
+          .then((data) => {
+            setClientPhone("+" + data.speakerId);
+            localStorage.removeItem('clientPhone')
+            localStorage.setItem('clientPhone', "+" + data.speakerId.toString())
+          })
+          .catch((err) => {
+            console.error(err);
+          });
           
+          isCall = true;
         });
       });
       onload = false;

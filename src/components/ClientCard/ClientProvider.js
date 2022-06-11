@@ -25,9 +25,7 @@ const ClientProvider = ({ children }) => {
   const [clientLname, setClientLname] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientPhone, setClientPhone] = useState("");
-  const [products, setProducts] = useState([]);
-  const [showClient, setShowClient] = useState(false);
-  const [showError, setShowError] = useState(false);
+  const [clientProducts, setClientProducts] = useState([]);
   const [inputEmail, setInputEmail] = useState("");
   const [result, setResult] = useState(""); // AuthenticationType
 
@@ -59,19 +57,6 @@ const ClientProvider = ({ children }) => {
     console.log(clientID);
   }
 
-  const resetUserData = async () => {
-    console.log("Reseting....................");
-    showContent("not yet");
-    setShowClient(false);
-    setShowError(false);
-    const clientPhone = localStorage.getItem("clientPhone");
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
-      "phoneNumber": clientPhone
-    }).catch(function(err) {
-      console.log(err);
-    });
-  };
-
   return (
     <ClientContext.Provider
       value={[
@@ -85,18 +70,13 @@ const ClientProvider = ({ children }) => {
         setClientEmail,
         clientPhone,
         setClientPhone,
-        showClient,
-        setShowClient,
-        showError, 
-        setShowError,
+        clientProducts,
+        setClientProducts,
         result,
         setResult,
-        showContent,
-        products,
-        setProducts,
-        resetUserData,
         inputEmail,
-        setInputEmail
+        setInputEmail,
+        showContent
       ]}
     >
       {children}

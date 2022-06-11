@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientForms = (props) => {
-  const [ , , clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , showClient, setShowClient, , ,] = useContext(ClientContext);
+  const [ , , clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , , , , , , ] = useContext(ClientContext);
 
   const [emptyPhone, setEmptyPhone] = useState(false);
 
@@ -60,7 +60,6 @@ const ClientForms = (props) => {
         phoneNumber: clientPhone,
         authenticationType: "authenticated"
       });
-      //setShowClient(true);
       toast.success('Client registered');
     } 
   };

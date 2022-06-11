@@ -18,19 +18,13 @@ import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
-  const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError, , , , , , , inputEmail, setInputEmail] = useContext(ClientContext);
+  const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , , , , , inputEmail, setInputEmail, ] = useContext(ClientContext);
 
   const clientEmailHandler = (event) => {
     setInputEmail(event.target.value);
   };
   
   const getClientData = async () => {
-    /*
-    localStorage.removeItem('inputEmailClient')
-    localStorage.setItem('inputEmailClient', inputEmail)
-    const inputEmailClient = localStorage.getItem("inputEmailClient");
-    console.log(inputEmailClient);
-    */
     if(inputEmail === "")
     {
       toast.error("Please fill in the email");
@@ -48,16 +42,11 @@ const ClientQuestion = (props) => {
         setClientFname(res.data.userData.first_name);
         setClientLname(res.data.userData.last_name);
         setClientEmail(res.data.userData.email);
-        /*
-        const inputEmail = localStorage.getItem("inputEmailClient");
-        console.log(inputEmail);
-        */
         if (res.data.userData.email === inputEmail) {    
           sendAuth();
-          //setShowClient(true);
-          toast.success('Client authenticated')
+          toast.success('Client authenticated');
         } else {
-          setShowError(true);
+          toast.error('Authentication failed, please try again');
         }
       })
       .catch(function (err) {
@@ -94,7 +83,6 @@ const ClientQuestion = (props) => {
             }
           </label>
         </div>
-        {showError && <h2 className="subtitle"> Authentication failed, please try again </h2>}
         <button className="btn-main" onClick={getClientData}> Submit </button>
       </Fragment>
     </div>

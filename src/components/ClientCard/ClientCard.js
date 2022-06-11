@@ -21,7 +21,7 @@ import ClientQuestion from "./ClientQuestion";
 import { ClientContext } from "./ClientProvider";
 
 const ClientCard = () => {
-  const [ , , clientFname, , clientLname, , clientEmail, , clientPhone, , , , , , result, , showContent, products, , resetUserData] = useContext(ClientContext);
+  const [ , , clientFname, , clientLname, , clientEmail, , clientPhone, , clientProducts, , result, , , , showContent] = useContext(ClientContext);
 
   // Functionality in progress
   useEffect(() => {
@@ -59,7 +59,7 @@ const ClientCard = () => {
           <ClientInfo text={clientPhone} />
           <br/><h2 className="subtitle">Acquired products</h2>
           {
-            products.map((product) => (
+            clientProducts.map((product) => (
               <div className="element">
                 {product.product_name}
               </div>
@@ -82,7 +82,6 @@ const ClientCard = () => {
         && (result !== "not authenticated") && <h1 className="title"> Data not recieved yet </h1>
       }
       <button className="btn-main refresh" onClick={() => update()}> Refresh </button>
-      <button className="btn-main" onClick={() => resetUserData()}> Close contact </button>
     </div>
   );
 };
