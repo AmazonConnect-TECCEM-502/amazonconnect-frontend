@@ -21,8 +21,8 @@ const ClientQuestion = (props) => {
   const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError, , , , , , , inputEmail, setInputEmail] = useContext(ClientContext);
 
   const clientEmailHandler = (event) => {
-    setInputEmail(event.target.value);
     localStorage.removeItem('inputEmail')
+    setInputEmail(event.target.value);
     localStorage.setItem('inputEmail', inputEmail)
     const inputEmail = localStorage.getItem("inputEmail");
     console.log(inputEmail);
