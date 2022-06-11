@@ -12,44 +12,25 @@
   <ClientCard />
 */
 
-import axios from "axios";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import ClientForms from "./ClientForms";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
 import ClientQuestion from "./ClientQuestion";
 import { ClientContext } from "./ClientProvider";
+import { VscRefresh } from "react-icons/vsc"
 
 const ClientCard = () => {
-  const [ , , clientFname, , clientLname, , clientEmail, , clientPhone, , clientProducts, , result, , , , showContent] = useContext(ClientContext);
+  const [ , , clientFname, , clientLname, , clientEmail, , clientPhone, , clientProducts, , result, , , , , update] = useContext(ClientContext);
 
   // Functionality in progress
   useEffect(() => {
     update();
   });
-  
-  const update = async () => {
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getAuthRes`,{
-      "phoneNumber": clientPhone
-    })
-    .then(res => {
-      showContent(res.data.authenticationType)
-    })
-    .catch(function(err) {
-      console.log(err);
-      showContent("not yet");
-    });
-  }
-
-  /*              
-  // DEBUG BUTTONS (Must be under <div className="client">)
-  <button onClick={() => showContent("authenticated")}> Card </button>
-  <button onClick={() => showContent("not enrolled")}> Forms </button>
-  <button onClick={() => showContent("not authenticated")}> Question </button>
-  */
 
   return (
     <div className="client">
+      <VscRefresh onClick={update}/>
       {
         //Show User Info
         (result === "authenticated") &&
@@ -81,7 +62,7 @@ const ClientCard = () => {
         (result !== "authenticated") && (result !== "opted out") && (result !== "not enrolled") && (result !== "inconclusive")
         && (result !== "not authenticated") && <h1 className="title"> Data not recieved yet </h1>
       }
-      <button className="btn-main refresh" onClick={() => update()}> Refresh </button>
+      <button className="btn-main refresh" onClick={update}> Refresh </button>
     </div>
   );
 };

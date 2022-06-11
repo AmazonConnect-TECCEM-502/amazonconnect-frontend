@@ -18,7 +18,7 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
-    const [ , , , , , , , , , setClientPhone, , , , , , setInputEmail, showContent] = 
+    const [ , , , , , , , , , setClientPhone, , , , , , setInputEmail, showContent, ] = 
     useContext(ClientContext);
 
   const onStop = async (url, blob) => {

@@ -76,3 +76,16 @@
   background-color: #02529c;
   transition: .8s;
 }
+
+.client svg{
+  color: var(--button);
+  font-size: 32px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.client svg:hover{
+  color: var(--button-hover);
+}

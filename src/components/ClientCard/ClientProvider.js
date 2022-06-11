@@ -29,6 +29,19 @@ const ClientProvider = ({ children }) => {
   const [inputEmail, setInputEmail] = useState("");
   const [result, setResult] = useState(""); // AuthenticationType
 
+  const update = async () => {
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getAuthRes`,{
+      "phoneNumber": clientPhone
+    })
+    .then(res => {
+      showContent(res.data.authenticationType)
+    })
+    .catch(function(err) {
+      console.log(err);
+      showContent("not yet");
+    });
+  }
+
   const showContent = (message) => {
     if(message === "authenticated"){
       getClientData();
@@ -76,7 +89,8 @@ const ClientProvider = ({ children }) => {
         setResult,
         inputEmail,
         setInputEmail,
-        showContent
+        showContent,
+        update
       ]}
     >
       {children}

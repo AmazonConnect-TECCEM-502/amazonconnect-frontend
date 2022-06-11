@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientForms = (props) => {
-  const [ , , clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , , , , , , ] = useContext(ClientContext);
+  const [ , , clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , , , , , , , update] = useContext(ClientContext);
 
   const [emptyPhone, setEmptyPhone] = useState(false);
 
@@ -61,6 +61,7 @@ const ClientForms = (props) => {
         authenticationType: "authenticated"
       });
       toast.success('Client registered');
+      update();
     } 
   };
 

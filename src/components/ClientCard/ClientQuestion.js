@@ -13,12 +13,12 @@
 */
 
 import axios from "axios";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext } from "react";
 import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
-  const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , , , , , inputEmail, setInputEmail, ] = useContext(ClientContext);
+  const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , , , , , inputEmail, setInputEmail, , update] = useContext(ClientContext);
 
   const clientEmailHandler = (event) => {
     setInputEmail(event.target.value);
@@ -43,8 +43,9 @@ const ClientQuestion = (props) => {
         setClientLname(res.data.userData.last_name);
         setClientEmail(res.data.userData.email);
         if (res.data.userData.email === inputEmail) {    
-          sendAuth();
           toast.success('Client authenticated');
+          sendAuth();
+          update();
         } else {
           toast.error('Authentication failed, please try again');
         }
