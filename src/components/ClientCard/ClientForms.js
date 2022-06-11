@@ -117,6 +117,7 @@ const ClientForms = (props) => {
                   type="tel"
                   placeholder="+52"
                   value={clientPhone}
+                  readOnly
                   disabled
                 />
               )}
@@ -125,7 +126,6 @@ const ClientForms = (props) => {
                   className="user-ID"
                   type="tel"
                   placeholder="+52"
-                  value={clientPhone}
                 />
               )}
             </label>

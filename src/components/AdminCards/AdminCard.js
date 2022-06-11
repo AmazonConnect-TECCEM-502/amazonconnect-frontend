@@ -25,7 +25,17 @@ const [nqna,, uc,, nu,, np,, up,,nc,,nca,,csol,,na,,ap,,uq] = useContext(AdminCa
   };
 
   let cardStyle = {display: "block"};
-  if ((props.id === "card-4" && !nqna) || (props.id === "card-5" && !uc) || (props.id === "card-6" && !nu) || (props.id === "card-8" && !np) || (props.id === "card-9" && !up) || (props.id === "card-10" && !nc) || (props.id === "card-11" && !nca) || (props.id === "card-12" && !csol) || (props.id === "card-13" && !na) || (props.id === "card-14" && !ap) || (props.id === "card-15" && !uq)) {
+  if ((props.id === "card-4" && !nqna) || 
+      (props.id === "card-5" && !uc) || 
+      (props.id === "card-6" && !nu) || 
+      (props.id === "card-8" && !np) || 
+      (props.id === "card-9" && !up) || 
+      (props.id === "card-10" && !nc) || 
+      (props.id === "card-11" && !nca) || 
+      (props.id === "card-12" && !csol) || 
+      (props.id === "card-13" && !na) || 
+      (props.id === "card-14" && !ap) || 
+      (props.id === "card-15" && !uq)) {
     cardStyle = {display: "none"};
   }
 

@@ -58,8 +58,8 @@ const NewProblem = (props) => {
         <p>Category: </p>
         <select className="user-ID" name="category" onClick={getCategories} onChange={changeCategoryID}>
           <option></option>
-        {categories.map((category) => (
-            <option value={category.category_id}>{category.category_name}</option>
+        {categories.map((category, index) => (
+            <option value={category.category_id} key={index} >{category.category_name}</option>
         ))}
         </select>
         <br />

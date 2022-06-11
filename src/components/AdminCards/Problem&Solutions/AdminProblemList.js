@@ -24,8 +24,8 @@ const AdminProblemList = (props) => {
         <p> Problems </p>
       </div>
       <div className="container-questions">
-        {arrpreguntas.map((pregunta) => (
-          <AdminProblem text={pregunta.problem_description} problem_id={pregunta.problem_id} />
+        {arrpreguntas.map((pregunta, index) => (
+          <AdminProblem text={pregunta.problem_description} problem_id={pregunta.problem_id} key={index}/>
         ))}
         {arrpreguntas.length === 0 && <p>No Problems</p>}
       </div>

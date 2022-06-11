@@ -16,6 +16,7 @@ const MenuConfiguration = () => {
         <ElementConfiguration element="Update P & S" elementID="uqna"/>
         <ElementConfiguration element="Create User" elementID="nu"/>
         <ElementConfiguration element="Create Product" elementID="np"/>
+        <ElementConfiguration element="Update Product" elementID="up"/>
         <ElementConfiguration element="Create Client" elementID="nc"/>
         <ElementConfiguration element="Create Category" elementID="nca"/>
       </div>

@@ -25,8 +25,8 @@ const AdminCategoriesList = (props) => {
     <Fragment>
       <p className="title">Categories</p>
       <div className="container-questions">
-        {Categories.map((category) => (
-          <AdminCategory text={category.category_name} category_id={category.category_id}/>
+        {Categories.map((category, index) => (
+          <AdminCategory text={category.category_name} category_id={category.category_id} key={index}/>
         ))}
         {Categories.length === 0 && <p>No Problems</p>}
       </div>
