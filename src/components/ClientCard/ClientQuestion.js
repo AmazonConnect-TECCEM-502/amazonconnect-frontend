@@ -18,9 +18,7 @@ import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
-  const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError] = useContext(ClientContext);
-
-  const [inputEmail, setInputEmail] = useState("");
+  const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError, , , , , , , inputEmail, setInputEmail] = useContext(ClientContext);
 
   const clientEmailHandler = (event) => {
     setInputEmail(event.target.value);

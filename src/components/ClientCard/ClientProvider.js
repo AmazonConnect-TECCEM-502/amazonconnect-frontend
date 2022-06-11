@@ -28,6 +28,7 @@ const ClientProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [showClient, setShowClient] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [inputEmail, setInputEmail] = useState("");
   const [result, setResult] = useState(""); // AuthenticationType
 
   const showContent = (message) => {
@@ -93,7 +94,9 @@ const ClientProvider = ({ children }) => {
         showContent,
         products,
         setProducts,
-        resetUserData
+        resetUserData,
+        inputEmail,
+        setInputEmail
       ]}
     >
       {children}
