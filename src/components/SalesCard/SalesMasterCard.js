@@ -20,7 +20,8 @@ const SalesMasterCard = () => {
 
     const backend = process.env.REACT_APP_BACKEND_URL;
 
-    const [clientID, , , , , , , , , , , , , ] = useContext(ClientContext);
+    const [
+      clientID, , , , , , , , , , , , , , , , , ] = useContext(ClientContext);
 
     const Views = {
       CATEGORIES : 1,
