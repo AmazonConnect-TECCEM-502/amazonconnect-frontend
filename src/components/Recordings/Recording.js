@@ -141,7 +141,7 @@ const Recording = () => {
             stopRecording();
             isCall = false;
             resetUserData();
-            console.log(clientPhone);
+            console.log("CLIENT PHONE: ", clientPhone);
           }
         });
         // Called when a new call starts
