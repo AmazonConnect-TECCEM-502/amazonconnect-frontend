@@ -58,6 +58,7 @@ const ClientProvider = ({ children }) => {
   }
 
   const resetUserData = async () => {
+    console.log("Reseting....................");
     showContent("not yet");
     setShowClient(false);
     setShowError(false);
