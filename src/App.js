@@ -21,10 +21,11 @@ import { Toaster } from "react-hot-toast";
 import NavBar from "./components/NavBar/NavBar";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
   const getTheme = (newTheme) => {
     setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
   };
 
   const createCursor = (x, y) => {
@@ -75,7 +76,7 @@ function App() {
         <Route path="/agent/capacitations" element={<AgentCapacitation />} />
         <Route
           path="/agent/settings"
-          element={<AgentSettings newTheme={getTheme} />}
+          element={<AgentSettings/>}
         />
         <Route path="/agent/profile" element={<AgentProfile />} />
 
@@ -87,7 +88,7 @@ function App() {
         <Route path="/admin/home" element={<AdminConfiguration />} />
         <Route
           path="/admin/settings"
-          element={<AdminSettings newTheme={getTheme} />}
+          element={<AdminSettings />}
         />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="*" element={<LogIn/>} />

@@ -75,8 +75,8 @@ function AgentCapacitation() {
     return(
       <div className="carousel-recordings">
         <Slider {...settings}>
-            {videosArr.map((video) => (
-              <div className="card">
+            {videosArr.map((video, index) => (
+              <div className="card" key={index}>
                   <Call
                     video_url={video.video_url}
                     duration={video.duration}
