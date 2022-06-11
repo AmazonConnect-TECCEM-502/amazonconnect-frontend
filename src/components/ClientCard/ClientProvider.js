@@ -63,6 +63,7 @@ const ClientProvider = ({ children }) => {
     showContent("not yet");
     setShowClient(false);
     setShowError(false);
+    const clientPhone = localStorage.getItem("clientPhone");
     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
       "phoneNumber": clientPhone
     }).catch(function(err) {
