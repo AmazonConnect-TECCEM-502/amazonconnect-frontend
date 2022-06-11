@@ -34,8 +34,7 @@ function App() {
     cursor.style.display = "block";
     cursor.style.top = (y) + "px";
     cursor.style.left = (x) + "px";
-    if(theme === "light" || 
-      theme === "light-protanopia" || 
+    if(theme === "light-protanopia" || 
       theme === "light-tritanopia")
       {
       cursor.style.background = "rgba(0,0,0,0.5)";
