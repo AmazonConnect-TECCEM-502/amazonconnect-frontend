@@ -170,6 +170,13 @@ const Recording = () => {
             console.error(err);
           });
           
+          voiceConnection.deleteVoiceIdSpeaker()
+          .then(() => {
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+          
           isCall = true;
         });
       });
