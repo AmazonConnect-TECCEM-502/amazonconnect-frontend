@@ -24,17 +24,17 @@ const Settings = () => {
   const [useImage,setUseImage] = useState(false);
 
         const imageSource = async () =>{
-            const res = await fetch("https://images-texmex-users-2-0.s3.amazonaws.com/"+ userId +".jpg");
+            const res = await fetch(process.env.REACT_APP_S3_IMAGES_URL + userId +".jpg");
             const data = await res.status;
             console.log(data)
 
           if (data === 200){
             console.log("Se encontro la imagen que buscas")
-            setDisplayImg("https://images-texmex-users-2-0.s3.amazonaws.com/"+ userId +".jpg")
+            setDisplayImg(process.env.REACT_APP_S3_IMAGES_URL + userId +".jpg")
 
           }else{
             console.log("Tu imagen no existe")
-            setDisplayImg("https://images-texmex-users-2-0.s3.amazonaws.com/NoImage.jpg")
+            setDisplayImg(process.env.REACT_APP_S3_IMAGES_URL + "NoImage.jpg")
           }
         }
         var dataUriNoState = "";
@@ -129,7 +129,7 @@ const Settings = () => {
     const file = new File([img], userId, {type: 'image/jpg', lastModified:Date.now()})
 
     const response = await axios({
-      url:'https://g6fpu8h62l.execute-api.us-east-1.amazonaws.com/default/image-user-lamda-2-0?pet='+userId,
+      url: process.env.REACT_APP_IMAGE_UPLOAD_URL + userId,
       method: 'GET'
     });
     console.log(response.data)

@@ -108,7 +108,7 @@ const UpdateProduct = (props) => {
       const file = new File([image], sku, {type: 'image/jpg', lastModified:Date.now()})
 
       const response = await axios({
-        url:'https://g6fpu8h62l.execute-api.us-east-1.amazonaws.com/default/image-user-lamda-2-0?pet=sales/'+sku,
+        url: process.env.REACT_APP_IMAGE_UPLOAD_URL + 'sales/' + sku,
         method: 'GET'
       });
       console.log(response.data)

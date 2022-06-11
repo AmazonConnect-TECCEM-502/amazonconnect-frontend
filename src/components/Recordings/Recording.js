@@ -27,8 +27,7 @@ const Recording = () => {
     console.log(clientID);
     const categories = JSON.parse(localStorage.getItem("categoryProblem"));
 
-    const API_ENDPOINT =
-      "https://6tggc5vevc.execute-api.us-east-1.amazonaws.com/default/getPresignedS3URL";
+    const API_ENDPOINT = process.env.REACT_APP_PRESIGNEDURL_URL;
 
     const response = await axios({
       url: API_ENDPOINT,
