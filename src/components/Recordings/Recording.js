@@ -18,7 +18,7 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
-    const [, , , , , , , , , setClientPhone, , , , , , , , , , , , , , resetUserData] =
+    const [, , , , , , , , , setClientPhone, , , , , , setShowClient, , setShowError, , , showContent, , , , , setInputEmail] =
     useContext(ClientContext);
 
   const onStop = async (url, blob) => {
@@ -138,10 +138,22 @@ const Recording = () => {
         contact.onDestroy(function (contact) {
           if (isCall) {
             console.log("#==========>\nCONTACT ENDED\n<==========#");
+            stopRecording();
+            
+            const clientPhone = localStorage.getItem("clientPhone");
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
+              "phoneNumber": clientPhone
+            }).catch(function(err) {
+              console.log(err);
+            });
             localStorage.removeItem('clientPhone')
             localStorage.setItem('clientPhone', "")
-            stopRecording();
-            resetUserData();
+            localStorage.removeItem('inputEmailClient')
+            localStorage.setItem('inputEmailClient', "")
+            showContent("not yet");
+            setShowClient(false);
+            setShowError(false);
+            setInputEmail("");
             isCall = false;
           }
         });
