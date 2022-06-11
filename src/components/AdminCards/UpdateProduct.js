@@ -191,7 +191,7 @@ const UpdateProduct = (props) => {
         if (imageChanged) {
         await getUrl();
         }
-        const card = document.getElementById("card-16");
+        const card = document.getElementById("card-9");
         card.style.display = "none";
         toast.success('Product updated successfully');
       }
