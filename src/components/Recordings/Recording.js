@@ -148,6 +148,8 @@ const Recording = () => {
             });
             localStorage.removeItem('clientPhone')
             localStorage.setItem('clientPhone', "")
+            localStorage.removeItem('inputEmail')
+            localStorage.setItem('inputEmail', "")
             showContent("not yet");
             setShowClient(false);
             setShowError(false);
