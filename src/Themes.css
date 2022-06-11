@@ -11,6 +11,7 @@ data-theme={theme}
 :root {
     --background: #132a3c;
     --text-primary: #000;
+    --text-titles: #fff;
     --card-color: #f7f7f7;
     --text-secondary: blue;
     --shadow: 0 0 8px rgba(168, 217, 255, 0.7);
@@ -26,6 +27,7 @@ data-theme={theme}
     --background: #161d27;
     --card-color: #1a222e;
     --text-primary: #fff;
+    --text-titles: #fff;
     --text-secondary: rgb(192, 192, 93);
     --text-contrary: #000;
     --shadow: 0 0 4px rgba(255, 255, 255, 0.5);
@@ -40,6 +42,7 @@ data-theme={theme}
 [data-theme='light-protanopia'] {
     --background: linear-gradient(to bottom left, #fff, #ebf8ff, #d1e7fd);
     --card-color: #f7f7f7;
+    --text-titles: #000;
     --text-secondary: rgb(210, 210, 0);;
     --navbar-color: rgb(250, 250, 250);
     --navlinks-hover: #000;
@@ -53,6 +56,7 @@ data-theme={theme}
 [data-theme='light-tritanopia'] {
     --background: #5bb9ff;
     --card-color: #f7f7f7;
+    --text-titles: #000;
     --text-secondary: rgb(233, 62, 62);
     --navbar-color: rgb(250, 250, 250);
     --navlinks-hover: #000;
@@ -67,6 +71,7 @@ data-theme={theme}
     --background: #161d27;
     --card-color: #1a222e;
     --text-primary: #58A6FF;
+    --text-titles: #fff;
     --text-secondary: rgb(192, 192, 93);
     --text-contrary: #000;
     --shadow: 0 0 4px rgba(255, 255, 255, 0.5);
@@ -82,6 +87,7 @@ data-theme={theme}
     --background: #161d27;
     --card-color: #1a222e;
     --text-primary: #58A6FF;
+    --text-titles: #fff;
     --text-secondary: rgb(233, 62, 62);
     --text-contrary: #000;
     --shadow: 0 0 4px rgba(255, 255, 255, 0.5);

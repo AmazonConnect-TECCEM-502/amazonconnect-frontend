@@ -21,7 +21,7 @@ import { Toaster } from "react-hot-toast";
 import NavBar from "./components/NavBar/NavBar";
 
 function App() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
 
   const getTheme = (newTheme) => {
     setTheme(newTheme);

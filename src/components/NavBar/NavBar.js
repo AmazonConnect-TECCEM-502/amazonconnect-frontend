@@ -17,7 +17,7 @@ const NavBar = (props) => {
   const user_type = localStorage.getItem("user_type");
   var nav = [];
   // Used to see wich links are active
-  const [active_link, setActiveLink] = useState(parseInt(localStorage.getItem("active_link")))
+  const [active_link, setActiveLink] = useState(localStorage.getItem("active_link") ? parseInt(localStorage.getItem("active_link")) : 0)
   
 
   useEffect(() => {
