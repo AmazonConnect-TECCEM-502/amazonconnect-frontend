@@ -43,9 +43,7 @@ const ClientQuestion = (props) => {
         setClientLname(res.data.userData.last_name);
         setClientEmail(res.data.userData.email);
         if (res.data.userData.email === inputEmail) {    
-          toast.success('Client authenticated');
           sendAuth();
-          update();
         } else {
           toast.error('Authentication failed, please try again');
         }
@@ -64,6 +62,8 @@ const ClientQuestion = (props) => {
     .catch(function (err) {
       console.log(err);
     });
+    toast.success('Client authenticated');
+    update();
   }
 
   return (

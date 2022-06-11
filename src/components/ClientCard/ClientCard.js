@@ -54,15 +54,14 @@ const ClientCard = () => {
       }
       {
         //Show verification question 
-        (result === "not authenticated" || result === "inconclusive" || result === "opted out") && 
+        (result === "not authenticated" || result === "inconclusive" || result === "opted out" || result === "error") && 
         <ClientQuestion />
       }
       {
         //Show no data error
         (result !== "authenticated") && (result !== "opted out") && (result !== "not enrolled") && (result !== "inconclusive")
-        && (result !== "not authenticated") && <h1 className="title"> Data not recieved yet </h1>
+        && (result !== "not authenticated") && (result !== "error") && <h1 className="title"> Whoops! No data found </h1>
       }
-      <button className="btn-main refresh" onClick={update}> Refresh </button>
     </div>
   );
 };

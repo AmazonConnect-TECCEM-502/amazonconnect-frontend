@@ -79,10 +79,10 @@
 
 .client svg{
   color: var(--button);
-  font-size: 32px;
+  font-size: 25px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 5px;
+  right: 5px;
   cursor: pointer;
 }
 
