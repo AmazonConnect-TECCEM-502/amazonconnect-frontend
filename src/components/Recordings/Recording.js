@@ -138,10 +138,10 @@ const Recording = () => {
         contact.onDestroy(function (contact) {
           if (isCall) {
             console.log("#==========>\nCONTACT ENDED\n<==========#");
-            stopRecording();
-            isCall = false;
             resetUserData();
             console.log("CLIENT PHONE: ", clientPhone);
+            stopRecording();
+            isCall = false;
           }
         });
         // Called when a new call starts
