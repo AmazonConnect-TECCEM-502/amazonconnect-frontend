@@ -60,80 +60,78 @@ const ClientForms = (props) => {
         phoneNumber: clientPhone,
         authenticationType: "authenticated"
       });
-      setShowClient(true);
+      //setShowClient(true);
+      toast.success('Client registered');
     } 
   };
 
   return (
     <div className="client">
-      {!showClient && (
-        <Fragment>
-          <h1 className="title"> New user registry </h1>
-          <br />
-          <div className="element">
-            <label htmlFor={props.elementID}>
-              &nbsp;{"First name"}&nbsp;
-              {
-                <input
-                  className="user-ID"
-                  type="text"
-                  onChange={clientFnameHandler}
-                />
-              }
-            </label>
-          </div>
-          <div className="element">
-            <label htmlFor={props.elementID}>
-              &nbsp;{"Last name"}&nbsp;
-              {
-                <input
-                  className="user-ID"
-                  type="text"
-                  onChange={clientLnameHandler}
-                />
-              }
-            </label>
-          </div>
-          <div className="element">
-            <label htmlFor={props.elementID}>
-              &nbsp;{"Email"}&nbsp;
-              {
-                <input
-                  className="user-ID"
-                  type="email"
-                  placeholder="example@gmail.com"
-                  onChange={clientEmailHandler}
-                />
-              }
-            </label>
-          </div>
-          <div className="element">
-            <label htmlFor={props.elementID}>
-              &nbsp;{"Phone number"}
-              &nbsp;
-              {!emptyPhone && (
-                <input
-                  className="user-ID disabled"
-                  type="tel"
-                  placeholder="+52"
-                  value={clientPhone}
-                  readOnly
-                  disabled
-                />
-              )}
-              {emptyPhone && (
-                <input
-                  className="user-ID"
-                  type="tel"
-                  placeholder="+52"
-                />
-              )}
-            </label>
-          </div>
-          <button className="btn-main" onClick={postNewClient}> Register </button>
-        </Fragment>
-      )}
-      {showClient && <h2 className="subtitle"> Client registered </h2>}
+      <Fragment>
+        <h1 className="title"> New user registry </h1>
+        <br />
+        <div className="element">
+          <label htmlFor={props.elementID}>
+            &nbsp;{"First name"}&nbsp;
+            {
+              <input
+                className="user-ID"
+                type="text"
+                onChange={clientFnameHandler}
+              />
+            }
+          </label>
+        </div>
+        <div className="element">
+          <label htmlFor={props.elementID}>
+            &nbsp;{"Last name"}&nbsp;
+            {
+              <input
+                className="user-ID"
+                type="text"
+                onChange={clientLnameHandler}
+              />
+            }
+          </label>
+        </div>
+        <div className="element">
+          <label htmlFor={props.elementID}>
+            &nbsp;{"Email"}&nbsp;
+            {
+              <input
+                className="user-ID"
+                type="email"
+                placeholder="example@gmail.com"
+                onChange={clientEmailHandler}
+              />
+            }
+          </label>
+        </div>
+        <div className="element">
+          <label htmlFor={props.elementID}>
+            &nbsp;{"Phone number"}
+            &nbsp;
+            {!emptyPhone && (
+              <input
+                className="user-ID disabled"
+                type="tel"
+                placeholder="+52"
+                value={clientPhone}
+                readOnly
+                disabled
+              />
+            )}
+            {emptyPhone && (
+              <input
+                className="user-ID"
+                type="tel"
+                placeholder="+52"
+              />
+            )}
+          </label>
+        </div>
+        <button className="btn-main" onClick={postNewClient}> Register </button>
+      </Fragment>
     </div>
   );
 };

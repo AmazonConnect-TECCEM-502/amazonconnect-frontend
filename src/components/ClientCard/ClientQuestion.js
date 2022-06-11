@@ -25,10 +25,12 @@ const ClientQuestion = (props) => {
   };
   
   const getClientData = async () => {
+    /*
     localStorage.removeItem('inputEmailClient')
     localStorage.setItem('inputEmailClient', inputEmail)
     const inputEmailClient = localStorage.getItem("inputEmailClient");
     console.log(inputEmailClient);
+    */
     if(inputEmail === "")
     {
       toast.error("Please fill in the email");
@@ -46,11 +48,14 @@ const ClientQuestion = (props) => {
         setClientFname(res.data.userData.first_name);
         setClientLname(res.data.userData.last_name);
         setClientEmail(res.data.userData.email);
+        /*
         const inputEmail = localStorage.getItem("inputEmailClient");
         console.log(inputEmail);
+        */
         if (res.data.userData.email === inputEmail) {    
           sendAuth();
-          setShowClient(true);
+          //setShowClient(true);
+          toast.success('Client authenticated')
         } else {
           setShowError(true);
         }
@@ -73,28 +78,25 @@ const ClientQuestion = (props) => {
 
   return (
     <div className="client">
-      {!showClient && (
-        <Fragment>
-          <h1 className="title"> Authentification question </h1>
-          <br />
-          <div className="element">
-            <label htmlFor={props.elementID}>
-              &nbsp;{"Confirm email"}
-              &nbsp;{
-                <input
-                  className="user-ID"
-                  type="email"
-                  placeholder="example@gmail.com"
-                  onChange={clientEmailHandler}
-                />
-              }
-            </label>
-          </div>
-          {showError && <h2 className="subtitle"> Authentication failed, please try again </h2>}
-          <button className="btn-main" onClick={getClientData}> Submit </button>
-        </Fragment>
-      )}
-      {showClient && <h2 className="subtitle"> Client authenticated </h2>}
+      <Fragment>
+        <h1 className="title"> Authentification question </h1>
+        <br />
+        <div className="element">
+          <label htmlFor={props.elementID}>
+            &nbsp;{"Confirm email"}
+            &nbsp;{
+              <input
+                className="user-ID"
+                type="email"
+                placeholder="example@gmail.com"
+                onChange={clientEmailHandler}
+              />
+            }
+          </label>
+        </div>
+        {showError && <h2 className="subtitle"> Authentication failed, please try again </h2>}
+        <button className="btn-main" onClick={getClientData}> Submit </button>
+      </Fragment>
     </div>
   );
 };
