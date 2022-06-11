@@ -18,7 +18,7 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
-    const [, , , , , , , , , setClientPhone, , , , ] =
+    const [, , , , , , , , , setClientPhone, , , , , , , , , , , , , , resetUserData] =
     useContext(ClientContext);
 
   const onStop = async (url, blob) => {
@@ -138,7 +138,10 @@ const Recording = () => {
         contact.onDestroy(function (contact) {
           if (isCall) {
             console.log("#==========>\nCONTACT ENDED\n<==========#");
+            localStorage.removeItem('clientPhone')
+            localStorage.setItem('clientPhone', "")
             stopRecording();
+            resetUserData();
             isCall = false;
           }
         });
@@ -150,8 +153,9 @@ const Recording = () => {
           const voiceConnection = contact.getAgentConnection();
           voiceConnection.getVoiceIdSpeakerId()
             .then((data) => {
-              console.log(data.speakerId);
-              setClientPhone(data.speakerId);
+              setClientPhone("+" + data.speakerId);
+              localStorage.removeItem('clientPhone')
+              localStorage.setItem('clientPhone', "+" + data.speakerId.toString())
             })
             .catch((err) => {
               console.error(err);

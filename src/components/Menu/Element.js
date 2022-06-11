@@ -66,6 +66,9 @@ const Element = (props) => {
       setProblem(!problem);
     }
     if (event.target.value === "client") {
+      const card = document.getElementById("card-4");
+      card.style.display = !client ? "block" : "none";
+      setClient(!client);
       if(clientPhone !== "")
       {
         setShowInput(!showInput);
