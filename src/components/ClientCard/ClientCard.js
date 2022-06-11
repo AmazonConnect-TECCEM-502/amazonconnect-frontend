@@ -26,12 +26,11 @@ const ClientCard = () => {
   const [result, setResult] = useState(""); // AuthenticationType
   const [products, setProducts] = useState([]);
 
-  /*
   // Functionality in progress
   useEffect(() => {
     update();
   });
-  */
+  
   const update = async () => {
     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getAuthRes`,{
       "phoneNumber": clientPhone

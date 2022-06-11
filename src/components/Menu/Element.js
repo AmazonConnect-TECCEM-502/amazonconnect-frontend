@@ -52,9 +52,7 @@ const Element = (props) => {
    * occurs on it.
    */
   const clientPhoneHandler = (event) => {
-    /*
     setClientPhone(event.target.value);
-    */
   };
 
   /**
@@ -71,7 +69,6 @@ const Element = (props) => {
       const card = document.getElementById("card-4");
       card.style.display = !client ? "block" : "none";
       setClient(!client);
-      /*
       if(clientPhone !== "")
       {
         setShowInput(!showInput);
@@ -84,7 +81,6 @@ const Element = (props) => {
         toast.error('Please fill in the phone number');
         event.target.checked = false;
       }
-      */
     }
     if (event.target.value === "products") {
       const card = document.getElementById("card-8");
