@@ -13,7 +13,7 @@ const ProductList = (props) => {
 
   return (
     <Fragment>
-      <p className="title"> Products by category</p>
+      <p className="title"> Products available </p>
       {props.products.map(product => {
         return(
           <div className="categorys" key={product.product_id}>
