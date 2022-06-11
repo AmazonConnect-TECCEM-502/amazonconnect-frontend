@@ -46,7 +46,7 @@ const ClientProvider = ({ children }) => {
       setClientFname(res.data.userData.first_name)
       setClientLname(res.data.userData.last_name)
       setClientEmail(res.data.userData.email)
-      setProducts(res.data.userProducts)
+      setClientProducts(res.data.userProducts)
       localStorage.removeItem('clientID')
       localStorage.setItem('clientID', res.data.userData.client_id.toString())
     })
