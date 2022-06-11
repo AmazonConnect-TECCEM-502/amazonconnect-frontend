@@ -66,7 +66,7 @@ const ClientForms = (props) => {
   };
 
   return (
-    <div className="client">
+    <div className="client client-card">
       <Fragment>
         <h1 className="title"> New user registry </h1>
         <br />

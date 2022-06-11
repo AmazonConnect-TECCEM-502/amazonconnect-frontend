@@ -60,7 +60,7 @@ const ClientCard = () => {
       {
         //Show no data error
         (result !== "authenticated") && (result !== "opted out") && (result !== "not enrolled") && (result !== "inconclusive")
-        && (result !== "not authenticated") && (result !== "error") && <h1 className="title"> Whoops! No data found </h1>
+        && (result !== "not authenticated") && (result !== "error") && <h1 className="warning"> Whoops! No data found </h1>
       }
     </div>
   );

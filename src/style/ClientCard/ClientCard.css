@@ -25,6 +25,10 @@
   font-family: "Montserrat";
 }
 
+.client-card {
+  padding-top: 25px;
+}
+
 .client .user-ID{
   float: right;
   padding-right: 60px;
@@ -88,4 +92,11 @@
 
 .client svg:hover{
   color: var(--button-hover);
+}
+
+.client .warning{
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 30px;
+  font-family: "Montserrat";
 }

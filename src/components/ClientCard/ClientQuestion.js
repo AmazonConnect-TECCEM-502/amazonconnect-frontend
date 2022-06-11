@@ -67,7 +67,7 @@ const ClientQuestion = (props) => {
   }
 
   return (
-    <div className="client">
+    <div className="client client-card">
       <Fragment>
         <h1 className="title"> Authentification question </h1>
         <br />
