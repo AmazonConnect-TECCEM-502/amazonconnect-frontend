@@ -24,6 +24,8 @@ const ClientQuestion = (props) => {
     setInputEmail(event.target.value);
     localStorage.removeItem('inputEmail')
     localStorage.setItem('inputEmail', inputEmail)
+    const inputEmail = localStorage.getItem("inputEmail");
+    console.log(inputEmail);
   };
 
   const getClientData = async () => {
@@ -45,6 +47,7 @@ const ClientQuestion = (props) => {
         setClientLname(res.data.userData.last_name);
         setClientEmail(res.data.userData.email);
         const inputEmail = localStorage.getItem("inputEmail");
+        console.log(inputEmail);
         if (res.data.userData.email === inputEmail) {    
           sendAuth();
           setShowClient(true);
