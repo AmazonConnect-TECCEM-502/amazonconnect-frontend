@@ -24,8 +24,49 @@ const ClientProvider = ({ children }) => {
   const [clientLname, setClientLname] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientPhone, setClientPhone] = useState("");
+  const [products, setProducts] = useState([]);
   const [showClient, setShowClient] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [result, setResult] = useState(""); // AuthenticationType
+
+  const showContent = (message) => {
+    if(message === "authenticated"){
+      getClientData();
+    }
+    setResult(message);
+    console.log(result);
+  };
+
+  const getClientData = async () => {
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getUserData`,{
+      "phoneNumber": clientPhone
+    })
+    .then(res => {
+      setClientID(res.data.userData.client_id)
+      setClientFname(res.data.userData.first_name)
+      setClientLname(res.data.userData.last_name)
+      setClientEmail(res.data.userData.email)
+      setProducts(res.data.userProducts)
+      localStorage.removeItem('clientID')
+      localStorage.setItem('clientID', res.data.userData.client_id.toString())
+    })
+    .catch(function(err) {
+      console.log(err);
+      showContent("not yet");
+    });
+    console.log(clientID);
+  }
+
+  const resetUserData = async () => {
+    showContent("not yet");
+    setShowClient(false);
+    setShowError(false);
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
+      "phoneNumber": clientPhone
+    }).catch(function(err) {
+      console.log(err);
+    });
+  };
 
   return (
     <ClientContext.Provider
@@ -43,7 +84,13 @@ const ClientProvider = ({ children }) => {
         showClient,
         setShowClient,
         showError, 
-        setShowError
+        setShowError,
+        result,
+        setResult,
+        showContent,
+        products,
+        setProducts,
+        resetUserData
       ]}
     >
       {children}

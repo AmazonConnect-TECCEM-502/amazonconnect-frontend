@@ -18,7 +18,7 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
-    const [, , , , , , , , clientPhone, setClientPhone, , , , ] =
+    const [, , , , , , , , clientPhone, setClientPhone, , , , , , , , , , , , , , resetUserData] =
     useContext(ClientContext);
 
   const onStop = async (url, blob) => {
@@ -140,6 +140,8 @@ const Recording = () => {
             console.log("#==========>\nCONTACT ENDED\n<==========#");
             stopRecording();
             isCall = false;
+            resetUserData();
+            console.log(clientPhone);
           }
         });
         // Called when a new call starts
