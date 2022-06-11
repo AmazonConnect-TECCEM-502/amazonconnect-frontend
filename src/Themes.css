@@ -9,10 +9,11 @@ data-theme={theme}
 
 
 :root {
-    --background: #5bb9ff;
+    --background: #132a3c;
     --text-primary: #000;
     --card-color: #f7f7f7;
     --text-secondary: blue;
+    --shadow: 0 0 8px rgba(168, 217, 255, 0.7);
     --navbar-color: rgb(250, 250, 250);
     --navlinks-hover: #000;
     --border-bottom: 1.5px solid black;
@@ -22,8 +23,8 @@ data-theme={theme}
 }
 
 [data-theme='dark'] {
-    --background: linear-gradient(to bottom right, #0D1117, #161c26, #161d27);
-    --card-color: #012530;
+    --background: #161d27;
+    --card-color: #1a222e;
     --text-primary: #fff;
     --text-secondary: rgb(192, 192, 93);
     --text-contrary: #000;
@@ -39,20 +40,7 @@ data-theme={theme}
 [data-theme='light-protanopia'] {
     --background: linear-gradient(to bottom left, #fff, #ebf8ff, #d1e7fd);
     --card-color: #f7f7f7;
-    --text-secondary: green;
-    --navbar-color: rgb(250, 250, 250);
-    --navlinks-hover: #000;
-    --border-bottom: 1.5px solid black;
-    --shadow: 0 0 4px rgba(0, 0, 0, 0.8);
-    --navbar-icons: #009ad9;
-    --button: green;
-    --button-hover: rgb(0, 71, 0);
-}
-
-[data-theme='light-tritanopia'] {
-    --background: #5bb9ff;
-    --card-color: #f7f7f7;
-    --text-secondary: rgb(210, 210, 0);
+    --text-secondary: rgb(210, 210, 0);;
     --navbar-color: rgb(250, 250, 250);
     --navlinks-hover: #000;
     --border-bottom: 1.5px solid black;
@@ -62,24 +50,22 @@ data-theme={theme}
     --button-hover: rgb(137, 137, 0);
 }
 
-[data-theme='dark-protonopia'] {
-    --background: linear-gradient(to bottom right, #0D1117, #161c26, #161d27);
-    --card-color: #012530;
-    --text-primary: #58A6FF;
-    --text-secondary: rgb(93, 192, 93);
-    --text-contrary: #000;
-    --shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-    --navbar-color: #161B22;
-    --navlinks-hover: #cdcdcd;
-    --border-bottom: 1.5px solid white;
-    --navbar-icons: #58A6FF;
-    --button: rgb(59 80 57);
-    --button-hover: rgb(99, 134, 96);
+[data-theme='light-tritanopia'] {
+    --background: #5bb9ff;
+    --card-color: #f7f7f7;
+    --text-secondary: rgb(233, 62, 62);
+    --navbar-color: rgb(250, 250, 250);
+    --navlinks-hover: #000;
+    --border-bottom: 1.5px solid black;
+    --shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+    --navbar-icons: #009ad9;
+    --button: rgb(233, 62, 62);
+    --button-hover: rgb(160, 49, 49);
 }
 
-[data-theme='dark-tritanopia'] {
-    --background: linear-gradient(to bottom right, #0D1117, #161c26, #161d27);
-    --card-color: #012530;
+[data-theme='dark-protonopia'] {
+    --background: #161d27;
+    --card-color: #1a222e;
     --text-primary: #58A6FF;
     --text-secondary: rgb(192, 192, 93);
     --text-contrary: #000;
@@ -90,4 +76,19 @@ data-theme={theme}
     --navbar-icons: #58A6FF;
     --button: rgb(192, 192, 93);
     --button-hover: rgb(139, 139, 64);
+}
+
+[data-theme='dark-tritanopia'] {
+    --background: #161d27;
+    --card-color: #1a222e;
+    --text-primary: #58A6FF;
+    --text-secondary: rgb(233, 62, 62);
+    --text-contrary: #000;
+    --shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+    --navbar-color: #161B22;
+    --navlinks-hover: #cdcdcd;
+    --border-bottom: 1.5px solid white;
+    --navbar-icons: #58A6FF;
+    --button: rgb(233, 62, 62);
+    --button-hover: rgb(160, 49, 49);
 }

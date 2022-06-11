@@ -18,6 +18,8 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
+    const [, , , , , , , , , setClientPhone, , , , , , setShowClient, , setShowError, , , showContent, , , , , setInputEmail] =
+    useContext(ClientContext);
 
   const onStop = async (url, blob) => {
     // await setCategoryProblem([...categoryProblem]);
@@ -136,6 +138,21 @@ const Recording = () => {
           if (isCall) {
             console.log("#==========>\nCONTACT ENDED\n<==========#");
             stopRecording();
+            
+            const clientPhone = localStorage.getItem("clientPhone");
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
+              "phoneNumber": clientPhone
+            }).catch(function(err) {
+              console.log(err);
+            });
+            localStorage.removeItem('clientPhone')
+            localStorage.setItem('clientPhone', "")
+            localStorage.removeItem('inputEmailClient')
+            localStorage.setItem('inputEmailClient', "")
+            showContent("not yet");
+            setShowClient(false);
+            setShowError(false);
+            setInputEmail("");
             isCall = false;
           }
         });
@@ -147,7 +164,9 @@ const Recording = () => {
           const voiceConnection = contact.getAgentConnection();
           voiceConnection.getVoiceIdSpeakerId()
             .then((data) => {
-              console.log(data.speakerId);
+              setClientPhone("+" + data.speakerId);
+              localStorage.removeItem('clientPhone')
+              localStorage.setItem('clientPhone', "+" + data.speakerId.toString())
             })
             .catch((err) => {
               console.error(err);

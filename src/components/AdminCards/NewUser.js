@@ -135,8 +135,8 @@ const NewUser = (props) => {
             <p>Manager: </p>
             <select onChange={changemanager} onClick={Managers} className="user-ID">
               <option></option>
-              {managers.map((manager) => (
-                <option value={manager.user_id}>
+              {managers.map((manager, index) => (
+                <option value={manager.user_id} key={index}>
                   {manager.first_name}{manager.last_name}
                 </option>
               ))}

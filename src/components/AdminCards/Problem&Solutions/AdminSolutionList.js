@@ -55,10 +55,11 @@ const AdminSolutionList = (props) => {
         See Proposals
       </button>
       <div className="container-questions">
-        {arrsolutions.map((solution) => (
+        {arrsolutions.map((solution, index) => (
           <AdminSolution
             text={solution.solution_description}
             sol_id={solution.solution_id}
+            key={index}
           />
         ))}
         {arrsolutions.length === 0 && <p>No Solutions</p>}

@@ -17,11 +17,17 @@ const NavBar = (props) => {
   const user_type = localStorage.getItem("user_type");
   var nav = [];
   // Used to see wich links are active
-  const [activeLink, setActiveLink] = useState(0);
+  const [active_link, setActiveLink] = useState(parseInt(localStorage.getItem("active_link")))
+  
 
   useEffect(() => {
     document.body.addEventListener("click", userPopupState);
   });
+
+  const newActiveLink = (index) => {
+    setActiveLink(index);
+    localStorage.setItem("active_link", index.toString());
+  } 
 
   if (user_type === "agent") {
     nav = [
@@ -93,11 +99,11 @@ const NavBar = (props) => {
                     id={index}
                     to={link.url}
                     className={
-                      activeLink === index
+                      active_link === index
                         ? `${link.cName} activeLink`
                         : link.cName
                     }
-                    onClick={() => setActiveLink(index)}
+                    onClick={() => newActiveLink(index)}
                   >
                     {link.title}
                   </Link>
@@ -113,7 +119,7 @@ const NavBar = (props) => {
             />
           </ul>
         </nav>
-        {userPopup && <DropDown noActiveLink={setActiveLink} />}
+        {userPopup && <DropDown noActiveLink={newActiveLink} />}
         {userPopupThemes && <ThemeOptions newTheme={props.newTheme} />}
       </div>
     );
