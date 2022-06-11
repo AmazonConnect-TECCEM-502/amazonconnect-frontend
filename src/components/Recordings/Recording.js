@@ -146,7 +146,7 @@ const Recording = () => {
             showContent("not yet");
             setShowClient(false);
             setShowError(false);
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
               "phoneNumber": clientPhone
             }).catch(function(err) {
               console.log(err);
