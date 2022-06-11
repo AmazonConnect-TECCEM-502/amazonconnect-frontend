@@ -169,13 +169,13 @@ const Recording = () => {
           .catch((err) => {
             console.error(err);
           });
-          
-          voiceConnection.deleteVoiceIdSpeaker()
+          // USEFUL TO UNENROLL CUSTOMER FROM VOICEID.
+          /*voiceConnection.deleteVoiceIdSpeaker()
           .then(() => {
           })
           .catch((err) => {
             console.error(err);
-          });
+          });*/
           
           isCall = true;
         });
