@@ -22,13 +22,13 @@ const ClientQuestion = (props) => {
 
   const clientEmailHandler = (event) => {
     setInputEmail(event.target.value);
+  };
+  
+  const getClientData = async () => {
     localStorage.removeItem('inputEmailClient')
     localStorage.setItem('inputEmailClient', inputEmail)
     const inputEmailClient = localStorage.getItem("inputEmailClient");
     console.log(inputEmailClient);
-  };
-
-  const getClientData = async () => {
     if(inputEmail === "")
     {
       toast.error("Please fill in the email");
