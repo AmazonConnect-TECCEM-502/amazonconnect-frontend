@@ -5,7 +5,6 @@ const Call = (props) => {
         <source src={props.video_url} type="video/mp4" />
       </video>
       <br />
-      <br />
       <p>
         <b>Duration:</b> {props.duration}
       </p>
@@ -18,6 +17,12 @@ const Call = (props) => {
       <p>
         <b>Agent:</b> {props.agent}
       </p>
+      <p>
+        <b>Date:</b> {props.date}
+      </p>
+      {props.categories.map((category) => (
+        <p>{category}</p>
+      ))}
     </div>
   );
 };

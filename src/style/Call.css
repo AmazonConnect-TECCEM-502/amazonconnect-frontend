@@ -3,8 +3,20 @@
   align-items: center;
   justify-content: center;
 }
-.call .card div p {
+
+.call-card {
   margin: 0;
   text-align: left;
   font-family: "Montserrat";
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: 0.6s;
+  background: var(--card-color);
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  min-width: 340px;
+  overflow: hidden;
+  color: var(--text-primary);
+  position: relative;
+  animation: scale-upp 0.1s;
 }
