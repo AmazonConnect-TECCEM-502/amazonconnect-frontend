@@ -26,10 +26,11 @@ const ProposalsList = (props) => {
           <p>Proposals</p>
         </div>
         <div className="container-questions">
-          {proposals.map((proposal) => (
+          {proposals.map((proposal, index) => (
             <Proposal
               text={proposal.solution_description}
               proposal_id={proposal.solution_id}
+              key={index}
             />
           ))}
           {proposals.length === 0 && <p>No Proposals</p>}

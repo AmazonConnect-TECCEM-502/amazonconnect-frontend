@@ -12,81 +12,25 @@
   <ClientCard />
 */
 
-import axios from "axios";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import ClientForms from "./ClientForms";
 import ClientInfo from "./ClientInfo";
 import ClientName from "./ClientName";
 import ClientQuestion from "./ClientQuestion";
 import { ClientContext } from "./ClientProvider";
+import { VscRefresh } from "react-icons/vsc"
 
 const ClientCard = () => {
-  const [ clientID, setClientID, clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , setShowClient, , setShowError] = useContext(ClientContext);
+  const [ , , clientFname, , clientLname, , clientEmail, , clientPhone, , clientProducts, , result, , , , , update] = useContext(ClientContext);
 
-  const [result, setResult] = useState(""); // AuthenticationType
-  const [products, setProducts] = useState([]);
-
-  const update = async () => {
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getAuthRes`,{
-      "phoneNumber": clientPhone
-    })
-    .then(res => {
-      showContent(res.data.authenticationType)
-    })
-    .catch(function(err) {
-      console.log(err);
-      showContent("not yet");
-    });
-  }
-
-  const showContent = (message) => {
-    if(message === "authenticated"){
-      getClientData();
-    }
-    setResult(message);
-    console.log(result);
-  };
-
-  const getClientData = async () => {
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getUserData`,{
-      "phoneNumber": clientPhone
-    })
-    .then(res => {
-      setClientID(res.data.userData.client_id)
-      setClientFname(res.data.userData.first_name)
-      setClientLname(res.data.userData.last_name)
-      setClientEmail(res.data.userData.email)
-      setProducts(res.data.userProducts)
-      localStorage.removeItem('clientID')
-      localStorage.setItem('clientID', res.data.userData.client_id.toString())
-    })
-    .catch(function(err) {
-      console.log(err);
-      showContent("not yet");
-    });
-    console.log(clientID);
-  }
-
-  const resetUserData = async () => {
-    showContent("not yet");
-    setShowClient(false);
-    setShowError(false);
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
-      "phoneNumber": clientPhone
-    }).catch(function(err) {
-      console.log(err);
-    });
-  };
-
-  /*              
-  // DEBUG BUTTONS (Must be under <div className="client">)
-  <button onClick={() => showContent("authenticated")}> Card </button>
-  <button onClick={() => showContent("not enrolled")}> Forms </button>
-  <button onClick={() => showContent("not authenticated")}> Question </button>
-  */
+  // Functionality in progress
+  useEffect(() => {
+    update();
+  });
 
   return (
     <div className="client">
+      <VscRefresh onClick={update}/>
       {
         //Show User Info
         (result === "authenticated") &&
@@ -96,7 +40,7 @@ const ClientCard = () => {
           <ClientInfo text={clientPhone} />
           <br/><h2 className="subtitle">Acquired products</h2>
           {
-            products.map((product) => (
+            clientProducts.map((product) => (
               <div className="element">
                 {product.product_name}
               </div>
@@ -110,16 +54,14 @@ const ClientCard = () => {
       }
       {
         //Show verification question 
-        (result === "not authenticated" || result === "inconclusive" || result === "opted out") && 
+        (result === "not authenticated" || result === "inconclusive" || result === "opted out" || result === "error") && 
         <ClientQuestion />
       }
       {
         //Show no data error
         (result !== "authenticated") && (result !== "opted out") && (result !== "not enrolled") && (result !== "inconclusive")
-        && (result !== "not authenticated") && <h1 className="title"> Data not recieved yet </h1>
+        && (result !== "not authenticated") && (result !== "error") && <h1 className="warning"> Whoops! No data found </h1>
       }
-      <button className="btn-main refresh" onClick={() => update()}> Refresh </button>
-      <button className="btn-main" onClick={() => resetUserData()}> Close contact </button>
     </div>
   );
 };

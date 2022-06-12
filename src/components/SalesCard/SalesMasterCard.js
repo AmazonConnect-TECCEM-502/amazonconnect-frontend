@@ -19,9 +19,9 @@ import ProductsCategoryList from "./ProductsCategoryList";
 const SalesMasterCard = () => {
 
     const backend = process.env.REACT_APP_BACKEND_URL;
-    //const backend = "http://3.80.44.247:8080";
 
-    const [clientID, , , , , , , , , , , , , ] = useContext(ClientContext);
+    const [
+      clientID, , , , , , , , , , , , , , , , , ] = useContext(ClientContext);
 
     const Views = {
       CATEGORIES : 1,

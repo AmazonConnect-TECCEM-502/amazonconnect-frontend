@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientForms = (props) => {
-  const [ , , clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , showClient, setShowClient, , ,] = useContext(ClientContext);
+  const [ , , clientFname, setClientFname, clientLname, setClientLname, clientEmail, setClientEmail, clientPhone, , , , , , , , , update] = useContext(ClientContext);
 
   const [emptyPhone, setEmptyPhone] = useState(false);
 
@@ -44,6 +44,10 @@ const ClientForms = (props) => {
     {
       toast.error("Please fill out all the fields");
     }
+    else if(!clientEmail.includes("@") || !clientEmail.includes("."))
+    {
+      toast.error("Invalid email format, please include '@' and '.'");
+    }
     else
     {
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/sendClientData`, {
@@ -56,80 +60,78 @@ const ClientForms = (props) => {
         phoneNumber: clientPhone,
         authenticationType: "authenticated"
       });
-      setShowClient(true);
+      toast.success('Client registered');
+      update();
     } 
   };
 
   return (
-    <div className="client">
-      {!showClient && (
-        <Fragment>
-          <h1 className="title"> New user registry </h1>
-          <br />
-          <div className="element">
-            <label htmlFor={props.elementID}>
-              &nbsp;{"First name"}&nbsp;
-              {
-                <input
-                  className="user-ID"
-                  type="text"
-                  onChange={clientFnameHandler}
-                />
-              }
-            </label>
-          </div>
-          <div className="element">
-            <label htmlFor={props.elementID}>
-              &nbsp;{"Last name"}&nbsp;
-              {
-                <input
-                  className="user-ID"
-                  type="text"
-                  onChange={clientLnameHandler}
-                />
-              }
-            </label>
-          </div>
-          <div className="element">
-            <label htmlFor={props.elementID}>
-              &nbsp;{"Email"}&nbsp;
-              {
-                <input
-                  className="user-ID"
-                  type="email"
-                  placeholder="example@gmail.com"
-                  onChange={clientEmailHandler}
-                />
-              }
-            </label>
-          </div>
-          <div className="element">
-            <label htmlFor={props.elementID}>
-              &nbsp;{"Phone number"}
-              &nbsp;
-              {!emptyPhone && (
-                <input
-                  className="user-ID disabled"
-                  type="tel"
-                  placeholder="+52"
-                  value={clientPhone}
-                  disabled
-                />
-              )}
-              {emptyPhone && (
-                <input
-                  className="user-ID"
-                  type="tel"
-                  placeholder="+52"
-                  value={clientPhone}
-                />
-              )}
-            </label>
-          </div>
-          <button className="btn-main" onClick={postNewClient}> Register </button>
-        </Fragment>
-      )}
-      {showClient && <h2 className="subtitle"> Client registered </h2>}
+    <div className="client client-card">
+      <Fragment>
+        <h1 className="title"> New user registry </h1>
+        <br />
+        <div className="element">
+          <label htmlFor={props.elementID}>
+            &nbsp;{"First name"}&nbsp;
+            {
+              <input
+                className="user-ID"
+                type="text"
+                onChange={clientFnameHandler}
+              />
+            }
+          </label>
+        </div>
+        <div className="element">
+          <label htmlFor={props.elementID}>
+            &nbsp;{"Last name"}&nbsp;
+            {
+              <input
+                className="user-ID"
+                type="text"
+                onChange={clientLnameHandler}
+              />
+            }
+          </label>
+        </div>
+        <div className="element">
+          <label htmlFor={props.elementID}>
+            &nbsp;{"Email"}&nbsp;
+            {
+              <input
+                className="user-ID"
+                type="email"
+                placeholder="example@gmail.com"
+                onChange={clientEmailHandler}
+              />
+            }
+          </label>
+        </div>
+        <div className="element">
+          <label htmlFor={props.elementID}>
+            &nbsp;{"Phone number"}
+            &nbsp;
+            {!emptyPhone && (
+              <input
+                className="user-ID disabled"
+                type="tel"
+                placeholder="+52"
+                value={clientPhone}
+                readOnly
+                disabled
+              />
+            )}
+            {emptyPhone && (
+              <input
+                className="user-ID"
+                type="tel"
+                placeholder="+52"
+              />
+            )}
+          </label>
+        </div>
+        <button className="btn-main" onClick={postNewClient}> Register </button>
+      </Fragment>
     </div>
   );
 };

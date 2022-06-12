@@ -33,17 +33,17 @@ const ThemeOptions = (props) => {
       </a>
       <a
         onClick={async () => {
-          await props.newTheme("light-tritanopia");
-        }}
-      >
-        Light Tritanopia Theme
-      </a>
-      <a
-        onClick={async () => {
           await props.newTheme("dark-protonopia");
         }}
       >
         Dark Protonopia-Deuteranopia Theme
+      </a>
+      <a
+        onClick={async () => {
+          await props.newTheme("light-tritanopia");
+        }}
+      >
+        Light Tritanopia Theme
       </a>
       <a
         onClick={async () => {

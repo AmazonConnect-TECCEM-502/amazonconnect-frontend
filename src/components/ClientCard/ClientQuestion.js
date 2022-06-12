@@ -13,23 +13,25 @@
 */
 
 import axios from "axios";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext } from "react";
 import toast from "react-hot-toast";
 import { ClientContext } from "./ClientProvider";
 
 const ClientQuestion = (props) => {
-  const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , showClient, setShowClient, showError, setShowError] = useContext(ClientContext);
-
-  const [inputEmail, setInputEmail] = useState("");
+  const [ , , , setClientFname, , setClientLname, , setClientEmail, clientPhone, , , , , , inputEmail, setInputEmail, , update] = useContext(ClientContext);
 
   const clientEmailHandler = (event) => {
     setInputEmail(event.target.value);
   };
-
+  
   const getClientData = async () => {
     if(inputEmail === "")
     {
       toast.error("Please fill in the email");
+    }
+    else if(!inputEmail.includes("@") || !inputEmail.includes("."))
+    {
+      toast.error("Invalid email format, please include '@' and '.'");
     }
     else
     {
@@ -42,9 +44,8 @@ const ClientQuestion = (props) => {
         setClientEmail(res.data.userData.email);
         if (res.data.userData.email === inputEmail) {    
           sendAuth();
-          setShowClient(true);
         } else {
-          setShowError(true);
+          toast.error('Authentication failed, please try again');
         }
       })
       .catch(function (err) {
@@ -61,32 +62,30 @@ const ClientQuestion = (props) => {
     .catch(function (err) {
       console.log(err);
     });
+    toast.success('Client authenticated');
+    update();
   }
 
   return (
-    <div className="client">
-      {!showClient && (
-        <Fragment>
-          <h1 className="title"> Authentification question </h1>
-          <br />
-          <div className="element">
-            <label htmlFor={props.elementID}>
-              &nbsp;{"Confirm email"}
-              &nbsp;{
-                <input
-                  className="user-ID"
-                  type="email"
-                  placeholder="example@gmail.com"
-                  onChange={clientEmailHandler}
-                />
-              }
-            </label>
-          </div>
-          {showError && <h2 className="subtitle"> Authentication failed, please try again </h2>}
-          <button className="btn-main" onClick={getClientData}> Submit </button>
-        </Fragment>
-      )}
-      {showClient && <h2 className="subtitle"> Client authenticated </h2>}
+    <div className="client client-card">
+      <Fragment>
+        <h1 className="title"> Authentification question </h1>
+        <br />
+        <div className="element">
+          <label htmlFor={props.elementID}>
+            &nbsp;{"Confirm email"}
+            &nbsp;{
+              <input
+                className="user-ID"
+                type="email"
+                placeholder="example@gmail.com"
+                onChange={clientEmailHandler}
+              />
+            }
+          </label>
+        </div>
+        <button className="btn-main" onClick={getClientData}> Submit </button>
+      </Fragment>
     </div>
   );
 };

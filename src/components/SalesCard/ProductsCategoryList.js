@@ -20,7 +20,6 @@ const ProductsCategoryList = (props) => {
   // useEffect will be used so before the component is created it fetch the data from our back
   useEffect(() => {
     const fetchData = async () => {
-      // const productsData = await fetch('http://3.80.44.247:8080/problem/getProductCategories');
       //const productsData = await fetch(`${props.backend}/sales/getProductCategories`); // This line gives a warning 
       const productsData = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/getProductCategories`);
       const jsonProducts = await productsData.json();

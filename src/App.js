@@ -21,10 +21,11 @@ import { Toaster } from "react-hot-toast";
 import NavBar from "./components/NavBar/NavBar";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
 
   const getTheme = (newTheme) => {
     setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
   };
 
   const createCursor = (x, y) => {
@@ -33,8 +34,7 @@ function App() {
     cursor.style.display = "block";
     cursor.style.top = (y) + "px";
     cursor.style.left = (x) + "px";
-    if(theme === "light" || 
-      theme === "light-protanopia" || 
+    if(theme === "light-protanopia" || 
       theme === "light-tritanopia")
       {
       cursor.style.background = "rgba(0,0,0,0.5)";
@@ -57,7 +57,7 @@ function App() {
 
   let token = localStorage.getItem("token");
   const tokenHeader = new Headers({ Authorization : token});
-  fetch("http://localhost:8080/auth/verifyToken", {headers: tokenHeader})
+  fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/verifyToken`, {headers: tokenHeader})
     .then((response) => {
       if(response.status !== 200){
         localStorage.clear();
@@ -75,7 +75,7 @@ function App() {
         <Route path="/agent/capacitations" element={<AgentCapacitation />} />
         <Route
           path="/agent/settings"
-          element={<AgentSettings newTheme={getTheme} />}
+          element={<AgentSettings/>}
         />
         <Route path="/agent/profile" element={<AgentProfile />} />
 
@@ -87,7 +87,7 @@ function App() {
         <Route path="/admin/home" element={<AdminConfiguration />} />
         <Route
           path="/admin/settings"
-          element={<AdminSettings newTheme={getTheme} />}
+          element={<AdminSettings />}
         />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="*" element={<LogIn/>} />

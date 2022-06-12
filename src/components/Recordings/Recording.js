@@ -18,40 +18,15 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
-
-  useEffect(() => {
-    if (onload) {
-      const eventBus = connect.core.getEventBus();
-      eventBus.subscribe(connect.EventType.TERMINATED, () => {
-        console.log("Logged out");
-      });
-
-      connect.contact(function (contact) {
-        // Called when the contact is finished (including After Call Work)
-        contact.onDestroy(function (contact) {
-          if (isCall) {
-            console.log("============\nCONTACT ENDED\n============");
-            isCall = false;
-          }
-        });
-        // Called when a new call starts
-        contact.onAccepted(function (contact) {
-          console.log("============\nCONTACT STARTED\n============");
-          isCall = true;
-        });
-      });
-      onload = false;
-    }
-  });
+    const [ , , , , , , , , , setClientPhone, , , , , , setInputEmail, showContent, ] = 
+    useContext(ClientContext);
 
   const onStop = async (url, blob) => {
     // await setCategoryProblem([...categoryProblem]);
     const clientID = parseInt(localStorage.getItem("clientID"));
-    console.log(clientID);
     const categories = JSON.parse(localStorage.getItem("categoryProblem"));
 
-    const API_ENDPOINT =
-      "https://6tggc5vevc.execute-api.us-east-1.amazonaws.com/default/getPresignedS3URL";
+    const API_ENDPOINT = process.env.REACT_APP_PRESIGNEDURL_URL;
 
     const response = await axios({
       url: API_ENDPOINT,
@@ -147,6 +122,66 @@ const Recording = () => {
     audio: true,
     onStop: onStop,
     blobPropertyBag: { type: "video/mp4" },
+  });
+  
+  useEffect(() => {
+    if (onload) {
+      /*const eventBus = connect.core.getEventBus();
+      eventBus.subscribe(connect.EventType.TERMINATED, () => {
+        console.log("Logged out");
+      });*/
+
+      connect.contact(function (contact) {
+        // Called when the contact is finished (including After Call Work)
+        contact.onDestroy(function (contact) {
+          if (isCall) {
+            console.log("#==========>\nCONTACT ENDED\n<==========#");
+            stopRecording();
+            
+            // Reset Client values
+            const clientPhone = localStorage.getItem("clientPhone");
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
+              "phoneNumber": clientPhone
+            }).catch(function(err) {
+              console.log(err);
+            });
+            localStorage.removeItem('clientPhone')
+            localStorage.setItem('clientPhone', "")
+            showContent("not yet");
+            setInputEmail("");
+
+            isCall = false;
+          }
+        });
+        // Called when a new call starts
+        contact.onAccepted(function (contact) {
+          console.log("#==========>\nCONTACT STARTED\n<==========#");
+          startRecording();
+          
+          // Get Client phone number from Connect  
+          const voiceConnection = contact.getAgentConnection();
+          voiceConnection.getVoiceIdSpeakerId()
+          .then((data) => {
+            setClientPhone("+" + data.speakerId);
+            localStorage.removeItem('clientPhone')
+            localStorage.setItem('clientPhone', "+" + data.speakerId.toString())
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+          // USEFUL TO UNENROLL CUSTOMER FROM VOICEID.
+          /*voiceConnection.deleteVoiceIdSpeaker()
+          .then(() => {
+          })
+          .catch((err) => {
+            console.error(err);
+          });*/
+          
+          isCall = true;
+        });
+      });
+      onload = false;
+    }
   });
 
   return (

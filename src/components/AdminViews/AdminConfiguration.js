@@ -20,6 +20,7 @@ import NewCategory from "../AdminCards/Problem&Solutions/NewCategory";
 import AdminCategoriesList from "../AdminCards/Problem&Solutions/AdminCategoriesList";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
+import UpdateProduct from "../AdminCards/UpdateProduct";
 
 function AdminConfiguration() {
   const [name, setName] = useState("");
@@ -44,7 +45,7 @@ function AdminConfiguration() {
     } else if (user_type !== "admin") {
       navigate(-1);
     }
-  }, [user_type, navigate]);
+  }, [user_type, navigate, token]);
 
   if (user_type === "admin") {
     return (
@@ -88,6 +89,11 @@ function AdminConfiguration() {
                   id="card-8"
                   draggable="true"
                   component={<NewProduct />}
+                />
+                <AdminCard
+                  id="card-9"
+                  draggable="true"
+                  component={<UpdateProduct />}
                 />
               </AgentBoard>
 

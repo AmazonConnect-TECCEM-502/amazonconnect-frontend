@@ -15,6 +15,7 @@
 
 */
 
+import axios from "axios";
 import { createContext, useState } from "react";
 export const ClientContext = createContext();
 
@@ -24,8 +25,50 @@ const ClientProvider = ({ children }) => {
   const [clientLname, setClientLname] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientPhone, setClientPhone] = useState("");
-  const [showClient, setShowClient] = useState(false);
-  const [showError, setShowError] = useState(false);
+  const [clientProducts, setClientProducts] = useState([]);
+  const [inputEmail, setInputEmail] = useState("");
+  const [result, setResult] = useState(""); // AuthenticationType
+
+  const update = async () => {
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getAuthRes`,{
+      "phoneNumber": clientPhone
+    })
+    .then(res => {
+      showContent(res.data.authenticationType)
+    })
+    .catch(function(err) {
+      console.log(err);
+      showContent("not yet");
+    });
+  }
+
+  const showContent = (message) => {
+    if(message === "authenticated"){
+      getClientData();
+    }
+    setResult(message);
+    console.log(result);
+  };
+
+  const getClientData = async () => {
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getUserData`,{
+      "phoneNumber": clientPhone
+    })
+    .then(res => {
+      setClientID(res.data.userData.client_id)
+      setClientFname(res.data.userData.first_name)
+      setClientLname(res.data.userData.last_name)
+      setClientEmail(res.data.userData.email)
+      setClientProducts(res.data.userProducts)
+      localStorage.removeItem('clientID')
+      localStorage.setItem('clientID', res.data.userData.client_id.toString())
+    })
+    .catch(function(err) {
+      console.log(err);
+      showContent("not yet");
+    });
+    console.log(clientID);
+  }
 
   return (
     <ClientContext.Provider
@@ -40,10 +83,14 @@ const ClientProvider = ({ children }) => {
         setClientEmail,
         clientPhone,
         setClientPhone,
-        showClient,
-        setShowClient,
-        showError, 
-        setShowError
+        clientProducts,
+        setClientProducts,
+        result,
+        setResult,
+        inputEmail,
+        setInputEmail,
+        showContent,
+        update
       ]}
     >
       {children}

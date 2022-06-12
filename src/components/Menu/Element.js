@@ -10,6 +10,7 @@
 */
 
 import { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { AgentContext } from "../AgentView/AgentProvider";
 import { ClientContext } from "../ClientCard/ClientProvider";
 
@@ -41,6 +42,7 @@ const Element = (props) => {
     if (props.elementID === "client") {
       setShowInput(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
@@ -63,10 +65,22 @@ const Element = (props) => {
       card.style.display = !problem ? "block" : "none";
       setProblem(!problem);
     }
-    if (event.target.value === "client" && clientPhone !== "") {
+    if (event.target.value === "client") {
       const card = document.getElementById("card-4");
       card.style.display = !client ? "block" : "none";
       setClient(!client);
+      if(clientPhone !== "")
+      {
+        setShowInput(!showInput);
+        const card = document.getElementById("card-4");
+        card.style.display = !client ? "block" : "none";
+        setClient(!client);
+      }
+      else
+      {
+        toast.error('Please fill in the phone number');
+        event.target.checked = false;
+      }
     }
     if (event.target.value === "products") {
       const card = document.getElementById("card-8");

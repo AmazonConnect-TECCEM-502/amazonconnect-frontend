@@ -12,7 +12,7 @@ class AmazonCCP extends Component {
     componentDidMount() {
         if(this.onload) {
             connect.core.initCCP(this.containerDiv.current, {
-                ccpUrl: "https://tec2022bloqueaws.my.connect.aws/connect/ccp-v2/",
+                ccpUrl: process.env.REACT_APP_CCP_URL,
                 loginPopup: true,
                 loginPopupAutoClose: true,
                 region: "us-east-1",
@@ -21,25 +21,6 @@ class AmazonCCP extends Component {
                 }
             });
 
-            /*const eventBus = connect.core.getEventBus();
-            eventBus.subscribe(connect.EventType.TERMINATED, () => {
-                console.log('Logged out');
-            });
-
-            connect.contact(function (contact) {
-                // Called when the contact is finished (including After Call Work)
-                contact.onDestroy(function(contact) {
-                    if(this.isCall) {
-                        console.log("============\nCONTACT ENDED\n============");
-                        this.isCall = false;
-                    }
-                });
-                // Called when a new call starts
-                contact.onAccepted(function (contact) {
-                    console.log("============\nCONTACT STARTED\n============");
-                    this.isCall = true;
-                });
-            });*/
             this.onload = false;
         }
 	}

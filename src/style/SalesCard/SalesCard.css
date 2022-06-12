@@ -84,7 +84,7 @@ Description: Css file with the styles for Sales Card.
 }
 
 .product-header-add-button-UNUSED {
-    background-color: green;
+    background-color: var(--button);
     font-size: 16px;
     padding: 8px 16px;
     color: #fff;
@@ -96,7 +96,7 @@ Description: Css file with the styles for Sales Card.
 }
 
 .product-header-add-button-UNUSED:hover{
-    background-color: #0eff12;
+    background-color: var(--button);
     transition: .8s;
 }
 
@@ -126,7 +126,7 @@ Description: Css file with the styles for Sales Card.
     line-height: 24px;
     text-align: left;
     letter-spacing: 0.44px;
-    color: #000000;
+    color: var(--text-primary);
     margin: 0 0 8px 0;
 }
 
@@ -137,7 +137,7 @@ Description: Css file with the styles for Sales Card.
     font-weight: 600;
     font-size: 16px;
     text-align: center;
-    color: #197D1D;
+    color: var(--text-secondary);
     margin: 0 0 8px 0;
 }
 
@@ -147,7 +147,7 @@ Description: Css file with the styles for Sales Card.
     font-weight: 400;
     font-size: 16px;
     text-align: center;
-    color: #000000;
+    color: var(--text-primary);
 }
 
 .add-button{

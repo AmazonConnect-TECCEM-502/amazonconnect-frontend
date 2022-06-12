@@ -30,7 +30,7 @@ function AgentStatics() {
         <iframe
             width="1200"
             height="900"
-            src={"https://us-east-1.quicksight.aws.amazon.com/sn/embed/share/accounts/559202700801/dashboards/c2baec29-5368-4e6f-be83-fffa16bb7702?directory_alias=amazonconnectbancos#p.agent=" + user_id}>
+            src={process.env.REACT_APP_AGENT_QUICKSIGHT_URL + user_id}>
         </iframe>
       </div>
     );

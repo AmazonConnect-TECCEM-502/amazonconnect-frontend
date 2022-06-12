@@ -17,17 +17,17 @@ const ProfileCard = () => {
   const [Displayimg, setDisplayImg] = useState("");
 
     const imageSource = async () =>{
-      const res = await fetch("https://images-texmex-users-2-0.s3.amazonaws.com/"+ userId +".jpg");
+      const res = await fetch(process.env.REACT_APP_S3_IMAGES_URL + userId +".jpg");
       const data = await res.status;
       console.log(data)
 
     if (data === 200){
       console.log("Se encontro la imagen que buscas")
-      setDisplayImg("https://images-texmex-users-2-0.s3.amazonaws.com/"+ userId +".jpg")
+      setDisplayImg(process.env.REACT_APP_S3_IMAGES_URL + userId +".jpg")
 
     }else{
       console.log("Tu imagen no existe")
-      setDisplayImg("https://images-texmex-users-2-0.s3.amazonaws.com/NoImage.jpg")
+      setDisplayImg(process.env.REACT_APP_S3_IMAGES_URL + "NoImage.jpg")
     }
   }
 
