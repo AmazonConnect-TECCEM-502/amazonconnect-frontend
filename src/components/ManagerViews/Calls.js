@@ -4,7 +4,7 @@ import Call from "../Recordings/Call";
 
 function ManagerCalls() {
   useEffect(() => {
-    fetch(`http://localhost:8080/call/getCalls`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/call/getCalls`)
       .then((response) => response.json())
       .then((calls) => {
         const newArr = calls.map((call) => {
@@ -42,7 +42,7 @@ function ManagerCalls() {
         setCategoriesFilter(categoriesBD);
       });
 
-    fetch("http://localhost:8080/user/agentIds")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/user/agentIds`)
       .then((response) => response.json())
       .then((agents) => {
         const agentsBD = agents.map((agent) => {
@@ -55,7 +55,7 @@ function ManagerCalls() {
         setAgentsFilter(agentsBD);
       });
 
-    fetch("http://localhost:8080/user/clientIds")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/user/clientIds`)
       .then((response) => response.json())
       .then((clients) => {
         const clientsBD = clients.map((client) => {
@@ -169,7 +169,7 @@ function ManagerCalls() {
       month === 0 &&
       year === 0
     ) {
-      fetch(`http://localhost:8080/call/getCalls`)
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/call/getCalls`)
         .then((response) => response.json())
         .then((calls) => {
           const newArr = calls.map((call) => {
@@ -230,7 +230,7 @@ function ManagerCalls() {
 
     const body = JSON.stringify(json);
 
-    await fetch(`http://localhost:8080/call/getCalls`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/call/getCalls`, {
       method: "POST",
       body: body,
       headers: { "Content-Type": "application/json" },
