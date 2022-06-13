@@ -79,6 +79,24 @@ Styles for buttons in the Recordings Card
   right: -5px !important;
 }
 .slick-prev{
-  left: -15px !important;
+  left: -5px !important;
+  z-index: 2 !important;
 }
-
+@media (max-width: 450px){
+  .carousel-recordings .card{
+    max-width: 320px;
+    min-width: 320px;
+  }
+}
+@media (max-width: 390px){
+  .carousel-recordings .card{
+    max-width: 280px;
+    min-width: 280px;
+  }
+}
+@media (max-width: 340px){
+  .carousel-recordings .card{
+    max-width: 260px;
+    min-width: 260px;
+  }
+}

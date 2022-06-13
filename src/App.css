@@ -10,7 +10,7 @@ html{
 }
 
 .App iframe{
-  margin-top: 32px;
+  margin: 32px 0;
 }
 
 .app-cursor{
@@ -50,4 +50,40 @@ body{
   /* Firefox */
   scrollbar-width: thin;
   scroll-behavior: smooth;
+}
+
+@media (max-width: 1250px){
+  .App iframe{
+    width: 900px;
+  }
+}
+@media (max-width: 950px){
+  .App iframe{
+    width: 750px;
+  }
+}
+@media (max-width: 800px){
+  .App iframe{
+    width: 600px;
+  }
+}
+@media (max-width: 650px){
+  .App iframe{
+    width: 500px;
+  }
+}
+@media (max-width: 550px){
+  .App iframe{
+    width: 400px;
+  }
+}
+@media (max-width: 450px){
+  .App iframe{
+    width: 350px;
+  }
+}
+@media (max-width: 360px){
+  .App iframe{
+    width: 310px;
+  }
 }
