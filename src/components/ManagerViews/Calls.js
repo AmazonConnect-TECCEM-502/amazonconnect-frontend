@@ -1,9 +1,47 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Select from "react-select";
 import Call from "../Recordings/Call";
 
 function ManagerCalls() {
+  // Setings for carousel
+  const settings = {
+    slidesToShow: 3,
+    infinite: true,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1250,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 890,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 0,
+        },
+      },
+    ],
+  };
+
+  const user_type = localStorage.getItem("user_type");
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if (user_type === "") {
+      navigate("/");
+    } else if (user_type !== "manager") {
+      navigate(-1);
+    }
+
     fetch(`${process.env.REACT_APP_BACKEND_URL}/call/getCalls`)
       .then((response) => response.json())
       .then((calls) => {
@@ -67,7 +105,7 @@ function ManagerCalls() {
 
         setClientsFilter(clientsBD);
       });
-  }, []);
+  }, [user_type, navigate]);
 
   const [videosArr, setVideosArr] = useState([]);
 
@@ -148,15 +186,33 @@ function ManagerCalls() {
   };
 
   const changeDay = (event) => {
-    setDay(event.target.value);
+    if (event.target.value > 31) {
+      setDay(31);
+    } else if (event.target.value < 0) {
+      setDay(1);
+    } else {
+      setDay(event.target.value);
+    }
   };
 
   const changeMonth = (event) => {
-    setMonth(event.target.value);
+    if (event.target.value > 12) {
+      setMonth(12);
+    } else if (event.target.value < 0) {
+      setMonth(1);
+    } else {
+      setMonth(event.target.value);
+    }
   };
 
   const changeYear = (event) => {
-    setYear(event.target.value);
+    if (event.target.value > 2022) {
+      setYear(2022);
+    } else if (event.target.value < 20) {
+      setYear(20);
+    } else {
+      setYear(event.target.value);
+    }
   };
 
   const applyFilters = async () => {
@@ -265,83 +321,117 @@ function ManagerCalls() {
 
   return (
     <Fragment>
-      <div className="App">
-        <Select
-          isMulti={true}
-          autoFocus={true}
-          isSearchable={true}
-          defaultValue={selectedCategories}
-          onChange={updateCategoriesList}
-          placeholder={"Categories"}
-          options={categoryOptions}
-          maxMenuHeight={200}
-        />
-        <Select
-          isMulti={true}
-          autoFocus={true}
-          isSearchable={true}
-          defaultValue={selectedAgents}
-          onChange={updateAgentsList}
-          placeholder={"Agents"}
-          options={agentOptions}
-          maxMenuHeight={200}
-        />
-        <Select
-          isMulti={true}
-          autoFocus={true}
-          isSearchable={true}
-          defaultValue={selectedClients}
-          onChange={updateClientsList}
-          placeholder={"Clients"}
-          options={clientOptions}
-          maxMenuHeight={200}
-        />
-        <Select
-          isMulti={true}
-          autoFocus={true}
-          isSearchable={true}
-          defaultValue={selectedRatings}
-          onChange={updateRatingsList}
-          placeholder={"Ratings"}
-          options={ratingOptions}
-          maxMenuHeight={200}
-        />
-        <input type="number" min={0} onChange={changeYear} placeholder="YYYY" />
-        <input
-          type="number"
-          min={0}
-          max={12}
-          onChange={changeMonth}
-          placeholder="MM"
-        />
-        <input
-          type="number"
-          min={0}
-          max={31}
-          onChange={changeDay}
-          placeholder="DD"
-        />
-        <br />
-        <button className="btn-main" onClick={applyFilters}>
-          Search
-        </button>
-        <br />
-        <br />
-        {videosArr.map((video) => (
-          <div className="call">
-            <div className="call-card">
-              <Call
-                video_url={video.video_url}
-                duration={video.duration}
-                rating={video.rating}
-                client={video.client}
-                agent={video.agent}
-                date={video.date}
-                categories={video.categories}
-              />
-            </div>
+      <div className="recordings-filters">
+        <div>
+          <Select
+            isMulti={true}
+            className="input-filters"
+            autoFocus={true}
+            isSearchable={true}
+            defaultValue={selectedCategories}
+            onChange={updateCategoriesList}
+            placeholder={"Categories"}
+            options={categoryOptions}
+            maxMenuHeight={200}
+          />
+          <Select
+            isMulti={true}
+            className="input-filters"
+            autoFocus={true}
+            isSearchable={true}
+            defaultValue={selectedAgents}
+            onChange={updateAgentsList}
+            placeholder={"Agents"}
+            options={agentOptions}
+            maxMenuHeight={200}
+          />
+          <Select
+            isMulti={true}
+            className="input-filters"
+            autoFocus={true}
+            isSearchable={true}
+            defaultValue={selectedClients}
+            onChange={updateClientsList}
+            placeholder={"Clients"}
+            options={clientOptions}
+            maxMenuHeight={200}
+          />
+          <Select
+            isMulti={true}
+            className="input-filters"
+            autoFocus={true}
+            isSearchable={true}
+            defaultValue={selectedRatings}
+            onChange={updateRatingsList}
+            placeholder={"Ratings"}
+            options={ratingOptions}
+            maxMenuHeight={200}
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            min={2000}
+            onChange={changeYear}
+            placeholder="YYYY"
+            value={year !== 0 && year}
+          />
+          <input
+            type="number"
+            min={1}
+            max={12}
+            onChange={changeMonth}
+            placeholder="MM"
+            value={month !== 0 && month}
+          />
+          <input
+            type="number"
+            min={1}
+            max={31}
+            onChange={changeDay}
+            placeholder="DD"
+            value={day !== 0 && day}
+          />
+          <button className="btn-main" onClick={applyFilters}>
+            Search
+          </button>
+        </div>
+      </div>
+      <div className="carousel-recordings">
+        {videosArr.length > 2 && (
+          <Slider {...settings}>
+            {videosArr.map((video, index) => (
+              <div className="card" key={index}>
+                <Call
+                  video_url={video.video_url}
+                  duration={video.duration}
+                  rating={video.rating}
+                  client={video.client}
+                  agent={video.agent}
+                  date={video.date}
+                  categories={video.categories}
+                />
+              </div>
+            ))}
+          </Slider>
+        )}
+        {videosArr.length < 3 && (
+          <div style={{display: "flex",justifyContent: "space-around"}}>
+            {videosArr.map((video, index) => (
+              <div className="card" key={index}>
+                <Call
+                  video_url={video.video_url}
+                  duration={video.duration}
+                  rating={video.rating}
+                  client={video.client}
+                  agent={video.agent}
+                  date={video.date}
+                  categories={video.categories}
+                />
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </Fragment>
   );

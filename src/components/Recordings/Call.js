@@ -14,6 +14,9 @@ const Call = (props) => {
           <p>
             <b>Rating:</b> {props.rating}
           </p>
+          <p>
+            <b>Date:</b> {props.date}
+          </p>
         </div>
         <div>
           <p>
@@ -22,13 +25,11 @@ const Call = (props) => {
           <p>
             <b>Agent:</b> {props.agent}
           </p>
+          {props.categories.map((category) => (
+            <p>{category}</p>
+          ))}
         </div>
-        <p>
-          <b>Date:</b> {props.date}
-        </p>
-        {props.categories.map((category) => (
-          <p>{category}</p>
-        ))}
+        
       </div>
     </Fragment>
   );

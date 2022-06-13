@@ -25,6 +25,7 @@
 
 .modal-card textarea {
   background-color: var(--navbar-color);
+  color: var(--text-primary);
 }
 
 .modal-card label{

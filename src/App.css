@@ -9,6 +9,10 @@ html{
   scroll-behavior: smooth;
 }
 
+.App iframe{
+  margin-top: 32px;
+}
+
 .app-cursor{
   position: absolute;
   width: 2rem;

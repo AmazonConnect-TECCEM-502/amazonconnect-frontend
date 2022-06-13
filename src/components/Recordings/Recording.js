@@ -68,7 +68,7 @@ const Recording = () => {
           body: raw,
         };
 
-        fetch(`http://localhost:8080/call/postVideoBD`, requestOptions)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/call/postVideoBD`, requestOptions)
           .then((response) => response.json())
           .then((result) => {
             const call_id = result.call_id;
@@ -89,7 +89,7 @@ const Recording = () => {
             };
 
             fetch(
-              `http://localhost:8080/callProblemCategory/createCallPC`,
+              `${process.env.REACT_APP_BACKEND_URL}/callProblemCategory/createCallPC`,
               requestOptions
             )
               .then((response) => {
