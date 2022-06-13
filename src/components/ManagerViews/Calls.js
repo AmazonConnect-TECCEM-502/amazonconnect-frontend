@@ -179,9 +179,6 @@ function ManagerCalls() {
     const tempArray = newValue.map((value) => {
       return value.value;
     });
-    if (tempArray.includes(2)) {
-      tempArray.push(3);
-    }
     setSelectedRatings(tempArray);
   };
 
