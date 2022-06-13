@@ -151,7 +151,7 @@ function ManagerCalls() {
   const ratingOptions = [
     { label: "Bad", value: 1 },
     { label: "Neutral", value: 2 },
-    { label: "Good", value: 5 },
+    { label: "Good", value: 3 },
   ];
 
   const updateCategoriesList = (newValue) => {
@@ -416,7 +416,7 @@ function ManagerCalls() {
           </Slider>
         )}
         {videosArr.length < 3 && (
-          <div style={{display: "flex",justifyContent: "space-around"}}>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
             {videosArr.map((video, index) => (
               <div className="card" key={index}>
                 <Call

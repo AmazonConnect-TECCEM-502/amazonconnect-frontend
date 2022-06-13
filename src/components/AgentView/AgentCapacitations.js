@@ -53,7 +53,7 @@ function AgentCapacitation() {
 
     fetch(`${process.env.REACT_APP_BACKEND_URL}/call/getCalls`, {
       method: "POST",
-      body: JSON.stringify({ ratings: 5 }),
+      body: JSON.stringify({ ratings: 3 }),
       headers: { "Content-Type": "application/json" },
     })
       .then((response) => response.json())
@@ -118,7 +118,7 @@ function AgentCapacitation() {
 
         setClientsFilter(clientsBD);
       });
-  }, [ user_type, navigate]);
+  }, [user_type, navigate]);
 
   const [videosArr, setVideosArr] = useState([]);
 
@@ -131,7 +131,7 @@ function AgentCapacitation() {
   const [clientsFilter, setClientsFilter] = useState([]);
   const [selectedClients, setSelectedClients] = useState([]);
 
-  const [selectedRatings] = useState(5);
+  const [selectedRatings] = useState(3);
 
   const [day, setDay] = useState(0);
   const [month, setMonth] = useState(0);
@@ -384,7 +384,7 @@ function AgentCapacitation() {
           </div>
         </div>
         <div className="carousel-recordings">
-          {videosArr.length > 2 &&
+          {videosArr.length > 2 && (
             <Slider {...settings}>
               {videosArr.map((video, index) => (
                 <div className="card" key={index}>
@@ -400,9 +400,9 @@ function AgentCapacitation() {
                 </div>
               ))}
             </Slider>
-          }
-          {videosArr.length < 3 &&
-            <div style={{display: "flex",justifyContent: "space-around"}}>
+          )}
+          {videosArr.length < 3 && (
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
               {videosArr.map((video, index) => (
                 <div className="card" key={index}>
                   <Call
@@ -417,7 +417,7 @@ function AgentCapacitation() {
                 </div>
               ))}
             </div>
-          }
+          )}
         </div>
       </Fragment>
     );
