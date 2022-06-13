@@ -38,7 +38,7 @@ const ProductsCategoryList = (props) => {
             <button
               type="text"
               onClick={() => {
-                props.buttonAction(category.category_id);
+                props.buttonAction(props.client_id, category.category_id);
               }}
             >
               {category.category_name}
