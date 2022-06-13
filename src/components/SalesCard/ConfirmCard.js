@@ -13,7 +13,8 @@ const ConfirmCard = (props) => {
         < BsArrowLeftShort onClick={props.backAction} />
         <button className="product-header-add-button-UNUSED" onClick={async () => {
                                                                             await props.buttonAction(props.product.product_id, props.client_id)
-                                                                            props.afterAction()}
+                                                                            //props.afterAction()
+                                                                          }
                                                                     }>Add</button>
     </div>
     );

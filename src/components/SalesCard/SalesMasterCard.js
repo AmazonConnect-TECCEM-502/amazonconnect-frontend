@@ -39,12 +39,20 @@ const SalesMasterCard = () => {
     //const client_id = 1;
     //console.log("CLIENT ID: " + client_id);
 
-    const goToProducts = async (category_id) => {
-      if (clientID) {
-        const productsData = await fetch(`${backend}/sales/getRecommendedProducts/${clientID}/${category_id}`);
-        const jsonProducts = await productsData.json();
-        setCurrentCategory(jsonProducts);
-        setCurrentView(Views.PRODUCTS);
+    const goToProducts = async (client_id, category_id) => {
+      if (client_id) {
+        const productsData = await fetch(`${backend}/sales/getRecommendedProducts/${client_id}/${category_id}`);
+        if (productsData.status === 200) {
+          const jsonProducts = await productsData.json();
+          setCurrentCategory(jsonProducts);
+          setCurrentView(Views.PRODUCTS);
+        }
+        else if (productsData.status === 400) {
+          toast.error(productsData);
+        }
+        else {
+          toast.error(`Server responded with status ${productsData.status}`);
+        }
       }
       else {
         toast.error("No client identified at the moment.")
@@ -83,12 +91,21 @@ const SalesMasterCard = () => {
           client_id: clientID,
         }),
       };
-  
-      await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/buyProduct`, request_options);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sales/buyProduct`, request_options);
+      if (response.status === 200) {
+        toast.success(`Product was added to client ${clientID}`);
+        backToCategories();
+      }
+      else if (response.status === 400) {
+        toast.error(response);
+      }
+      else {
+        toast.error(`Server responded with status ${response.status}`);
+      }
     };
 
     if (currentView === Views.CATEGORIES)
-      return (<ProductsCategoryList backend={backend} buttonAction={goToProducts}/>)
+      return (<ProductsCategoryList backend={backend} client_id={clientID} buttonAction={goToProducts}/>)
     else if (currentView === Views.PRODUCTS)
       return (<ProductList products={currentCategory} buttonAction={goToProduct} backAction={backToCategories}/>)
     else if (currentView === Views.PRODUCT)
