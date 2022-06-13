@@ -10,6 +10,7 @@
 */
 
 import { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { ClientContext } from "../ClientCard/ClientProvider";
 import ConfirmCard from "./ConfirmCard";
 import ProductCard from "./ProductCard";
@@ -39,10 +40,15 @@ const SalesMasterCard = () => {
     //console.log("CLIENT ID: " + client_id);
 
     const goToProducts = async (category_id) => {
-      const productsData = await fetch(`${backend}/sales/getRecommendedProducts/${clientID}/${category_id}`);
-      const jsonProducts = await productsData.json();
-      setCurrentCategory(jsonProducts);
-      setCurrentView(Views.PRODUCTS);
+      if (clientID) {
+        const productsData = await fetch(`${backend}/sales/getRecommendedProducts/${clientID}/${category_id}`);
+        const jsonProducts = await productsData.json();
+        setCurrentCategory(jsonProducts);
+        setCurrentView(Views.PRODUCTS);
+      }
+      else {
+        toast.error("No client identificated at the moment.")
+      }
     };
 
     const goToProduct = async (product_id) => {
