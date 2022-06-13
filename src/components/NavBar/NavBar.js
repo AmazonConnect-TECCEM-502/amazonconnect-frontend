@@ -7,13 +7,16 @@ Navbar functionality
 import React, { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import ThemeOptions from "../AgentCards/ThemeOptions";
+import DropDownHamburguer from "./DropDownHamburguer";
 
 const NavBar = (props) => {
   const [userPopup, setUserPopup] = useState(false);
   const [userPopupThemes, setUserPopupThemes] = useState(false);
+  const [userPopupHamburger, setUserPopupHamburger] = useState(false);
   const user_type = localStorage.getItem("user_type");
   var nav = [];
   // Used to see wich links are active
@@ -82,6 +85,11 @@ const NavBar = (props) => {
     } else if (!userPopupThemes && event.target.closest("#u-themes")) {
       setUserPopupThemes(true);
     }
+    if (userPopupHamburger && !event.target.closest("#u-hamburger")) {
+      setUserPopupHamburger(false);
+    } else if (!userPopupHamburger && event.target.closest("#u-hamburger")) {
+      setUserPopupHamburger(true);
+    }
   };
 
   if (nav.length === 0) {
@@ -118,9 +126,47 @@ const NavBar = (props) => {
               onClick={userPopupState}
             />
           </ul>
+          {/* It will only displays on small screens */}
+          <ul className="nav-menu2">
+            {
+              nav.length < 2 &&
+              nav.map((link, index) => {
+                return (
+                  <li key={index}>
+                    <Link
+                      id={index}
+                      to={link.url}
+                      className={
+                        active_link === index
+                          ? `${link.cName} activeLink`
+                          : link.cName
+                      }
+                      onClick={() => newActiveLink(index)}
+                    >
+                      {link.title}
+                    </Link>
+                  </li>
+                );
+              })
+            }
+            <BsEye className="icons" id="u-themes" onClick={userPopupState} />
+            <AiOutlineUser
+              id="u-settings"
+              className="icons"
+              onClick={userPopupState}
+            />
+            {nav.length > 1 && 
+              <GiHamburgerMenu 
+                id="u-hamburger"
+                className="icons"
+                onClick={userPopupState}
+              />
+            }
+          </ul>
         </nav>
         {userPopup && <DropDown noActiveLink={newActiveLink} />}
         {userPopupThemes && <ThemeOptions newTheme={props.newTheme} />}
+        {userPopupHamburger && <DropDownHamburguer hamburguerLinks={nav} />}
       </div>
     );
   }
