@@ -47,7 +47,7 @@ const SalesMasterCard = () => {
         setCurrentView(Views.PRODUCTS);
       }
       else {
-        toast.error("No client identificated at the moment.")
+        toast.error("No client identified at the moment.")
       }
     };
 
