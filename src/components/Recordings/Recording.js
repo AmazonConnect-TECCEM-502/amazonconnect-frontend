@@ -18,8 +18,15 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
-    const [ , , , , , , , , , setClientPhone, , , , , , setInputEmail, showContent, ] = 
-    useContext(ClientContext);
+    const [ , setClientID,
+            , setClientFname,
+            , setClientLname,
+            , setClientEmail,
+            , setClientPhone,
+            , setClientProducts,
+            , ,
+            , setInputEmail, 
+            showContent, ] =  useContext(ClientContext);
 
   const onStop = async (url, blob) => {
     // await setCategoryProblem([...categoryProblem]);
