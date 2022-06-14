@@ -66,6 +66,15 @@ const ClientProvider = ({ children }) => {
     .catch(function(err) {
       console.log(err);
       showContent("not yet");
+      setClientID("")
+      setClientFname("")
+      setClientLname("")
+      setClientEmail("")
+      setClientProducts([])
+      localStorage.removeItem('clientID')
+      localStorage.setItem('clientID', "")
+      localStorage.removeItem('clientPhone')
+      localStorage.setItem('clientPhone', "")
     });
     console.log(clientID);
   }

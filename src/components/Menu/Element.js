@@ -78,8 +78,8 @@ const Element = (props) => {
       }
       else
       {
-        toast.error('Please fill in the phone number');
-        event.target.checked = false;
+        toast.error('No phone number detected');
+        //event.target.checked = false;
       }
     }
     if (event.target.value === "products") {
