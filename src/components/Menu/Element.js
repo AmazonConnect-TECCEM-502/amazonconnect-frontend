@@ -71,7 +71,7 @@ const Element = (props) => {
         setShowInput(!showInput);
         const card = document.getElementById("card-4");
         card.style.display = !client ? "block" : "none";
-        setClient(true);
+        setClient(!client);
       }
       else
       {
