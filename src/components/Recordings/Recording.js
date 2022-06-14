@@ -145,9 +145,16 @@ const Recording = () => {
             }).catch(function(err) {
               console.log(err);
             });
+            showContent("not yet");
+            setClientID("")
+            setClientFname("")
+            setClientLname("")
+            setClientEmail("")
+            setClientProducts([])
+            localStorage.removeItem('clientID')
+            localStorage.setItem('clientID', "")
             localStorage.removeItem('clientPhone')
             localStorage.setItem('clientPhone', "")
-            showContent("not yet");
             setInputEmail("");
 
             isCall = false;
