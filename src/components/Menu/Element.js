@@ -36,10 +36,12 @@ const Element = (props) => {
     useContext(ClientContext);
 
   const [showInput, setShowInput] = useState(false);
+  const [inputPhone, setInputPhone] = useState(false);
 
   /* Checking if the elementID is equal to client, if it is, then it will set the showInput to true. */
   useEffect(() => {
     if (props.elementID === "client") {
+      setInputPhone(clientPhone);
       setShowInput(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -68,6 +70,7 @@ const Element = (props) => {
     if (event.target.value === "client") {
       if(clientPhone !== "")
       {
+        setInputPhone(clientPhone);
         setShowInput(!showInput);
         const card = document.getElementById("card-4");
         card.style.display = !client ? "block" : "none";
@@ -77,7 +80,7 @@ const Element = (props) => {
       {
         toast.error('Please fill in the phone number');
         event.target.checked = false;
-        setClient(false);
+        setClient(!client);
       }
     }
     if (event.target.value === "products") {
@@ -112,6 +115,7 @@ const Element = (props) => {
           type="text"
           placeholder="Client phone"
           onChange={clientPhoneHandler}
+          value={inputPhone}
         />
       )}
     </div>
