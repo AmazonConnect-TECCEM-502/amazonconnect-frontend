@@ -28,21 +28,17 @@ const ClientProvider = ({ children }) => {
   const [clientProducts, setClientProducts] = useState([]);
   const [inputEmail, setInputEmail] = useState("");
   const [result, setResult] = useState(""); // AuthenticationType
-  const [loading, setLoading] = useState(false);
 
   const update = async () => {
-    setLoading(true);
     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/getAuthRes`,{
       "phoneNumber": clientPhone
     })
     .then(res => {
       showContent(res.data.authenticationType)
-      setLoading(false);
     })
     .catch(function(err) {
       console.log(err);
       showContent("not yet");
-      setLoading(false);
     });
   }
 
@@ -94,9 +90,7 @@ const ClientProvider = ({ children }) => {
         inputEmail,
         setInputEmail,
         showContent,
-        update,
-        loading,
-        setLoading
+        update
       ]}
     >
       {children}

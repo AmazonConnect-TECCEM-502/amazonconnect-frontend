@@ -19,10 +19,9 @@ import ClientName from "./ClientName";
 import ClientQuestion from "./ClientQuestion";
 import { ClientContext } from "./ClientProvider";
 import { VscRefresh } from "react-icons/vsc"
-import { TailSpin } from 'react-loading-icons'
 
 const ClientCard = () => {
-  const [ , , clientFname, , clientLname, , clientEmail, , clientPhone, , clientProducts, , result, , , , , update, loading, ] = useContext(ClientContext);
+  const [ , , clientFname, , clientLname, , clientEmail, , clientPhone, , clientProducts, , result, , , , , update] = useContext(ClientContext);
 
   // Functionality in progress
   useEffect(() => {
@@ -31,7 +30,7 @@ const ClientCard = () => {
 
   return (
     <div className="client">
-      <TailSpin onClick={update} speed={loading ? 1 : 0}/>
+      <VscRefresh onClick={update}/>
       {
         //Show User Info
         (result === "authenticated") &&
