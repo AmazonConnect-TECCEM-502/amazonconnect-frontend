@@ -21,8 +21,9 @@ const SalesMasterCard = () => {
 
     const backend = process.env.REACT_APP_BACKEND_URL;
 
-    const [
-      clientID, , , , , , , , , , , , , , , , , ] = useContext(ClientContext);
+    //const [clientID, , , , , , , , , , , , , , , , , ] = useContext(ClientContext);
+
+    const clientID = localStorage.getItem('clientID'); 
 
     const Views = {
       CATEGORIES : 1,
@@ -105,13 +106,13 @@ const SalesMasterCard = () => {
     };
 
     if (currentView === Views.CATEGORIES)
-      return (<ProductsCategoryList backend={backend} client_id={clientID} buttonAction={goToProducts}/>)
+      return (<ProductsCategoryList backend={backend} buttonAction={goToProducts}/>)
     else if (currentView === Views.PRODUCTS)
       return (<ProductList products={currentCategory} buttonAction={goToProduct} backAction={backToCategories}/>)
     else if (currentView === Views.PRODUCT)
-      return (<ProductCard product={currentProduct} client_id={clientID} backAction={backToProducts} buttonAction={goToConfirm}/>);
+      return (<ProductCard product={currentProduct} backAction={backToProducts} buttonAction={goToConfirm}/>);
     else if (currentView === Views.CONFIRM)
-      return (<ConfirmCard product={currentProduct} client_id={clientID} backAction={backToProduct} buttonAction={buyProduct} afterAction={backToCategories} />);
+      return (<ConfirmCard product={currentProduct} backAction={backToProduct} buttonAction={buyProduct} afterAction={backToCategories} />);
 };
 
 export default SalesMasterCard;
