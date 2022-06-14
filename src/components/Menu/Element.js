@@ -9,10 +9,10 @@
   <Element element="Problems" elementID="problems"/>
 */
 
-import { useContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { useContext/*, useEffect, useState*/ } from "react";
+//import toast from "react-hot-toast";
 import { AgentContext } from "../AgentView/AgentProvider";
-import { ClientContext } from "../ClientCard/ClientProvider";
+//import { ClientContext } from "../ClientCard/ClientProvider";
 
 const Element = (props) => {
   const [
@@ -32,16 +32,16 @@ const Element = (props) => {
     setAC,
   ] = useContext(AgentContext);
 
+  /*
   const [, , , , , , , , clientPhone, setClientPhone, , , ,] =
     useContext(ClientContext);
-
+  
   const [showInput, setShowInput] = useState(false);
-  const [inputPhone, setInputPhone] = useState(false);
-
+  */
   /* Checking if the elementID is equal to client, if it is, then it will set the showInput to true. */
+  /*
   useEffect(() => {
     if (props.elementID === "client") {
-      setInputPhone(clientPhone);
       setShowInput(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,10 +53,12 @@ const Element = (props) => {
    * @param event - The event object is a JavaScript event that is sent to an element when an event
    * occurs on it.
    */
+  /*
   const clientPhoneHandler = (event) => {
     setClientPhone(event.target.value);
   };
-
+  */
+ 
   /**
    * If the value of the button clicked is equal to the value of the card, then display the card.
    * @param event - the event that triggered the function
@@ -68,9 +70,12 @@ const Element = (props) => {
       setProblem(!problem);
     }
     if (event.target.value === "client") {
+      const card = document.getElementById("card-4");
+      card.style.display = !client ? "block" : "none";
+      setClient(!client);
+      /*
       if(clientPhone !== "")
       {
-        setInputPhone(clientPhone);
         setShowInput(!showInput);
         const card = document.getElementById("card-4");
         card.style.display = !client ? "block" : "none";
@@ -80,8 +85,8 @@ const Element = (props) => {
       {
         toast.error('Please fill in the phone number');
         event.target.checked = false;
-        setClient(!client);
       }
+      */
     }
     if (event.target.value === "products") {
       const card = document.getElementById("card-8");
@@ -109,15 +114,6 @@ const Element = (props) => {
         value={props.elementID}
       />
       <label htmlFor={props.elementID}>&nbsp;{props.element}</label>
-      {showInput && (
-        <input
-          className="user-ID"
-          type="text"
-          placeholder="Client phone"
-          onChange={clientPhoneHandler}
-          value={inputPhone}
-        />
-      )}
     </div>
   );
 };
