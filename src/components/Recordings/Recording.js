@@ -148,7 +148,6 @@ const Recording = () => {
             localStorage.removeItem('clientPhone')
             localStorage.setItem('clientPhone', "")
             showContent("not yet");
-            setClientPhone("");
             setInputEmail("");
 
             isCall = false;
