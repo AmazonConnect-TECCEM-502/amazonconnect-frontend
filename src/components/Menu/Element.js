@@ -66,20 +66,18 @@ const Element = (props) => {
       setProblem(!problem);
     }
     if (event.target.value === "client") {
-      const card = document.getElementById("card-4");
-      card.style.display = !client ? "block" : "none";
-      setClient(!client);
       if(clientPhone !== "")
       {
         setShowInput(!showInput);
         const card = document.getElementById("card-4");
         card.style.display = !client ? "block" : "none";
-        setClient(!client);
+        setClient(true);
       }
       else
       {
         toast.error('Please fill in the phone number');
         event.target.checked = false;
+        setClient(false);
       }
     }
     if (event.target.value === "products") {
