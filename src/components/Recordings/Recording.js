@@ -169,7 +169,6 @@ const Recording = () => {
                 console.log(err);
               });
             showContent("not yet");
-            //setClientID("");
             setClientFname("");
             setClientLname("");
             setClientEmail("");

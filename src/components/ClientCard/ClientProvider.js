@@ -55,7 +55,6 @@ const ClientProvider = ({ children }) => {
       "phoneNumber": clientPhone
     })
     .then(res => {
-      //setClientID(res.data.userData.client_id)
       setClientFname(res.data.userData.first_name)
       setClientLname(res.data.userData.last_name)
       setClientEmail(res.data.userData.email)
@@ -69,7 +68,6 @@ const ClientProvider = ({ children }) => {
     .catch(function(err) {
       console.log(err);
       showContent("not yet");
-      //setClientID("")
       setClientFname("")
       setClientLname("")
       setClientEmail("")
