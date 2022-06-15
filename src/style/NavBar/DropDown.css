@@ -55,6 +55,7 @@ Dropdown menu style sheet
   margin: 5px 0 0 0;
   padding: 8px;
   right: 8px;
+  top: 5vh;
   border-radius: 8px;
   z-index: 1;
 }

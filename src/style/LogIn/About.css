@@ -1,0 +1,29 @@
+.about-title{
+  color: var(--text-titles);
+  text-align: left;
+  width: 90%;
+  margin: 32px auto 0 auto;
+}
+.container-about {
+  margin: 16px auto 0 auto;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.container-about .card {
+  padding: 0;
+  border-radius: 5px;
+  max-width: 235px;
+  min-width: 235px;
+  max-height: none;
+}
+.container-about .card:hover{
+  transform: scale(1.04);
+}
+.container-about .card img{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center top;
+}

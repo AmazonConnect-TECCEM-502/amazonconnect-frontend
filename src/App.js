@@ -19,6 +19,7 @@ import VerifCode from "./components/LogIn/VerifCode";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import NavBar from "./components/NavBar/NavBar";
+import About from "./components/LogIn/About";
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
@@ -70,6 +71,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LogIn />} />
         <Route path="/verifCode" element={<VerifCode />} />
+        <Route path="/about" element={<About />} />
         <Route path="/agent/home" element={<AgentMain />} />
         <Route path="/agent/statics" element={<AgentStatics />} />
         <Route path="/agent/capacitations" element={<AgentCapacitation />} />

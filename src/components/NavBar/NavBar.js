@@ -93,7 +93,41 @@ const NavBar = (props) => {
   };
 
   if (nav.length === 0) {
-    return <div></div>;
+    return (
+      <nav className="navbar">
+        <img src={require("../../images/TelmexLogo.jpg")} alt="logoTelmex" />
+        <ul className="nav-menu">
+          <li>
+            <Link 
+              id={1}
+              to="/about"
+              className={
+                active_link === 1
+                  ? "nav-links activeLink" 
+                  : "nav-links"
+              }
+              onClick={() => newActiveLink(1)}
+            >
+              About
+            </Link>
+            <Link 
+              id={0}
+              to="/"
+              className={
+                active_link === 0
+                  ? "nav-links activeLink" 
+                  : "nav-links"
+              }
+              onClick={() => newActiveLink(0)}
+            >
+              Login
+            </Link>
+          </li>
+          <BsEye className="icons" id="u-themes" onClick={userPopupState} />
+        </ul>
+        {userPopupThemes && <ThemeOptions newTheme={props.newTheme} />}
+      </nav>
+    );
   } else {
     return (
       <div>
