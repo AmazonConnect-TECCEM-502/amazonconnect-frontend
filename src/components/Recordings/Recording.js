@@ -159,7 +159,7 @@ const Recording = () => {
             setClientEmail("")
             setClientProducts([])
             localStorage.removeItem('clientID')
-            localStorage.setItem('clientID', "")
+            localStorage.setItem('clientID', "--")
             localStorage.removeItem('clientPhone')
             localStorage.setItem('clientPhone', "")
             setInputEmail("");
