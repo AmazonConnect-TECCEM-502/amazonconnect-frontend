@@ -158,7 +158,7 @@ const Recording = () => {
             setClientLname("")
             setClientEmail("")
             setClientProducts([])
-            localStorage.removeItem('clientID')
+            //localStorage.removeItem('clientID')
             localStorage.setItem('clientID', "")
             localStorage.removeItem('clientPhone')
             localStorage.setItem('clientPhone', "")
