@@ -1,0 +1,11 @@
+.happy {
+  color: var(--happy);
+}
+
+.sad {
+  color: var(--sad);
+}
+
+.neutral {
+  color: var(--neutral);
+}
