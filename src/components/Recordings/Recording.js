@@ -19,6 +19,7 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
+<<<<<<< HEAD
   const [
     ,
     ,
@@ -38,6 +39,17 @@ const Recording = () => {
     setInputEmail,
     showContent,
   ] = useContext(ClientContext);
+=======
+    const [ , setClientID,
+            , setClientFname,
+            , setClientLname,
+            , setClientEmail,
+            , setClientPhone,
+            , setClientProducts,
+            , ,
+            , setInputEmail, 
+            showContent, ] =  useContext(ClientContext);
+>>>>>>> fe13210824a41c8c8024d7a4b858825153e784b5
 
   const onStop = async (url, blob) => {
     // await setCategoryProblem([...categoryProblem]);
@@ -161,6 +173,7 @@ const Recording = () => {
 
             // Reset Client values
             const clientPhone = localStorage.getItem("clientPhone");
+<<<<<<< HEAD
             axios
               .post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`, {
                 phoneNumber: clientPhone,
@@ -171,8 +184,25 @@ const Recording = () => {
             localStorage.removeItem("clientPhone");
             localStorage.setItem("clientPhone", "");
             showContent("not yet");
+=======
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
+              "phoneNumber": clientPhone
+            }).catch(function(err) {
+              console.log(err);
+            });
+            showContent("not yet");
+            setClientID("")
+            setClientFname("")
+            setClientLname("")
+            setClientEmail("")
+            setClientProducts([])
+            localStorage.removeItem('clientID')
+            localStorage.setItem('clientID', "")
+            localStorage.removeItem('clientPhone')
+            localStorage.setItem('clientPhone', "")
+>>>>>>> fe13210824a41c8c8024d7a4b858825153e784b5
             setInputEmail("");
-
+            console.log(localStorage)
             isCall = false;
           }
         });

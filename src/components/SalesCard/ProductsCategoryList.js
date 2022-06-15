@@ -38,7 +38,8 @@ const ProductsCategoryList = (props) => {
             <button
               type="text"
               onClick={() => {
-                props.buttonAction(props.client_id, category.category_id);
+                props.buttonAction(localStorage.getItem('clientID'), category.category_id);
+                console.log(localStorage.getItem('clientID'));
               }}
             >
               {category.category_name}
