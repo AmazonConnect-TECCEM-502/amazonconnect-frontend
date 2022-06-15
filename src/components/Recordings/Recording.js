@@ -163,7 +163,7 @@ const Recording = () => {
             localStorage.removeItem('clientPhone')
             localStorage.setItem('clientPhone', "")
             setInputEmail("");
-
+            console.log(localStorage)
             isCall = false;
           }
         });
