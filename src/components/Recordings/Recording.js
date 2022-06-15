@@ -42,6 +42,10 @@ const Recording = () => {
   const onStop = async (url, blob) => {
     // await setCategoryProblem([...categoryProblem]);
     const clientID = parseInt(localStorage.getItem("clientID"));
+
+    localStorage.removeItem("clientID");
+    localStorage.setItem("clientID", "");
+
     const categories = JSON.parse(localStorage.getItem("categoryProblem"));
 
     const API_ENDPOINT = process.env.REACT_APP_PRESIGNEDURL_URL;
@@ -173,8 +177,6 @@ const Recording = () => {
             setClientLname("");
             setClientEmail("");
             setClientProducts([]);
-            localStorage.removeItem("clientID");
-            localStorage.setItem("clientID", "");
             localStorage.removeItem("clientPhone");
             localStorage.setItem("clientPhone", "");
             setInputEmail("");
