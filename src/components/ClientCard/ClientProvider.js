@@ -60,8 +60,11 @@ const ClientProvider = ({ children }) => {
       setClientLname(res.data.userData.last_name)
       setClientEmail(res.data.userData.email)
       setClientProducts(res.data.userProducts)
-      localStorage.removeItem('clientID')
-      localStorage.setItem('clientID', res.data.userData.client_id.toString())
+      if(localStorage.getItem('clientPhone') !== "")
+      {
+        localStorage.removeItem('clientID')
+        localStorage.setItem('clientID', res.data.userData.client_id.toString())
+      }
     })
     .catch(function(err) {
       console.log(err);
