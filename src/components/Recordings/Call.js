@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { ImSad2, ImHappy2, ImNeutral2 } from "react-icons/im";
 
 const Call = (props) => {
   return (
@@ -12,11 +13,11 @@ const Call = (props) => {
             <b>Duration:</b> {props.duration}
           </p>
           <p>
-            <b>Rating:</b> {props.rating}
-          </p>
-          <p>
             <b>Date:</b> {props.date}
           </p>
+          {props.rating === 1 && <ImSad2 size={25} className="sad" />}
+          {props.rating === 2 && <ImNeutral2 size={25} className="neutral" />}
+          {props.rating === 3 && <ImHappy2 size={25} className="happy" />}
         </div>
         <div>
           <p>
@@ -29,7 +30,6 @@ const Call = (props) => {
             <p>{category}</p>
           ))}
         </div>
-        
       </div>
     </Fragment>
   );

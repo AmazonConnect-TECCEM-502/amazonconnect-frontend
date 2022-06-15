@@ -4,7 +4,8 @@
 
 import { Fragment, useContext, useEffect } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
-import { BsFillRecordFill, BsPauseFill, BsFillPlayFill } from "react-icons/bs";
+import { BsPauseFill, BsFillPlayFill } from "react-icons/bs";
+import { BiVideoRecording } from "react-icons/bi";
 import { FaStop } from "react-icons/fa";
 import { GoUnmute, GoMute } from "react-icons/go";
 import axios from "axios";
@@ -18,8 +19,25 @@ var isCall = true;
 const Recording = () => {
   const [, , , , , , , , , , , , , , , , , , , , , setCategoryProblem] =
     useContext(AgentContext);
-    const [ , , , , , , , , , setClientPhone, , , , , , setInputEmail, showContent, ] = 
-    useContext(ClientContext);
+  const [
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    setClientPhone,
+    ,
+    ,
+    ,
+    ,
+    ,
+    setInputEmail,
+    showContent,
+  ] = useContext(ClientContext);
 
   const onStop = async (url, blob) => {
     // await setCategoryProblem([...categoryProblem]);
@@ -68,7 +86,10 @@ const Recording = () => {
           body: raw,
         };
 
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/call/postVideoBD`, requestOptions)
+        fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/call/postVideoBD`,
+          requestOptions
+        )
           .then((response) => response.json())
           .then((result) => {
             const call_id = result.call_id;
@@ -123,7 +144,7 @@ const Recording = () => {
     onStop: onStop,
     blobPropertyBag: { type: "video/mp4" },
   });
-  
+
   useEffect(() => {
     if (onload) {
       /*const eventBus = connect.core.getEventBus();
@@ -137,16 +158,18 @@ const Recording = () => {
           if (isCall) {
             console.log("#==========>\nCONTACT ENDED\n<==========#");
             stopRecording();
-            
+
             // Reset Client values
             const clientPhone = localStorage.getItem("clientPhone");
-            axios.post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`,{
-              "phoneNumber": clientPhone
-            }).catch(function(err) {
-              console.log(err);
-            });
-            localStorage.removeItem('clientPhone')
-            localStorage.setItem('clientPhone', "")
+            axios
+              .post(`${process.env.REACT_APP_BACKEND_URL}/vid/reset`, {
+                phoneNumber: clientPhone,
+              })
+              .catch(function (err) {
+                console.log(err);
+              });
+            localStorage.removeItem("clientPhone");
+            localStorage.setItem("clientPhone", "");
             showContent("not yet");
             setInputEmail("");
 
@@ -157,18 +180,22 @@ const Recording = () => {
         contact.onAccepted(function (contact) {
           console.log("#==========>\nCONTACT STARTED\n<==========#");
           startRecording();
-          
-          // Get Client phone number from Connect  
+
+          // Get Client phone number from Connect
           const voiceConnection = contact.getAgentConnection();
-          voiceConnection.getVoiceIdSpeakerId()
-          .then((data) => {
-            setClientPhone("+" + data.speakerId);
-            localStorage.removeItem('clientPhone')
-            localStorage.setItem('clientPhone', "+" + data.speakerId.toString())
-          })
-          .catch((err) => {
-            console.error(err);
-          });
+          voiceConnection
+            .getVoiceIdSpeakerId()
+            .then((data) => {
+              setClientPhone("+" + data.speakerId);
+              localStorage.removeItem("clientPhone");
+              localStorage.setItem(
+                "clientPhone",
+                "+" + data.speakerId.toString()
+              );
+            })
+            .catch((err) => {
+              console.error(err);
+            });
           // USEFUL TO UNENROLL CUSTOMER FROM VOICEID.
           /*voiceConnection.deleteVoiceIdSpeaker()
           .then(() => {
@@ -176,7 +203,7 @@ const Recording = () => {
           .catch((err) => {
             console.error(err);
           });*/
-          
+
           isCall = true;
         });
       });
@@ -186,15 +213,7 @@ const Recording = () => {
 
   return (
     <Fragment>
-      <p className="title">Click to start recording</p>
-      <p>{`Status: ${status}`}</p>
-      {(status === "idle" ||
-        status === "stopped" ||
-        status === "acquiring_media") && (
-        <button className="button" onClick={startRecording}>
-          {<BsFillRecordFill size={28} />}
-        </button>
-      )}
+      <p className="title">Recordings controlls</p>
       {(status === "recording" || status === "paused") && (
         <button className="button" onClick={stopRecording}>
           {<FaStop size={28} />}

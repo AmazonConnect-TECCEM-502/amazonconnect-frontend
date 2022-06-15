@@ -13,7 +13,7 @@ Styles for buttons in the Recordings Card
   color: var(--text-primary);
 }
 
-.recordings-filters{
+.recordings-filters {
   display: flex;
   flex-direction: column;
   width: 95%;
@@ -23,13 +23,13 @@ Styles for buttons in the Recordings Card
   border-radius: 5px;
   box-shadow: var(--shadow);
 }
-.recordings-filters > div{
+.recordings-filters > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
-.recordings-filters > div input{
+.recordings-filters > div input {
   background: hsl(0, 0%, 100%);
   border-radius: 4px;
   border: 1px solid hsl(0, 0%, 80%);
@@ -41,61 +41,72 @@ Styles for buttons in the Recordings Card
   margin-right: 8px;
   box-sizing: border-box;
 }
-.recordings-filters > div .btn-main{
+.recordings-filters > div .btn-main {
   margin: 0;
   width: 150px;
   padding: 10px;
   font-size: 16px;
 }
-.recordings-filters div .input-filters{
+.recordings-filters div .input-filters {
   min-width: 340px;
   max-width: 340px;
   margin: 8px;
 }
 
-.carousel-recordings{
+.carousel-recordings {
   margin: 16px auto 0 auto;
   width: 95%;
 }
-.carousel-recordings .card{
+.carousel-recordings .card {
   margin-right: 16px;
   padding: 0;
   border-radius: 5px;
   max-width: 380px;
   max-height: none;
 }
-.carousel-recordings .card .video-info{
+.carousel-recordings .card .video-info {
   display: flex;
   justify-content: space-between;
   padding: 8px;
 }
-.carousel-recordings .card .video-info p{
+.carousel-recordings .card .video-info p {
   margin: 0 0 8px 0;
 }
-.slick-list{
+.slick-list {
   padding: 8px !important;
 }
-.slick-next{
+.slick-next {
   right: -5px !important;
 }
-.slick-prev{
+.slick-prev {
   left: -5px !important;
   z-index: 2 !important;
 }
-@media (max-width: 450px){
-  .carousel-recordings .card{
+
+.slick-next:before {
+  content: "→";
+  color: var(--text-secondary) !important;
+}
+
+.slick-prev:before {
+  content: "→";
+  color: var(--text-secondary) !important;
+}
+
+@media (max-width: 450px) {
+  .carousel-recordings .card {
     max-width: 320px;
     min-width: 320px;
   }
 }
-@media (max-width: 390px){
-  .carousel-recordings .card{
+@media (max-width: 390px) {
+  .carousel-recordings .card {
     max-width: 280px;
     min-width: 280px;
   }
 }
-@media (max-width: 340px){
-  .carousel-recordings .card{
+@media (max-width: 340px) {
+  .carousel-recordings .card {
     max-width: 260px;
     min-width: 260px;
   }
