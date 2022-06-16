@@ -61,7 +61,7 @@ function ManagerCalls() {
             rating: call.rating,
             client: `${call.Client.first_name} ${call.Client.last_name}`,
             agent: `${call.User.first_name} ${call.User.last_name}`,
-            date: `${call.created.substring(0, 10)}`,
+            date: `${call.created}`, //.substring(0, 10)
             categories: categories,
           };
           return newCall;
