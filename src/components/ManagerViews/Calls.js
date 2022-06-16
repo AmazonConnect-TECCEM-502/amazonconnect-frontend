@@ -10,7 +10,7 @@ function ManagerCalls() {
   // Setings for carousel
   const settings = {
     slidesToShow: 3,
-    infinite: true,
+    infinite: false,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
@@ -56,11 +56,12 @@ function ManagerCalls() {
           }
           const date = call.created.substring(0, 10);
           var hour = call.created.substring(11, 13);
-          hour = parseInt(hour) - 5;
+          hour = parseInt(hour);
+          hour = hour - 5;
           if (hour < 10) {
-            hour = "0" + String(hour);
+            hour = "0" + hour.toString();
           } else {
-            hour = String(hour);
+            hour = hour.toString();
           }
           var time = call.created.substring(13, 19);
           time = hour + time;
