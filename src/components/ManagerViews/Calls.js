@@ -56,7 +56,7 @@ function ManagerCalls() {
           }
           const date = call.created.substring(0, 10);
           var hour = call.created.substring(11, 13);
-          hour = parseInt(hour);
+          hour = Number(hour);
           hour = hour - 5;
           if (hour < 10) {
             hour = "0" + hour.toString();
