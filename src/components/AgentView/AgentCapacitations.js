@@ -67,6 +67,16 @@ function AgentCapacitation() {
               categories.push(category.category_name);
             });
           }
+          const date = call.created.substring(0, 10);
+          var hour = call.created.substring(11, 13);
+          hour = parseInt(hour) - 5;
+          if (hour < 10) {
+            hour = "0" + String(hour);
+          } else {
+            hour = String(hour);
+          }
+          var time = call.created.substring(13, 19);
+          time = hour + time;
 
           const newCall = {
             video_url: call.video_url,
@@ -74,9 +84,10 @@ function AgentCapacitation() {
             rating: call.rating,
             client: `${call.Client.first_name} ${call.Client.last_name}`,
             agent: `${call.User.first_name} ${call.User.last_name}`,
-            date: `${call.created.substring(0, 10)}`,
+            date: `${date + time}`,
             categories: categories,
           };
+
           return newCall;
         });
         setVideosArr(newArr);
