@@ -18,7 +18,7 @@ function AgentCapacitation() {
   // Setings for carousel
   const settings = {
     slidesToShow: 3,
-    infinite: false,
+    infinite: true,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
@@ -67,17 +67,6 @@ function AgentCapacitation() {
               categories.push(category.category_name);
             });
           }
-          const date = call.created.substring(0, 10);
-          var hour = call.created.substring(11, 13);
-          hour = Number(hour);
-          hour = hour - 5;
-          if (hour < 10) {
-            hour = "0" + hour.toString();
-          } else {
-            hour = hour.toString();
-          }
-          var time = call.created.substring(13, 19);
-          time = hour + time;
 
           const newCall = {
             video_url: call.video_url,
@@ -85,10 +74,9 @@ function AgentCapacitation() {
             rating: call.rating,
             client: `${call.Client.first_name} ${call.Client.last_name}`,
             agent: `${call.User.first_name} ${call.User.last_name}`,
-            date: `${date} ${time}`,
+            date: `${call.created.substring(0, 10)}`,
             categories: categories,
           };
-
           return newCall;
         });
         setVideosArr(newArr);
