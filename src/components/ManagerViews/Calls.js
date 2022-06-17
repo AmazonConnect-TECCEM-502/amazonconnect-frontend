@@ -249,13 +249,28 @@ function ManagerCalls() {
               });
             }
 
+            const date = call.created.substring(0, 10);
+            const hour = call.created.substring(11, 13);
+            const int = parseInt(hour);
+            var sum = int - 5;
+            var time;
+            if (sum < 0) {
+              sum = 24 + sum;
+            }
+            if (sum < 10) {
+              time = "0" + sum.toString();
+            } else {
+              time = sum.toString();
+            }
+            time = time + call.created.substring(13, 19);
+
             const newCall = {
               video_url: call.video_url,
               duration: call.duration,
               rating: call.rating,
               client: `${call.Client.first_name} ${call.Client.last_name}`,
               agent: `${call.User.first_name} ${call.User.last_name}`,
-              date: `${call.created.substring(0, 10)}`,
+              date: `${date} ${time}`,
               categories: categories,
             };
             return newCall;
@@ -314,13 +329,28 @@ function ManagerCalls() {
             });
           }
 
+          const date = call.created.substring(0, 10);
+          const hour = call.created.substring(11, 13);
+          const int = parseInt(hour);
+          var sum = int - 5;
+          var time;
+          if (sum < 0) {
+            sum = 24 + sum;
+          }
+          if (sum < 10) {
+            time = "0" + sum.toString();
+          } else {
+            time = sum.toString();
+          }
+          time = time + call.created.substring(13, 19);
+
           const newCall = {
             video_url: call.video_url,
             duration: call.duration,
             rating: call.rating,
             client: `${call.Client.first_name} ${call.Client.last_name}`,
             agent: `${call.User.first_name} ${call.User.last_name}`,
-            date: `${call.created.substring(0, 10)}`,
+            date: `${date} ${time}`,
             categories: categories,
           };
           return newCall;
