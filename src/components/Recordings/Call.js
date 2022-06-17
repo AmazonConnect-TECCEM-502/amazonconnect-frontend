@@ -1,12 +1,12 @@
+import { useEffect } from "react";
 import { Fragment } from "react";
 import { ImSad2, ImHappy2, ImNeutral2 } from "react-icons/im";
 
 const Call = (props) => {
+  const video1 = props.video_url;
   return (
     <Fragment>
-      <video width="100%" height="240" controls>
-        <source src={props.video_url} type="video/mp4" />
-      </video>
+      <video src={video1} width="100%" height="240" controls></video>
       <div className="video-info">
         <div>
           <p>
