@@ -8,10 +8,11 @@ import { AiOutlinePlusSquare } from "react-icons/ai";
 import { AdminContext } from "../AdminContextProvider";
 
 const AdminCategory = (props) => {
-  const [, , , , , , , , , setPreguntas,,,,setCategories] = useContext(AdminContext);
+  const [, , , , , , , , , setPreguntas,,,,setCategories,,setCategoryid] = useContext(AdminContext);
 
   const ProblemsCard = async () => {
     setCategories(props.text)
+    setCategoryid(props.category_id.toString())
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/problem/getProblemid/${props.category_id.toString()}`
     );

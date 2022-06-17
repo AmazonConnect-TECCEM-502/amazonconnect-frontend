@@ -14,7 +14,7 @@ import { AdminContext } from "../AdminContextProvider";
 
 
 const AdminProblem = (props) => {
-  const [,setSolutions,,setPreg_id,,,,,,setPreguntas,,setProbDesc]= useContext(AdminContext);
+  const [,setSolutions,,setPreg_id,,,,,,setPreguntas,,setProbDesc,,,categoryid]= useContext(AdminContext);
 
   const SolutionCard = async () => {
     setProbDesc(props.text.toString())
@@ -31,11 +31,14 @@ const AdminProblem = (props) => {
   };
 
   const DeleteProblem = async () => {
+    console.log(categoryid)
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/deleteProblem/${props.problem_id}`, { method: "DELETE"});
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getProblemid`)
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getProblemid/${categoryid}`)
     const json = await response.json()
     setPreguntas(json)
     toast.success("Problem deleted")
+    const card = document.getElementsById("card-15")
+    card.style.display = "block"
   };
 
   return (
