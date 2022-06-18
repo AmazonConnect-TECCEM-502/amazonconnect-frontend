@@ -12,8 +12,8 @@ const AdminContextProvider = ({children}) => {
   const [proposals, setProposals] = useState([]); // Array with all the proposals
   const [arrpreguntas, setPreguntas] = useState([]);//Array with all the problems
   const [ProbDesc, setProbDesc]=useState([]); //Problem Description 
-  const [category, setCategory]=useState([]); 
-  const [categoryid, setCategoryid] = useState([]);
+  const [category, setCategory]=useState([]); //Category Description
+  const [categoryid, setCategoryid] = useState([]); // Category ID
 
   return (
     <AdminContext.Provider

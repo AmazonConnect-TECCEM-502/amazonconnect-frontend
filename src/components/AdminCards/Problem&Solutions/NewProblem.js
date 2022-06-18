@@ -44,6 +44,7 @@ const NewProblem = (props) => {
   };
 
   const getCategories = async () =>{
+    //Fetch the categories for the select
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getCategories`)
     const json = await response.json()
     setCategories(json)
