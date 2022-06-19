@@ -1,7 +1,8 @@
 /*
   Authors: Andrea Vianey Diaz Alvarez
-  Description: 
-
+  Description: Represent a solution of the solutions list in the admin page. 
+  Functionalities:
+    - Delete the solution
 */
 
 import { Fragment } from "react";

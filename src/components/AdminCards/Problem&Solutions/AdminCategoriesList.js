@@ -1,6 +1,6 @@
 /*
   Authors: Andrea Vianey Diaz Alvarez
-  Description: 
+  Description: Component that fetch all the categories.
 */
 import { Fragment, useEffect, useState} from "react";
 import AdminCategory from "./AdminCategory";

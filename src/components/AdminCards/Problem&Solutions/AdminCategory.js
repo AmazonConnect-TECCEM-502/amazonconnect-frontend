@@ -1,6 +1,8 @@
 /*
   Authors: Andrea Vianey Diaz Alvarez
-  Description: 
+  Description: Represent a category for the categories list in the admin page. 
+  Functionalities:
+    - Fetch all the problems for the selected category.
 
 */
 import { Fragment, useContext } from "react";
@@ -8,10 +10,13 @@ import { AiOutlinePlusSquare } from "react-icons/ai";
 import { AdminContext } from "../AdminContextProvider";
 
 const AdminCategory = (props) => {
-  const [, , , , , , , , , setPreguntas,,,,setCategories] = useContext(AdminContext);
+  const [, , , , , , , , , setPreguntas,,,,setCategories,,setCategoryid] = useContext(AdminContext);
 
   const ProblemsCard = async () => {
+    // Response to the button of a category.
+    // Fetch all the problems of that category.
     setCategories(props.text)
+    setCategoryid(props.category_id.toString())
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/problem/getProblemid/${props.category_id.toString()}`
     );
