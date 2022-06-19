@@ -1,3 +1,8 @@
+/*
+Author: José Benjamín Ruiz García
+Component that represents a call, it shows a video brought from our database
+*/
+
 import { useEffect } from "react";
 import { Fragment } from "react";
 import { ImSad2, ImHappy2, ImNeutral2 } from "react-icons/im";

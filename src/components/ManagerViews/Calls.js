@@ -1,3 +1,10 @@
+/*
+Author: José Benjamín Ruiz García
+Component that represents the Calls page in the manager's profile
+it shows all the calls stores in our database and it allows the manager to
+filter the calls according to his o her needs.
+*/
+
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Slider from "react-slick";
@@ -41,10 +48,11 @@ function ManagerCalls() {
     } else if (user_type !== "manager") {
       navigate(-1);
     }
-
+    // Get all calls from our database and store them in an array with objects that represent a call
     fetch(`${process.env.REACT_APP_BACKEND_URL}/call/getCalls`)
       .then((response) => response.json())
       .then((calls) => {
+        // Array in which calls are stored
         const newArr = calls.map((call) => {
           const categories = [];
           if (call.Problem_categories.length === 0) {
@@ -54,6 +62,7 @@ function ManagerCalls() {
               categories.push(category.category_name);
             });
           }
+          // Get the date in a more visually engaging format
           const date = call.created.substring(0, 10);
           const hour = call.created.substring(11, 13);
           const int = parseInt(hour);
@@ -68,7 +77,7 @@ function ManagerCalls() {
             time = sum.toString();
           }
           time = time + call.created.substring(13, 19);
-
+          // Object wich represents a call with all its metadata
           const newCall = {
             video_url: call.video_url,
             duration: call.duration,
@@ -83,7 +92,7 @@ function ManagerCalls() {
         setVideosArr(newArr);
       })
       .catch((error) => console.log(error));
-
+    // Get all the categories for the filter options
     fetch(`${process.env.REACT_APP_BACKEND_URL}/problem/getProblemCategorys`)
       .then((response) => response.json())
       .then((categories) => {
@@ -93,7 +102,7 @@ function ManagerCalls() {
 
         setCategoriesFilter(categoriesBD);
       });
-
+    // Get all the agents for the filter options
     fetch(`${process.env.REACT_APP_BACKEND_URL}/user/agentIds`)
       .then((response) => response.json())
       .then((agents) => {
@@ -106,7 +115,7 @@ function ManagerCalls() {
 
         setAgentsFilter(agentsBD);
       });
-
+    // Get all the clients for the filter options
     fetch(`${process.env.REACT_APP_BACKEND_URL}/user/clientIds`)
       .then((response) => response.json())
       .then((clients) => {
@@ -121,6 +130,7 @@ function ManagerCalls() {
       });
   }, [user_type, navigate]);
 
+  // Define all state variables where filters and calls are going to be stored
   const [videosArr, setVideosArr] = useState([]);
 
   const [categoriesFilter, setCategoriesFilter] = useState([]);
@@ -138,6 +148,7 @@ function ManagerCalls() {
   const [month, setMonth] = useState(0);
   const [year, setYear] = useState(0);
 
+  // In this section of the code we set all of the options for the filters
   const categoryOptions = [
     {
       options: categoriesFilter.map((category) => {
@@ -168,6 +179,8 @@ function ManagerCalls() {
     { label: "Good", value: 3 },
   ];
 
+  // In this section of the code we obtain the values that the user selected in the filters
+  // and store them in an array which will be sent to our backend
   const updateCategoriesList = (newValue) => {
     const tempArray = newValue.map((value) => {
       return value.value;
@@ -225,8 +238,10 @@ function ManagerCalls() {
       setYear(event.target.value);
     }
   };
-
+  // Function that gets invocked when the user clicks on the search button and applies
+  // all the filters that the user selected
   const applyFilters = async () => {
+    // If the user clicks on search with no filters we get all the calls again
     if (
       selectedCategories.length === 0 &&
       selectedAgents.length === 0 &&
@@ -279,7 +294,8 @@ function ManagerCalls() {
         })
         .catch((error) => console.log(error));
     }
-
+    // This is the body we will send to our backend, it is modified based on the filters
+    // that the user selected
     const json = {};
 
     if (selectedCategories.length !== 0) {
@@ -312,6 +328,7 @@ function ManagerCalls() {
 
     const body = JSON.stringify(json);
 
+    // POST to our backend to get all the calls that have the filtered data
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/call/getCalls`, {
       method: "POST",
       body: body,
