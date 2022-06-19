@@ -141,7 +141,7 @@ const About = () => {
     {
       name: "Javier Emilio Moreno Márquez",
       area: "BackEnd",
-      image: "/OmarR.jpeg"
+      image: "/TelmexLogo.jpg"
     },
     {
       name: "Renata Montserrat De Luna Flores",
